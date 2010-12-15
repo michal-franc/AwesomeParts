@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{99F226D1-EB58-40EC-BDEE-6DA7B4943543}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BazaDanych</RootNamespace>
+    <AssemblyName>BazaDanych</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FluentNHibernate">
+      <HintPath>..\..\..\..\SharedLibs\Fluent NHibernate\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate, Version=2.1.2.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\SharedLibs\Fluent NHibernate\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Entities\Klient.cs" />
+    <Compile Include="Entities\KlientRodzaj.cs" />
+    <Compile Include="Entities\ZamowieniaKoszyk.cs" />
+    <Compile Include="Entities\LoginRola.cs" />
+    <Compile Include="Entities\Produkty.cs" />
+    <Compile Include="Entities\Pracownik.cs" />
+    <Compile Include="Entities\PracownikRodzaj.cs" />
+    <Compile Include="Entities\PracownikStatus.cs" />
+    <Compile Include="Entities\PracownikUmowa.cs" />
+    <Compile Include="Entities\ProduktProducent.cs" />
+    <Compile Include="Entities\Zamowienie.cs" />
+    <Compile Include="Mappings\ZamowieniaKoszykMap.cs" />
+    <Compile Include="Mappings\KlientMap.cs" />
+    <Compile Include="Mappings\KlientRodzajMap.cs" />
+    <Compile Include="Mappings\LoginRolaMap.cs" />
+    <Compile Include="Mappings\ProduktyMap.cs" />
+    <Compile Include="Mappings\PracownikMap.cs" />
+    <Compile Include="Mappings\PracownikRodzajMap.cs" />
+    <Compile Include="Mappings\PracownikStatusMap.cs" />
+    <Compile Include="Mappings\PracownikUmowaMap.cs" />
+    <Compile Include="Mappings\ProduktProducentMap.cs" />
+    <Compile Include="Mappings\ZamowienieMap.cs" />
+    <Compile Include="Repositories\IRepository.cs" />
+    <Compile Include="Repositories\PracownikRepository.cs" />
+    <Compile Include="Repositories\Repository.cs" />
+    <Compile Include="Repositories\ZamowieniaRepository.cs" />
+    <Compile Include="SessionFactory.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
