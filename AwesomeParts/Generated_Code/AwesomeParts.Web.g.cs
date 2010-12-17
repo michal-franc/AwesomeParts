@@ -94,7 +94,7 @@ namespace AwesomeParts.Web
     
     
     /// <summary>
-    /// The domain context corresponding to the 'AuthenticationService' domain service.
+    /// The DomainContext corresponding to the 'AuthenticationService' DomainService.
     /// </summary>
     public sealed partial class AuthenticationContext : global::System.ServiceModel.DomainServices.Client.ApplicationServices.AuthenticationDomainContextBase
     {
@@ -130,7 +130,7 @@ namespace AwesomeParts.Web
         /// <summary>
         /// Initializes a new instance of the <see cref="AuthenticationContext"/> class with the specified <paramref name="domainClient"/>.
         /// </summary>
-        /// <param name="domainClient">The DomainClient instance to use for this domain context.</param>
+        /// <param name="domainClient">The DomainClient instance to use for this DomainContext.</param>
         public AuthenticationContext(DomainClient domainClient) : 
                 base(domainClient)
         {
@@ -138,7 +138,7 @@ namespace AwesomeParts.Web
         }
         
         /// <summary>
-        /// Gets the set of <see cref="User"/> entities that have been loaded into this <see cref="AuthenticationContext"/> instance.
+        /// Gets the set of <see cref="User"/> entity instances that have been loaded into this <see cref="AuthenticationContext"/> instance.
         /// </summary>
         public EntitySet<User> Users
         {
@@ -149,9 +149,9 @@ namespace AwesomeParts.Web
         }
         
         /// <summary>
-        /// Gets an EntityQuery instance that can be used to load <see cref="User"/> entities using the 'GetUser' query.
+        /// Gets an EntityQuery instance that can be used to load <see cref="User"/> entity instances using the 'GetUser' query.
         /// </summary>
-        /// <returns>An EntityQuery that can be loaded to retrieve <see cref="User"/> entities.</returns>
+        /// <returns>An EntityQuery that can be loaded to retrieve <see cref="User"/> entity instances.</returns>
         public EntityQuery<User> GetUserQuery()
         {
             this.ValidateMethod("GetUserQuery", null);
@@ -159,13 +159,13 @@ namespace AwesomeParts.Web
         }
         
         /// <summary>
-        /// Gets an EntityQuery instance that can be used to load <see cref="User"/> entities using the 'Login' query.
+        /// Gets an EntityQuery instance that can be used to load <see cref="User"/> entity instances using the 'Login' query.
         /// </summary>
         /// <param name="userName">The value for the 'userName' parameter of the query.</param>
         /// <param name="password">The value for the 'password' parameter of the query.</param>
         /// <param name="isPersistent">The value for the 'isPersistent' parameter of the query.</param>
         /// <param name="customData">The value for the 'customData' parameter of the query.</param>
-        /// <returns>An EntityQuery that can be loaded to retrieve <see cref="User"/> entities.</returns>
+        /// <returns>An EntityQuery that can be loaded to retrieve <see cref="User"/> entity instances.</returns>
         public EntityQuery<User> LoginQuery(string userName, string password, bool isPersistent, string customData)
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>();
@@ -178,9 +178,9 @@ namespace AwesomeParts.Web
         }
         
         /// <summary>
-        /// Gets an EntityQuery instance that can be used to load <see cref="User"/> entities using the 'Logout' query.
+        /// Gets an EntityQuery instance that can be used to load <see cref="User"/> entity instances using the 'Logout' query.
         /// </summary>
-        /// <returns>An EntityQuery that can be loaded to retrieve <see cref="User"/> entities.</returns>
+        /// <returns>An EntityQuery that can be loaded to retrieve <see cref="User"/> entity instances.</returns>
         public EntityQuery<User> LogoutQuery()
         {
             this.ValidateMethod("LogoutQuery", null);
@@ -188,7 +188,7 @@ namespace AwesomeParts.Web
         }
         
         /// <summary>
-        /// Creates a new entity container for this domain context's entity sets.
+        /// Creates a new EntityContainer for this DomainContext's EntitySets.
         /// </summary>
         /// <returns>A new container instance.</returns>
         protected override EntityContainer CreateEntityContainer()
@@ -197,7 +197,7 @@ namespace AwesomeParts.Web
         }
         
         /// <summary>
-        /// Service contract for the 'AuthenticationService' domain service.
+        /// Service contract for the 'AuthenticationService' DomainService.
         /// </summary>
         [ServiceContract()]
         public interface IAuthenticationServiceContract
@@ -689,7 +689,7 @@ namespace AwesomeParts.Web
     }
     
     /// <summary>
-    /// The domain context corresponding to the 'UserRegistrationService' domain service.
+    /// The DomainContext corresponding to the 'UserRegistrationService' DomainService.
     /// </summary>
     public sealed partial class UserRegistrationContext : DomainContext
     {
@@ -725,7 +725,7 @@ namespace AwesomeParts.Web
         /// <summary>
         /// Initializes a new instance of the <see cref="UserRegistrationContext"/> class with the specified <paramref name="domainClient"/>.
         /// </summary>
-        /// <param name="domainClient">The DomainClient instance to use for this domain context.</param>
+        /// <param name="domainClient">The DomainClient instance to use for this DomainContext.</param>
         public UserRegistrationContext(DomainClient domainClient) : 
                 base(domainClient)
         {
@@ -733,7 +733,7 @@ namespace AwesomeParts.Web
         }
         
         /// <summary>
-        /// Gets the set of <see cref="RegistrationData"/> entities that have been loaded into this <see cref="UserRegistrationContext"/> instance.
+        /// Gets the set of <see cref="RegistrationData"/> entity instances that have been loaded into this <see cref="UserRegistrationContext"/> instance.
         /// </summary>
         public EntitySet<RegistrationData> RegistrationDatas
         {
@@ -744,9 +744,9 @@ namespace AwesomeParts.Web
         }
         
         /// <summary>
-        /// Gets an EntityQuery instance that can be used to load <see cref="RegistrationData"/> entities using the 'GetUsers' query.
+        /// Gets an EntityQuery instance that can be used to load <see cref="RegistrationData"/> entity instances using the 'GetUsers' query.
         /// </summary>
-        /// <returns>An EntityQuery that can be loaded to retrieve <see cref="RegistrationData"/> entities.</returns>
+        /// <returns>An EntityQuery that can be loaded to retrieve <see cref="RegistrationData"/> entity instances.</returns>
         public EntityQuery<RegistrationData> GetUsersQuery()
         {
             this.ValidateMethod("GetUsersQuery", null);
@@ -754,7 +754,7 @@ namespace AwesomeParts.Web
         }
         
         /// <summary>
-        /// Asynchronously invokes the 'CreateUser' method of the domain service.
+        /// Asynchronously invokes the 'CreateUser' method of the DomainService.
         /// </summary>
         /// <param name="user">The value for the 'user' parameter of this action.</param>
         /// <param name="password">The value for the 'password' parameter of this action.</param>
@@ -771,7 +771,7 @@ namespace AwesomeParts.Web
         }
         
         /// <summary>
-        /// Asynchronously invokes the 'CreateUser' method of the domain service.
+        /// Asynchronously invokes the 'CreateUser' method of the DomainService.
         /// </summary>
         /// <param name="user">The value for the 'user' parameter of this action.</param>
         /// <param name="password">The value for the 'password' parameter of this action.</param>
@@ -786,7 +786,7 @@ namespace AwesomeParts.Web
         }
         
         /// <summary>
-        /// Creates a new entity container for this domain context's entity sets.
+        /// Creates a new EntityContainer for this DomainContext's EntitySets.
         /// </summary>
         /// <returns>A new container instance.</returns>
         protected override EntityContainer CreateEntityContainer()
@@ -795,7 +795,7 @@ namespace AwesomeParts.Web
         }
         
         /// <summary>
-        /// Service contract for the 'UserRegistrationService' domain service.
+        /// Service contract for the 'UserRegistrationService' DomainService.
         /// </summary>
         [ServiceContract()]
         public interface IUserRegistrationServiceContract
@@ -837,24 +837,6 @@ namespace AwesomeParts.Web
             /// <param name="result">The IAsyncResult returned from 'BeginGetUsers'.</param>
             /// <returns>The 'QueryResult' returned from the 'GetUsers' operation.</returns>
             QueryResult<RegistrationData> EndGetUsers(IAsyncResult result);
-            
-            /// <summary>
-            /// Asynchronously invokes the 'SubmitChanges' operation.
-            /// </summary>
-            /// <param name="changeSet">The change-set to submit.</param>
-            /// <param name="callback">Callback to invoke on completion.</param>
-            /// <param name="asyncState">Optional state object.</param>
-            /// <returns>An IAsyncResult that can be used to monitor the request.</returns>
-            [FaultContract(typeof(DomainServiceFault), Action="http://tempuri.org/UserRegistrationService/SubmitChangesDomainServiceFault", Name="DomainServiceFault", Namespace="DomainServices")]
-            [OperationContract(AsyncPattern=true, Action="http://tempuri.org/UserRegistrationService/SubmitChanges", ReplyAction="http://tempuri.org/UserRegistrationService/SubmitChangesResponse")]
-            IAsyncResult BeginSubmitChanges(IEnumerable<ChangeSetEntry> changeSet, AsyncCallback callback, object asyncState);
-            
-            /// <summary>
-            /// Completes the asynchronous operation begun by 'BeginSubmitChanges'.
-            /// </summary>
-            /// <param name="result">The IAsyncResult returned from 'BeginSubmitChanges'.</param>
-            /// <returns>The collection of change-set entry elements returned from 'SubmitChanges'.</returns>
-            IEnumerable<ChangeSetEntry> EndSubmitChanges(IAsyncResult result);
         }
         
         internal sealed class UserRegistrationContextEntityContainer : EntityContainer
@@ -1504,7 +1486,7 @@ namespace AwesomeParts.Web.Services
     
     
     /// <summary>
-    /// The domain context corresponding to the 'KlientService' domain service.
+    /// The DomainContext corresponding to the 'KlientService' DomainService.
     /// </summary>
     public sealed partial class KlientContext : DomainContext
     {
@@ -1540,7 +1522,7 @@ namespace AwesomeParts.Web.Services
         /// <summary>
         /// Initializes a new instance of the <see cref="KlientContext"/> class with the specified <paramref name="domainClient"/>.
         /// </summary>
-        /// <param name="domainClient">The DomainClient instance to use for this domain context.</param>
+        /// <param name="domainClient">The DomainClient instance to use for this DomainContext.</param>
         public KlientContext(DomainClient domainClient) : 
                 base(domainClient)
         {
@@ -1548,7 +1530,7 @@ namespace AwesomeParts.Web.Services
         }
         
         /// <summary>
-        /// Gets the set of <see cref="KlientPOCO"/> entities that have been loaded into this <see cref="KlientContext"/> instance.
+        /// Gets the set of <see cref="KlientPOCO"/> entity instances that have been loaded into this <see cref="KlientContext"/> instance.
         /// </summary>
         public EntitySet<KlientPOCO> KlientPOCOs
         {
@@ -1559,9 +1541,9 @@ namespace AwesomeParts.Web.Services
         }
         
         /// <summary>
-        /// Gets an EntityQuery instance that can be used to load <see cref="KlientPOCO"/> entities using the 'GetKlienci' query.
+        /// Gets an EntityQuery instance that can be used to load <see cref="KlientPOCO"/> entity instances using the 'GetKlienci' query.
         /// </summary>
-        /// <returns>An EntityQuery that can be loaded to retrieve <see cref="KlientPOCO"/> entities.</returns>
+        /// <returns>An EntityQuery that can be loaded to retrieve <see cref="KlientPOCO"/> entity instances.</returns>
         public EntityQuery<KlientPOCO> GetKlienciQuery()
         {
             this.ValidateMethod("GetKlienciQuery", null);
@@ -1569,7 +1551,7 @@ namespace AwesomeParts.Web.Services
         }
         
         /// <summary>
-        /// Creates a new entity container for this domain context's entity sets.
+        /// Creates a new EntityContainer for this DomainContext's EntitySets.
         /// </summary>
         /// <returns>A new container instance.</returns>
         protected override EntityContainer CreateEntityContainer()
@@ -1578,7 +1560,7 @@ namespace AwesomeParts.Web.Services
         }
         
         /// <summary>
-        /// Service contract for the 'KlientService' domain service.
+        /// Service contract for the 'KlientService' DomainService.
         /// </summary>
         [ServiceContract()]
         public interface IKlientServiceContract
@@ -1601,24 +1583,6 @@ namespace AwesomeParts.Web.Services
             /// <param name="result">The IAsyncResult returned from 'BeginGetKlienci'.</param>
             /// <returns>The 'QueryResult' returned from the 'GetKlienci' operation.</returns>
             QueryResult<KlientPOCO> EndGetKlienci(IAsyncResult result);
-            
-            /// <summary>
-            /// Asynchronously invokes the 'SubmitChanges' operation.
-            /// </summary>
-            /// <param name="changeSet">The change-set to submit.</param>
-            /// <param name="callback">Callback to invoke on completion.</param>
-            /// <param name="asyncState">Optional state object.</param>
-            /// <returns>An IAsyncResult that can be used to monitor the request.</returns>
-            [FaultContract(typeof(DomainServiceFault), Action="http://tempuri.org/KlientService/SubmitChangesDomainServiceFault", Name="DomainServiceFault", Namespace="DomainServices")]
-            [OperationContract(AsyncPattern=true, Action="http://tempuri.org/KlientService/SubmitChanges", ReplyAction="http://tempuri.org/KlientService/SubmitChangesResponse")]
-            IAsyncResult BeginSubmitChanges(IEnumerable<ChangeSetEntry> changeSet, AsyncCallback callback, object asyncState);
-            
-            /// <summary>
-            /// Completes the asynchronous operation begun by 'BeginSubmitChanges'.
-            /// </summary>
-            /// <param name="result">The IAsyncResult returned from 'BeginSubmitChanges'.</param>
-            /// <returns>The collection of change-set entry elements returned from 'SubmitChanges'.</returns>
-            IEnumerable<ChangeSetEntry> EndSubmitChanges(IAsyncResult result);
         }
         
         internal sealed class KlientContextEntityContainer : EntityContainer
@@ -1632,7 +1596,7 @@ namespace AwesomeParts.Web.Services
     }
     
     /// <summary>
-    /// The domain context corresponding to the 'ProduktyService' domain service.
+    /// The DomainContext corresponding to the 'ProduktyService' DomainService.
     /// </summary>
     public sealed partial class ProduktyContext : DomainContext
     {
@@ -1668,7 +1632,7 @@ namespace AwesomeParts.Web.Services
         /// <summary>
         /// Initializes a new instance of the <see cref="ProduktyContext"/> class with the specified <paramref name="domainClient"/>.
         /// </summary>
-        /// <param name="domainClient">The DomainClient instance to use for this domain context.</param>
+        /// <param name="domainClient">The DomainClient instance to use for this DomainContext.</param>
         public ProduktyContext(DomainClient domainClient) : 
                 base(domainClient)
         {
@@ -1676,7 +1640,7 @@ namespace AwesomeParts.Web.Services
         }
         
         /// <summary>
-        /// Gets the set of <see cref="ProduktPOCO"/> entities that have been loaded into this <see cref="ProduktyContext"/> instance.
+        /// Gets the set of <see cref="ProduktPOCO"/> entity instances that have been loaded into this <see cref="ProduktyContext"/> instance.
         /// </summary>
         public EntitySet<ProduktPOCO> ProduktPOCOs
         {
@@ -1687,9 +1651,9 @@ namespace AwesomeParts.Web.Services
         }
         
         /// <summary>
-        /// Gets an EntityQuery instance that can be used to load <see cref="ProduktPOCO"/> entities using the 'GetProdukty' query.
+        /// Gets an EntityQuery instance that can be used to load <see cref="ProduktPOCO"/> entity instances using the 'GetProdukty' query.
         /// </summary>
-        /// <returns>An EntityQuery that can be loaded to retrieve <see cref="ProduktPOCO"/> entities.</returns>
+        /// <returns>An EntityQuery that can be loaded to retrieve <see cref="ProduktPOCO"/> entity instances.</returns>
         public EntityQuery<ProduktPOCO> GetProduktyQuery()
         {
             this.ValidateMethod("GetProduktyQuery", null);
@@ -1697,7 +1661,7 @@ namespace AwesomeParts.Web.Services
         }
         
         /// <summary>
-        /// Creates a new entity container for this domain context's entity sets.
+        /// Creates a new EntityContainer for this DomainContext's EntitySets.
         /// </summary>
         /// <returns>A new container instance.</returns>
         protected override EntityContainer CreateEntityContainer()
@@ -1706,7 +1670,7 @@ namespace AwesomeParts.Web.Services
         }
         
         /// <summary>
-        /// Service contract for the 'ProduktyService' domain service.
+        /// Service contract for the 'ProduktyService' DomainService.
         /// </summary>
         [ServiceContract()]
         public interface IProduktyServiceContract
@@ -1729,24 +1693,6 @@ namespace AwesomeParts.Web.Services
             /// <param name="result">The IAsyncResult returned from 'BeginGetProdukty'.</param>
             /// <returns>The 'QueryResult' returned from the 'GetProdukty' operation.</returns>
             QueryResult<ProduktPOCO> EndGetProdukty(IAsyncResult result);
-            
-            /// <summary>
-            /// Asynchronously invokes the 'SubmitChanges' operation.
-            /// </summary>
-            /// <param name="changeSet">The change-set to submit.</param>
-            /// <param name="callback">Callback to invoke on completion.</param>
-            /// <param name="asyncState">Optional state object.</param>
-            /// <returns>An IAsyncResult that can be used to monitor the request.</returns>
-            [FaultContract(typeof(DomainServiceFault), Action="http://tempuri.org/ProduktyService/SubmitChangesDomainServiceFault", Name="DomainServiceFault", Namespace="DomainServices")]
-            [OperationContract(AsyncPattern=true, Action="http://tempuri.org/ProduktyService/SubmitChanges", ReplyAction="http://tempuri.org/ProduktyService/SubmitChangesResponse")]
-            IAsyncResult BeginSubmitChanges(IEnumerable<ChangeSetEntry> changeSet, AsyncCallback callback, object asyncState);
-            
-            /// <summary>
-            /// Completes the asynchronous operation begun by 'BeginSubmitChanges'.
-            /// </summary>
-            /// <param name="result">The IAsyncResult returned from 'BeginSubmitChanges'.</param>
-            /// <returns>The collection of change-set entry elements returned from 'SubmitChanges'.</returns>
-            IEnumerable<ChangeSetEntry> EndSubmitChanges(IAsyncResult result);
         }
         
         internal sealed class ProduktyContextEntityContainer : EntityContainer

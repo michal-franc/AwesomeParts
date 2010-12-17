@@ -34,7 +34,7 @@ namespace Tests.Repositories
         public void CanGetKlientByID()
         {
             var testedKlient = _repository.GetById(1);
-            Assert.That(testedKlient.Imie, Is.EqualTo("Michał"));
+            Assert.That(testedKlient.Imie, Is.EqualTo("Michal"));
 
             testedKlient = _repository.GetById(2);
             Assert.That(testedKlient.Imie, Is.EqualTo("Kamil"));
@@ -51,10 +51,10 @@ namespace Tests.Repositories
             _repository.Update(testedKlient);
             testedKlient = _repository.GetById(1);
             Assert.That(testedKlient.Imie, Is.EqualTo("Stefcio"));
-            testedKlient.Imie = "Michał";
+            testedKlient.Imie = "Michal";
             _repository.Update(testedKlient);
             testedKlient = _repository.GetById(1);
-            Assert.That(testedKlient.Imie, Is.EqualTo("Michał"));
+            Assert.That(testedKlient.Imie, Is.EqualTo("Michal"));
         }
 
         [Test]
@@ -78,7 +78,7 @@ namespace Tests.Repositories
         public void CanGetKlientRodzaj()
         {
             var testedKlient = _repository.GetById(1);
-            Assert.That(testedKlient.Imie, Is.EqualTo("Michał"));
+            Assert.That(testedKlient.Imie, Is.EqualTo("Michal"));
             Assert.That(testedKlient.Rodzaj.Rodzaj, Is.Not.Null);
             Assert.That(testedKlient.Rodzaj.Rodzaj, Is.EqualTo("Kupujacy"));
 
@@ -97,7 +97,7 @@ namespace Tests.Repositories
         public void CanGetKlientRola()
         {
             var testedKlient = _repository.GetById(1);
-            Assert.That(testedKlient.Imie, Is.EqualTo("Michał"));
+            Assert.That(testedKlient.Imie, Is.EqualTo("Michal"));
             Assert.That(testedKlient.LoginRola.Rola, Is.Not.Null);
             Assert.That(testedKlient.LoginRola.Rola, Is.EqualTo("Administrator"));
 
