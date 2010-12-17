@@ -135,6 +135,9 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\Klienci.xaml.cs">
+      <DependentUpon>Klienci.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Login\LoginStatus.xaml.cs">
       <DependentUpon>LoginStatus.xaml</DependentUpon>
     </Compile>
@@ -197,6 +200,10 @@
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Klienci.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Login\LoginStatus.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>
