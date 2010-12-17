@@ -12,5 +12,30 @@ namespace BazaDanych.Repositories
         {
             return GetByQuery(String.Format("from Pracownik p where p.LoginRola.Rola = '{0}'",rola));
         }
+
+        public IList<Pracownik> GetByStatus(string status)
+        {
+            return GetByQuery(String.Format("from Pracownik p where p.Status.Status = '{0}'", status));
+        }
+
+        public IList<Pracownik> GetByRodzaj(string rodzaj)
+        {
+            return GetByQuery(String.Format("from Pracownik p where p.Rodzaj.Rodzaj= '{0}'", rodzaj));
+        }
+
+        public Pracownik GetByImieNazwisko(string imie, string nazwisko)
+        {
+            return GetByQuery(String.Format("from Pracownik p where p.Imie= '{0}' and p.Nazwisko = '{1}'", imie,nazwisko)).FirstOrDefault();
+        }
+
+        public IList<Pracownik>  CanGetByDataPodpisaniaUmowy(DateTime dateTime, DateTime dateTime_2,string sort ="asc")
+        {
+            return GetByQuery(String.Format("from Pracownik p where p.Umowa.Aktualna = true and p.Umowa.DataWygasniecia => '{0}' and p.Umowa.DataWygasniecia <= '{1}' order by p.Umowa.Wygasniecia {2}",dateTime.ToShortDateString(),dateTime_2.ToShortDateString(),sort));
+        }
+
+        public IList<Pracownik> CanGetByDataWygasnieciaUmowy(DateTime dateTime, DateTime dateTime_2,string sort ="asc")
+        {
+            return GetByQuery(String.Format("from Pracownik p where p.Umowa.Aktualna = true and p.Umowa.DataWygasniecia => '{0}' and p.Umowa.DataWygasniecia <= '{1}' order by p.Umowa.Wygasniecia {2}", dateTime.ToShortDateString(), dateTime_2.ToShortDateString(), sort));
+        }
     }
 }

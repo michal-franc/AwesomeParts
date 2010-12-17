@@ -16,8 +16,9 @@ namespace BazaDanych.Mappings
             Map(x => x.DataPodpisania);
             Map(x => x.DataWygasniecia);
             Map(x => x.Uwagi);
+            Map(x => x.Aktualna);
 
-            References(x => x.Pracownik).LazyLoad(Laziness.False).Cascade.SaveUpdate();
+            References(x => x.Pracownik).LazyLoad(Laziness.False);
         }
     }
 }

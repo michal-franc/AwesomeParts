@@ -74,7 +74,7 @@ namespace Tests
 
 
             Pracownik pracownikMichalFranc = new Pracownik() { Imie = "Michal", Nazwisko = "Franc", Login = "LaM", Status = pracownikStatusUrlop, LoginRola = loginRolaUzytkownik, Rodzaj = pracownikRodzajMagazynier };
-            Pracownik pracownikStefanRomanski = new Pracownik() { Imie = "Stefan", Nazwisko = "Romański", Login = "stefcio", Status = pracownikStatusZatrudniony, LoginRola = loginRolaAdministrator, Rodzaj = pracownikRodzajSekretarka };
+            Pracownik pracownikStefanRomanski = new Pracownik() { Imie = "Stefan", Nazwisko = "Romanski", Login = "stefcio", Status = pracownikStatusZatrudniony, LoginRola = loginRolaAdministrator, Rodzaj = pracownikRodzajSekretarka };
             Pracownik pracownikWojtekKorycki = new Pracownik() { Imie = "Wojciech", Nazwisko = "Korycki", Login = "wojtek", Status = pracownikStatusZatrudniony, LoginRola = loginRolaSprzedawca, Rodzaj = pracownikRodzajSekretarka };
             Pracownik pracownikKamilMinda = new Pracownik() { Imie = "Kamil", Nazwisko = "Minda", Login = "kminda", Status = pracownikStatusChorobowe, LoginRola = loginRolaSprzedawca, Rodzaj = pracownikRodzajSekretarka };
             Pracownik pracownikIwonaKarczoch = new Pracownik() { Imie = "Iwona", Nazwisko = "Karczoch", Login = "ikarczoch", Status = pracownikStatusZatrudniony, LoginRola = loginRolaZarzad, Rodzaj = pracownikRodzajPrezes };
@@ -132,8 +132,8 @@ namespace Tests
             };
 
             PracownikUmowa umowaStefanRomanski = new PracownikUmowa() 
-            { 
-                DataPodpisania=DateTime.Now,
+            {
+                DataPodpisania = new DateTime(2007, 1, 1),
                 DataWygasniecia=null,
                 Aktualna = true,
                 Pracownik = pracownikStefanRomanski,
@@ -141,8 +141,8 @@ namespace Tests
             };
 
             PracownikUmowa umowaWojtekKorycki = new PracownikUmowa() 
-            { 
-                DataPodpisania=DateTime.Now,
+            {
+                DataPodpisania = new DateTime(2006, 1, 1),
                 DataWygasniecia=null,
                 Aktualna = true,
                 Pracownik = pracownikWojtekKorycki,
@@ -151,7 +151,7 @@ namespace Tests
 
             PracownikUmowa umowaKamilMinda = new PracownikUmowa()
             {
-                DataPodpisania = DateTime.Now,
+                DataPodpisania = new DateTime(2005, 1, 1),
                 DataWygasniecia = null,
                 Aktualna = true,
                 Pracownik = pracownikKamilMinda,
@@ -160,7 +160,7 @@ namespace Tests
 
             PracownikUmowa umowaIwonaKarczoch = new PracownikUmowa()
             {
-                DataPodpisania = DateTime.Now,
+                DataPodpisania = new DateTime(2006, 1, 1),
                 DataWygasniecia = null,
                 Aktualna = true,
                 Pracownik = pracownikIwonaKarczoch,

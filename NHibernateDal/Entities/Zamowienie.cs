@@ -15,6 +15,7 @@ namespace BazaDanych.Entities
         /// Pracownik firmy przydzielony do obsugi zamowienia
         /// </summary>
         public virtual Pracownik Pracownik { get; set; }
+
         public virtual Nullable<DateTime> DataZlozenia { get; set; }
         public virtual Nullable<DateTime> DataZrealizowania { get; set; }
         

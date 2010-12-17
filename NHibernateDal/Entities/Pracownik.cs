@@ -27,5 +27,23 @@ namespace BazaDanych.Entities
         public virtual LoginRola LoginRola { get; set; }
 
         public virtual IList<ZamowieniaKoszyk> Zamowienia { get; set; }
+        public virtual IList<PracownikUmowa> Umowy { get; set; }
+
+
+        public virtual IList<PracownikUmowa> UmowyArchiwalne
+        {
+            get
+            {
+                return Umowy.Where(x => x.Aktualna == false).ToList();
+            }
+        }
+
+        public virtual PracownikUmowa AktualnaUmowa 
+        {
+            get
+            {
+                return Umowy.Where(x => x.Aktualna == true).FirstOrDefault();
+            }
+        }
     }
 }

@@ -17,8 +17,8 @@ namespace BazaDanych.Mappings
             Map(x => x.DataZlozenia).Nullable();
             Map(x => x.DataZrealizowania).Nullable();
 
-            References(x => x.Klient).LazyLoad(Laziness.False).Cascade.SaveUpdate();
-            References(x => x.Pracownik).LazyLoad(Laziness.False).Cascade.SaveUpdate();
+            References(x => x.Klient).LazyLoad(Laziness.False);
+            References(x => x.Pracownik).LazyLoad(Laziness.False);
         }
     }
 }
