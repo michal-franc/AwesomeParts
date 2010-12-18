@@ -17,6 +17,6 @@ namespace AwesomeParts.Web.POCOs
         public virtual Nullable<DateTime> DataWygasniecia { get; set; }
         public virtual bool Aktualna { get; set; }
         public virtual string Uwagi { get; set; }
-        public virtual Pracownik Pracownik { get; set; }
+        public virtual PracownikPOCO Pracownik { get; set; }
     }
 }

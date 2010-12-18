@@ -40,7 +40,7 @@ namespace BazaDanych
         {
             return Fluently.Configure().
                     Database(MsSqlConfiguration.MsSql2008.ConnectionString
-                    ("Data Source=LAM-PC\\SQLDEV;Initial Catalog=AwesomeParts;Integrated Security=SSPI;"))
+                    ("Data Source=localhost;Initial Catalog=AwesomeParts;Integrated Security=SSPI;"))
                     .Mappings(m => m.FluentMappings.Add<ZamowieniaKoszykMap>())
                     .Mappings(m => m.FluentMappings.Add<KlientMap>())
                     .Mappings(m => m.FluentMappings.Add<ProduktyMap>())
@@ -52,7 +52,7 @@ namespace BazaDanych
                     .Mappings(m => m.FluentMappings.Add<ProduktProducentMap>())
                     .Mappings(m => m.FluentMappings.Add<ZamowienieMap>())
                     .Mappings(m => m.FluentMappings.Add<LoginRolaMap>())
-                    .ExposeConfiguration(func)
+                    //.ExposeConfiguration(func)
                     .BuildSessionFactory();
         }
 

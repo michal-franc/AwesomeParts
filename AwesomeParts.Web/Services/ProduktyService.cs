@@ -19,6 +19,56 @@ namespace AwesomeParts.Web.Services
     {
         private IRepository<Produkty> _context = new Repository<Produkty>();
 
+        [Insert()]
+        public void InsertProdukt(ProduktPOCO produkt)
+        {
+            _context.Add(new Produkty
+            {
+                Nazwa = produkt.Nazwa,
+                Ilosc = produkt.Ilosc,
+                Cena = produkt.Cena,
+                DocelowaIlosc = produkt.DocelowaIlosc,
+                Producent = new ProduktProducent
+                {
+                    Nazwa = produkt.ProducentNazwa
+                }
+            });
+        }
+
+        [Update()]
+        public void UpdateProdukt(ProduktPOCO produkt)
+        {
+            _context.UpdateById(new Produkty
+            {
+                Nazwa = produkt.Nazwa,
+                Ilosc = produkt.Ilosc,
+                Cena = produkt.Cena,
+                DocelowaIlosc = produkt.DocelowaIlosc,
+                Producent = new ProduktProducent
+                {
+                    Nazwa = produkt.ProducentNazwa
+                }
+            }, produkt.Id);
+        }
+
+        [Delete()]
+        public void DeleteProdukt(ProduktPOCO produkt)
+        {
+            //_context.Remove(new Produkty
+            //{
+            //    Nazwa = produkt.Nazwa,
+            //    Ilosc = produkt.Ilosc,
+            //    Cena = produkt.Cena,
+            //    DocelowaIlosc = produkt.DocelowaIlosc,
+            //    Producent = new ProduktProducent
+            //    {
+            //        Nazwa = produkt.ProducentNazwa
+            //    }
+            //});
+            _context.Remove(_context.GetById(produkt.Id));
+        }
+
+        [Query()]
         public IQueryable<ProduktPOCO> GetProdukty()
         {
             return (
@@ -35,32 +85,7 @@ namespace AwesomeParts.Web.Services
                 });
         }
 
-        public bool InsertProdukt(ProduktPOCO produkt)
-        {
-            bool success = false;
-
-            try
-            {
-                _context.Add(new Produkty 
-                { 
-                    Nazwa = produkt.Nazwa,
-                    Ilosc = produkt.Ilosc,
-                    Cena = produkt.Cena,
-                    DocelowaIlosc = produkt.DocelowaIlosc,
-                    Producent = new ProduktProducent 
-                    {
-                        Nazwa = produkt.ProducentNazwa
-                    }
-                });
-                success = true;
-            }
-            catch
-            {
-                success = false;
-            }
-
-            return success;
-        }
+        
     }
 }
 

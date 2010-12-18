@@ -486,451 +486,6 @@
             </summary>
             <param name="user">The saved user</param>
         </member>
-        <member name="T:System.ServiceModel.DomainServices.Client.ComplexObject">
-            <summary>
-            Base class for all complex objects.
-            </summary>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ComplexObject.Attach(System.Object,System.String,System.Action,System.Action,System.Action{System.String,System.Collections.Generic.IEnumerable{System.ComponentModel.DataAnnotations.ValidationResult}})">
-            <summary>
-            Attach this complex type instance to the specified parent.
-            </summary>
-            <param name="parent">The parent of the complex type.</param>
-            <param name="propertyName">The containing property name.</param>
-            <param name="onDataMemberChanging">The callback to call when a data member is changing on this complex type instance.</param>
-            <param name="onDataMemberChanged">The callback to call when a data member has changed on this complex type instance.</param>
-            <param name="onMemberValidationChanged">The callback to call when validation has changed for a property.</param>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ComplexObject.Detach">
-            <summary>
-            Detach this complex type instance from its parent.
-            </summary>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ComplexObject.RaisePropertyChanged(System.String)">
-            <summary>
-            Called from a property setter to notify the framework that a
-            <see cref="T:System.ServiceModel.DomainServices.Client.ComplexObject"/> property has changed. This method does not
-            perform any change tracking operations.
-            </summary>
-            <param name="propertyName">The name of the property that has changed</param>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ComplexObject.OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)">
-            <summary>
-            Called when a <see cref="T:System.ServiceModel.DomainServices.Client.ComplexObject"/> property has changed.
-            </summary>
-            <param name="e">The event arguments</param>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ComplexObject.RaiseDataMemberChanged(System.String)">
-            <summary>
-            Called from a property setter to notify the framework that a
-            <see cref="T:System.ServiceModel.DomainServices.Client.ComplexObject"/> data member has changed. This method performs 
-            any required change tracking and state transitions.
-            </summary>
-            <param name="propertyName">The name of the property that has changed</param>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ComplexObject.AttachComplexObjectInstance(System.ServiceModel.DomainServices.Client.MetaMember)">
-            <summary>
-            When a complex property on this instance changes, this method performs
-            the necessary attach/detach operations for the new instance.
-            </summary>
-            <param name="metaMember">The complex member.</param>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ComplexObject.RaiseDataMemberChanging(System.String)">
-            <summary>
-            Called from a property setter to notify the framework that a
-            <see cref="T:System.ServiceModel.DomainServices.Client.ComplexObject"/> data member is about to be changed. This
-            method performs any required change tracking and state transition
-            operations.
-            </summary>
-            <param name="propertyName">The name of the property that is changing</param>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ComplexObject.OnDataMemberChanged">
-            <summary>
-            This method relays a property changed notification up the containment
-            hierarchy.
-            </summary>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ComplexObject.OnDataMemberChanging">
-            <summary>
-            This method relays a property changing notification up the containment
-            hierarchy.
-            </summary>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ComplexObject.OnMemberValidationChanged(System.String,System.Collections.Generic.IEnumerable{System.ComponentModel.DataAnnotations.ValidationResult})">
-            <summary>
-            This method performs all required operations when validation has just been performed for
-            the specified property.
-            </summary>
-            <param name="propertyName">The property that was validated.</param>
-            <param name="validationResults">The validation results.</param>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ComplexObject.ValidateProperty(System.String,System.Object)">
-            <summary>
-            Validate whether the specified value is valid for the specified property
-            of the current ComplexObject.
-            </summary>
-            <remarks>
-            This method evaluates all the <see cref="T:System.ComponentModel.DataAnnotations.ValidationAttribute"/>s associated with the specified property, accumulating
-            the validation errors and surfacing them through the <see cref="P:System.ServiceModel.DomainServices.Client.ComplexObject.ValidationErrors"/> property.  It also verifies
-            the property is not read-only.
-            <para>All validation logic is bypassed if this instance is currently being deserialized.</para>
-            </remarks>
-            <param name="propertyName">The name of the property to validate.  This name cannot be <c>null</c> or empty.</param>
-            <param name="value">The value to test. It may be <c>null</c> if <c>null</c> is valid for the given property.</param>
-            <exception cref="T:System.ArgumentNullException"> is thrown if <paramref name="propertyName"/> is <c>null</c> or empty.</exception>
-            <exception cref="T:System.InvalidOperationException"> is thrown if this property is marked with <see cref="T:System.ComponentModel.DataAnnotations.EditableAttribute"/> 
-            configured to prevent editing.</exception>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ComplexObject.ValidateProperty(System.ComponentModel.DataAnnotations.ValidationContext,System.Object)">
-            <summary>
-            Validate whether the specified property value is valid for the specified <see cref="T:System.ComponentModel.DataAnnotations.ValidationContext"/>.
-            </summary>
-            <remarks>
-            This method evaluates all the <see cref="T:System.ComponentModel.DataAnnotations.ValidationAttribute"/>s associated with the property
-            indicated as the <see cref="P:System.ComponentModel.DataAnnotations.ValidationContext.MemberName"/>, accumulating the validation errors
-            and surfacing them through the <see cref="P:System.ServiceModel.DomainServices.Client.ComplexObject.ValidationErrors"/> property.
-            </remarks>
-            <param name="validationContext">
-            The <see cref="T:System.ComponentModel.DataAnnotations.ValidationContext"/> representing the validation to be performed.
-            <para>
-            <see cref="T:System.ComponentModel.DataAnnotations.ValidationContext"/>.<see cref="P:System.ComponentModel.DataAnnotations.ValidationContext.MemberName"/> must indicate
-            the name of the property to validate.
-            </para>
-            </param>
-            <param name="value">The value to test. It may be <c>null</c> if <c>null</c> is valid for the given property.</param>
-            <exception cref="T:System.ArgumentNullException"> is thrown if <paramref name="validationContext"/> is <c>null</c>.</exception>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ComplexObject.CreateValidationContext">
-            <summary>
-            Get the <see cref="T:System.ComponentModel.DataAnnotations.ValidationContext"/> to be used for validation invoked
-            from this <see cref="T:System.ServiceModel.DomainServices.Client.ComplexObject"/>.
-            </summary>
-            <returns>
-            A new <see cref="T:System.ComponentModel.DataAnnotations.ValidationContext"/> instance, using the
-            <see cref="P:System.ServiceModel.DomainServices.Client.EntityContainer.ValidationContext"/> as the parent context
-            if available.
-            </returns>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ComplexObject.OnDeserialized(System.Runtime.Serialization.StreamingContext)">
-            <summary>
-            Method called after this ComplexObject has been deserialized
-            </summary>
-            <param name="context">The serialization context</param>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ComplexObject.OnDeserializing(System.Runtime.Serialization.StreamingContext)">
-            <summary>
-            Method called when this ComplexObject is being deserialized
-            </summary>
-            <param name="context">The serialization context</param>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ComplexObject.CheckForCycles(System.Object)">
-            <summary>
-            This method will throw if setting the parent for the current instance
-            would result in a cyclic reference.
-            </summary>
-            <param name="candidateParent">The candidate parent</param>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ComplexObject.VerifyNotEditing">
-            <summary>
-            Recursively verifies that this instance nor any of its child instances are
-            currently in an edit session.
-            </summary>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ComplexObject.System#ComponentModel#IEditableObject#BeginEdit">
-            <summary>
-            Begin editing this instance
-            </summary>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ComplexObject.System#ComponentModel#IEditableObject#CancelEdit">
-            <summary>
-            Cancel the edits made to this instance since the last call
-            to BeginEdit
-            </summary>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ComplexObject.System#ComponentModel#IEditableObject#EndEdit">
-            <summary>
-            Commit the edits made to this instance since the last call
-            to BeginEdit
-            </summary>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ComplexObject.BeginEdit">
-            <summary>
-            Begin editing this instance
-            </summary>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ComplexObject.CancelEdit">
-            <summary>
-            Cancel any edits made to this instance since the last call
-            to BeginEdit
-            </summary>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ComplexObject.EndEdit">
-            <summary>
-            Commit the edits made to this instance since the last call
-            to BeginEdit
-            </summary>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ComplexObject.RaiseValidationErrorsChanged(System.String)">
-            <summary>
-            Raises the event whenever validation errors have changed for a property.
-            </summary>
-            <param name="propertyName">The property whose errors have changed.</param>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ComplexObject.System#ComponentModel#INotifyDataErrorInfo#GetErrors(System.String)">
-            <summary>
-            Get the errors for the specified property, or the type-level
-            errors if <paramref name="propertyName"/> is <c>null</c> of empty.
-            </summary>
-            <param name="propertyName">
-            The property name to get errors for.  When <c>null</c> or empty,
-            errors that apply to at the entity level will be returned.
-            </param>
-            <returns>
-            The list of errors for the specified <paramref name="propertyName"/>,
-            or type-level errors when <paramref name="propertyName"/> is
-            <c>null</c> or empty.
-            </returns>
-        </member>
-        <member name="P:System.ServiceModel.DomainServices.Client.ComplexObject.TrackedInstances">
-            <summary>
-            Gets the map of child ComplexObject instances currently being
-            tracked by this instance.
-            </summary>
-        </member>
-        <member name="P:System.ServiceModel.DomainServices.Client.ComplexObject.Entity">
-            <summary>
-            Gets the parent entity if this complex type instance is hosted
-            by an entity. May return null.
-            </summary>
-        </member>
-        <member name="P:System.ServiceModel.DomainServices.Client.ComplexObject.MetaType">
-            <summary>
-            Gets the MetaType for this complex type.
-            </summary>
-        </member>
-        <member name="P:System.ServiceModel.DomainServices.Client.ComplexObject.IsAttached">
-            <summary>
-            Gets a value indicating whether this complex type instance is currently
-            attached to a parent.
-            </summary>
-        </member>
-        <member name="P:System.ServiceModel.DomainServices.Client.ComplexObject.IsDeserializing">
-            <summary>
-            Gets a value indicating whether this instance is currently being deserialized.
-            </summary>
-        </member>
-        <member name="P:System.ServiceModel.DomainServices.Client.ComplexObject.HasValidationErrors">
-            <summary>
-            Gets a value indicating whether this instance has any validation errors.
-            </summary>
-        </member>
-        <member name="P:System.ServiceModel.DomainServices.Client.ComplexObject.ValidationErrors">
-            <summary>
-            Gets the collection of validation errors for this instance. 
-            </summary>
-        </member>
-        <member name="P:System.ServiceModel.DomainServices.Client.ComplexObject.ValidationResultCollection">
-            <summary>
-            Gets the collection of validation errors as a <see cref="P:System.ServiceModel.DomainServices.Client.ComplexObject.ValidationResultCollection"/>.
-            </summary>
-        </member>
-        <member name="E:System.ServiceModel.DomainServices.Client.ComplexObject.System#ComponentModel#INotifyPropertyChanged#PropertyChanged">
-            <summary>
-            Event raised whenever a <see cref="T:System.ServiceModel.DomainServices.Client.ComplexObject"/> property has changed.
-            </summary>
-        </member>
-        <member name="P:System.ServiceModel.DomainServices.Client.ComplexObject.IsEditing">
-            <summary>
-            Gets a value indicating whether there is currently an uncommitted
-            edit session in progress for this instance. This is the case when
-            BeginEdit has been called, but EndEdit/CancelEdit have not.
-            </summary>
-        </member>
-        <member name="E:System.ServiceModel.DomainServices.Client.ComplexObject.System#ComponentModel#INotifyDataErrorInfo#ErrorsChanged">
-            <summary>
-            Explicitly implement the <see cref="E:System.ComponentModel.INotifyDataErrorInfo.ErrorsChanged"/> event.
-            </summary>
-        </member>
-        <member name="P:System.ServiceModel.DomainServices.Client.ComplexObject.System#ComponentModel#INotifyDataErrorInfo#HasErrors">
-            <summary>
-            Gets a value indicating whether or not the entity presently has errors.
-            </summary>
-        </member>
-        <member name="T:System.ServiceModel.DomainServices.Client.ComplexObject.EditSession">
-            <summary>
-            Class used to manage edit sessions.
-            </summary>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ComplexObject.EditSession.Begin(System.ServiceModel.DomainServices.Client.ComplexObject)">
-            <summary>
-            Begins an edit session for the specified instance.
-            </summary>
-            <param name="instance">The instance to begin editing on.</param>
-            <returns>The edit session.</returns>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ComplexObject.EditSession.Cancel">
-            <summary>
-            Cancels the edit session, reverting all changes made to the
-            entity since the session began.
-            </summary>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ComplexObject.EditSession.OnDataMemberUpdate">
-            <summary>
-            Called whenever a data member on the instance is modified, to allow
-            the session to take a state snapshot.
-            </summary>
-        </member>
-        <member name="T:System.ServiceModel.DomainServices.Client.ComplexObject.ComplexObjectValidationResultCollection">
-            <summary>
-            Custom result collection for ComplexObjects that knows how to handle hierarchical validation
-            operations.
-            </summary>
-        </member>
-        <member name="T:System.ServiceModel.DomainServices.Client.ValidationResultCollection">
-            <summary>
-            An <see cref="T:System.Collections.Generic.ICollection`1"/> implementation that serves as a base class
-            for custom validation error collections. Derived classes can override the several protected
-            virtual methods to receive notifications when the collection state changes.
-            </summary>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ValidationResultCollection.#ctor(System.Object)">
-            <summary>
-            Initializes a new instance of the <see cref="T:System.ServiceModel.DomainServices.Client.ValidationResultCollection"/> class.
-            </summary>
-            <param name="parent">The parent instance hosting this collection.</param>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ValidationResultCollection.ReplaceErrors(System.Collections.Generic.IEnumerable{System.ComponentModel.DataAnnotations.ValidationResult})">
-            <summary>
-            Perform a wholesale replacement of the errors in the collection, only raising
-            one set of notifications.
-            </summary>
-            <param name="newResults">The new errors that will replace the collection.</param>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ValidationResultCollection.ReplaceErrors(System.String,System.Collections.Generic.IEnumerable{System.ComponentModel.DataAnnotations.ValidationResult})">
-            <summary>
-            Perform a wholesale replacement of the errors that affect a given property, only
-            raising one set of notifications
-            </summary>
-            <param name="propertyName">The property to replace the errors for.</param>
-            <param name="newResults">The new errors for the property.</param>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ValidationResultCollection.OnCollectionChanged(System.Collections.Generic.IEnumerable{System.String})">
-            <summary>
-            Post-processing for when the collection has been changed.  Raise notifications as necessary.
-            </summary>
-            <param name="propertiesAffected">
-            The properties directly affected by this change.  Error change notifications will always
-            be raised for these properties.
-            </param>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ValidationResultCollection.GetPropertiesInError(System.Collections.Generic.IEnumerable{System.ComponentModel.DataAnnotations.ValidationResult})">
-            <summary>
-            Get the list of properties currently in error, including <c>null</c> for entity-level validation errors.
-            </summary>
-            <returns>A list of properties in error. This list is not guaranteed to be distinct.</returns>
-            <param name="errors">The errors to scan for the list of properties.</param>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ValidationResultCollection.OnCollectionChanged">
-            <summary>
-            This method is called whenever the collection has changed. Overrides do
-            not need to call base.
-            </summary>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ValidationResultCollection.OnHasErrorsChanged">
-            <summary>
-            This method is called when the error state of the collection
-            has changed. Overrides do not need to call base.
-            </summary>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ValidationResultCollection.OnPropertyErrorsChanged(System.String)">
-            <summary>
-            This method is called when the set of validation results for the specified
-            property has changed. Overrides do not need to call base.
-            </summary>
-            <param name="propertyName">The name of the property whose validation results have changed</param>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ValidationResultCollection.Add(System.ComponentModel.DataAnnotations.ValidationResult)">
-            <summary>
-            Add a <see cref="T:System.ComponentModel.DataAnnotations.ValidationResult"/> to the collection.
-            </summary>
-            <param name="item">The item to be added.</param>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ValidationResultCollection.Clear">
-            <summary>
-            Clear the items in the collection.
-            </summary>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ValidationResultCollection.OnClear">
-            <summary>
-            Recursively clears all validation errors in this collection and in the collections
-            of any children.
-            </summary>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ValidationResultCollection.Contains(System.ComponentModel.DataAnnotations.ValidationResult)">
-            <summary>
-            Checks to see if the current collection contains the specified <paramref name="item"/>.
-            </summary>
-            <param name="item">The item to check.</param>
-            <returns><c>true</c> if the collection contains the item, otherwise <c>false</c>.</returns>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ValidationResultCollection.CopyTo(System.ComponentModel.DataAnnotations.ValidationResult[],System.Int32)">
-            <summary>
-            Copy this collection to the specified <paramref name="array"/> using
-            the specified <paramref name="arrayIndex"/>.
-            </summary>
-            <param name="array">The array to copy to.</param>
-            <param name="arrayIndex">The index to use for copying to the array.</param>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ValidationResultCollection.Remove(System.ComponentModel.DataAnnotations.ValidationResult)">
-            <summary>
-            Removes the specified <paramref name="item"/> from the collection.
-            </summary>
-            <param name="item">The item to remove.</param>
-            <returns><c>true</c> if the removal was successful, otherwise <c>false</c>.</returns>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ValidationResultCollection.GetEnumerator">
-            <summary>
-            Gets the enumerator for this collection of validation results.
-            </summary>
-            <returns>An enumerator of <see cref="T:System.ComponentModel.DataAnnotations.ValidationResult"/> objects.</returns>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ValidationResultCollection.System#Collections#IEnumerable#GetEnumerator">
-            <summary>
-            Gets the enumerator for this collection of validation results.
-            </summary>
-            <returns>An enumerator of <see cref="T:System.ComponentModel.DataAnnotations.ValidationResult"/> objects.</returns>
-        </member>
-        <member name="P:System.ServiceModel.DomainServices.Client.ValidationResultCollection.Count">
-            <summary>
-            Gets the current count of validation results in the collection.
-            </summary>
-        </member>
-        <member name="P:System.ServiceModel.DomainServices.Client.ValidationResultCollection.IsReadOnly">
-            <summary>
-            Gets a value indicating whether or not the collection is read-only.
-            </summary>
-            <value>Always <c>false</c>.</value>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ComplexObject.ComplexObjectValidationResultCollection.OnAdd(System.ComponentModel.DataAnnotations.ValidationResult)">
-            <summary>
-            When a result is manually added to the collection, we must add it
-            to our parents collection.
-            </summary>
-            <param name="item">The result to add</param>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ComplexObject.ComplexObjectValidationResultCollection.OnRemove(System.ComponentModel.DataAnnotations.ValidationResult)">
-            <summary>
-            When a result is manually removed from the collection, we must remove 
-            it from our parents collection.
-            </summary>
-            <param name="item">The result to remove</param>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ComplexObject.ComplexObjectValidationResultCollection.OnClear">
-            <summary>
-            When the collection is cleared, we must call base and notify
-            our parent that our results have been cleared.
-            </summary>
-        </member>
         <member name="T:System.ServiceModel.DomainServices.Client.Entity">
             <summary>
             Base class for all entity types.
@@ -1085,6 +640,13 @@
             <param name="prop">The property to check</param>
             <returns>true if the specified property has been modified</returns>
         </member>
+        <member name="M:System.ServiceModel.DomainServices.Client.Entity.PropertyHasChanged(System.String)">
+            <summary>
+            Returns true if the specified property has been modified
+            </summary>
+            <param name="propertyName">The property to check</param>
+            <returns>true if the specified property has been modified</returns>
+        </member>
         <member name="M:System.ServiceModel.DomainServices.Client.Entity.OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)">
             <summary>
             Called when an <see cref="T:System.ServiceModel.DomainServices.Client.Entity"/> property has changed.
@@ -1098,13 +660,6 @@
             any required change tracking and state transitions.
             </summary>
             <param name="propertyName">The name of the property that has changed</param>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.Entity.AttachComplexObjectInstance(System.ServiceModel.DomainServices.Client.MetaMember)">
-            <summary>
-            When a complex property on this instance changes, this method performs
-            the necessary attach/detach operations for the new instance.
-            </summary>
-            <param name="metaMember">The complex member.</param>
         </member>
         <member name="M:System.ServiceModel.DomainServices.Client.Entity.RaisePropertyChanged(System.String)">
             <summary>
@@ -1308,13 +863,6 @@
             </summary>
             <param name="context">The serialization context</param>
         </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.Entity.VerifyNotEditing">
-            <summary>
-            Recursively verifies that this instance nor any of its child instances are
-            currently in an edit session. This check differs from IsEditing in that it
-            is recursive through child complex objects.
-            </summary>
-        </member>
         <member name="E:System.ServiceModel.DomainServices.Client.Entity.System#ComponentModel#INotifyDataErrorInfo#ErrorsChanged">
             <summary>
             Explicitly implement the <see cref="E:System.ComponentModel.INotifyDataErrorInfo.ErrorsChanged"/> event.
@@ -1323,12 +871,6 @@
         <member name="P:System.ServiceModel.DomainServices.Client.Entity.System#ComponentModel#INotifyDataErrorInfo#HasErrors">
             <summary>
             Gets a value indicating whether or not the entity presently has errors.
-            </summary>
-        </member>
-        <member name="P:System.ServiceModel.DomainServices.Client.Entity.TrackedInstances">
-            <summary>
-            Gets the map of child ComplexObject instances currently being
-            tracked by this entity.
             </summary>
         </member>
         <member name="P:System.ServiceModel.DomainServices.Client.Entity.Parent">
@@ -1366,19 +908,24 @@
             has been inferred
             </summary>
         </member>
-        <member name="P:System.ServiceModel.DomainServices.Client.Entity.ValidationErrors">
+        <member name="P:System.ServiceModel.DomainServices.Client.Entity.MemberBindingFlags">
             <summary>
-            Gets the collection of validation errors for this entity. 
+            Gets the correct property binding flags to use for data members.
             </summary>
         </member>
-        <member name="P:System.ServiceModel.DomainServices.Client.Entity.ValidationResultCollection">
+        <member name="P:System.ServiceModel.DomainServices.Client.Entity.ValidationErrors">
             <summary>
-            Gets the collection of validation errors as a <see cref="P:System.ServiceModel.DomainServices.Client.Entity.ValidationResultCollection"/>.
+            Gets the collection of validation errors encountered during the last submit operation. 
+            </summary>
+        </member>
+        <member name="P:System.ServiceModel.DomainServices.Client.Entity.EntityValidationResultCollection">
+            <summary>
+            Gets the collection of validation errors as an <see cref="P:System.ServiceModel.DomainServices.Client.Entity.EntityValidationResultCollection"/>.
             </summary>
         </member>
         <member name="P:System.ServiceModel.DomainServices.Client.Entity.HasValidationErrors">
             <summary>
-            Gets a value indicating whether this entity has any validation errors.
+            Gets a value indicating whether there were any validation errors encountered during the last submit operation.
             </summary>
         </member>
         <member name="P:System.ServiceModel.DomainServices.Client.Entity.EntityState">
@@ -1405,8 +952,8 @@
         </member>
         <member name="P:System.ServiceModel.DomainServices.Client.Entity.EntitySet">
             <summary>
-            Gets the <see cref="P:System.ServiceModel.DomainServices.Client.Entity.EntitySet"/> this <see cref="T:System.ServiceModel.DomainServices.Client.Entity"/> is a member of. The value will be null
-            if the entity is Detached or has been removed from the set.
+            Gets or sets the <see cref="P:System.ServiceModel.DomainServices.Client.Entity.EntitySet"/> this <see cref="T:System.ServiceModel.DomainServices.Client.Entity"/> is a member of. The value will be null
+            if the entity is not attached, or has been removed from the set.
             </summary>
         </member>
         <member name="P:System.ServiceModel.DomainServices.Client.Entity.LastSet">
@@ -1503,12 +1050,6 @@
             Returns the set properties modified in this edit session.
             </summary>
         </member>
-        <member name="T:System.ServiceModel.DomainServices.Client.Entity.EntityValidationResultCollection">
-            <summary>
-            Custom result collection for Entity that knows how to handle hierarchical validation
-            operations.
-            </summary>
-        </member>
         <member name="T:System.ServiceModel.DomainServices.Client.EntityQueryable">
             <summary>
             Class containing static extension methods implementing a subset of
@@ -1592,62 +1133,114 @@
             selection must be the entity itself.</param>
             <returns>The composed query.</returns>
         </member>
-        <member name="T:System.ServiceModel.DomainServices.Client.ObjectStateUtility">
+        <member name="T:System.ServiceModel.DomainServices.Client.EntityValidationResultCollection">
             <summary>
-            Utility class for methods related to object state management.
+            An <see cref="T:System.Collections.Generic.ICollection`1"/> implementation that will call on
+            provided callbacks when errors have changed.
             </summary>
         </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ObjectStateUtility.ExtractState(System.Object)">
+        <member name="M:System.ServiceModel.DomainServices.Client.EntityValidationResultCollection.#ctor(System.Action,System.Action,System.Action{System.String})">
             <summary>
-            Extracts the state of the specified object into a dictionary of name/value
-            pairs.
+            Initializes a new instance of the <see cref="T:System.ServiceModel.DomainServices.Client.EntityValidationResultCollection"/> class.
             </summary>
-            <param name="o">The object to extract state for.</param>
-            <returns>The state dictionary.</returns>
+            <param name="collectionChangedCallback">
+            The <see cref="T:System.Action"/> to call any time the collection of errors has changed.
+            </param>
+            <param name="hasErrorsChangedCallback">
+            The <see cref="T:System.Action"/> to call when the overall state has changed for whether or not errors exist.
+            </param>
+            <param name="propertyErrorsChangedCallback">
+            The optional <see cref="T:System.Action"/> to call any time the errors have changed for a given property, or <c>null</c>.
+            </param>
         </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ObjectStateUtility.ApplyState(System.Object,System.Collections.Generic.IDictionary{System.String,System.Object})">
+        <member name="M:System.ServiceModel.DomainServices.Client.EntityValidationResultCollection.ReplaceErrors(System.Collections.Generic.IEnumerable{System.ComponentModel.DataAnnotations.ValidationResult})">
             <summary>
-            Applies the specified state to the specified object.
+            Perform a wholesale replacement of the errors in the collection, only raising
+            one set of notifications.
             </summary>
-            <param name="o">The object to apply state to.</param>
-            <param name="stateToApply">The state dictionary.</param>
+            <param name="newResults">The new errors that will replace the collection.</param>
         </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ObjectStateUtility.ApplyState(System.Object,System.Collections.Generic.IDictionary{System.String,System.Object},System.Collections.Generic.IDictionary{System.String,System.Object},System.ServiceModel.DomainServices.Client.LoadBehavior)">
+        <member name="M:System.ServiceModel.DomainServices.Client.EntityValidationResultCollection.ReplaceErrors(System.String,System.Collections.Generic.IEnumerable{System.ComponentModel.DataAnnotations.ValidationResult})">
             <summary>
-            Applies the specified state to the specified object taking the specified LoadBehavior into account.
+            Perform a wholesale replacement of the errors that affect a given property, only
+            raising one set of notifications
             </summary>
-            <param name="o">The object to apply state to.</param>
-            <param name="stateToApply">The state dictionary.</param>
-            <param name="originalState">The original state map for the modified object.</param>
-            <param name="loadBehavior">The LoadBehavior to govern property merge behavior.</param>
+            <param name="propertyName">The property to replace the errors for.</param>
+            <param name="newResults">The new errors for the property.</param>
         </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ObjectStateUtility.ApplyValue(System.Object,System.Object,System.Reflection.PropertyInfo,System.Collections.Generic.IDictionary{System.String,System.Object},System.ServiceModel.DomainServices.Client.LoadBehavior)">
+        <member name="M:System.ServiceModel.DomainServices.Client.EntityValidationResultCollection.OnCollectionChanged(System.Collections.Generic.IEnumerable{System.String})">
             <summary>
-            Method used to apply a value taking the specified LoadBehavior into account.
+            Post-processing for when the collection has been changed.  Raise notifications as necessary.
             </summary>
-            <param name="o">The target object</param>
-            <param name="value">The value to apply</param>
-            <param name="propertyInfo">The property to apply the value to</param>
-            <param name="originalState">The original state map for the object</param>
-            <param name="loadBehavior">The LoadBehavior to govern property merge behavior.</param>
+            <param name="propertiesAffected">
+            The properties directly affected by this change.  Error change notifications will always
+            be raised for these properties.
+            </param>
         </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ObjectStateUtility.PropertyHasChanged(System.Object,System.Collections.Generic.IDictionary{System.String,System.Object},System.Reflection.PropertyInfo)">
+        <member name="M:System.ServiceModel.DomainServices.Client.EntityValidationResultCollection.GetPropertiesInError(System.Collections.Generic.IEnumerable{System.ComponentModel.DataAnnotations.ValidationResult})">
             <summary>
-            Determines whether the specified property has changed value.
+            Get the list of properties currently in error, including <c>null</c> for entity-level validation errors.
             </summary>
-            <param name="o">The parent of the property.</param>
-            <param name="originalValues">The original values for the modified parent instance.</param>
-            <param name="prop">The property to check.</param>
-            <returns>True if the property has changed, false otherwise.</returns>
+            <returns>A list of properties in error. This list is not guaranteed to be distinct.</returns>
+            <param name="errors">The errors to scan for the list of properties.</param>
         </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ObjectStateUtility.ExtractRoundtripState(System.Type,System.Collections.Generic.IDictionary{System.String,System.Object})">
+        <member name="M:System.ServiceModel.DomainServices.Client.EntityValidationResultCollection.Add(System.ComponentModel.DataAnnotations.ValidationResult)">
             <summary>
-            For the specified Type and original state map, this method returns a state map containing
-            only values that should be roundtripped (based on RoundtripOriginal member attribution).
+            Add a <see cref="T:System.ComponentModel.DataAnnotations.ValidationResult"/> to the collection and call the
+            change callbacks as necessary.
             </summary>
-            <param name="type">The Type the state map is for.</param>
-            <param name="state">The original state map.</param>
-            <returns>The state map containing only values that should be rountripped.</returns>
+            <param name="item">The item to be added.</param>
+        </member>
+        <member name="M:System.ServiceModel.DomainServices.Client.EntityValidationResultCollection.Clear">
+            <summary>
+            Clear the items in the collection, calling the change callbacks as necessary.
+            </summary>
+        </member>
+        <member name="M:System.ServiceModel.DomainServices.Client.EntityValidationResultCollection.Contains(System.ComponentModel.DataAnnotations.ValidationResult)">
+            <summary>
+            Checks to see if the current collection contains the specified <paramref name="item"/>.
+            </summary>
+            <param name="item">The item to check.</param>
+            <returns><c>true</c> if the collection contains the item, otherwise <c>false</c>.</returns>
+        </member>
+        <member name="M:System.ServiceModel.DomainServices.Client.EntityValidationResultCollection.CopyTo(System.ComponentModel.DataAnnotations.ValidationResult[],System.Int32)">
+            <summary>
+            Copy this collection to the specified <paramref name="array"/> using
+            the specified <paramref name="arrayIndex"/>.
+            </summary>
+            <param name="array">The array to copy to.</param>
+            <param name="arrayIndex">The index to use for copying to the array.</param>
+        </member>
+        <member name="M:System.ServiceModel.DomainServices.Client.EntityValidationResultCollection.Remove(System.ComponentModel.DataAnnotations.ValidationResult)">
+            <summary>
+            Removes the specified <paramref name="item"/> from the collection and calls
+            the change callbacks as necessary.
+            </summary>
+            <param name="item">The item to remove.</param>
+            <returns><c>true</c> if the removal was successful, otherwise <c>false</c>.</returns>
+        </member>
+        <member name="M:System.ServiceModel.DomainServices.Client.EntityValidationResultCollection.GetEnumerator">
+            <summary>
+            Gets the enumerator for this collection of validation results.
+            </summary>
+            <returns>An enumerator of <see cref="T:System.ComponentModel.DataAnnotations.ValidationResult"/> objects.</returns>
+        </member>
+        <member name="M:System.ServiceModel.DomainServices.Client.EntityValidationResultCollection.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Gets the enumerator for this collection of validation results.
+            </summary>
+            <returns>An enumerator of <see cref="T:System.ComponentModel.DataAnnotations.ValidationResult"/> objects.</returns>
+        </member>
+        <member name="P:System.ServiceModel.DomainServices.Client.EntityValidationResultCollection.Count">
+            <summary>
+            Gets the current count of validation results in the collection.
+            </summary>
+        </member>
+        <member name="P:System.ServiceModel.DomainServices.Client.EntityValidationResultCollection.IsReadOnly">
+            <summary>
+            Gets a value indicating whether or not the collection is read-only.
+            </summary>
+            <value>Always <c>false</c>.</value>
         </member>
         <member name="T:System.ServiceModel.DomainServices.Client.EntityVisitor">
             <summary>
@@ -1714,9 +1307,9 @@
         </member>
         <member name="T:System.ServiceModel.DomainServices.Client.MetaType">
             <summary>
-            Class providing additional "meta" information for a Type.
+            Class providing additional "meta" information for an entity Type.
             <remarks>
-            Consider adding any commonly accessed or computed information about a Type
+            Consider adding any commonly accessed or computed information about an entity Type
             to this class, to improve performance and code factoring.
             </remarks>
             </summary>
@@ -1730,29 +1323,14 @@
         </member>
         <member name="M:System.ServiceModel.DomainServices.Client.MetaType.GetMetaType(System.Type)">
             <summary>
-            Returns the MetaType for the specified Type.
+            Returns the MetaType for the specified entity Type.
             </summary>
-            <param name="type">The Type to provide the MetaType for.</param>
-            <returns>The constructed MetaType.</returns>
-        </member>
-        <member name="P:System.ServiceModel.DomainServices.Client.MetaType.MemberBindingFlags">
-            <summary>
-            Gets the correct property binding flags to use for data members.
-            </summary>
-        </member>
-        <member name="P:System.ServiceModel.DomainServices.Client.MetaType.Type">
-            <summary>
-            Gets the underlying CLR type for this MetaType
-            </summary>
-        </member>
-        <member name="P:System.ServiceModel.DomainServices.Client.MetaType.IsComplex">
-            <summary>
-            Gets a value indicating whether this is a complex type.
-            </summary>
+            <param name="entityType">The entity Type.</param>
+            <returns>The MetaType.</returns>
         </member>
         <member name="P:System.ServiceModel.DomainServices.Client.MetaType.ShouldRoundtripOriginal">
             <summary>
-            Gets a value indicating whether the original should be roundtripped for this Type.
+            Gets a value indicating whether this entity Type requires validation.
             </summary>
         </member>
         <member name="P:System.ServiceModel.DomainServices.Client.MetaType.KeyMembers">
@@ -1762,13 +1340,13 @@
         </member>
         <member name="P:System.ServiceModel.DomainServices.Client.MetaType.DataMembers">
             <summary>
-            Gets the collection of data members for this Type.
+            Gets the collection of data members for this entity Type.
             </summary>
         </member>
         <member name="P:System.ServiceModel.DomainServices.Client.MetaType.RoundtripMembers">
             <summary>
             Gets the collection of members that should be roundtripped in
-            the original entity.
+            the original entityi.
             </summary>
         </member>
         <member name="P:System.ServiceModel.DomainServices.Client.MetaType.AssociationMembers">
@@ -1784,8 +1362,7 @@
         <member name="P:System.ServiceModel.DomainServices.Client.MetaType.RequiresValidation">
             <summary>
             Gets a value indicating whether the Type has any Type or member level
-            validation attributes applied. The check is recursive through any complex
-            type members.
+            validation attributes applied.
             </summary>
         </member>
         <member name="P:System.ServiceModel.DomainServices.Client.MetaType.HasComposition">
@@ -1794,77 +1371,13 @@
             CompositionAttribute.
             </summary>
         </member>
-        <member name="P:System.ServiceModel.DomainServices.Client.MetaType.ValidationAttributes">
-            <summary>
-            Gets the Type level validation errors for the underlying Type.
-            </summary>
-        </member>
-        <member name="T:System.ServiceModel.DomainServices.Client.MetaMember">
-            <summary>
-            This class caches all the interesting attributes of an property.
-            </summary>
-        </member>
-        <member name="P:System.ServiceModel.DomainServices.Client.MetaMember.IsCollection">
-            <summary>
-            Gets or sets a value indicating whether this member is a supported collection type.
-            </summary>
-        </member>
         <member name="T:System.ComponentModel.DataAnnotations.RoundtripOriginalAttribute">
             <summary>
             When applied to a member, this attribute indicates that the original value of
-            the member should be sent back to the server when the object is updated. When applied
-            to a class, the attribute gets applied to each member of that class. If this attribute is not 
-            present, the value of this member will be null in the original object sent back to the server.
+            the member should be sent back to the server when the object is updated. If this
+            attribute is not present, the value of this member will be null in the original
+            object sent back to the server.
             </summary>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.ExceptionHandlingUtility.IsFatal(System.Exception)">
-            <summary>
-            Determines if an <see cref="T:System.Exception"/> is fatal and therefore should not be handled.
-            </summary>
-            <example>
-            try
-            {
-                // Code that may throw
-            }
-            catch (Exception ex)
-            {
-                if (ex.IsFatal())
-                {
-                    throw;
-                }
-                
-                // Handle exception
-            }
-            </example>
-            <param name="exception">The exception to check</param>
-            <returns><c>true</c> if the exception is fatal, otherwise <c>false</c>.</returns>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.BinaryTypeUtility.IsTypeBinary(System.Type)">
-            <summary>
-            Returns whether the <paramref name="type"/> <c>is System.Data.Linq.Binary</c>.
-            </summary>
-            <remarks>
-            We test Binary by Type Name so our client framework assembly can avoid taking an
-            assembly reference to <c>System.Data.Linq</c>. If a type is determined to be
-            binary, that type will be used to check reference equality for all subsequent
-            invocations.
-            </remarks>
-            <param name="type">The type to check</param>
-            <returns>Whether the <paramref name="type"/> is binary</returns>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.BinaryTypeUtility.GetByteArrayFromBinary(System.Object)">
-            <summary>
-            Returns the <paramref name="binary"/> converted to a <c>byte[]</c>.
-            </summary>
-            <param name="binary">The binary to convert</param>
-            <returns>The byte[] form of the binary</returns>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.BinaryTypeUtility.GetBinaryFromByteArray(System.Byte[])">
-            <summary>
-            Returns the <paramref name="bytes"/> converted to a <c>System.Data.Linq.Binary</c>.
-            </summary>
-            <param name="bytes">The bytes to convert</param>
-            <returns>The binary form of the bytes</returns>
         </member>
         <member name="T:System.ServiceModel.DomainServices.Client.AsyncResultBase">
             <summary>
@@ -1976,6 +1489,14 @@
             <param name="changeSet">The <see cref="T:System.ServiceModel.DomainServices.Client.EntityChangeSet"/> to process.</param>
             <returns>The list of <see cref="T:System.ServiceModel.DomainServices.Client.ChangeSetEntry"/> for the specified <see cref="T:System.ServiceModel.DomainServices.Client.EntityChangeSet"/>.</returns>
         </member>
+        <member name="M:System.ServiceModel.DomainServices.Client.ChangeSetBuilder.GetRoundtripValues(System.ServiceModel.DomainServices.Client.Entity)">
+            <summary>
+            Determines the set of original values that should be roundtripped for the
+            specified entity.
+            </summary>
+            <param name="entity">The entity to check.</param>
+            <returns>The collection of values to roundtrip.</returns>
+        </member>
         <member name="M:System.ServiceModel.DomainServices.Client.ChangeSetBuilder.CheckForInvalidUpdates(System.ServiceModel.DomainServices.Client.EntityChangeSet)">
             <summary>
             Verify that all update operations in the specified <see cref="T:System.ServiceModel.DomainServices.Client.EntityChangeSet"/> are permitted.
@@ -1996,7 +1517,7 @@
             association maps for each. Association info is populated only in the
             following instances:
             - The association is a composition
-            - The association is loaded and the referenced entities are New and the parent is not deleted
+            - The association is loaded and the referenced entities are New
             </summary>
         </member>
         <member name="M:System.ServiceModel.DomainServices.Client.ChangeSetBuilder.AssociationMapBuilder.Build(System.Collections.Generic.List{System.ServiceModel.DomainServices.Client.ChangeSetEntry})">
@@ -2947,14 +2468,6 @@
             <param name="methodName">The method to validate.</param>
             <param name="parameters">The parameters to the method.</param>
         </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.DomainContext.ValidateChangeSet(System.ServiceModel.DomainServices.Client.EntityChangeSet,System.ComponentModel.DataAnnotations.ValidationContext)">
-            <summary>
-            Validates the specified change-set.
-            </summary>
-            <param name="changeSet">The change-set to validate.</param>
-            <param name="validationContext">The ValidationContext to use.</param>
-            <returns>True if the change-set is valid, false otherwise.</returns>
-        </member>
         <member name="M:System.ServiceModel.DomainServices.Client.DomainContext.MethodRequiresValidation(System.String,System.Object[])">
             <summary>
             Determines if the specified method on this DomainContext requires validation. Since
@@ -3531,7 +3044,7 @@
         </member>
         <member name="M:System.ServiceModel.DomainServices.Client.EntityCollection`1.ParentEntityPropertyChanged(System.Object,System.ComponentModel.PropertyChangedEventArgs)">
             <summary>
-            PropertyChanged handler for the parent entity.
+            PropertyChanged handler for the parent entity
             </summary>
             <param name="sender">The event sender.</param>
             <param name="e">The property changed event arguments.</param>
@@ -3579,12 +3092,6 @@
             any required EntityRemoved events.
             </summary>
         </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.EntityCollection`1.System#ComponentModel#ICollectionViewFactory#CreateView">
-            <summary>
-            Returns a custom view for specialized sorting, filtering, grouping, and currency.
-            </summary>
-            <returns>A custom view for specialized sorting, filtering, grouping, and currency</returns>
-        </member>
         <member name="E:System.ServiceModel.DomainServices.Client.EntityCollection`1.EntityAdded">
             <summary>
             Event raised whenever an <see cref="T:System.ServiceModel.DomainServices.Client.Entity"/> is added to this collection
@@ -3619,18 +3126,6 @@
             <summary>
             Event raised whenever a property on this collection changes
             </summary>
-        </member>
-        <member name="T:System.ServiceModel.DomainServices.Client.EntityCollection`1.ListCollectionViewProxy`1">
-            <summary>
-            <see cref="T:System.Collections.IList"/> proxy that makes the <see cref="T:System.ServiceModel.DomainServices.Client.EntityCollection`1"/> usable in the default
-            collection views. All operations implemented against the proxy are passed through to the source
-            <see cref="T:System.ServiceModel.DomainServices.Client.EntityCollection`1"/>.
-            </summary>
-            <remarks>
-            This proxy does not support a full set of list operations. However, the subset it does support
-            is sufficient for interaction with the ListCollectionView.
-            </remarks>
-            <typeparam name="T">The entity type of this proxy</typeparam>
         </member>
         <member name="T:System.ServiceModel.DomainServices.Client.EntityConflict">
             <summary>
@@ -4387,12 +3882,6 @@
             events, this will be the single affected entity.</param>
             <param name="index">The affected index</param>
         </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.EntitySet`1.System#ComponentModel#ICollectionViewFactory#CreateView">
-            <summary>
-            Returns a custom view for specialized sorting, filtering, grouping, and currency.
-            </summary>
-            <returns>A custom view for specialized sorting, filtering, grouping, and currency</returns>
-        </member>
         <member name="E:System.ServiceModel.DomainServices.Client.EntitySet`1.EntityAdded">
             <summary>
             Event raised whenever an <see cref="T:System.ServiceModel.DomainServices.Client.Entity"/> is added to this collection
@@ -4402,17 +3891,6 @@
             <summary>
             Event raised whenever an <see cref="T:System.ServiceModel.DomainServices.Client.Entity"/> is removed to this collection
             </summary>
-        </member>
-        <member name="T:System.ServiceModel.DomainServices.Client.EntitySet`1.ListCollectionViewProxy`1">
-            <summary>
-            <see cref="T:System.Collections.IList"/> proxy that makes the <see cref="T:System.ServiceModel.DomainServices.Client.EntitySet"/> usable in the default collection views.
-            All operations implemented against the proxy are passed through to the source <see cref="T:System.ServiceModel.DomainServices.Client.EntitySet"/>.
-            </summary>
-            <remarks>
-            This proxy does not support a full set of list operations. However, the subset it does support
-            is sufficient for interaction with the ListCollectionView.
-            </remarks>
-            <typeparam name="T">The entity type of this proxy</typeparam>
         </member>
         <member name="T:System.ServiceModel.DomainServices.Client.EntitySetOperations">
             <summary>
@@ -4640,7 +4118,7 @@
         <member name="M:System.ServiceModel.DomainServices.Client.EntityRef`1.OnEntityAssociationUpdated(System.ServiceModel.DomainServices.Client.Entity)">
             <summary>
             Callback for when an entity in the source set changes such that we need to reevaluate
-            our reference. This could be because an FK member for the association
+            it's membership in our collection. This could be because an FK member for the association
             has changed, or when the entity state transitions to Unmodified.
             </summary>
             <param name="entity">The entity that has changed</param>
@@ -4908,19 +4386,9 @@
               resource lookups using this strongly typed resource class.
             </summary>
         </member>
-        <member name="P:System.ServiceModel.DomainServices.Client.Resource.ComplexType_InstancesCannotBeShared">
-            <summary>
-              Looks up a localized string similar to ComplexObject instances cannot be shared..
-            </summary>
-        </member>
-        <member name="P:System.ServiceModel.DomainServices.Client.Resource.CyclicReferenceError">
-            <summary>
-              Looks up a localized string similar to Reference cycle detected. Entity or ComplexObject members cannot contain cyclic references..
-            </summary>
-        </member>
         <member name="P:System.ServiceModel.DomainServices.Client.Resource.DomainClient_CancellationNotSupported">
             <summary>
-              Looks up a localized string similar to The DomainClient &apos;{0}&apos; does not support cancellation..
+              Looks up a localized string similar to The domain client &apos;{0}&apos; does not support cancellation..
             </summary>
         </member>
         <member name="P:System.ServiceModel.DomainServices.Client.Resource.DomainClient_EmptyChangeSet">
@@ -4973,11 +4441,6 @@
               Looks up a localized string similar to Load operation for query &apos;{0}&apos; failed validation.  Please inspect ValidationErrors on the operation for details..
             </summary>
         </member>
-        <member name="P:System.ServiceModel.DomainServices.Client.Resource.DomainContext_NamedUpdateMethodDoesNotExist">
-            <summary>
-              Looks up a localized string similar to The custom update method &apos;{0}&apos; called on entity &apos;{1}&apos; was called through the &apos;{2}&apos; DomainContext, which is not the correct DomainContext. The method may be available through another DomainContext..
-            </summary>
-        </member>
         <member name="P:System.ServiceModel.DomainServices.Client.Resource.DomainContext_SubmitAlreadyInProgress">
             <summary>
               Looks up a localized string similar to A SubmitChanges operation is already in progress on this DomainContext..
@@ -5010,12 +4473,12 @@
         </member>
         <member name="P:System.ServiceModel.DomainServices.Client.Resource.Entity_InvokeOnDeletedEntity">
             <summary>
-              Looks up a localized string similar to A custom method cannot be invoked on an entity in a Deleted EntityState..
+              Looks up a localized string similar to A custom method cannot be invoked on an entity in a Deleted state..
             </summary>
         </member>
         <member name="P:System.ServiceModel.DomainServices.Client.Resource.Entity_InvokeOnDetachedEntity">
             <summary>
-              Looks up a localized string similar to A custom method cannot be invoked on a Detached entity..
+              Looks up a localized string similar to A custom method cannot be invoked on a Detached Entity..
             </summary>
         </member>
         <member name="P:System.ServiceModel.DomainServices.Client.Resource.Entity_InvokeWhileSubmitting">
@@ -5035,7 +4498,17 @@
         </member>
         <member name="P:System.ServiceModel.DomainServices.Client.Resource.Entity_Not_In_Collection">
             <summary>
-              Looks up a localized string similar to The specified entity is not a member of this collection.
+              Looks up a localized string similar to The specified Entity is not a member of this collection.
+            </summary>
+        </member>
+        <member name="P:System.ServiceModel.DomainServices.Client.Resource.Entity_Property_Does_Not_Exist">
+            <summary>
+              Looks up a localized string similar to Entity type &apos;{0}&apos; does not contain a public property named &apos;{1}&apos;..
+            </summary>
+        </member>
+        <member name="P:System.ServiceModel.DomainServices.Client.Resource.Entity_Property_Is_ReadOnly">
+            <summary>
+              Looks up a localized string similar to The &apos;{0}&apos; property is read only..
             </summary>
         </member>
         <member name="P:System.ServiceModel.DomainServices.Client.Resource.Entity_Property_NotChangeTracked">
@@ -5045,7 +4518,7 @@
         </member>
         <member name="P:System.ServiceModel.DomainServices.Client.Resource.Entity_ReadOnly">
             <summary>
-              Looks up a localized string similar to This entity is currently read-only. One of the following conditions exist: a custom method has been invoked, a submit operation is in progress, or edit operations are not supported for the entity type..
+              Looks up a localized string similar to This entity is currently read-only. One of the following conditions exist: a custom method has been invoked, a submit operation is in progress, or edit operations are not supported for the entity Type..
             </summary>
         </member>
         <member name="P:System.ServiceModel.DomainServices.Client.Resource.Entity_UncommittedChanges">
@@ -5070,7 +4543,7 @@
         </member>
         <member name="P:System.ServiceModel.DomainServices.Client.Resource.EntityContainer_CannotRetrieveEntitySetForDerivedEntity">
             <summary>
-              Looks up a localized string similar to Cannot retrieve an EntitySet for the derived entity type &apos;{0}&apos;. Use EntityContainer.GetEntitySet(Type) to get the EntitySet for the base entity type &apos;{1}&apos;..
+              Looks up a localized string similar to Cannot retrieve an entity set for the derived entity type &apos;{0}&apos;. Use EntityContainer.GetEntitySet(Type) to get the entity set for the base entity type &apos;{1}&apos;..
             </summary>
         </member>
         <member name="P:System.ServiceModel.DomainServices.Client.Resource.EntityContainer_CrossContainerAttach">
@@ -5130,27 +4603,17 @@
         </member>
         <member name="P:System.ServiceModel.DomainServices.Client.Resource.EntitySet_UnsupportedOperation">
             <summary>
-              Looks up a localized string similar to This EntitySet of Type &apos;{0}&apos; does not support the &apos;{1}&apos; operation..
+              Looks up a localized string similar to This EntitySet of type &apos;{0}&apos; does not support the &apos;{1}&apos; operation..
             </summary>
         </member>
         <member name="P:System.ServiceModel.DomainServices.Client.Resource.EntitySet_Wrong_Type">
             <summary>
-              Looks up a localized string similar to EntitySet of Type &apos;{0}&apos; cannot contain instances of Type &apos;{1}&apos;..
-            </summary>
-        </member>
-        <member name="P:System.ServiceModel.DomainServices.Client.Resource.IsNotSupported">
-            <summary>
-              Looks up a localized string similar to &apos;{0}&apos; is not supported..
+              Looks up a localized string similar to EntitySet of type &apos;{0}&apos; cannot contain instances of Type &apos;{1}&apos;..
             </summary>
         </member>
         <member name="P:System.ServiceModel.DomainServices.Client.Resource.MemberMustBeAssociation">
             <summary>
               Looks up a localized string similar to Member &apos;{0}&apos; must be marked with AssociationAttribute.
-            </summary>
-        </member>
-        <member name="P:System.ServiceModel.DomainServices.Client.Resource.MustBeAnEntity">
-            <summary>
-              Looks up a localized string similar to &apos;{0}&apos; must be an Entity..
             </summary>
         </member>
         <member name="P:System.ServiceModel.DomainServices.Client.Resource.Operation_HasErrorMustBeTrue">
@@ -5161,16 +4624,6 @@
         <member name="P:System.ServiceModel.DomainServices.Client.Resource.Parameter_NullOrEmpty">
             <summary>
               Looks up a localized string similar to The parameter &apos;{0}&apos; cannot be null or empty..
-            </summary>
-        </member>
-        <member name="P:System.ServiceModel.DomainServices.Client.Resource.Property_Does_Not_Exist">
-            <summary>
-              Looks up a localized string similar to Type &apos;{0}&apos; does not contain a public property named &apos;{1}&apos;..
-            </summary>
-        </member>
-        <member name="P:System.ServiceModel.DomainServices.Client.Resource.Property_Is_ReadOnly">
-            <summary>
-              Looks up a localized string similar to The &apos;{0}&apos; property is read only..
             </summary>
         </member>
         <member name="P:System.ServiceModel.DomainServices.Client.Resource.Type_Not_Entity">
@@ -5190,7 +4643,7 @@
         </member>
         <member name="P:System.ServiceModel.DomainServices.Client.Resource.ValidationUtilities_MethodNotFound">
             <summary>
-              Looks up a localized string similar to Method &apos;{0}.{1}({3})&apos; could not be found. Parameter count: {2}..
+              Looks up a localized string similar to Method &apos;{0}.{1}&apos; accepting {2} parameter(s) of type(s) ({3}) could not be found..
             </summary>
         </member>
         <member name="P:System.ServiceModel.DomainServices.Client.Resource.ValidationUtilities_MethodNotFound_ZeroParams">
@@ -5235,12 +4688,25 @@
             <param name="parentContext">Optional context to inherit from.  May be null.</param>
             <returns>A new validation context.</returns>
         </member>
+        <member name="M:System.ServiceModel.DomainServices.Client.ValidationUtilities.TryValidateMethodCall(System.String,System.ComponentModel.DataAnnotations.ValidationContext,System.Object[],System.Collections.Generic.ICollection{System.ComponentModel.DataAnnotations.ValidationResult})">
+            <summary>
+            Determines whether it is valid to call the specified method.
+            </summary>
+            <remarks>
+            This method evaluates all <see cref="T:System.ComponentModel.DataAnnotations.ValidationAttribute"/>s associated with the method and its parameters.  Any failure returns <c>false</c>.
+            </remarks>
+            <param name="methodName">The name of the method to be called</param>
+            <param name="validationContext">Describes the method being tested</param>
+            <param name="parameters">The parameter values to be passed to the method.  They will be validated.</param>
+            <param name="validationResults">Optional collection to receive validation results for failed validations.</param>
+            <returns><c>true</c> if the method is valid.</returns>
+        </member>
         <member name="M:System.ServiceModel.DomainServices.Client.ValidationUtilities.ValidateMethodCall(System.String,System.ComponentModel.DataAnnotations.ValidationContext,System.Object[])">
             <summary>
             Throws a <see cref="T:System.ComponentModel.DataAnnotations.ValidationException"/> if it is not valid to call the specified method.
             </summary>
             <remarks>This method evaluates all the <see cref="T:System.ComponentModel.DataAnnotations.ValidationAttribute"/>s associated with the
-            method and its parameters. It does not do deep validation of parameter instances. Any failure will cause the exception to be thrown.
+            method and its parameters. Any failure will cause the exception to be thrown.
             </remarks>
             <param name="methodName">The name of the method to be called</param>
             <param name="validationContext">Describes the method being called.</param>
@@ -5267,70 +4733,6 @@
             <param name="parameters">The set of parameters to check.</param>
             <returns><c>true</c> if the set of parameters can be passed to the specified method.</returns>
         </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ValidationUtilities.GetDisplayAttribute(System.Reflection.ICustomAttributeProvider)">
-            <summary>
-            Gets the DisplayAttribute that applies to a method, parameter, property, etc.
-            </summary>
-            <param name="member">A <see cref="T:System.Reflection.ICustomAttributeProvider"/> member to query for <see cref="T:System.ComponentModel.DataAnnotations.DisplayAttribute"/>s.</param>
-            <returns>A <see cref="T:System.ComponentModel.DataAnnotations.DisplayAttribute"/> found or <c>null</c> if none is found</returns>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ValidationUtilities.ApplyMemberPath(System.Collections.Generic.IEnumerable{System.ComponentModel.DataAnnotations.ValidationResult},System.String)">
-            <summary>
-            Appends the specified memberPath to all member names in the validation results.
-            </summary>
-            <param name="validationResults">The validation results</param>
-            <param name="memberPath">The member path to append</param>
-            <returns>The updated validation results</returns>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ValidationUtilities.ApplyMemberPath(System.ComponentModel.DataAnnotations.ValidationResult,System.String)">
-            <summary>
-            Appends the specified memberPath to all member names in the validation result.
-            </summary>
-            <param name="validationResult">The validation result</param>
-            <param name="memberPath">The member path to append</param>
-            <returns>The updated validation result</returns>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ValidationUtilities.TryValidateObject(System.Object,System.ComponentModel.DataAnnotations.ValidationContext,System.Collections.Generic.List{System.ComponentModel.DataAnnotations.ValidationResult})">
-            <summary>
-            Validate the specified object an any complex members or collections recursively.
-            </summary>
-            <param name="instance">The instance to validate.</param>
-            <param name="validationContext">The validation context</param>
-            <param name="validationResults">The validation results</param>
-            <returns>True if the object is valid, false otherwise.</returns>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ValidationUtilities.RemoveMemberPrefix(System.Collections.Generic.IEnumerable{System.ComponentModel.DataAnnotations.ValidationResult},System.String)">
-            <summary>
-            Removes the specified member name prefix from the member names in the validation 
-            results specified.
-            </summary>
-            <param name="validationResults">The validation results</param>
-            <param name="memberName">The member name to remove</param>
-            <returns>The updated validation results</returns>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ValidationUtilities.ApplyValidationErrors(System.Object,System.Collections.Generic.IEnumerable{System.ComponentModel.DataAnnotations.ValidationResult})">
-            <summary>
-            This method recursively applies the specified validation errors to this instance
-            and any nested instances (based on member paths specified in the validation results).
-            Since this method correctly handles complex types, this method should be used rather
-            than directly applying results to the collection.
-            </summary>
-            <param name="instance">The target entity or complex type to apply the errors to.</param>
-            <param name="validationResults">The validation results to apply.</param>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.ValidationUtilities.TryValidateMethodCall(System.String,System.ComponentModel.DataAnnotations.ValidationContext,System.Object[],System.Collections.Generic.ICollection{System.ComponentModel.DataAnnotations.ValidationResult})">
-            <summary>
-            Determines whether it is valid to call the specified method.
-            </summary>
-            <remarks>
-            This method evaluates all <see cref="T:System.ComponentModel.DataAnnotations.ValidationAttribute"/>s associated with the method and its parameters.  Any failure returns <c>false</c>.
-            </remarks>
-            <param name="methodName">The name of the method to be called</param>
-            <param name="validationContext">Describes the method being tested</param>
-            <param name="parameters">The parameter values to be passed to the method.  They will be validated.</param>
-            <param name="validationResults">Optional collection to receive validation results for failed validations.</param>
-            <returns><c>true</c> if the method is valid.</returns>
-        </member>
         <member name="M:System.ServiceModel.DomainServices.Client.ValidationUtilities.TryValidateMethodCall(System.Reflection.MethodInfo,System.ComponentModel.DataAnnotations.ValidationContext,System.Object[],System.Collections.Generic.ICollection{System.ComponentModel.DataAnnotations.ValidationResult})">
             <summary>
             Determines whether it is valid to call the specified method.
@@ -5343,6 +4745,13 @@
             <param name="parameters">The parameter values to be passed to the method.  They will be validated.</param>
             <param name="validationResults">Optional collection to receive validation results for failed validations.</param>
             <returns><c>true</c> if the method is valid.</returns>
+        </member>
+        <member name="M:System.ServiceModel.DomainServices.Client.ValidationUtilities.GetDisplayAttribute(System.Reflection.ICustomAttributeProvider)">
+            <summary>
+            Gets the DisplayAttribute that applies to a method, parameter, property, etc.
+            </summary>
+            <param name="member">A <see cref="T:System.Reflection.ICustomAttributeProvider"/> member to query for <see cref="T:System.ComponentModel.DataAnnotations.DisplayAttribute"/>s.</param>
+            <returns>A <see cref="T:System.ComponentModel.DataAnnotations.DisplayAttribute"/> found or <c>null</c> if none is found</returns>
         </member>
         <member name="T:System.ServiceModel.DomainServices.Client.ApplicationServices.LoginParameters">
             <summary>
@@ -5399,19 +4808,14 @@
             Gets optional implementation-specific data.
             </summary>
         </member>
-        <member name="F:System.ServiceModel.DomainServices.TypeUtility.systemAssemblyPublicKeyTokens">
-            <summary>
-            List of public key tokens used for System assemblies
-            </summary>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.TypeUtility.IsNullableType(System.Type)">
+        <member name="M:System.ServiceModel.DomainServices.Client.Utility.IsNullableType(System.Type)">
             <summary>
             Returns <c>true</c> if the given type is a <see cref="T:System.Nullable"/>
             </summary>
             <param name="type">The type to test</param>
             <returns><c>true</c> if the given type is a nullable type</returns>
         </member>
-        <member name="M:System.ServiceModel.DomainServices.TypeUtility.GetNonNullableType(System.Type)">
+        <member name="M:System.ServiceModel.DomainServices.Client.Utility.GetNonNullableType(System.Type)">
             <summary>
             If the given type is <see cref="T:System.Nullable"/>, returns the element type,
             otherwise simply returns the input type
@@ -5419,7 +4823,7 @@
             <param name="type">The type to test that may or may not be Nullable</param>
             <returns>Either the input type or, if it was Nullable, its element type</returns>
         </member>
-        <member name="M:System.ServiceModel.DomainServices.TypeUtility.IsPredefinedType(System.Type)">
+        <member name="M:System.ServiceModel.DomainServices.Client.Utility.IsPredefinedType(System.Type)">
             <summary>
             Returns <c>true</c> if the given type is a primitive type or one
             of our standard acceptable simple types, such as <see cref="T:System.String"/>,
@@ -5429,7 +4833,7 @@
             <param name="type">The type to test</param>
             <returns><c>true</c> if the type is a primitive or standard acceptable types</returns>
         </member>
-        <member name="M:System.ServiceModel.DomainServices.TypeUtility.IsPredefinedListType(System.Type)">
+        <member name="M:System.ServiceModel.DomainServices.Client.Utility.IsPredefinedListType(System.Type)">
             <summary>
             Returns <c>true</c> if the given type is <see cref="T:System.Collections.Generic.IEnumerable`1"/> or an <see cref="T:System.Collections.IList"/> type, 
             and is either an interface, an array, or has a default constructor.
@@ -5437,7 +4841,7 @@
             <param name="type">The type to test</param>
             <returns><c>true</c> if the type is a primitive or standard acceptable types</returns>
         </member>
-        <member name="M:System.ServiceModel.DomainServices.TypeUtility.IsSupportedCollectionType(System.Type)">
+        <member name="M:System.ServiceModel.DomainServices.Client.Utility.IsSupportedCollectionType(System.Type)">
             <summary>
             Returns <c>true</c> if specified type is a supported collection Type. This method only checks the collection
             Type itself, not whether the element Type is supported.
@@ -5445,7 +4849,7 @@
             <param name="type">The type to test</param>
             <returns><c>true</c> if the type is a suppored collection Type.</returns>
         </member>
-        <member name="M:System.ServiceModel.DomainServices.TypeUtility.IsPredefinedDictionaryType(System.Type)">
+        <member name="M:System.ServiceModel.DomainServices.Client.Utility.IsPredefinedDictionaryType(System.Type)">
             <summary>
             Returns <c>true</c> if <paramref name="type"/> implements <see cref="T:System.Collections.Generic.IDictionary`2"/> and
             its generic type arguments are acceptable predefined simple types.
@@ -5453,7 +4857,17 @@
             <param name="type">The type to test.</param>
             <returns><c>true</c> if the type is a <see cref="T:System.Collections.Generic.IDictionary`2"/> with supported generic type arguments.</returns>
         </member>
-        <member name="M:System.ServiceModel.DomainServices.TypeUtility.IsPredefinedSimpleType(System.Type)">
+        <member name="M:System.ServiceModel.DomainServices.Client.Utility.GetDictionaryGenericArgumentTypes(System.Type)">
+            <summary>
+            Returns an array of types that represent the generic type arguments used in <paramref name="type"/>'s
+            implementation of <see cref="T:System.Collections.Generic.IDictionary`2"/>.
+            </summary>
+            <param name="type">The type to examine.</param>
+            <returns>An array of types that represent the generic type arguments used in <paramref name="type"/>'s
+            implementation of <see cref="T:System.Collections.Generic.IDictionary`2"/>. Returns null if <paramref name="type"/> does 
+            not implement <see cref="T:System.Collections.Generic.IDictionary`2"/>.</returns>
+        </member>
+        <member name="M:System.ServiceModel.DomainServices.Client.Utility.IsPredefinedSimpleType(System.Type)">
             <summary>
             Returns <c>true</c> if the given type is either primitive or one of our
             standard acceptable simple types, such as <see cref="T:System.String"/>,
@@ -5462,43 +4876,7 @@
             <param name="type">The type to test</param>
             <returns><c>true</c> if the type is a primitive or standard acceptable types</returns>
         </member>
-        <member name="M:System.ServiceModel.DomainServices.TypeUtility.IsComplexType(System.Type)">
-            <summary>
-            This method determines if the specified Type should be treated as a
-            complex type by the framework.
-            </summary>
-            <param name="type">The type to check.</param>
-            <returns>True if the type is a complex type, false otherwise.</returns>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.TypeUtility.IsSystemAssembly(System.Reflection.Assembly)">
-            <summary>
-            Performs a check against an assembly to determine if it's a known
-            System assembly.
-            </summary>
-            <remarks>
-            We can't use Assembly.GetName().GetPublicKeyToken() since that requires FileIOPermissions.
-            </remarks>
-            <param name="assembly">The assembly to check.</param>
-            <returns><c>true</c> if the assembly is known to be a system assembly, otherwise <c>false</c>.</returns>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.TypeUtility.IsComplexTypeCollection(System.Type)">
-            <summary>
-            Determines whether the specified type is one of the supported collection types
-            with a complex element type.
-            </summary>
-            <param name="type">The type to check.</param>
-            <returns>True if the type is a supported complex collection type, false otherwise.</returns>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.TypeUtility.IsSupportedComplexType(System.Type)">
-            <summary>
-            Determines whether the specified type is a complex type or a collection of
-            complex types.
-            </summary>
-            <param name="type">The type to check.</param>
-            <returns>True if the specified type is a complex type or a collection of
-            complex types, false otherwise.</returns>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.TypeUtility.GetElementType(System.Type)">
+        <member name="M:System.ServiceModel.DomainServices.Client.Utility.GetElementType(System.Type)">
             <summary>
             Returns the underlying element type starting from a given type.
             </summary>
@@ -5513,7 +4891,7 @@
             <param name="type"><see cref="T:System.Type"/> to examine.</param>
             <returns>The underlying element type starting from the given type</returns>
         </member>
-        <member name="M:System.ServiceModel.DomainServices.TypeUtility.DefinitionIsAssignableFrom(System.Type,System.Type)">
+        <member name="M:System.ServiceModel.DomainServices.Client.Utility.DefinitionIsAssignableFrom(System.Type,System.Type)">
             <summary>
             Determines whether the generic type definition is assignable from the derived type.
             </summary>
@@ -5526,7 +4904,7 @@
             <param name="derivedType">The type to determine assignability from</param>
             <returns>Whether the type definition is assignable from the derived type</returns>
         </member>
-        <member name="M:System.ServiceModel.DomainServices.TypeUtility.DefinitionIsAssignableFrom(System.Type,System.Type,System.Type@)">
+        <member name="M:System.ServiceModel.DomainServices.Client.Utility.DefinitionIsAssignableFrom(System.Type,System.Type,System.Type@)">
             <summary>
             Determines whether the generic type definition is assignable from the derived type.
             </summary>
@@ -5542,6 +4920,19 @@
             null when the method return false.
             </param>
             <returns>Whether the type definition is assignable from the derived type</returns>
+        </member>
+        <member name="M:System.ServiceModel.DomainServices.Client.Utility.IsTypeBinary(System.Type)">
+            <summary>
+            Returns whether the <paramref name="type"/> <c>is System.Data.Linq.Binary</c>.
+            </summary>
+            <remarks>
+            We test Binary by Type Name so our client framework assembly can avoid taking an
+            assembly reference to <c>System.Data.Linq</c>. If a type is determined to be
+            binary, that type will be used to check reference equality for all subsequent
+            invocations.
+            </remarks>
+            <param name="type">The type to check</param>
+            <returns>Whether the <paramref name="type"/> is binary</returns>
         </member>
         <member name="T:System.ServiceModel.DomainServices.Client.Resources">
             <summary>
@@ -5626,7 +5017,7 @@
         </member>
         <member name="P:System.ServiceModel.DomainServices.Client.Resources.QuerySerialization_NewExpressionsNotSupported">
             <summary>
-              Looks up a localized string similar to &apos;New&apos; expressions are not supported in queries..
+              Looks up a localized string similar to &apos;New&apos; Expressions are not supported in queries..
             </summary>
         </member>
         <member name="P:System.ServiceModel.DomainServices.Client.Resources.QuerySerialization_ProjectionsNotSupported">
@@ -5646,7 +5037,7 @@
         </member>
         <member name="P:System.ServiceModel.DomainServices.Client.Resources.QuerySerialization_UnsupportedType">
             <summary>
-              Looks up a localized string similar to Value of type &apos;{0}&apos; cannot be serialized as part of the query. &apos;{0}&apos; is not a supported type..
+              Looks up a localized string similar to Value of type &apos;{0}&apos; cannot be serialized as part of the query. &apos;{0}&apos; is not a supported Type..
             </summary>
         </member>
         <member name="P:System.ServiceModel.DomainServices.Client.Resources.QuerySerialization_UnsupportedUnaryOp">
