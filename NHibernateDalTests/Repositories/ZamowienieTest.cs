@@ -269,5 +269,17 @@ namespace Tests.Repositories
             Assert.That(zamowienia[2].DataZlozenia, Is.EqualTo(new DateTime(2010, 6, 10)));          
             Assert.That(zamowienia[3].DataZlozenia, Is.EqualTo(new DateTime(2009, 10, 10)));
         }
+
+        [Test]
+        public void HasAccesToZamowienieProducts()
+        {
+            var zamowienia = _repository.GetByPracownikName("Wojciech", "Korycki");
+            var produkty = _repository.GetProductsByZamowienie(zamowienia[0]);
+            Assert.That(produkty.Count, Is.EqualTo(3));
+            Assert.That(produkty[0].Nazwa, Is.EqualTo("Salata"));
+            Assert.That(produkty[1].Nazwa, Is.EqualTo("Banan"));
+            Assert.That(produkty[2].Nazwa, Is.EqualTo("Jajka"));
+
+        }
     }
 }

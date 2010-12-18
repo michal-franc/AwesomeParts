@@ -217,39 +217,33 @@ namespace Tests.Repositories
             //DateTime(2005, 1, 1)
 
             var pracownicy = _repository.CanGetByDataPodpisaniaUmowy(new DateTime(2009,1,1),new DateTime(2011,1,1));
-            Assert.That(pracownicy.Count, Is.EqualTo(2));
+            Assert.That(pracownicy.Count, Is.EqualTo(1));
 
             pracownicy = _repository.CanGetByDataPodpisaniaUmowy(new DateTime(2000, 1, 1), new DateTime(2001, 1, 1));
             Assert.That(pracownicy.Count, Is.EqualTo(0));
 
             pracownicy = _repository.CanGetByDataPodpisaniaUmowy(new DateTime(2000, 1, 1), new DateTime(2012, 1, 1));
-            Assert.That(pracownicy.Count, Is.EqualTo(8));
+            Assert.That(pracownicy.Count, Is.EqualTo(5));
 
             pracownicy = _repository.CanGetByDataPodpisaniaUmowy(new DateTime(2006, 1, 1), new DateTime(2006, 5, 1));
             Assert.That(pracownicy.Count, Is.EqualTo(2));
 
             pracownicy = _repository.CanGetByDataPodpisaniaUmowy(new DateTime(2008, 5, 10), new DateTime(2008, 6, 10));
-            Assert.That(pracownicy.Count, Is.EqualTo(2));
-        }
-
-        [Test]
-        public void CanFilterByBeetwenDataZwolnienia()
-        {
-            Assert.Fail();
+            Assert.That(pracownicy.Count, Is.EqualTo(0));
         }
 
         [Test]
         public void HasAccesToObslugiwaneZamowienia()
         {
             var pracownik = _repository.GetByImieNazwisko("Michal", "Franc");
-            Assert.That(pracownik.Imie, Is.EqualTo("Michal"));
-            Assert.That(pracownik.Nazwisko, Is.EqualTo("Franc"));
             Assert.That(pracownik.Zamowienia, Is.Not.Null);
             Assert.That(pracownik.Zamowienia.Count, Is.EqualTo(0));
 
+            pracownik = _repository.GetByImieNazwisko("Wojciech", "Korycki");
+            Assert.That(pracownik.Zamowienia, Is.Not.Null);
+            Assert.That(pracownik.Zamowienia.Count, Is.EqualTo(2));
+
             pracownik = _repository.GetByImieNazwisko("Kamil", "Minda");
-            Assert.That(pracownik.Imie, Is.EqualTo("Kamil"));
-            Assert.That(pracownik.Nazwisko, Is.EqualTo("Minda"));
             Assert.That(pracownik.Zamowienia, Is.Not.Null);
             Assert.That(pracownik.Zamowienia.Count, Is.EqualTo(1));
 

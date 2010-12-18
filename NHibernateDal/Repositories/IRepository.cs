@@ -14,5 +14,6 @@ namespace BazaDanych.Repositories
         void Add(T item);
         void Remove(T item);
         void Update(T item);
+        void UpdateById(T item, int id);
     }
 }

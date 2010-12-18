@@ -30,12 +30,7 @@ namespace BazaDanych.Repositories
 
         public IList<Pracownik>  CanGetByDataPodpisaniaUmowy(DateTime dateTime, DateTime dateTime_2,string sort ="asc")
         {
-            return GetByQuery(String.Format("from Pracownik p where p.Umowa.Aktualna = true and p.Umowa.DataWygasniecia => '{0}' and p.Umowa.DataWygasniecia <= '{1}' order by p.Umowa.Wygasniecia {2}",dateTime.ToShortDateString(),dateTime_2.ToShortDateString(),sort));
-        }
-
-        public IList<Pracownik> CanGetByDataWygasnieciaUmowy(DateTime dateTime, DateTime dateTime_2,string sort ="asc")
-        {
-            return GetByQuery(String.Format("from Pracownik p where p.Umowa.Aktualna = true and p.Umowa.DataWygasniecia => '{0}' and p.Umowa.DataWygasniecia <= '{1}' order by p.Umowa.Wygasniecia {2}", dateTime.ToShortDateString(), dateTime_2.ToShortDateString(), sort));
+           return GetAll().Where(x => x.AktualnaUmowa.DataPodpisania >= dateTime && x.AktualnaUmowa.DataPodpisania <= dateTime_2).ToList();
         }
     }
 }

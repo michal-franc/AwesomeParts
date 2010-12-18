@@ -88,7 +88,9 @@
     <Compile Include="Mappings\ProduktProducentMap.cs" />
     <Compile Include="Mappings\ZamowienieMap.cs" />
     <Compile Include="Repositories\IRepository.cs" />
+    <Compile Include="Repositories\KlientRepository.cs" />
     <Compile Include="Repositories\PracownikRepository.cs" />
+    <Compile Include="Repositories\ProduktRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\ZamowieniaRepository.cs" />
     <Compile Include="SessionFactory.cs" />

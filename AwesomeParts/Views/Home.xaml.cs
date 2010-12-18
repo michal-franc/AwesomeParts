@@ -32,5 +32,11 @@
             context.Load<ProduktPOCO>(query);
             ProduktyGrid.ItemsSource = context.ProduktPOCOs;
         }
+
+        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            ProduktyContext context = new ProduktyContext();
+            //context.
+        }
     }
 }

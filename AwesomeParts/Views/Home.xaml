@@ -15,17 +15,17 @@
                 <ColumnDefinition Width="350" />
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0">
-                <sdk:DataGrid x:Name="ProduktyGrid" Margin="5" AutoGenerateColumns="False">
-                    <sdk:DataGrid.Columns>
+                <sdk:DataGrid x:Name="ProduktyGrid" Margin="5">
+                    <!--<sdk:DataGrid.Columns>
                         <sdk:DataGridTextColumn Header="L.p." Width="SizeToHeader" Binding="{Binding Id}" IsReadOnly="True" />
                         <sdk:DataGridTextColumn Header="Nazwa" Width="SizeToHeader" Binding="{Binding Nazwa}" IsReadOnly="True" />
                         <sdk:DataGridTextColumn Header="Cena" Width="SizeToHeader" Binding="{Binding Cena}" IsReadOnly="True" />
                         <sdk:DataGridTextColumn Header="Ilość" Width="SizeToHeader" Binding="{Binding Ilosc}" IsReadOnly="True" />
                         <sdk:DataGridTextColumn Header="Ilość docelowa" Width="SizeToHeader" Binding="{Binding DocelowaIlosc}" IsReadOnly="True" />
                         <sdk:DataGridTextColumn Header="Producent" Width="SizeToHeader" Binding="{Binding ProducentNazwa}" IsReadOnly="True" />
-                    </sdk:DataGrid.Columns>
+                    </sdk:DataGrid.Columns>-->
                 </sdk:DataGrid>
-                <Button Content="Dodaj Produkt" Width="150" Height="Auto" HorizontalAlignment="Left"/>
+                <!--<Button Content="Dodaj Produkt" Width="150" Height="Auto" HorizontalAlignment="Left"/>-->
             </StackPanel>
         
             <riaControls:DomainDataSource x:Name="DataSource" AutoLoad="True" QueryName="GetProdukty">

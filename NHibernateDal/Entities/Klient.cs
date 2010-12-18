@@ -28,5 +28,23 @@ namespace BazaDanych.Entities
         public virtual KlientRodzaj Rodzaj { get; set; }
         public virtual LoginRola LoginRola { get; set; } 
         #endregion
+
+        public virtual IList<Zamowienie> Zamowienia { get; set; }
+
+        public virtual IList<Zamowienie> ZamowieniaZrealizowane
+        {
+            get
+            {
+                return Zamowienia.Where(x =>x.Zrealizowano==true).ToList();
+            }
+        }
+
+        public virtual IList<Zamowienie> ZamowieniaNieZrealizowane
+        {
+            get
+            {
+                return Zamowienia.Where(x => x.Zrealizowano == false).ToList();
+            }
+        }
     }
 }

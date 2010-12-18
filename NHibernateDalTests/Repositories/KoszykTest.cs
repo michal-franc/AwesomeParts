@@ -76,29 +76,5 @@ namespace Tests.Repositories
             var koszykiCount = _repository.GetCount();
             Assert.That(koszykiCount, Is.EqualTo(koszykiBeforeCount));
         }
-
-        [Test]
-        public void CanGetKoszykProdukt()
-        {
-            var testedKoszyk = _repository.GetById(1);
-            Assert.That(testedKoszyk.Produkt.Nazwa, Is.Not.Null);
-            Assert.That(testedKoszyk.Produkt.Nazwa, Is.EqualTo("Pomidor"));
-
-            testedKoszyk = _repository.GetById(2);
-            Assert.That(testedKoszyk.Produkt.Nazwa, Is.Not.Null);
-            Assert.That(testedKoszyk.Produkt.Nazwa, Is.EqualTo("Salata"));
-        }
-
-        [Test]
-        public void CanGetKoszykZamowienie()
-        {
-            var testedKoszyk = _repository.GetById(1);
-            Assert.That(testedKoszyk.Zamowienie.Zrealizowano, Is.Not.Null);
-            Assert.That(testedKoszyk.Zamowienie.Zrealizowano, Is.Not.False);
-
-            testedKoszyk = _repository.GetById(2);
-            Assert.That(testedKoszyk.Zamowienie.Zrealizowano, Is.Not.Null);
-            Assert.That(testedKoszyk.Zamowienie.Zrealizowano, Is.Not.True);
-        }
     }
 }

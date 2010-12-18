@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHibernateDal", "NHibernate
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHibernateDalTests", "NHibernateDalTests\NHibernateDalTests.csproj", "{20AFD779-1A68-4C1F-8311-9D7DCE42C693}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "..\AwesomeParts.git\AwesomeParts\Test\Test.csproj", "{BFDA761F-0689-4C27-9FA9-F97CC16973C3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -62,6 +64,16 @@ Global
 		{20AFD779-1A68-4C1F-8311-9D7DCE42C693}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{20AFD779-1A68-4C1F-8311-9D7DCE42C693}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{20AFD779-1A68-4C1F-8311-9D7DCE42C693}.Release|x86.ActiveCfg = Release|Any CPU
+		{BFDA761F-0689-4C27-9FA9-F97CC16973C3}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{BFDA761F-0689-4C27-9FA9-F97CC16973C3}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{BFDA761F-0689-4C27-9FA9-F97CC16973C3}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{BFDA761F-0689-4C27-9FA9-F97CC16973C3}.Debug|x86.ActiveCfg = Debug|x86
+		{BFDA761F-0689-4C27-9FA9-F97CC16973C3}.Debug|x86.Build.0 = Debug|x86
+		{BFDA761F-0689-4C27-9FA9-F97CC16973C3}.Release|Any CPU.ActiveCfg = Release|x86
+		{BFDA761F-0689-4C27-9FA9-F97CC16973C3}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{BFDA761F-0689-4C27-9FA9-F97CC16973C3}.Release|Mixed Platforms.Build.0 = Release|x86
+		{BFDA761F-0689-4C27-9FA9-F97CC16973C3}.Release|x86.ActiveCfg = Release|x86
+		{BFDA761F-0689-4C27-9FA9-F97CC16973C3}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -26,7 +26,7 @@ namespace BazaDanych.Entities
         public virtual PracownikStatus Status { get; set; }
         public virtual LoginRola LoginRola { get; set; }
 
-        public virtual IList<ZamowieniaKoszyk> Zamowienia { get; set; }
+        public virtual IList<Zamowienie> Zamowienia { get; set; }
         public virtual IList<PracownikUmowa> Umowy { get; set; }
 
 

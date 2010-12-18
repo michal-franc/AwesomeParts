@@ -19,8 +19,8 @@ namespace AwesomeParts.Web.Services
     {
         private IRepository<Produkty> _context = new Repository<Produkty>();
 
-        [Update]
-        public void UpdateProdukt(ProduktPOCO produkt)
+        [Insert()]
+        public void InsertProdukt(ProduktPOCO produkt)
         {
             _context.Add(new Produkty
             {
@@ -35,7 +35,40 @@ namespace AwesomeParts.Web.Services
             });
         }
 
-        [Query]
+        [Update()]
+        public void UpdateProdukt(ProduktPOCO produkt)
+        {
+            _context.UpdateById(new Produkty
+            {
+                Nazwa = produkt.Nazwa,
+                Ilosc = produkt.Ilosc,
+                Cena = produkt.Cena,
+                DocelowaIlosc = produkt.DocelowaIlosc,
+                Producent = new ProduktProducent
+                {
+                    Nazwa = produkt.ProducentNazwa
+                }
+            }, produkt.Id);
+        }
+
+        [Delete()]
+        public void DeleteProdukt(ProduktPOCO produkt)
+        {
+            //_context.Remove(new Produkty
+            //{
+            //    Nazwa = produkt.Nazwa,
+            //    Ilosc = produkt.Ilosc,
+            //    Cena = produkt.Cena,
+            //    DocelowaIlosc = produkt.DocelowaIlosc,
+            //    Producent = new ProduktProducent
+            //    {
+            //        Nazwa = produkt.ProducentNazwa
+            //    }
+            //});
+            _context.Remove(_context.GetById(produkt.Id));
+        }
+
+        [Query()]
         public IQueryable<ProduktPOCO> GetProdukty()
         {
             return (
