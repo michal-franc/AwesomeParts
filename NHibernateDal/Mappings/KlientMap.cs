@@ -28,6 +28,8 @@ namespace BazaDanych.Mappings
 
             References(x => x.Rodzaj).LazyLoad(Laziness.False).Cascade.SaveUpdate();
             References(x => x.LoginRola).LazyLoad(Laziness.False).Cascade.SaveUpdate();
+
+            HasMany(x => x.Zamowienia).Not.LazyLoad().Cascade.SaveUpdate();
         }
     }
 }

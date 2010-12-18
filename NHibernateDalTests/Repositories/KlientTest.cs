@@ -11,23 +11,23 @@ namespace Tests.Repositories
     [TestFixture]
     public class KlientTest
     {
-        Repository<Klient> _repository;
+        KlientRepository _repository;
 
         [TestFixtureSetUp]
         public void SetUp()
         {
-            _repository = new Repository<Klient>();
+            _repository = new KlientRepository();
         }
 
         [Test]
-        public void CanAddKlient()
+        public void CanAddAndDeleteKlient()
         {
             Klient klient = new Klient() { Imie = "Stefan" };
-            Assert.That(_repository.GetCount(), Is.EqualTo(3));
+            int beforeCounter = _repository.GetCount();
             _repository.Add(klient);
-            Assert.That(_repository.GetCount(), Is.EqualTo(4));
-            var testedKlient = _repository.GetById(_repository.GetCount());
-            Assert.That(testedKlient.Imie, Is.EqualTo("Stefan"));
+            Assert.That(_repository.GetCount(), Is.EqualTo(beforeCounter+1));
+            _repository.Remove(klient);
+            Assert.That(_repository.GetCount(), Is.EqualTo(beforeCounter));
         }
 
         [Test]
@@ -99,30 +99,112 @@ namespace Tests.Repositories
             var testedKlient = _repository.GetById(1);
             Assert.That(testedKlient.Imie, Is.EqualTo("Michal"));
             Assert.That(testedKlient.LoginRola.Rola, Is.Not.Null);
-            Assert.That(testedKlient.LoginRola.Rola, Is.EqualTo("Administrator"));
+            Assert.That(testedKlient.LoginRola.Rola, Is.EqualTo("Kontrahent"));
 
             testedKlient = _repository.GetById(2);
             Assert.That(testedKlient.Imie, Is.EqualTo("Kamil"));
             Assert.That(testedKlient.LoginRola.Rola, Is.Not.Null);
-            Assert.That(testedKlient.LoginRola.Rola, Is.EqualTo("Uzytkownik"));
+            Assert.That(testedKlient.LoginRola.Rola, Is.EqualTo("Kontrahent"));
 
             testedKlient = _repository.GetById(3);
             Assert.That(testedKlient.Imie, Is.EqualTo("Stefan"));
             Assert.That(testedKlient.LoginRola.Rola, Is.Not.Null);
-            Assert.That(testedKlient.LoginRola.Rola, Is.EqualTo("Uzytkownik"));
+            Assert.That(testedKlient.LoginRola.Rola, Is.EqualTo("Kontrahent"));
         }
 
         [Test]
         public void CanFilterByCity()
         {
-            var testedKlients = _repository.GetByFilter("Miasto","Wrocław");
-            Assert.That(testedKlients.Count, Is.EqualTo(1));
-            testedKlients = _repository.GetByFilter("Miasto", "Twardogóra");
+            var testedKlients = _repository.GetByFilter("Miasto","Wroclaw");
+            Assert.That(testedKlients.Count, Is.EqualTo(0));
+            testedKlients = _repository.GetByFilter("Miasto", "Twardogora");
             Assert.That(testedKlients.Count, Is.EqualTo(3));
             testedKlients = _repository.GetByFilter("Miasto", "Pcim Dolny");
             Assert.That(testedKlients.Count, Is.EqualTo(0));
         }
 
+        [Test]
+        public void CanGetByImieNazwisko()
+        {
+            var klient = _repository.GetByImieNazwisko("Michal","Franc");
+
+            Assert.That(klient.Imie,Is.EqualTo("Michal"));
+            Assert.That(klient.Nazwisko, Is.EqualTo("Franc"));
+
+             klient = _repository.GetByImieNazwisko("Kamil","Minda");
+
+             Assert.That(klient.Imie, Is.EqualTo("Kamil"));
+             Assert.That(klient.Nazwisko, Is.EqualTo("Minda"));
+
+             klient = _repository.GetByImieNazwisko("Stefan","Romanski");
+
+             Assert.That(klient.Imie, Is.EqualTo("Stefan"));
+             Assert.That(klient.Nazwisko, Is.EqualTo("Romanski"));
+        }
+
+        [Test]
+        public void CanGetByKlientRodzaj()
+        {
+            var testedKlients = _repository.GetByRodzaj("Kupujacy");
+            Assert.That(testedKlients.Count, Is.EqualTo(2));
+            
+            testedKlients = _repository.GetByRodzaj("Sprzedajacy");
+            Assert.That(testedKlients.Count, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void CanGetByCompanyName()
+        {
+            var testedKlients = _repository.GetByFilter("Firma", "Contium");
+            Assert.That(testedKlients.Count, Is.EqualTo(1));
+            testedKlients = _repository.GetByFilter("Firma", "PWR");
+            Assert.That(testedKlients.Count, Is.EqualTo(1));
+            testedKlients = _repository.GetByFilter("Firma", "IBM");
+            Assert.That(testedKlients.Count, Is.EqualTo(1));
+        }
+
+
+        [Test]
+        public void HasAccesToZamowienia()
+        {
+            var klient = _repository.GetByImieNazwisko("Michal", "Franc");
+
+            Assert.That(klient.Zamowienia,Is.Not.Null);
+            Assert.That(klient.Zamowienia.Count,Is.EqualTo(2));
+
+            klient = _repository.GetByImieNazwisko("Kamil", "Minda");
+
+            Assert.That(klient.Zamowienia, Is.Not.Null);
+            Assert.That(klient.Zamowienia.Count, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void HasAccesToZamowieniaZrealizowane()
+        {
+            var klient = _repository.GetByImieNazwisko("Michal", "Franc");
+
+            Assert.That(klient.ZamowieniaZrealizowane, Is.Not.Null);
+            Assert.That(klient.ZamowieniaZrealizowane.Count, Is.EqualTo(1));
+
+            klient = _repository.GetByImieNazwisko("Kamil", "Minda");
+
+            Assert.That(klient.ZamowieniaZrealizowane, Is.Not.Null);
+            Assert.That(klient.ZamowieniaZrealizowane.Count, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void HasAccesToZamowieniaNieZrealizowane()
+        {
+            var klient = _repository.GetByImieNazwisko("Michal", "Franc");
+
+            Assert.That(klient.ZamowieniaNieZrealizowane, Is.Not.Null);
+            Assert.That(klient.ZamowieniaNieZrealizowane.Count, Is.EqualTo(1));
+
+            klient = _repository.GetByImieNazwisko("Kamil", "Minda");
+
+            Assert.That(klient.ZamowieniaNieZrealizowane, Is.Not.Null);
+            Assert.That(klient.ZamowieniaNieZrealizowane.Count, Is.EqualTo(1));
+        }
     }
 
 }

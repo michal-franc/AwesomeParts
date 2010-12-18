@@ -13,7 +13,7 @@ namespace BazaDanych.Repositories
         {
             T klient;
 
-            klient = GetByFilter("Id",id).First();
+            klient = GetByFilter("Id",id).FirstOrDefault();
 
             return klient;
         }
