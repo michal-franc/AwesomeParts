@@ -152,9 +152,6 @@
     <Compile Include="Views\Login\RegistrationForm.xaml.cs">
       <DependentUpon>RegistrationForm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\NewEntryManagement\AddNewProductWindow.xaml.cs">
-      <DependentUpon>AddNewProductWindow.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -225,10 +222,6 @@
     <Page Include="Views\Login\RegistrationForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:MarkupCompilePass1</Generator>
-    </Page>
-    <Page Include="Views\NewEntryManagement\AddNewProductWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
