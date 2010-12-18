@@ -23,5 +23,7 @@ namespace BazaDanych.Entities
         /// Wskaznik oznaczajacy czy zamowienie zostalo zrealizowane
         /// </summary>
         public virtual bool Zrealizowano { get; set; }
+
+        public virtual IList<Produkty> ZamowioneProdukty { get; set; }
     }
 }

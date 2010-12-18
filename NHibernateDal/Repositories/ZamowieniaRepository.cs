@@ -78,5 +78,16 @@ namespace BazaDanych.Repositories
         {
             return GetByQuery(String.Format("from Zamowienie z where z.DataZrealizowania  < '{0}' {1}", dateTime.ToShortDateString(), sort));
         }
+
+        public IList<Produkty> GetProductsByZamowienie(Zamowienie zamowienie)
+        {
+            IList<Produkty> returnedList = null;
+            using (var session = SessionFactory.OpenSession())
+            {
+                returnedList = session.CreateQuery(String.Format("select p from Produkty p , ZamowieniaKoszyk z where z.Produkt = p and z.Zamowienie = '{0}'", zamowienie.Id)).List<Produkty>();
+                session.Flush();
+            }
+            return returnedList;
+        }
     }
 }

@@ -19,6 +19,8 @@ namespace BazaDanych.Mappings
 
             References(x => x.Klient).LazyLoad(Laziness.False);
             References(x => x.Pracownik).LazyLoad(Laziness.False);
+
+            //HasManyToMany(x => x.ZamowioneProdukty).Table("ZamowieniaKoszyk").ChildKeyColumn("Produkt_id").ParentKeyColumn("Zamowienie_id").Not.LazyLoad();
         }
     }
 }

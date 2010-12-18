@@ -114,6 +114,5 @@ namespace BazaDanych.Repositories
             }
             return returnedList;
         }
-
     }
 }
