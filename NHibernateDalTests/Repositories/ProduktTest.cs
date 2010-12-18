@@ -21,9 +21,8 @@ namespace Tests.Repositories
         [Test]
         public void CanGetProdukt()
         {
-            var count = _repository.GetCount() - 1;
-            Produkty produktTest = _repository.GetById(count);
-            Assert.That(produktTest.Nazwa, Is.EqualTo("BananLepszy"));
+            Produkty produktTest = _repository.GetById(4);
+            Assert.That(produktTest.Nazwa, Is.EqualTo("Salata"));
             Assert.That(produktTest.Ilosc, Is.EqualTo(10));
             Assert.That(produktTest.Cena, Is.EqualTo(10));
         }
@@ -31,12 +30,13 @@ namespace Tests.Repositories
         [Test]
         public void CanUpdateProdukt()
         {
-            var count = _repository.GetCount()-1;
-            Produkty produktTest = _repository.GetById(count);
+            Produkty produktTest = _repository.GetById(1);
             produktTest.Nazwa = "BananLepszy";
             _repository.Update(produktTest);
-            produktTest = _repository.GetById(count);
+            produktTest = _repository.GetById(1);
             Assert.That(produktTest.Nazwa, Is.EqualTo("BananLepszy"));
+            produktTest.Nazwa = "Banan";
+            _repository.Update(produktTest);
         }
 
         [Test]
@@ -54,16 +54,6 @@ namespace Tests.Repositories
         }
 
         [Test]
-        public void CanGetProduktById()
-        {
-            var count = _repository.GetCount();
-            Produkty produktTest = _repository.GetById(count);
-            Assert.That(produktTest.Nazwa, Is.EqualTo("Pomidor"));
-            Assert.That(produktTest.Ilosc, Is.EqualTo(150));
-            Assert.That(produktTest.Cena, Is.EqualTo(25));
-        }
-
-        [Test]
         public void CanGetProduktProducent()
         {
             var count = _repository.GetCount();
@@ -78,7 +68,7 @@ namespace Tests.Repositories
         public void CanGetProduktByName()
         {
             var produkt = _repository.GetByNazwaLike("Banan");
-            Assert.That(produkt.Count, Is.EqualTo(2));
+            Assert.That(produkt.Count, Is.EqualTo(1));
 
             produkt = _repository.GetByNazwaLike("Jajka");
             Assert.That(produkt.Count, Is.EqualTo(1));

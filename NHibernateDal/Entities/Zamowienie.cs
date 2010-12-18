@@ -24,6 +24,6 @@ namespace BazaDanych.Entities
         /// </summary>
         public virtual bool Zrealizowano { get; set; }
 
-        public virtual IList<Produkty> ZamowioneProdukty { get; set; }
+        //public virtual IList<Produkty> ZamowioneProdukty { get; set; }
     }
 }
