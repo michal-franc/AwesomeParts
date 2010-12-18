@@ -23,8 +23,8 @@ namespace Tests.Repositories
         public void CanGetUmowa()
         {
             var count = _repository.GetCount();
-            PracownikUmowa umowa1 = _repository.GetById(count-1);
-            Assert.That(umowa1.Aktualna, Is.EqualTo(false));
+            PracownikUmowa umowa1 = _repository.GetById(1);
+            Assert.That(umowa1.Aktualna, Is.EqualTo(true));
             Assert.That(umowa1.Placa, Is.EqualTo(1000));
         }
 
@@ -37,6 +37,9 @@ namespace Tests.Repositories
             _repository.Update(umowaTest);
             umowaTest = _repository.GetById(count-1);
             Assert.That(umowaTest.Placa, Is.EqualTo(2000));
+
+            umowaTest.Placa = 1500;
+            _repository.Update(umowaTest);
         }
 
         [Test]
@@ -60,5 +63,13 @@ namespace Tests.Repositories
             PracownikUmowa umowa = _repository.GetById(count-1);
             Assert.That(umowa.Pracownik.Imie, Is.EqualTo("Michal"));
         }
+
+        [Test]
+        public void CanGetAktualneUmowy()
+        {
+            var umowy = _repository.GetByFilter("Aktualna", true);
+            Assert.That(umowy.Count, Is.EqualTo(5));
+        }
+
     }
 }
