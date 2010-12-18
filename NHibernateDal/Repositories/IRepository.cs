@@ -9,10 +9,13 @@ namespace BazaDanych.Repositories
     {
         IList<T> GetByFilter(string parameterName,object value);
         T GetById(int id);
+
         IList<T> GetAll();
         int GetCount();
         void Add(T item);
+        void AddById(T item, int Id);
         void Remove(T item);
         void Update(T item);
+        void UpdateById(T item,int Id);
     }
 }
