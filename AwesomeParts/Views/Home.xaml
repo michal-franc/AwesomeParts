@@ -24,7 +24,7 @@
                         <sdk:DataGridTextColumn Header="Producent" Width="SizeToHeader" Binding="{Binding ProducentNazwa}" IsReadOnly="True" />
                     </sdk:DataGrid.Columns>
                 </sdk:DataGrid>
-                <Button Content="Dodaj Produkt" Width="150" Height="auto"/>
+                <Button Content="Dodaj Produkt" Width="150" Height="auto" Click="Button_Click" />
             </StackPanel>
         </Grid>
   </Grid>

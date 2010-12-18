@@ -29,6 +29,20 @@ namespace BazaDanych.Repositories
                 }
             }
         }
+
+        public void AddById(T item,int Id)
+        {
+            using (var session = SessionFactory.OpenSession())
+            {
+                using (var transaction = session.BeginTransaction())
+                {
+                    session.Save(item,Id);
+                    transaction.Commit();
+                    session.Flush();
+                }
+            }
+        }
+
         public void Remove(T item)
         {
 
@@ -53,6 +67,21 @@ namespace BazaDanych.Repositories
                 using (ITransaction transaction = session.BeginTransaction())
                 {
                     session.Update(item);
+                    transaction.Commit();
+                    session.Flush();
+                }
+            }
+        }
+
+        public void UpdateById(T item,int Id)
+        {
+
+            using (var session = SessionFactory.OpenSession())
+            {
+
+                using (ITransaction transaction = session.BeginTransaction())
+                {
+                    session.Update(item,Id);
                     transaction.Commit();
                     session.Flush();
                 }
