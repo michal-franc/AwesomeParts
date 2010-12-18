@@ -19,6 +19,23 @@ namespace AwesomeParts.Web.Services
     {
         private IRepository<Produkty> _context = new Repository<Produkty>();
 
+        [Update]
+        public void UpdateProdukt(ProduktPOCO produkt)
+        {
+            _context.Add(new Produkty
+            {
+                Nazwa = produkt.Nazwa,
+                Ilosc = produkt.Ilosc,
+                Cena = produkt.Cena,
+                DocelowaIlosc = produkt.DocelowaIlosc,
+                Producent = new ProduktProducent
+                {
+                    Nazwa = produkt.ProducentNazwa
+                }
+            });
+        }
+
+        [Query]
         public IQueryable<ProduktPOCO> GetProdukty()
         {
             return (
@@ -35,32 +52,7 @@ namespace AwesomeParts.Web.Services
                 });
         }
 
-        public bool InsertProdukt(ProduktPOCO produkt)
-        {
-            bool success = false;
-
-            try
-            {
-                _context.Add(new Produkty 
-                { 
-                    Nazwa = produkt.Nazwa,
-                    Ilosc = produkt.Ilosc,
-                    Cena = produkt.Cena,
-                    DocelowaIlosc = produkt.DocelowaIlosc,
-                    Producent = new ProduktProducent 
-                    {
-                        Nazwa = produkt.ProducentNazwa
-                    }
-                });
-                success = true;
-            }
-            catch
-            {
-                success = false;
-            }
-
-            return success;
-        }
+        
     }
 }
 

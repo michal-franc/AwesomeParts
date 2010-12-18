@@ -133,7 +133,9 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\RegistrationData.cs" />
     <Compile Include="Services\KlientService.cs" />
-    <Compile Include="Services\ProduktyService.cs" />
+    <Compile Include="Services\ProduktyService.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Services\UserRegistrationService.cs" />
     <Compile Include="Models\Shared\User.shared.cs" />
   </ItemGroup>
@@ -171,7 +173,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>52878</DevelopmentServerPort>
+          <DevelopmentServerPort>26444</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

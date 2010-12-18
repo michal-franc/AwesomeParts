@@ -20,6 +20,7 @@
     <AssemblyPart x:Name="System.Windows.Controls.Data.Toolkit" Source="System.Windows.Controls.Data.Toolkit.dll" />
     <AssemblyPart x:Name="System.Windows.Controls.DataVisualization.Toolkit" Source="System.Windows.Controls.DataVisualization.Toolkit.dll" />
     <AssemblyPart x:Name="System.Windows.Controls" Source="System.Windows.Controls.dll" />
+    <AssemblyPart x:Name="System.Windows.Controls.DomainServices" Source="System.Windows.Controls.DomainServices.dll" />
     <AssemblyPart x:Name="System.Windows.Controls.Input" Source="System.Windows.Controls.Input.dll" />
     <AssemblyPart x:Name="System.Windows.Controls.Input.Toolkit" Source="System.Windows.Controls.Input.Toolkit.dll" />
     <AssemblyPart x:Name="System.Windows.Controls.Layout.Toolkit" Source="System.Windows.Controls.Layout.Toolkit.dll" />

@@ -12,8 +12,8 @@ namespace AwesomeParts.Web.POCOs
         [Key]
         public virtual int Id { get; set; }
 
-        public virtual Zamowienie Zamowienie { get; set; }
-        public virtual Produkty Produkt { get; set; }
+        public virtual ZamowieniePOCO Zamowienie { get; set; }
+        public virtual ProduktPOCO Produkt { get; set; }
         public virtual int Ilosc { get; set; }
     }
 }

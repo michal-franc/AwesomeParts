@@ -1754,7 +1754,7 @@ namespace AwesomeParts.Web.Services
             
             public ProduktyContextEntityContainer()
             {
-                this.CreateEntitySet<ProduktPOCO>(EntitySetOperations.None);
+                this.CreateEntitySet<ProduktPOCO>(EntitySetOperations.Edit);
             }
         }
     }

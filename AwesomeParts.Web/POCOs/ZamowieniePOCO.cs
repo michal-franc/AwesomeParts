@@ -12,8 +12,8 @@ namespace AwesomeParts.Web.POCOs
         [Key]
         public virtual int Id { get; set; }
 
-        public virtual Klient Klient { get; set; }
-        public virtual Pracownik Pracownik { get; set; }
+        public virtual KlientPOCO Klient { get; set; }
+        public virtual PracownikPOCO Pracownik { get; set; }
         public virtual Nullable<DateTime> DataZlozenia { get; set; }
         public virtual Nullable<DateTime> DataZrealizowania { get; set; }
         public virtual bool Zrealizowano { get; set; }
