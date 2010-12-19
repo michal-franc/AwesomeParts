@@ -262,11 +262,11 @@ namespace Tests
             #endregion
             Repository<Produkty> produktyRepository = new Repository<Produkty>();
 
-            Produkty produktBanan = new Produkty() { Nazwa = "Banan", Ilosc = 100, Cena = 10 , DocelowaIlosc=200 ,Producent= producentPolmosSA};
-            Produkty produktTruskawka = new Produkty() { Nazwa = "Truskawka", Ilosc = 50, Cena = 5, DocelowaIlosc = 50, Producent = producentKFC };
-            Produkty produktJajka = new Produkty() { Nazwa = "Jajka", Ilosc = 50, Cena = 5, DocelowaIlosc = 76, Producent = producentKFC };
-            Produkty produktySalata = new Produkty() { Nazwa = "Salata",  Ilosc = 10, Cena = 10 , DocelowaIlosc=200 ,Producent= producentPolmosSA};
-            Produkty produktyPomidor = new Produkty() { Nazwa = "Pomidor",  Ilosc = 150, Cena = 25 , DocelowaIlosc=250 ,Producent= producentPolmosSA};
+            Produkty produktBanan = new Produkty() { Nazwa = "Banan", Ilosc = 100, Cena = 10 , DocelowaIlosc=200 ,Producent= producentPolmosSA,Dostepny=true};
+            Produkty produktTruskawka = new Produkty() { Nazwa = "Truskawka", Ilosc = 50, Cena = 5, DocelowaIlosc = 50, Producent = producentKFC, Dostepny = true };
+            Produkty produktJajka = new Produkty() { Nazwa = "Jajka", Ilosc = 50, Cena = 5, DocelowaIlosc = 76, Producent = producentKFC, Dostepny = false };
+            Produkty produktySalata = new Produkty() { Nazwa = "Salata", Ilosc = 10, Cena = 10, DocelowaIlosc = 200, Producent = producentPolmosSA, Dostepny = true };
+            Produkty produktyPomidor = new Produkty() { Nazwa = "Pomidor", Ilosc = 150, Cena = 25, DocelowaIlosc = 250, Producent = producentPolmosSA, Dostepny = true };
 
             produktyRepository.Add(produktBanan);
             produktyRepository.Add(produktJajka);

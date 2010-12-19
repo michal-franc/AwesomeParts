@@ -9,43 +9,7 @@
   Style="{StaticResource PageStyle}">
 
   <Grid x:Name="LayoutRoot">
-    <Grid Margin="10">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="350" />
-            </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0">
-                <sdk:DataGrid x:Name="ProduktyGrid" Margin="5">
-                    <!--<sdk:DataGrid.Columns>
-                        <sdk:DataGridTextColumn Header="L.p." Width="SizeToHeader" Binding="{Binding Id}" IsReadOnly="True" />
-                        <sdk:DataGridTextColumn Header="Nazwa" Width="SizeToHeader" Binding="{Binding Nazwa}" IsReadOnly="True" />
-                        <sdk:DataGridTextColumn Header="Cena" Width="SizeToHeader" Binding="{Binding Cena}" IsReadOnly="True" />
-                        <sdk:DataGridTextColumn Header="Ilość" Width="SizeToHeader" Binding="{Binding Ilosc}" IsReadOnly="True" />
-                        <sdk:DataGridTextColumn Header="Ilość docelowa" Width="SizeToHeader" Binding="{Binding DocelowaIlosc}" IsReadOnly="True" />
-                        <sdk:DataGridTextColumn Header="Producent" Width="SizeToHeader" Binding="{Binding ProducentNazwa}" IsReadOnly="True" />
-                    </sdk:DataGrid.Columns>-->
-                </sdk:DataGrid>
-                <!--<Button Content="Dodaj Produkt" Width="150" Height="Auto" HorizontalAlignment="Left"/>-->
-            </StackPanel>
-        
-            <riaControls:DomainDataSource x:Name="DataSource" AutoLoad="True" QueryName="GetProdukty">
-                <riaControls:DomainDataSource.DomainContext>
-                    <domain:ProduktyContext />
-                </riaControls:DomainDataSource.DomainContext>
-            </riaControls:DomainDataSource>
-        
-            <toolkit:DataForm x:Name="ProduktyDataForm" Grid.Column="1" 
-                              Margin="5 40 0 40" 
-                              ItemsSource="{Binding Data, ElementName=DataSource}"
-                              CurrentItem="{Binding SelectedItem, ElementName=ProduktyGrid, Mode=TwoWay}" />
 
-            <Button x:Name="SubmitChanges"
-                    Grid.Column="1" Margin="5"
-                    HorizontalAlignment="Right" VerticalAlignment="Top"
-                    Height="25" Width="120"
-                    Command="{Binding SubmitChangesCommand, ElementName=DataSource}"
-                    Content="Zapisz zmiany" />
-        </Grid>
   </Grid>
 
 </navigation:Page>

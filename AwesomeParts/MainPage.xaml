@@ -28,11 +28,11 @@
       <Grid x:Name="NavigationGrid" Style="{StaticResource NavigationGridStyle}">
 
         <Border x:Name="BrandingBorder" Style="{StaticResource BrandingBorderStyle}">
-          <StackPanel x:Name="BrandingStackPanel" Style="{StaticResource BrandingStackPanelStyle}">
+          <StackPanel Orientation="Horizontal" x:Name="BrandingStackPanel" Style="{StaticResource BrandingStackPanelStyle}">
 
-            <ContentControl Style="{StaticResource LogoIcon}"/>
-            <TextBlock x:Name="ApplicationNameTextBlock" Style="{StaticResource ApplicationNameStyle}" 
-                               Text="{Binding ApplicationStrings.ApplicationName, Source={StaticResource ResourceWrapper}}"/>
+             <Image  Name="ImageLogo" Height="80" Width="80"> </Image>
+                <TextBlock x:Name="ApplicationNameTextBlock" Style="{StaticResource ApplicationNameStyle}" 
+                    Text="{Binding ApplicationStrings.ApplicationName, Source={StaticResource ResourceWrapper}}"/>
 
           </StackPanel>
         </Border>
@@ -40,17 +40,23 @@
         <Border x:Name="LinksBorder" Style="{StaticResource LinksBorderStyle}">
           <StackPanel x:Name="LinksStackPanel" Style="{StaticResource LinksStackPanelStyle}">
 
-            <HyperlinkButton x:Name="Link1" Style="{StaticResource LinkStyle}" 
+            <HyperlinkButton  x:Name="Link1" Style="{StaticResource LinkStyle}" 
                                      NavigateUri="/Home" TargetName="ContentFrame" Content="{Binding Path=ApplicationStrings.HomePageTitle, Source={StaticResource ResourceWrapper}}"/>
-
-            <Rectangle x:Name="Divider1" Style="{StaticResource DividerStyle}"/>
 
             <HyperlinkButton x:Name="Link2" Style="{StaticResource LinkStyle}" 
                                      NavigateUri="/About" TargetName="ContentFrame" Content="{Binding Path=ApplicationStrings.AboutPageTitle, Source={StaticResource ResourceWrapper}}"/>
-            <Rectangle x:Name="Divider2" Style="{StaticResource DividerStyle}"/>
 
             <HyperlinkButton x:Name="Link3" Style="{StaticResource LinkStyle}" 
                             NavigateUri="/Klienci" TargetName="ContentFrame" Content="Klienci"/>
+             <HyperlinkButton x:Name="LinkProfil" Style="{StaticResource LinkStyle}" 
+             NavigateUri="/Profil" TargetName="ContentFrame" Content="Profil"/>
+              
+             <HyperlinkButton x:Name="LinkDostepneProdukty" Style="{StaticResource LinkStyle}" 
+             NavigateUri="/DostepneProdukty" TargetName="ContentFrame" Content="Dostępne Produkty"/>
+              
+            <HyperlinkButton x:Name="LinkMojeZamowienia" Style="{StaticResource LinkStyle}" 
+             NavigateUri="/MojeZamowienia" TargetName="ContentFrame" Content="Moje Zamówienia"/>
+
 
 
                     </StackPanel>
