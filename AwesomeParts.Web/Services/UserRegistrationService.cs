@@ -19,7 +19,7 @@
         /// <summary>
         /// Role to which users will be added by default.
         /// </summary>
-        public const string DefaultRole = "Registered Users";
+        public const string DefaultRole = "Klient";
 
         //// NOTE: This is a sample code to get your application started. In the production code you would 
         //// want to provide a mitigation against a denial of service attack by providing CAPTCHA 
