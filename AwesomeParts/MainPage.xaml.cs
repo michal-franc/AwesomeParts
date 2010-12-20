@@ -21,43 +21,16 @@
             InitializeComponent();
 
             this.loginContainer.Child = new LoginStatus();
-            WebContext.Current.Authentication.LoggedIn += new System.EventHandler<System.ServiceModel.DomainServices.Client.ApplicationServices.AuthenticationEventArgs>(Authentication_LoggedIn);
-            WebContext.Current.Authentication.LoggedOut +=new System.EventHandler<System.ServiceModel.DomainServices.Client.ApplicationServices.AuthenticationEventArgs>(Authentication_LoggedOut);
-
-            LoadLogo();
-            HideHyperLinks();
-            
+            LoadLogo();          
         }
 
-        void Authentication_LoggedIn(object sender, System.ServiceModel.DomainServices.Client.ApplicationServices.AuthenticationEventArgs e)
-        {
-            LinkProfil.Visibility = System.Windows.Visibility.Visible;
-
-            if (WebContext.Current.User.IsInRole("Klient"))
-            {               
-                LinkDostepneProdukty.Visibility = System.Windows.Visibility.Visible;
-                LinkMojeZamowienia.Visibility = System.Windows.Visibility.Visible;
-            }
-        }
-
-        void Authentication_LoggedOut(object sender, System.ServiceModel.DomainServices.Client.ApplicationServices.AuthenticationEventArgs e)
-        {
-            HideHyperLinks();
-        }
-
-        private void HideHyperLinks()
-        {
-            foreach (HyperlinkButton hb in LinksStackPanel.Children)
-            {
-                hb.Visibility = System.Windows.Visibility.Collapsed;
-            }
-        }
 
         private void LoadLogo()
         {
-            Uri uri = new Uri("Images/Logo.jpg", UriKind.Relative);
-            ImageSource imgSource = new BitmapImage(uri);
-            ImageLogo.Source = imgSource;
+            //ImageSourceConverter c = new ImageSourceConverter();
+            //this.ImageLogo.Source = (ImageSource)c.ConvertFromString("Images/Logo.jpg");
+            //ImageLogo.SetValue(Image.SourceProperty,new Uri("Images/Logo.jpg",UriKind.Relative));
+            //ImageLogo.UpdateLayout();
         }
 
         /// <summary>
