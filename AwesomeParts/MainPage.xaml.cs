@@ -21,16 +21,7 @@
             InitializeComponent();
 
             this.loginContainer.Child = new LoginStatus();
-            LoadLogo();          
-        }
 
-
-        private void LoadLogo()
-        {
-            //ImageSourceConverter c = new ImageSourceConverter();
-            //this.ImageLogo.Source = (ImageSource)c.ConvertFromString("Images/Logo.jpg");
-            //ImageLogo.SetValue(Image.SourceProperty,new Uri("Images/Logo.jpg",UriKind.Relative));
-            //ImageLogo.UpdateLayout();
         }
 
         /// <summary>
