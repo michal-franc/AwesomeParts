@@ -10,15 +10,12 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Windows.Navigation;
-using AwesomeParts.Web.Services;
-using System.ServiceModel.DomainServices.Client;
-using AwesomeParts.Web.POCOs;
 
 namespace AwesomeParts.Views
 {
-    public partial class DostepneProdukty : Page
+    public partial class NoAcces : Page
     {
-        public DostepneProdukty()
+        public NoAcces()
         {
             InitializeComponent();
         }

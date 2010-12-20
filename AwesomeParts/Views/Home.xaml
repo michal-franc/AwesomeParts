@@ -8,8 +8,11 @@
   mc:Ignorable="d" d:DesignWidth="640" d:DesignHeight="480"  
   Style="{StaticResource PageStyle}">
 
-  <Grid x:Name="LayoutRoot">
-
-  </Grid>
+    <Grid x:Name="LayoutRoot">
+        <StackPanel>
+            <TextBlock x:Name="WelcomeText"></TextBlock>
+            <TextBlock x:Name="HomeText"></TextBlock>
+        </StackPanel>
+    </Grid>
 
 </navigation:Page>

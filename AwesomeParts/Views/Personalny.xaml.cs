@@ -10,15 +10,12 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Windows.Navigation;
-using AwesomeParts.Web.Services;
-using System.ServiceModel.DomainServices.Client;
-using AwesomeParts.Web.POCOs;
 
 namespace AwesomeParts.Views
 {
-    public partial class MojeZamowienia : Page
+    public partial class Personalny : Page
     {
-        public MojeZamowienia()
+        public Personalny()
         {
             InitializeComponent();
         }
