@@ -28,18 +28,6 @@
         /// </summary>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-        //    ProduktyContext context = new ProduktyContext();
-
-        //    EntityQuery<ProduktPOCO> query = context.GetProduktyQuery();
-        //    context.Load<ProduktPOCO>(query);
-        //    ProduktyGrid.ItemsSource = context.ProduktPOCOs;
-            //ProduktyContext context = new ProduktyContext();
-            //EntityQuery<ProduktProducentPOCO> query = context.GetProducenciQuery();
-            //context.Load<ProduktProducentPOCO>(query);
-            //ProducenciComboBox.ItemsSource = context.ProduktProducentPOCOs;
-
-            //HomeText.Text = AppText.HomeMessage;
-            //WelcomeText.Text = AppText.WelcomeMessage;
         }
     }
 }

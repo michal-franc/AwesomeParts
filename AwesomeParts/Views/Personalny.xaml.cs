@@ -25,5 +25,17 @@ namespace AwesomeParts.Views
         {
         }
 
+        private void GrupujCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (GrupujCB.SelectedIndex == 1)
+            {
+                //PracownicyGrid.ItemsSource = DataSourceByRodzaje.Data;
+            }
+            //else if (((ComboBox)sender).SelectedIndex == 1)
+            //{
+            //    PracownicyGrid.ItemsSource = DataSourceByRodzaje.Data;
+            //}
+        }
+
     }
 }

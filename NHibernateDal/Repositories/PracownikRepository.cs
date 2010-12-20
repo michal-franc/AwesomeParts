@@ -28,9 +28,9 @@ namespace BazaDanych.Repositories
             return GetByQuery(String.Format("from Pracownik p where p.Imie= '{0}' and p.Nazwisko = '{1}'", imie,nazwisko)).FirstOrDefault();
         }
 
-        //public IList<Pracownik>  CanGetByDataPodpisaniaUmowy(DateTime dateTime, DateTime dateTime_2,string sort ="asc")
-        //{
-        //   return GetAll().Where(x => x.AktualnaUmowa.DataPodpisania >= dateTime && x.AktualnaUmowa.DataPodpisania <= dateTime_2).ToList();
-        //}
+        public IList<Pracownik> CanGetByDataPodpisaniaUmowy(DateTime dateTime, DateTime dateTime_2, string sort = "asc")
+        {
+            return GetAll().Where(x => x.AktualnaUmowa.DataPodpisania >= dateTime && x.AktualnaUmowa.DataPodpisania <= dateTime_2).ToList();
+        }
     }
 }

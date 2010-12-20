@@ -23,11 +23,6 @@ namespace AwesomeParts.Views
         // Executes when the user navigates to this page.
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            //AwesomePartsContext context = new AwesomePartsContext();
-
-            //EntityQuery<KlientPOCO> query = context.GetKlienciQuery();
-            //context.Load<KlientPOCO>(query);
-            //KlienciGrid.ItemsSource = context.KlientPOCOs;
         }
 
     }

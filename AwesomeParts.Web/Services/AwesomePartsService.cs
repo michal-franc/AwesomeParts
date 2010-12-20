@@ -27,7 +27,6 @@ namespace AwesomeParts.Web.Services
         private PracownikRepository _pracownicyContext = new PracownikRepository();
         private IRepository<PracownikRodzaj> _pracownikRodzajeContext = new Repository<PracownikRodzaj>();
         private IRepository<PracownikStatus> _pracownikStatusyContext = new Repository<PracownikStatus>();
-        private IRepository<PracownikUmowa> _pracownikUmowyContext = new Repository<PracownikUmowa>();
 
         #endregion contexts
 
@@ -176,17 +175,20 @@ namespace AwesomeParts.Web.Services
         }
 
         [Query]
-        public IQueryable<PracownikUmowaMiniPOCO> GetUmowyByPracownikId(int pracownikID)
+        public IQueryable<PracownikUmowaPOCO> GetUmowaAktualnaByPracownikId(int pracownikID)
+        {
+            return new List<PracownikUmowaPOCO> 
+            {
+                POCOHelpers.MapPracownikUmowaToPOCO(this._pracownicyContext.GetById(pracownikID).AktualnaUmowa)
+            }.AsQueryable();
+        }
+
+        [Query]
+        public IQueryable<PracownikUmowaPOCO> GetUmowyNieaktualnePracownikId(int pracownikID)
         {
             return (
-                from r in this._pracownikUmowyContext.GetAll().AsQueryable<PracownikUmowa>()
-                where r.Pracownik.Id == pracownikID
-                select new PracownikUmowaMiniPOCO
-                {
-                    Id = r.Id,
-                    DataPodpisania = r.DataPodpisania,
-                    Aktualna = r.Aktualna
-                });
+                from r in this._pracownicyContext.GetById(pracownikID).UmowyArchiwalne.AsQueryable()
+                select POCOHelpers.MapPracownikUmowaToPOCO(r));
         }
 
         #endregion Pracownicy CRUD

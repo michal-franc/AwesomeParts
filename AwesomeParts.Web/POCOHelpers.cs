@@ -129,6 +129,19 @@ namespace AwesomeParts.Web
             };
         }
 
+        public static PracownikUmowaPOCO MapPracownikUmowaToPOCO(PracownikUmowa pracownik)
+        {
+            return new PracownikUmowaPOCO
+            {
+                Id = pracownik.Id,
+                DataPodpisania = pracownik.DataPodpisania,
+                DataWygasniecia = pracownik.DataWygasniecia,
+                Placa = pracownik.Placa,
+                Aktualna = pracownik.Aktualna,
+                Uwagi = pracownik.Uwagi,
+                PracownikID = pracownik.Pracownik.Id
+            };
+        }
 
         private static IList<ZamowienieMiniPOCO> CopyZamowieniaToMiniPOCOCollection(IList<Zamowienie> z)
         {
