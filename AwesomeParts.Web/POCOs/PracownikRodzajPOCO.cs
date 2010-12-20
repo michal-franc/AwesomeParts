@@ -9,8 +9,8 @@ namespace AwesomeParts.Web.POCOs
     public class PracownikRodzajPOCO
     {
         [Key]
-        public virtual int Id { get; set; }
+        public int Id { get; set; }
 
-        public virtual string Rodzaj { get; set; }
+        public string Rodzaj { get; set; }
     }
 }

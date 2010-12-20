@@ -50,7 +50,12 @@
             <Rectangle x:Name="Divider2" Style="{StaticResource DividerStyle}"/>
 
             <HyperlinkButton x:Name="Link3" Style="{StaticResource LinkStyle}" 
-                            NavigateUri="/Klienci" TargetName="ContentFrame" Content="Klienci"/>
+                                    NavigateUri="/Klienci" TargetName="ContentFrame" Content="Klienci"/>
+
+            <Rectangle x:Name="Divider3" Style="{StaticResource DividerStyle}"/>
+
+            <HyperlinkButton x:Name="Link4" Style="{StaticResource LinkStyle}" 
+                                    NavigateUri="/Pracownicy" TargetName="ContentFrame" Content="Pracownicy"/>
 
 
                     </StackPanel>

@@ -5,6 +5,7 @@
     using AwesomeParts.Web.Services;
     using AwesomeParts.Web.POCOs;
     using System.ServiceModel.DomainServices.Client;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Home page for the application.
@@ -19,6 +20,7 @@
             InitializeComponent();
 
             this.Title = ApplicationStrings.HomePageTitle;
+            
         }
 
         /// <summary>
@@ -26,17 +28,16 @@
         /// </summary>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            ProduktyContext context = new ProduktyContext();
+        //    ProduktyContext context = new ProduktyContext();
 
-            EntityQuery<ProduktPOCO> query = context.GetProduktyQuery();
-            context.Load<ProduktPOCO>(query);
-            ProduktyGrid.ItemsSource = context.ProduktPOCOs;
+        //    EntityQuery<ProduktPOCO> query = context.GetProduktyQuery();
+        //    context.Load<ProduktPOCO>(query);
+        //    ProduktyGrid.ItemsSource = context.ProduktPOCOs;
+            //ProduktyContext context = new ProduktyContext();
+            //EntityQuery<ProduktProducentPOCO> query = context.GetProducenciQuery();
+            //context.Load<ProduktProducentPOCO>(query);
+            //ProducenciComboBox.ItemsSource = context.ProduktProducentPOCOs;
         }
 
-        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            ProduktyContext context = new ProduktyContext();
-            //context.
-        }
     }
 }

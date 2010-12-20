@@ -152,8 +152,8 @@
     <Compile Include="Views\Login\RegistrationForm.xaml.cs">
       <DependentUpon>RegistrationForm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\NewEntryManagement\AddNewProductWindow.xaml.cs">
-      <DependentUpon>AddNewProductWindow.xaml</DependentUpon>
+    <Compile Include="Views\Pracownicy.xaml.cs">
+      <DependentUpon>Pracownicy.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -226,7 +226,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:MarkupCompilePass1</Generator>
     </Page>
-    <Page Include="Views\NewEntryManagement\AddNewProductWindow.xaml">
+    <Page Include="Views\Pracownicy.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -267,7 +267,12 @@
   <ItemGroup>
     <None Include="Properties\OutOfBrowserSettings.xml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\ComboBoxExtensions\ComboBoxExtensions.csproj">
+      <Project>{4B47504F-AC43-4A3E-9990-FA1183CD1F1F}</Project>
+      <Name>ComboBoxExtensions</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

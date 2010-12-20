@@ -4,18 +4,28 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using BazaDanych.Entities;
+using System.ServiceModel.DomainServices.Server;
 
 namespace AwesomeParts.Web.POCOs
 {
     public class ZamowieniePOCO
     {
         [Key]
-        public virtual int Id { get; set; }
+        public int Id { get; set; }
 
-        public virtual KlientPOCO Klient { get; set; }
-        public virtual PracownikPOCO Pracownik { get; set; }
-        public virtual Nullable<DateTime> DataZlozenia { get; set; }
-        public virtual Nullable<DateTime> DataZrealizowania { get; set; }
-        public virtual bool Zrealizowano { get; set; }
+        public Nullable<DateTime> DataZlozenia { get; set; }
+        public Nullable<DateTime> DataZrealizowania { get; set; }
+        public bool Zrealizowano { get; set; }
+        public int KlientID { get; set; }
+        public int PracownikID { get; set; }
+
+        [Include]
+        [Association("ZamowienieKlient", "KlientID", "Id", IsForeignKey = true)]
+        public KlientPOCO Klient { get; set; }
+
+        [Include]
+        [Association("ZamowieniePracownik", "PracownikID", "Id", IsForeignKey = true)]
+        public PracownikPOCO Pracownik { get; set; }
+
     }
 }

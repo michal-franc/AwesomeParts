@@ -38,7 +38,7 @@ namespace BazaDanych.Entities
             }
         }
 
-        public virtual PracownikUmowa AktualnaUmowa 
+        public virtual PracownikUmowa AktualnaUmowa
         {
             get
             {

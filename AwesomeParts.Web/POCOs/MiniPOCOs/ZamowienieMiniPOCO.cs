@@ -4,13 +4,14 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 
-namespace AwesomeParts.Web.POCOs
+namespace AwesomeParts.Web.POCOs.MiniPOCOs
 {
-    public class ProduktProducentPOCO
+    public class ZamowienieMiniPOCO
     {
         [Key]
         public int Id { get; set; }
 
-        public string Nazwa { get; set; }
+        public Nullable<DateTime> DataZlozenia { get; set; }
+        public bool Zrealizowano { get; set; }
     }
 }
