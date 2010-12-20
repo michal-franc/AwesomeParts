@@ -5,7 +5,7 @@
     using AwesomeParts.Web.Services;
     using AwesomeParts.Web.POCOs;
     using System.ServiceModel.DomainServices.Client;
-    using System.Collections.Generic;
+    using System;
 
     /// <summary>
     /// Home page for the application.
@@ -18,7 +18,6 @@
         public Home()
         {
             InitializeComponent();
-
             this.Title = ApplicationStrings.HomePageTitle;
             
         }
@@ -28,6 +27,8 @@
         /// </summary>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            HomeText.Text = AppText.HomeMessage;
+            WelcomeText.Text = AppText.WelcomeMessage;
         }
     }
 }

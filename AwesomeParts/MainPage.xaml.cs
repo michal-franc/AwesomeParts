@@ -20,38 +20,13 @@
         {
             InitializeComponent();
 
-            this.loginContainer.Child = new LoginStatus();
             WebContext.Current.Authentication.LoggedIn += new System.EventHandler<System.ServiceModel.DomainServices.Client.ApplicationServices.AuthenticationEventArgs>(Authentication_LoggedIn);
-            WebContext.Current.Authentication.LoggedOut +=new System.EventHandler<System.ServiceModel.DomainServices.Client.ApplicationServices.AuthenticationEventArgs>(Authentication_LoggedOut);
-
-            //LoadLogo();
-            //HideHyperLinks();
+            WebContext.Current.Authentication.LoggedOut += new System.EventHandler<System.ServiceModel.DomainServices.Client.ApplicationServices.AuthenticationEventArgs>(Authentication_LoggedOut);
             
-        }
 
-        void Authentication_LoggedIn(object sender, System.ServiceModel.DomainServices.Client.ApplicationServices.AuthenticationEventArgs e)
-        {
-        }
+            this.loginContainer.Child = new LoginStatus();
 
-        void Authentication_LoggedOut(object sender, System.ServiceModel.DomainServices.Client.ApplicationServices.AuthenticationEventArgs e)
-        {
-            HideHyperLinks();
         }
-
-        private void HideHyperLinks()
-        {
-            foreach (HyperlinkButton hb in LinksStackPanel.Children)
-            {
-                hb.Visibility = System.Windows.Visibility.Collapsed;
-            }
-        }
-
-        //private void LoadLogo()
-        //{
-        //    Uri uri = new Uri("Images/Logo.jpg", UriKind.Relative);
-        //    ImageSource imgSource = new BitmapImage(uri);
-        //    ImageLogo.Source = imgSource;
-        //}
 
         /// <summary>
         /// After the Frame navigates, ensure the <see cref="HyperlinkButton"/> representing the current page is selected
@@ -82,6 +57,45 @@
         {
             e.Handled = true;
             ErrorWindow.CreateNew(e.Exception);
+        }
+
+
+        void Authentication_LoggedIn(object sender, System.ServiceModel.DomainServices.Client.ApplicationServices.AuthenticationEventArgs e)
+        {
+            AwesomeParts.Web.User user = WebContext.Current.User;
+            if (user != null )
+            {
+                if (user.IsInRole("Klient"))
+                {
+                    this.ContentFrame.Navigate(new Uri("/Klient", UriKind.Relative));
+                }
+                if (user.IsInRole("Administrator"))
+                {
+                    this.ContentFrame.Navigate(new Uri("/Administrator", UriKind.Relative));
+                }
+                if (user.IsInRole("DzialPersonalny"))
+                {
+                    this.ContentFrame.Navigate(new Uri("/Personalny", UriKind.Relative));
+                }
+                if (user.IsInRole("DzialSprzedazy"))
+                {
+                    this.ContentFrame.Navigate(new Uri("/Sprzedaz", UriKind.Relative));
+                }
+                if (user.IsInRole("DzialZaopatrzenia"))
+                {
+                    this.ContentFrame.Navigate(new Uri("/Zaopatrzenie", UriKind.Relative));
+                }
+                if (user.IsInRole("Zarzad"))
+                {
+                    this.ContentFrame.Navigate(new Uri("/Zarzad", UriKind.Relative));
+                }
+            }
+
+        }
+
+        void Authentication_LoggedOut(object sender, System.ServiceModel.DomainServices.Client.ApplicationServices.AuthenticationEventArgs e)
+        {
+            this.ContentFrame.Navigate(new Uri("/Home", UriKind.Relative));
         }
     }
 }

@@ -16,5 +16,4 @@
             <TextBlock x:Name="HomeText"></TextBlock>
         </StackPanel>
     </Grid>
-
 </navigation:Page>

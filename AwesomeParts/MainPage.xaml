@@ -7,11 +7,9 @@
   xmlns:dataControls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Data.DataForm.Toolkit" 
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
   mc:Ignorable="d" d:DesignWidth="640" d:DesignHeight="480">
-
   <Grid x:Name="LayoutRoot" Style="{StaticResource LayoutRootGridStyle}">
 
         <Border x:Name="BackgroundBorder" Style="{StaticResource ContentBorderStyle}"/>
-      
         <Border x:Name="ContentBorder">
             <navigation:Frame x:Name="ContentFrame" Style="{StaticResource ContentFrameStyle}" 
                               Source="/Home" Navigated="ContentFrame_Navigated" NavigationFailed="ContentFrame_NavigationFailed">
@@ -39,9 +37,7 @@
 
         <Border x:Name="LinksBorder" Style="{StaticResource LinksBorderStyle}">
           <StackPanel x:Name="LinksStackPanel" Style="{StaticResource LinksStackPanelStyle}">
-
-
-           </StackPanel>
+          </StackPanel>
         </Border>
 
       </Grid>

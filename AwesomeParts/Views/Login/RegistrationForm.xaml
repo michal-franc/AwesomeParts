@@ -19,7 +19,7 @@
         <local:BusyIndicator x:Name="busyIndicator" BusyContent="{Binding Path=ApplicationStrings.BusyIndicatorRegisteringUser, Source={StaticResource ResourceWrapper}}"
                              IsBusy="{Binding IsRegistering}">
             <local:CustomDataForm x:Name="registerForm" 
-								  Padding="10,10,20,0"
+                                  Padding="10,10,20,0"
                                   CurrentItem="{Binding}"
                                   IsEnabled="{Binding IsRegistering, Converter={StaticResource NotOperatorValueConverter}}"
                                   AutoEdit="True" CommandButtonsVisibility="None" 
