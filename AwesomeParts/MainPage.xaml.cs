@@ -24,20 +24,13 @@
             WebContext.Current.Authentication.LoggedIn += new System.EventHandler<System.ServiceModel.DomainServices.Client.ApplicationServices.AuthenticationEventArgs>(Authentication_LoggedIn);
             WebContext.Current.Authentication.LoggedOut +=new System.EventHandler<System.ServiceModel.DomainServices.Client.ApplicationServices.AuthenticationEventArgs>(Authentication_LoggedOut);
 
-            LoadLogo();
-            HideHyperLinks();
+            //LoadLogo();
+            //HideHyperLinks();
             
         }
 
         void Authentication_LoggedIn(object sender, System.ServiceModel.DomainServices.Client.ApplicationServices.AuthenticationEventArgs e)
         {
-            LinkProfil.Visibility = System.Windows.Visibility.Visible;
-
-            if (WebContext.Current.User.IsInRole("Klient"))
-            {               
-                LinkDostepneProdukty.Visibility = System.Windows.Visibility.Visible;
-                LinkMojeZamowienia.Visibility = System.Windows.Visibility.Visible;
-            }
         }
 
         void Authentication_LoggedOut(object sender, System.ServiceModel.DomainServices.Client.ApplicationServices.AuthenticationEventArgs e)
@@ -53,12 +46,12 @@
             }
         }
 
-        private void LoadLogo()
-        {
-            Uri uri = new Uri("Images/Logo.jpg", UriKind.Relative);
-            ImageSource imgSource = new BitmapImage(uri);
-            ImageLogo.Source = imgSource;
-        }
+        //private void LoadLogo()
+        //{
+        //    Uri uri = new Uri("Images/Logo.jpg", UriKind.Relative);
+        //    ImageSource imgSource = new BitmapImage(uri);
+        //    ImageLogo.Source = imgSource;
+        //}
 
         /// <summary>
         /// After the Frame navigates, ensure the <see cref="HyperlinkButton"/> representing the current page is selected

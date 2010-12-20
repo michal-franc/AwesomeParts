@@ -28,7 +28,6 @@
         /// </summary>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-<<<<<<< HEAD
         //    ProduktyContext context = new ProduktyContext();
 
         //    EntityQuery<ProduktPOCO> query = context.GetProduktyQuery();
@@ -38,12 +37,9 @@
             //EntityQuery<ProduktProducentPOCO> query = context.GetProducenciQuery();
             //context.Load<ProduktProducentPOCO>(query);
             //ProducenciComboBox.ItemsSource = context.ProduktProducentPOCOs;
-        }
 
-=======
-            HomeText.Text = AppText.HomeMessage;
-            WelcomeText.Text = AppText.WelcomeMessage;
+            //HomeText.Text = AppText.HomeMessage;
+            //WelcomeText.Text = AppText.WelcomeMessage;
         }
->>>>>>> 55a2f3e896af6ef87f9b63d908ba0d0d65b9a831
     }
 }

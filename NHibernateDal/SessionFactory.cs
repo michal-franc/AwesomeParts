@@ -52,7 +52,7 @@ namespace BazaDanych
                     .Mappings(m => m.FluentMappings.Add<ProduktProducentMap>())
                     .Mappings(m => m.FluentMappings.Add<ZamowienieMap>())
                     .Mappings(m => m.FluentMappings.Add<LoginRolaMap>())
-                    //.ExposeConfiguration(func)
+                    .ExposeConfiguration(func)
                     .BuildSessionFactory();
         }
 

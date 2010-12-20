@@ -10,89 +10,11 @@
   xmlns:comboboxext="clr-namespace:ComboBoxExtensions;assembly=ComboBoxExtensions"
   mc:Ignorable="d" d:DesignWidth="640" d:DesignHeight="480"  
   Style="{StaticResource PageStyle}">
-
-<<<<<<< HEAD
-    <UserControl.Resources>
-        <domain:AwesomePartsContext x:Key="prodContext"/>
-        <riaControls:DomainDataSource x:Key="ProducenciSource"
-                                        DomainContext="{StaticResource prodContext}"
-                                        QueryName="GetProducenci" />
-    </UserControl.Resources>
-    
-    <Grid x:Name="LayoutRoot">
-    <Grid Margin="10">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="350" />
-            </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0">
-                <sdk:DataGrid x:Name="ProduktyGrid" Margin="5"
-                              ItemsSource="{Binding Data, ElementName=DataSource}"
-                              AutoGenerateColumns="False">
-                    <sdk:DataGrid.Columns>
-                        <sdk:DataGridTextColumn Header="L.p."  Binding="{Binding Id}" />
-                        <sdk:DataGridTextColumn Header="Nazwa" Binding="{Binding Nazwa}" />
-                        <sdk:DataGridTextColumn Header="Cena" Binding="{Binding Cena}" />
-                        <sdk:DataGridTextColumn Header="Ilość" Binding="{Binding Ilosc}" />
-                        <sdk:DataGridTextColumn Header="Ilość docelowa" Binding="{Binding DocelowaIlosc}" />
-                        <sdk:DataGridTextColumn Header="Producent" Binding="{Binding Producent.Nazwa}" />
-                    </sdk:DataGrid.Columns>
-                </sdk:DataGrid>
-            </StackPanel>
-        
-            <riaControls:DomainDataSource x:Name="DataSource" AutoLoad="True"
-                                          DomainContext="{StaticResource prodContext}"
-                                          QueryName="GetProdukty">
-                <riaControls:DomainDataSource.GroupDescriptors>
-                    <riaControls:GroupDescriptor PropertyPath="Producent.Nazwa" />
-                </riaControls:DomainDataSource.GroupDescriptors>
-            </riaControls:DomainDataSource>
-        
-            <toolkit:DataForm x:Name="ProduktyDataForm" Grid.Column="1" 
-                              Margin="5 40 0 40" 
-                              ItemsSource="{Binding Data, ElementName=DataSource}"
-                              CurrentItem="{Binding SelectedItem, ElementName=ProduktyGrid, Mode=TwoWay}" 
-                              AutoGenerateFields="False" >
-                <toolkit:DataForm.EditTemplate>
-                    <DataTemplate>
-                        <StackPanel>
-                        <toolkit:DataField>
-                                <TextBox Text="{Binding Nazwa, Mode=TwoWay}" />
-                            </toolkit:DataField>
-                            <toolkit:DataField>
-                                <TextBox Text="{Binding Cena, Mode=TwoWay}" />
-                            </toolkit:DataField>
-                            <toolkit:DataField>
-                                <TextBox Text="{Binding Ilosc, Mode=TwoWay}" />
-                            </toolkit:DataField>
-                            <toolkit:DataField>
-                                <TextBox Text="{Binding DocelowaIlosc, Mode=TwoWay}" />
-                            </toolkit:DataField>
-                            <toolkit:DataField>
-                                <ComboBox ItemsSource="{Binding Source={StaticResource ProducenciSource}, Path=Data}" 
-                                          SelectedItem="{Binding Producent, Mode=TwoWay}" DisplayMemberPath="Nazwa" 
-                                          comboboxext:ComboBox.Mode="AsyncEager"/>
-                            </toolkit:DataField>
-                        </StackPanel>
-                    </DataTemplate>
-                </toolkit:DataForm.EditTemplate>
-            </toolkit:DataForm>
-        
-            <Button x:Name="SubmitChanges"
-                    Grid.Column="1" Margin="5"
-                    HorizontalAlignment="Right" VerticalAlignment="Top"
-                    Height="30" Width="120"
-                    Command="{Binding SubmitChangesCommand, ElementName=DataSource}"
-                    Content="Zapisz zmiany" />
-        </Grid>
-  </Grid>
-=======
     <Grid x:Name="LayoutRoot">
         <StackPanel>
             <TextBlock x:Name="WelcomeText"></TextBlock>
             <TextBlock x:Name="HomeText"></TextBlock>
         </StackPanel>
     </Grid>
->>>>>>> 55a2f3e896af6ef87f9b63d908ba0d0d65b9a831
 
 </navigation:Page>
