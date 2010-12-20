@@ -94,6 +94,33 @@
             Gets the inner <see cref="T:System.IAsyncResult"/>.
             </summary>
         </member>
+        <member name="M:System.ServiceModel.DomainServices.BinaryTypeUtility.IsTypeBinary(System.Type)">
+            <summary>
+            Returns whether the <paramref name="type"/> <c>is System.Data.Linq.Binary</c>.
+            </summary>
+            <remarks>
+            We test Binary by Type Name so our client framework assembly can avoid taking an
+            assembly reference to <c>System.Data.Linq</c>. If a type is determined to be
+            binary, that type will be used to check reference equality for all subsequent
+            invocations.
+            </remarks>
+            <param name="type">The type to check</param>
+            <returns>Whether the <paramref name="type"/> is binary</returns>
+        </member>
+        <member name="M:System.ServiceModel.DomainServices.BinaryTypeUtility.GetByteArrayFromBinary(System.Object)">
+            <summary>
+            Returns the <paramref name="binary"/> converted to a <c>byte[]</c>.
+            </summary>
+            <param name="binary">The binary to convert</param>
+            <returns>The byte[] form of the binary</returns>
+        </member>
+        <member name="M:System.ServiceModel.DomainServices.BinaryTypeUtility.GetBinaryFromByteArray(System.Byte[])">
+            <summary>
+            Returns the <paramref name="bytes"/> converted to a <c>System.Data.Linq.Binary</c>.
+            </summary>
+            <param name="bytes">The bytes to convert</param>
+            <returns>The binary form of the bytes</returns>
+        </member>
         <member name="T:System.ServiceModel.DomainServices.Client.AsyncOperationType">
             <summary>
             Internal enumeration used to qualify operation results.
@@ -202,14 +229,19 @@
             Gets the <see cref="P:System.ServiceModel.DomainServices.Client.DomainClientAsyncResult.AsyncOperationType"/> describing this operation.
             </summary>
         </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.Utility.IsNullableType(System.Type)">
+        <member name="F:System.ServiceModel.DomainServices.TypeUtility.systemAssemblyPublicKeyTokens">
+            <summary>
+            List of public key tokens used for System assemblies
+            </summary>
+        </member>
+        <member name="M:System.ServiceModel.DomainServices.TypeUtility.IsNullableType(System.Type)">
             <summary>
             Returns <c>true</c> if the given type is a <see cref="T:System.Nullable"/>
             </summary>
             <param name="type">The type to test</param>
             <returns><c>true</c> if the given type is a nullable type</returns>
         </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.Utility.GetNonNullableType(System.Type)">
+        <member name="M:System.ServiceModel.DomainServices.TypeUtility.GetNonNullableType(System.Type)">
             <summary>
             If the given type is <see cref="T:System.Nullable"/>, returns the element type,
             otherwise simply returns the input type
@@ -217,7 +249,7 @@
             <param name="type">The type to test that may or may not be Nullable</param>
             <returns>Either the input type or, if it was Nullable, its element type</returns>
         </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.Utility.IsPredefinedType(System.Type)">
+        <member name="M:System.ServiceModel.DomainServices.TypeUtility.IsPredefinedType(System.Type)">
             <summary>
             Returns <c>true</c> if the given type is a primitive type or one
             of our standard acceptable simple types, such as <see cref="T:System.String"/>,
@@ -227,7 +259,7 @@
             <param name="type">The type to test</param>
             <returns><c>true</c> if the type is a primitive or standard acceptable types</returns>
         </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.Utility.IsPredefinedListType(System.Type)">
+        <member name="M:System.ServiceModel.DomainServices.TypeUtility.IsPredefinedListType(System.Type)">
             <summary>
             Returns <c>true</c> if the given type is <see cref="T:System.Collections.Generic.IEnumerable`1"/> or an <see cref="T:System.Collections.IList"/> type, 
             and is either an interface, an array, or has a default constructor.
@@ -235,7 +267,7 @@
             <param name="type">The type to test</param>
             <returns><c>true</c> if the type is a primitive or standard acceptable types</returns>
         </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.Utility.IsSupportedCollectionType(System.Type)">
+        <member name="M:System.ServiceModel.DomainServices.TypeUtility.IsSupportedCollectionType(System.Type)">
             <summary>
             Returns <c>true</c> if specified type is a supported collection Type. This method only checks the collection
             Type itself, not whether the element Type is supported.
@@ -243,7 +275,7 @@
             <param name="type">The type to test</param>
             <returns><c>true</c> if the type is a suppored collection Type.</returns>
         </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.Utility.IsPredefinedDictionaryType(System.Type)">
+        <member name="M:System.ServiceModel.DomainServices.TypeUtility.IsPredefinedDictionaryType(System.Type)">
             <summary>
             Returns <c>true</c> if <paramref name="type"/> implements <see cref="T:System.Collections.Generic.IDictionary`2"/> and
             its generic type arguments are acceptable predefined simple types.
@@ -251,17 +283,7 @@
             <param name="type">The type to test.</param>
             <returns><c>true</c> if the type is a <see cref="T:System.Collections.Generic.IDictionary`2"/> with supported generic type arguments.</returns>
         </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.Utility.GetDictionaryGenericArgumentTypes(System.Type)">
-            <summary>
-            Returns an array of types that represent the generic type arguments used in <paramref name="type"/>'s
-            implementation of <see cref="T:System.Collections.Generic.IDictionary`2"/>.
-            </summary>
-            <param name="type">The type to examine.</param>
-            <returns>An array of types that represent the generic type arguments used in <paramref name="type"/>'s
-            implementation of <see cref="T:System.Collections.Generic.IDictionary`2"/>. Returns null if <paramref name="type"/> does 
-            not implement <see cref="T:System.Collections.Generic.IDictionary`2"/>.</returns>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.Utility.IsPredefinedSimpleType(System.Type)">
+        <member name="M:System.ServiceModel.DomainServices.TypeUtility.IsPredefinedSimpleType(System.Type)">
             <summary>
             Returns <c>true</c> if the given type is either primitive or one of our
             standard acceptable simple types, such as <see cref="T:System.String"/>,
@@ -270,7 +292,43 @@
             <param name="type">The type to test</param>
             <returns><c>true</c> if the type is a primitive or standard acceptable types</returns>
         </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.Utility.GetElementType(System.Type)">
+        <member name="M:System.ServiceModel.DomainServices.TypeUtility.IsComplexType(System.Type)">
+            <summary>
+            This method determines if the specified Type should be treated as a
+            complex type by the framework.
+            </summary>
+            <param name="type">The type to check.</param>
+            <returns>True if the type is a complex type, false otherwise.</returns>
+        </member>
+        <member name="M:System.ServiceModel.DomainServices.TypeUtility.IsSystemAssembly(System.Reflection.Assembly)">
+            <summary>
+            Performs a check against an assembly to determine if it's a known
+            System assembly.
+            </summary>
+            <remarks>
+            We can't use Assembly.GetName().GetPublicKeyToken() since that requires FileIOPermissions.
+            </remarks>
+            <param name="assembly">The assembly to check.</param>
+            <returns><c>true</c> if the assembly is known to be a system assembly, otherwise <c>false</c>.</returns>
+        </member>
+        <member name="M:System.ServiceModel.DomainServices.TypeUtility.IsComplexTypeCollection(System.Type)">
+            <summary>
+            Determines whether the specified type is one of the supported collection types
+            with a complex element type.
+            </summary>
+            <param name="type">The type to check.</param>
+            <returns>True if the type is a supported complex collection type, false otherwise.</returns>
+        </member>
+        <member name="M:System.ServiceModel.DomainServices.TypeUtility.IsSupportedComplexType(System.Type)">
+            <summary>
+            Determines whether the specified type is a complex type or a collection of
+            complex types.
+            </summary>
+            <param name="type">The type to check.</param>
+            <returns>True if the specified type is a complex type or a collection of
+            complex types, false otherwise.</returns>
+        </member>
+        <member name="M:System.ServiceModel.DomainServices.TypeUtility.GetElementType(System.Type)">
             <summary>
             Returns the underlying element type starting from a given type.
             </summary>
@@ -285,7 +343,7 @@
             <param name="type"><see cref="T:System.Type"/> to examine.</param>
             <returns>The underlying element type starting from the given type</returns>
         </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.Utility.DefinitionIsAssignableFrom(System.Type,System.Type)">
+        <member name="M:System.ServiceModel.DomainServices.TypeUtility.DefinitionIsAssignableFrom(System.Type,System.Type)">
             <summary>
             Determines whether the generic type definition is assignable from the derived type.
             </summary>
@@ -298,7 +356,7 @@
             <param name="derivedType">The type to determine assignability from</param>
             <returns>Whether the type definition is assignable from the derived type</returns>
         </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.Utility.DefinitionIsAssignableFrom(System.Type,System.Type,System.Type@)">
+        <member name="M:System.ServiceModel.DomainServices.TypeUtility.DefinitionIsAssignableFrom(System.Type,System.Type,System.Type@)">
             <summary>
             Determines whether the generic type definition is assignable from the derived type.
             </summary>
@@ -314,19 +372,6 @@
             null when the method return false.
             </param>
             <returns>Whether the type definition is assignable from the derived type</returns>
-        </member>
-        <member name="M:System.ServiceModel.DomainServices.Client.Utility.IsTypeBinary(System.Type)">
-            <summary>
-            Returns whether the <paramref name="type"/> <c>is System.Data.Linq.Binary</c>.
-            </summary>
-            <remarks>
-            We test Binary by Type Name so our client framework assembly can avoid taking an
-            assembly reference to <c>System.Data.Linq</c>. If a type is determined to be
-            binary, that type will be used to check reference equality for all subsequent
-            invocations.
-            </remarks>
-            <param name="type">The type to check</param>
-            <returns>Whether the <paramref name="type"/> is binary</returns>
         </member>
         <member name="T:System.ServiceModel.DomainServices.Client.PoxBinaryMessageEncodingBindingElement">
             <summary>
@@ -356,7 +401,7 @@
         </member>
         <member name="P:System.ServiceModel.DomainServices.Client.Resource.DomainClient_UnableToDetermineHostUri">
             <summary>
-              Looks up a localized string similar to The current application or application host is null and the host Uri cannot be determined..
+              Looks up a localized string similar to The current application or application host is null and the host URI cannot be determined..
             </summary>
         </member>
         <member name="P:System.ServiceModel.DomainServices.Client.Resource.DomainContext_InvalidServiceUri">
@@ -391,13 +436,48 @@
         </member>
         <member name="P:System.ServiceModel.DomainServices.Client.Resource.WebDomainClient_MaximumUriLengthExceeded">
             <summary>
-              Looks up a localized string similar to The maximum uri length of {0} was exceeded..
+              Looks up a localized string similar to The maximum URI length of {0} was exceeded..
             </summary>
         </member>
         <member name="P:System.ServiceModel.DomainServices.Client.Resource.WebDomainClient_OperationDoesNotExist">
             <summary>
               Looks up a localized string similar to Operation &apos;{0}&apos; does not exist..
             </summary>
+        </member>
+        <member name="T:System.ServiceModel.DomainServices.Client.MessageUtility">
+            <summary>
+            Utility class containing utility methods to read and/or modify messages.
+            It is mainly used to insert(read) query options to(from) the URL or message body of the outgoing(incoming) messages.
+            </summary>
+        </member>
+        <member name="M:System.ServiceModel.DomainServices.Client.MessageUtility.IsHttpPOSTMethod(System.ServiceModel.Channels.Message)">
+            <summary>
+            Checks if the HTTP method used is POST.
+            </summary>
+            <param name="message">Message for which the HTTP method is to be checked.</param>
+            <returns><c>true</c> if the <paramref name="message"/> uses HTTP POST method.</returns>
+        </member>
+        <member name="M:System.ServiceModel.DomainServices.Client.MessageUtility.WriteMessage(System.ServiceModel.Channels.Message,System.Xml.XmlDictionaryReader)">
+            <summary>
+            Creates a new message from the original message and an XmlReader object.
+            </summary>
+            <param name="message">The original message.</param>
+            <param name="reader">XmlReader containing the message body.</param>
+            <returns>Newly created message.</returns>
+        </member>
+        <member name="M:System.ServiceModel.DomainServices.Client.MessageUtility.AddMessageQueryOptions(System.ServiceModel.Channels.Message@,System.Collections.Generic.IList{System.Collections.Generic.KeyValuePair{System.String,System.String}})">
+            <summary>
+            Creates a new message with the QueryOptions and original message body embedded in it.
+            </summary>
+            <param name="message">The original message.</param>
+            <param name="queryOptions">The query options to embed in the new message.</param>
+        </member>
+        <member name="M:System.ServiceModel.DomainServices.Client.MessageUtility.AddQueryToUrl(System.ServiceModel.Channels.Message@,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.String}})">
+            <summary>
+            Adds the query parameters to the URL of the message.
+            </summary>
+            <param name="request">The original message.</param>
+            <param name="queryOptions">The query parameters to be added to the message URL.</param>
         </member>
         <member name="T:System.ServiceModel.DomainServices.Client.ApplicationServices.AuthenticationDomainContextBase">
             <summary>
@@ -1396,7 +1476,7 @@
         </member>
         <member name="P:System.ServiceModel.DomainServices.Client.Resources.QuerySerialization_UnsupportedType">
             <summary>
-              Looks up a localized string similar to Value of type &apos;{0}&apos; cannot be serialized as part of the query. &apos;{0}&apos; is not a supported Type..
+              Looks up a localized string similar to Value of type &apos;{0}&apos; cannot be serialized as part of the query. &apos;{0}&apos; is not a supported type..
             </summary>
         </member>
         <member name="P:System.ServiceModel.DomainServices.Client.Resources.QuerySerialization_UnsupportedUnaryOp">
@@ -1426,7 +1506,7 @@
         </member>
         <member name="P:System.ServiceModel.DomainServices.Client.Resources.WrongAsyncResult">
             <summary>
-              Looks up a localized string similar to IAsyncResult object did not come from the corresponding async method on this type..
+              Looks up a localized string similar to IAsyncResult object did not come from the corresponding async method on this Type..
             </summary>
         </member>
     </members>

@@ -23,5 +23,11 @@ namespace BazaDanych.Repositories
         {
             return GetByQuery(String.Format("from Produkty p where p.Producent.Nazwa = '{0}'",producent)).ToList();
         }
+
+        public IList<Produkty> GetAllDostepneProdukty()
+        {
+            return GetByQuery(String.Format("from Produkty p where p.Dostepny = 1")).ToList();
+        }
+
     }
 }

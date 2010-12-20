@@ -4,6 +4,9 @@
     using System.Windows.Controls;
     using System.Windows.Navigation;
     using AwesomeParts.LoginUI;
+    using System;
+    using System.Windows.Media;
+    using System.Windows.Media.Imaging;
 
     /// <summary>
     /// <see cref="UserControl"/> class providing the main UI for the application.
@@ -16,7 +19,45 @@
         public MainPage()
         {
             InitializeComponent();
+
             this.loginContainer.Child = new LoginStatus();
+            WebContext.Current.Authentication.LoggedIn += new System.EventHandler<System.ServiceModel.DomainServices.Client.ApplicationServices.AuthenticationEventArgs>(Authentication_LoggedIn);
+            WebContext.Current.Authentication.LoggedOut +=new System.EventHandler<System.ServiceModel.DomainServices.Client.ApplicationServices.AuthenticationEventArgs>(Authentication_LoggedOut);
+
+            LoadLogo();
+            HideHyperLinks();
+            
+        }
+
+        void Authentication_LoggedIn(object sender, System.ServiceModel.DomainServices.Client.ApplicationServices.AuthenticationEventArgs e)
+        {
+            LinkProfil.Visibility = System.Windows.Visibility.Visible;
+
+            if (WebContext.Current.User.IsInRole("Klient"))
+            {               
+                LinkDostepneProdukty.Visibility = System.Windows.Visibility.Visible;
+                LinkMojeZamowienia.Visibility = System.Windows.Visibility.Visible;
+            }
+        }
+
+        void Authentication_LoggedOut(object sender, System.ServiceModel.DomainServices.Client.ApplicationServices.AuthenticationEventArgs e)
+        {
+            HideHyperLinks();
+        }
+
+        private void HideHyperLinks()
+        {
+            foreach (HyperlinkButton hb in LinksStackPanel.Children)
+            {
+                hb.Visibility = System.Windows.Visibility.Collapsed;
+            }
+        }
+
+        private void LoadLogo()
+        {
+            Uri uri = new Uri("Images/Logo.jpg", UriKind.Relative);
+            ImageSource imgSource = new BitmapImage(uri);
+            ImageLogo.Source = imgSource;
         }
 
         /// <summary>

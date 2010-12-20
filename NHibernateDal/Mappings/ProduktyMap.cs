@@ -17,6 +17,8 @@ namespace BazaDanych.Mappings
             Map(x => x.Cena);
             Map(x => x.DocelowaIlosc);
             Map(x => x.Ilosc);
+            Map(x => x.Dostepny);
+               
 
             References(x => x.Producent).LazyLoad(Laziness.False).Cascade.SaveUpdate();
         }

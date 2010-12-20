@@ -21,6 +21,8 @@ namespace BazaDanych.Entities
         /// </summary>
         public virtual int DocelowaIlosc { get; set; }
 
+        public virtual bool Dostepny { get; set; }
+
         public virtual ProduktProducent Producent { get; set; }
 
 

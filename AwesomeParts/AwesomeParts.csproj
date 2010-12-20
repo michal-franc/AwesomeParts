@@ -152,9 +152,12 @@
     <Compile Include="Views\Login\RegistrationForm.xaml.cs">
       <DependentUpon>RegistrationForm.xaml</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="Views\Pracownicy.xaml.cs">
       <DependentUpon>Pracownicy.xaml</DependentUpon>
     </Compile>
+=======
+>>>>>>> 55a2f3e896af6ef87f9b63d908ba0d0d65b9a831
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -226,10 +229,13 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:MarkupCompilePass1</Generator>
     </Page>
+<<<<<<< HEAD
     <Page Include="Views\Pracownicy.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+=======
+>>>>>>> 55a2f3e896af6ef87f9b63d908ba0d0d65b9a831
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AppManifest.xml" />

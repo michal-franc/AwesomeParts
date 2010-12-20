@@ -12,10 +12,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHibernateDal", "NHibernate
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHibernateDalTests", "NHibernateDalTests\NHibernateDalTests.csproj", "{20AFD779-1A68-4C1F-8311-9D7DCE42C693}"
 EndProject
+<<<<<<< HEAD
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "..\AwesomeParts.git\AwesomeParts\Test\Test.csproj", "{BFDA761F-0689-4C27-9FA9-F97CC16973C3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComboBoxExtensions", "ComboBoxExtensions\ComboBoxExtensions.csproj", "{4B47504F-AC43-4A3E-9990-FA1183CD1F1F}"
 EndProject
+=======
+>>>>>>> 55a2f3e896af6ef87f9b63d908ba0d0d65b9a831
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -66,6 +69,7 @@ Global
 		{20AFD779-1A68-4C1F-8311-9D7DCE42C693}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{20AFD779-1A68-4C1F-8311-9D7DCE42C693}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{20AFD779-1A68-4C1F-8311-9D7DCE42C693}.Release|x86.ActiveCfg = Release|Any CPU
+<<<<<<< HEAD
 		{BFDA761F-0689-4C27-9FA9-F97CC16973C3}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{BFDA761F-0689-4C27-9FA9-F97CC16973C3}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{BFDA761F-0689-4C27-9FA9-F97CC16973C3}.Debug|Mixed Platforms.Build.0 = Debug|x86
@@ -86,6 +90,8 @@ Global
 		{4B47504F-AC43-4A3E-9990-FA1183CD1F1F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{4B47504F-AC43-4A3E-9990-FA1183CD1F1F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{4B47504F-AC43-4A3E-9990-FA1183CD1F1F}.Release|x86.ActiveCfg = Release|Any CPU
+=======
+>>>>>>> 55a2f3e896af6ef87f9b63d908ba0d0d65b9a831
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

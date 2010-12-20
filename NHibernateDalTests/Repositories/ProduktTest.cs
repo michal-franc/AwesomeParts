@@ -91,6 +91,12 @@ namespace Tests.Repositories
             Assert.That(products.Count, Is.EqualTo(4));
         }
 
+        [Test]
+        public void CanGetAllDostepneProdukty()
+        {
+            var products = _repository.GetAllDostepneProdukty();
+            Assert.That(products.Count, Is.EqualTo(4));
+        }
 
     }
 }

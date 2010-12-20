@@ -11,6 +11,7 @@
   mc:Ignorable="d" d:DesignWidth="640" d:DesignHeight="480"  
   Style="{StaticResource PageStyle}">
 
+<<<<<<< HEAD
     <UserControl.Resources>
         <domain:AwesomePartsContext x:Key="prodContext"/>
         <riaControls:DomainDataSource x:Key="ProducenciSource"
@@ -85,5 +86,13 @@
                     Content="Zapisz zmiany" />
         </Grid>
   </Grid>
+=======
+    <Grid x:Name="LayoutRoot">
+        <StackPanel>
+            <TextBlock x:Name="WelcomeText"></TextBlock>
+            <TextBlock x:Name="HomeText"></TextBlock>
+        </StackPanel>
+    </Grid>
+>>>>>>> 55a2f3e896af6ef87f9b63d908ba0d0d65b9a831
 
 </navigation:Page>
