@@ -24,6 +24,7 @@
 
 
             this.Title = ApplicationStrings.HomePageTitle;
+            
         }
 
         /// <summary>
@@ -34,7 +35,6 @@
             HomeText.Text = AppText.HomeMessage;
             WelcomeText.Text = AppText.WelcomeMessage;
         }
-
 
         void Authentication_LoggedIn(object sender, System.ServiceModel.DomainServices.Client.ApplicationServices.AuthenticationEventArgs e)
         {

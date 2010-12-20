@@ -10,6 +10,7 @@
   </Deployment.OutOfBrowserSettings>
   <Deployment.Parts>
     <AssemblyPart x:Name="AwesomeParts" Source="AwesomeParts.dll" />
+    <AssemblyPart x:Name="ComboBoxExtensions" Source="ComboBoxExtensions.dll" />
     <AssemblyPart x:Name="System.ComponentModel.DataAnnotations" Source="System.ComponentModel.DataAnnotations.dll" />
     <AssemblyPart x:Name="System.ServiceModel.DomainServices.Client" Source="System.ServiceModel.DomainServices.Client.dll" />
     <AssemblyPart x:Name="System.ServiceModel.DomainServices.Client.Web" Source="System.ServiceModel.DomainServices.Client.Web.dll" />

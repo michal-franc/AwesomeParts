@@ -319,6 +319,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
+    <ProjectReference Include="..\ComboBoxExtensions\ComboBoxExtensions.csproj">
+      <Project>{4B47504F-AC43-4A3E-9990-FA1183CD1F1F}</Project>
+      <Name>ComboBoxExtensions</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

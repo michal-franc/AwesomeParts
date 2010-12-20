@@ -871,8 +871,6 @@ namespace AwesomeParts.Web.POCOs
         
         private string _firma;
         
-        private string _haslo;
-        
         private int _id;
         
         private string _imie;
@@ -880,8 +878,6 @@ namespace AwesomeParts.Web.POCOs
         private string _kodPocztowy;
         
         private string _kraj;
-        
-        private string _login;
         
         private string _miasto;
         
@@ -904,8 +900,6 @@ namespace AwesomeParts.Web.POCOs
         partial void OnCreated();
         partial void OnFirmaChanging(string value);
         partial void OnFirmaChanged();
-        partial void OnHasloChanging(string value);
-        partial void OnHasloChanged();
         partial void OnIdChanging(int value);
         partial void OnIdChanged();
         partial void OnImieChanging(string value);
@@ -914,8 +908,6 @@ namespace AwesomeParts.Web.POCOs
         partial void OnKodPocztowyChanged();
         partial void OnKrajChanging(string value);
         partial void OnKrajChanged();
-        partial void OnLoginChanging(string value);
-        partial void OnLoginChanged();
         partial void OnMiastoChanging(string value);
         partial void OnMiastoChanged();
         partial void OnNazwiskoChanging(string value);
@@ -960,30 +952,6 @@ namespace AwesomeParts.Web.POCOs
                     this._firma = value;
                     this.RaiseDataMemberChanged("Firma");
                     this.OnFirmaChanged();
-                }
-            }
-        }
-        
-        /// <summary>
-        /// Gets or sets the 'Haslo' value.
-        /// </summary>
-        [DataMember()]
-        public string Haslo
-        {
-            get
-            {
-                return this._haslo;
-            }
-            set
-            {
-                if ((this._haslo != value))
-                {
-                    this.OnHasloChanging(value);
-                    this.RaiseDataMemberChanging("Haslo");
-                    this.ValidateProperty("Haslo", value);
-                    this._haslo = value;
-                    this.RaiseDataMemberChanged("Haslo");
-                    this.OnHasloChanged();
                 }
             }
         }
@@ -1082,30 +1050,6 @@ namespace AwesomeParts.Web.POCOs
                     this._kraj = value;
                     this.RaiseDataMemberChanged("Kraj");
                     this.OnKrajChanged();
-                }
-            }
-        }
-        
-        /// <summary>
-        /// Gets or sets the 'Login' value.
-        /// </summary>
-        [DataMember()]
-        public string Login
-        {
-            get
-            {
-                return this._login;
-            }
-            set
-            {
-                if ((this._login != value))
-                {
-                    this.OnLoginChanging(value);
-                    this.RaiseDataMemberChanging("Login");
-                    this.ValidateProperty("Login", value);
-                    this._login = value;
-                    this.RaiseDataMemberChanged("Login");
-                    this.OnLoginChanged();
                 }
             }
         }
@@ -1265,6 +1209,539 @@ namespace AwesomeParts.Web.POCOs
     }
     
     /// <summary>
+    /// The 'PracownikPOCO' entity class.
+    /// </summary>
+    [DataContract(Namespace="http://schemas.datacontract.org/2004/07/AwesomeParts.Web.POCOs")]
+    public sealed partial class PracownikPOCO : Entity
+    {
+        
+        private int _id;
+        
+        private string _imie;
+        
+        private string _nazwisko;
+        
+        private string _pesel;
+        
+        private EntityRef<PracownikRodzajPOCO> _rodzaj;
+        
+        private int _rodzajID;
+        
+        private EntityRef<PracownikStatusPOCO> _status;
+        
+        private int _statusID;
+        
+        private int _userID;
+        
+        private string _uwagiDoStatusu;
+        
+        #region Extensibility Method Definitions
+
+        /// <summary>
+        /// This method is invoked from the constructor once initialization is complete and
+        /// can be used for further object setup.
+        /// </summary>
+        partial void OnCreated();
+        partial void OnIdChanging(int value);
+        partial void OnIdChanged();
+        partial void OnImieChanging(string value);
+        partial void OnImieChanged();
+        partial void OnNazwiskoChanging(string value);
+        partial void OnNazwiskoChanged();
+        partial void OnPeselChanging(string value);
+        partial void OnPeselChanged();
+        partial void OnRodzajIDChanging(int value);
+        partial void OnRodzajIDChanged();
+        partial void OnStatusIDChanging(int value);
+        partial void OnStatusIDChanged();
+        partial void OnUserIDChanging(int value);
+        partial void OnUserIDChanged();
+        partial void OnUwagiDoStatusuChanging(string value);
+        partial void OnUwagiDoStatusuChanged();
+
+        #endregion
+        
+        
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PracownikPOCO"/> class.
+        /// </summary>
+        public PracownikPOCO()
+        {
+            this.OnCreated();
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'Id' value.
+        /// </summary>
+        [DataMember()]
+        [Editable(false, AllowInitialValue=true)]
+        [Key()]
+        [RoundtripOriginal()]
+        public int Id
+        {
+            get
+            {
+                return this._id;
+            }
+            set
+            {
+                if ((this._id != value))
+                {
+                    this.OnIdChanging(value);
+                    this.ValidateProperty("Id", value);
+                    this._id = value;
+                    this.RaisePropertyChanged("Id");
+                    this.OnIdChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'Imie' value.
+        /// </summary>
+        [DataMember()]
+        public string Imie
+        {
+            get
+            {
+                return this._imie;
+            }
+            set
+            {
+                if ((this._imie != value))
+                {
+                    this.OnImieChanging(value);
+                    this.RaiseDataMemberChanging("Imie");
+                    this.ValidateProperty("Imie", value);
+                    this._imie = value;
+                    this.RaiseDataMemberChanged("Imie");
+                    this.OnImieChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'Nazwisko' value.
+        /// </summary>
+        [DataMember()]
+        public string Nazwisko
+        {
+            get
+            {
+                return this._nazwisko;
+            }
+            set
+            {
+                if ((this._nazwisko != value))
+                {
+                    this.OnNazwiskoChanging(value);
+                    this.RaiseDataMemberChanging("Nazwisko");
+                    this.ValidateProperty("Nazwisko", value);
+                    this._nazwisko = value;
+                    this.RaiseDataMemberChanged("Nazwisko");
+                    this.OnNazwiskoChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'Pesel' value.
+        /// </summary>
+        [DataMember()]
+        public string Pesel
+        {
+            get
+            {
+                return this._pesel;
+            }
+            set
+            {
+                if ((this._pesel != value))
+                {
+                    this.OnPeselChanging(value);
+                    this.RaiseDataMemberChanging("Pesel");
+                    this.ValidateProperty("Pesel", value);
+                    this._pesel = value;
+                    this.RaiseDataMemberChanged("Pesel");
+                    this.OnPeselChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the associated <see cref="PracownikRodzajPOCO"/> entity.
+        /// </summary>
+        [Association("PracownikRodzaj", "RodzajID", "Id", IsForeignKey=true)]
+        public PracownikRodzajPOCO Rodzaj
+        {
+            get
+            {
+                if ((this._rodzaj == null))
+                {
+                    this._rodzaj = new EntityRef<PracownikRodzajPOCO>(this, "Rodzaj", this.FilterRodzaj);
+                }
+                return this._rodzaj.Entity;
+            }
+            set
+            {
+                PracownikRodzajPOCO previous = this.Rodzaj;
+                if ((previous != value))
+                {
+                    this.ValidateProperty("Rodzaj", value);
+                    if ((value != null))
+                    {
+                        this.RodzajID = value.Id;
+                    }
+                    else
+                    {
+                        this.RodzajID = default(int);
+                    }
+                    this._rodzaj.Entity = value;
+                    this.RaisePropertyChanged("Rodzaj");
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'RodzajID' value.
+        /// </summary>
+        [DataMember()]
+        [RoundtripOriginal()]
+        public int RodzajID
+        {
+            get
+            {
+                return this._rodzajID;
+            }
+            set
+            {
+                if ((this._rodzajID != value))
+                {
+                    this.OnRodzajIDChanging(value);
+                    this.RaiseDataMemberChanging("RodzajID");
+                    this.ValidateProperty("RodzajID", value);
+                    this._rodzajID = value;
+                    this.RaiseDataMemberChanged("RodzajID");
+                    this.OnRodzajIDChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the associated <see cref="PracownikStatusPOCO"/> entity.
+        /// </summary>
+        [Association("PracownikStatus", "RodzajID", "Id", IsForeignKey=true)]
+        public PracownikStatusPOCO Status
+        {
+            get
+            {
+                if ((this._status == null))
+                {
+                    this._status = new EntityRef<PracownikStatusPOCO>(this, "Status", this.FilterStatus);
+                }
+                return this._status.Entity;
+            }
+            set
+            {
+                PracownikStatusPOCO previous = this.Status;
+                if ((previous != value))
+                {
+                    this.ValidateProperty("Status", value);
+                    if ((value != null))
+                    {
+                        this.RodzajID = value.Id;
+                    }
+                    else
+                    {
+                        this.RodzajID = default(int);
+                    }
+                    this._status.Entity = value;
+                    this.RaisePropertyChanged("Status");
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'StatusID' value.
+        /// </summary>
+        [DataMember()]
+        public int StatusID
+        {
+            get
+            {
+                return this._statusID;
+            }
+            set
+            {
+                if ((this._statusID != value))
+                {
+                    this.OnStatusIDChanging(value);
+                    this.RaiseDataMemberChanging("StatusID");
+                    this.ValidateProperty("StatusID", value);
+                    this._statusID = value;
+                    this.RaiseDataMemberChanged("StatusID");
+                    this.OnStatusIDChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'UserID' value.
+        /// </summary>
+        [DataMember()]
+        public int UserID
+        {
+            get
+            {
+                return this._userID;
+            }
+            set
+            {
+                if ((this._userID != value))
+                {
+                    this.OnUserIDChanging(value);
+                    this.RaiseDataMemberChanging("UserID");
+                    this.ValidateProperty("UserID", value);
+                    this._userID = value;
+                    this.RaiseDataMemberChanged("UserID");
+                    this.OnUserIDChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'UwagiDoStatusu' value.
+        /// </summary>
+        [DataMember()]
+        public string UwagiDoStatusu
+        {
+            get
+            {
+                return this._uwagiDoStatusu;
+            }
+            set
+            {
+                if ((this._uwagiDoStatusu != value))
+                {
+                    this.OnUwagiDoStatusuChanging(value);
+                    this.RaiseDataMemberChanging("UwagiDoStatusu");
+                    this.ValidateProperty("UwagiDoStatusu", value);
+                    this._uwagiDoStatusu = value;
+                    this.RaiseDataMemberChanged("UwagiDoStatusu");
+                    this.OnUwagiDoStatusuChanged();
+                }
+            }
+        }
+        
+        private bool FilterRodzaj(PracownikRodzajPOCO entity)
+        {
+            return (entity.Id == this.RodzajID);
+        }
+        
+        private bool FilterStatus(PracownikStatusPOCO entity)
+        {
+            return (entity.Id == this.RodzajID);
+        }
+        
+        /// <summary>
+        /// Computes a value from the key fields that uniquely identifies this entity instance.
+        /// </summary>
+        /// <returns>An object instance that uniquely identifies this entity instance.</returns>
+        public override object GetIdentity()
+        {
+            return this._id;
+        }
+    }
+    
+    /// <summary>
+    /// The 'PracownikRodzajPOCO' entity class.
+    /// </summary>
+    [DataContract(Namespace="http://schemas.datacontract.org/2004/07/AwesomeParts.Web.POCOs")]
+    public sealed partial class PracownikRodzajPOCO : Entity
+    {
+        
+        private int _id;
+        
+        private string _rodzaj;
+        
+        #region Extensibility Method Definitions
+
+        /// <summary>
+        /// This method is invoked from the constructor once initialization is complete and
+        /// can be used for further object setup.
+        /// </summary>
+        partial void OnCreated();
+        partial void OnIdChanging(int value);
+        partial void OnIdChanged();
+        partial void OnRodzajChanging(string value);
+        partial void OnRodzajChanged();
+
+        #endregion
+        
+        
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PracownikRodzajPOCO"/> class.
+        /// </summary>
+        public PracownikRodzajPOCO()
+        {
+            this.OnCreated();
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'Id' value.
+        /// </summary>
+        [DataMember()]
+        [Editable(false, AllowInitialValue=true)]
+        [Key()]
+        [RoundtripOriginal()]
+        public int Id
+        {
+            get
+            {
+                return this._id;
+            }
+            set
+            {
+                if ((this._id != value))
+                {
+                    this.OnIdChanging(value);
+                    this.ValidateProperty("Id", value);
+                    this._id = value;
+                    this.RaisePropertyChanged("Id");
+                    this.OnIdChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'Rodzaj' value.
+        /// </summary>
+        [DataMember()]
+        public string Rodzaj
+        {
+            get
+            {
+                return this._rodzaj;
+            }
+            set
+            {
+                if ((this._rodzaj != value))
+                {
+                    this.OnRodzajChanging(value);
+                    this.RaiseDataMemberChanging("Rodzaj");
+                    this.ValidateProperty("Rodzaj", value);
+                    this._rodzaj = value;
+                    this.RaiseDataMemberChanged("Rodzaj");
+                    this.OnRodzajChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Computes a value from the key fields that uniquely identifies this entity instance.
+        /// </summary>
+        /// <returns>An object instance that uniquely identifies this entity instance.</returns>
+        public override object GetIdentity()
+        {
+            return this._id;
+        }
+    }
+    
+    /// <summary>
+    /// The 'PracownikStatusPOCO' entity class.
+    /// </summary>
+    [DataContract(Namespace="http://schemas.datacontract.org/2004/07/AwesomeParts.Web.POCOs")]
+    public sealed partial class PracownikStatusPOCO : Entity
+    {
+        
+        private int _id;
+        
+        private string _status;
+        
+        #region Extensibility Method Definitions
+
+        /// <summary>
+        /// This method is invoked from the constructor once initialization is complete and
+        /// can be used for further object setup.
+        /// </summary>
+        partial void OnCreated();
+        partial void OnIdChanging(int value);
+        partial void OnIdChanged();
+        partial void OnStatusChanging(string value);
+        partial void OnStatusChanged();
+
+        #endregion
+        
+        
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PracownikStatusPOCO"/> class.
+        /// </summary>
+        public PracownikStatusPOCO()
+        {
+            this.OnCreated();
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'Id' value.
+        /// </summary>
+        [DataMember()]
+        [Editable(false, AllowInitialValue=true)]
+        [Key()]
+        [RoundtripOriginal()]
+        public int Id
+        {
+            get
+            {
+                return this._id;
+            }
+            set
+            {
+                if ((this._id != value))
+                {
+                    this.OnIdChanging(value);
+                    this.ValidateProperty("Id", value);
+                    this._id = value;
+                    this.RaisePropertyChanged("Id");
+                    this.OnIdChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'Status' value.
+        /// </summary>
+        [DataMember()]
+        public string Status
+        {
+            get
+            {
+                return this._status;
+            }
+            set
+            {
+                if ((this._status != value))
+                {
+                    this.OnStatusChanging(value);
+                    this.RaiseDataMemberChanging("Status");
+                    this.ValidateProperty("Status", value);
+                    this._status = value;
+                    this.RaiseDataMemberChanged("Status");
+                    this.OnStatusChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Computes a value from the key fields that uniquely identifies this entity instance.
+        /// </summary>
+        /// <returns>An object instance that uniquely identifies this entity instance.</returns>
+        public override object GetIdentity()
+        {
+            return this._id;
+        }
+    }
+    
+    /// <summary>
     /// The 'ProduktPOCO' entity class.
     /// </summary>
     [DataContract(Namespace="http://schemas.datacontract.org/2004/07/AwesomeParts.Web.POCOs")]
@@ -1281,7 +1758,9 @@ namespace AwesomeParts.Web.POCOs
         
         private string _nazwa;
         
-        private string _producentNazwa;
+        private EntityRef<ProduktProducentPOCO> _producent;
+        
+        private int _producentID;
         
         #region Extensibility Method Definitions
 
@@ -1300,8 +1779,8 @@ namespace AwesomeParts.Web.POCOs
         partial void OnIloscChanged();
         partial void OnNazwaChanging(string value);
         partial void OnNazwaChanged();
-        partial void OnProducentNazwaChanging(string value);
-        partial void OnProducentNazwaChanged();
+        partial void OnProducentIDChanging(int value);
+        partial void OnProducentIDChanged();
 
         #endregion
         
@@ -1437,25 +1916,584 @@ namespace AwesomeParts.Web.POCOs
         }
         
         /// <summary>
-        /// Gets or sets the 'ProducentNazwa' value.
+        /// Gets or sets the associated <see cref="ProduktProducentPOCO"/> entity.
         /// </summary>
-        [DataMember()]
-        public string ProducentNazwa
+        [Association("ProduktProducent", "ProducentID", "Id", IsForeignKey=true)]
+        public ProduktProducentPOCO Producent
         {
             get
             {
-                return this._producentNazwa;
+                if ((this._producent == null))
+                {
+                    this._producent = new EntityRef<ProduktProducentPOCO>(this, "Producent", this.FilterProducent);
+                }
+                return this._producent.Entity;
             }
             set
             {
-                if ((this._producentNazwa != value))
+                ProduktProducentPOCO previous = this.Producent;
+                if ((previous != value))
                 {
-                    this.OnProducentNazwaChanging(value);
-                    this.RaiseDataMemberChanging("ProducentNazwa");
-                    this.ValidateProperty("ProducentNazwa", value);
-                    this._producentNazwa = value;
-                    this.RaiseDataMemberChanged("ProducentNazwa");
-                    this.OnProducentNazwaChanged();
+                    this.ValidateProperty("Producent", value);
+                    if ((value != null))
+                    {
+                        this.ProducentID = value.Id;
+                    }
+                    else
+                    {
+                        this.ProducentID = default(int);
+                    }
+                    this._producent.Entity = value;
+                    this.RaisePropertyChanged("Producent");
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'ProducentID' value.
+        /// </summary>
+        [DataMember()]
+        [RoundtripOriginal()]
+        public int ProducentID
+        {
+            get
+            {
+                return this._producentID;
+            }
+            set
+            {
+                if ((this._producentID != value))
+                {
+                    this.OnProducentIDChanging(value);
+                    this.RaiseDataMemberChanging("ProducentID");
+                    this.ValidateProperty("ProducentID", value);
+                    this._producentID = value;
+                    this.RaiseDataMemberChanged("ProducentID");
+                    this.OnProducentIDChanged();
+                }
+            }
+        }
+        
+        private bool FilterProducent(ProduktProducentPOCO entity)
+        {
+            return (entity.Id == this.ProducentID);
+        }
+        
+        /// <summary>
+        /// Computes a value from the key fields that uniquely identifies this entity instance.
+        /// </summary>
+        /// <returns>An object instance that uniquely identifies this entity instance.</returns>
+        public override object GetIdentity()
+        {
+            return this._id;
+        }
+    }
+    
+    /// <summary>
+    /// The 'ProduktProducentPOCO' entity class.
+    /// </summary>
+    [DataContract(Namespace="http://schemas.datacontract.org/2004/07/AwesomeParts.Web.POCOs")]
+    public sealed partial class ProduktProducentPOCO : Entity
+    {
+        
+        private int _id;
+        
+        private string _nazwa;
+        
+        #region Extensibility Method Definitions
+
+        /// <summary>
+        /// This method is invoked from the constructor once initialization is complete and
+        /// can be used for further object setup.
+        /// </summary>
+        partial void OnCreated();
+        partial void OnIdChanging(int value);
+        partial void OnIdChanged();
+        partial void OnNazwaChanging(string value);
+        partial void OnNazwaChanged();
+
+        #endregion
+        
+        
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProduktProducentPOCO"/> class.
+        /// </summary>
+        public ProduktProducentPOCO()
+        {
+            this.OnCreated();
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'Id' value.
+        /// </summary>
+        [DataMember()]
+        [Editable(false, AllowInitialValue=true)]
+        [Key()]
+        [RoundtripOriginal()]
+        public int Id
+        {
+            get
+            {
+                return this._id;
+            }
+            set
+            {
+                if ((this._id != value))
+                {
+                    this.OnIdChanging(value);
+                    this.ValidateProperty("Id", value);
+                    this._id = value;
+                    this.RaisePropertyChanged("Id");
+                    this.OnIdChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'Nazwa' value.
+        /// </summary>
+        [DataMember()]
+        public string Nazwa
+        {
+            get
+            {
+                return this._nazwa;
+            }
+            set
+            {
+                if ((this._nazwa != value))
+                {
+                    this.OnNazwaChanging(value);
+                    this.RaiseDataMemberChanging("Nazwa");
+                    this.ValidateProperty("Nazwa", value);
+                    this._nazwa = value;
+                    this.RaiseDataMemberChanged("Nazwa");
+                    this.OnNazwaChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Computes a value from the key fields that uniquely identifies this entity instance.
+        /// </summary>
+        /// <returns>An object instance that uniquely identifies this entity instance.</returns>
+        public override object GetIdentity()
+        {
+            return this._id;
+        }
+    }
+    
+    /// <summary>
+    /// The 'ZamowieniePOCO' entity class.
+    /// </summary>
+    [DataContract(Namespace="http://schemas.datacontract.org/2004/07/AwesomeParts.Web.POCOs")]
+    public sealed partial class ZamowieniePOCO : Entity
+    {
+        
+        private Nullable<DateTime> _dataZlozenia;
+        
+        private Nullable<DateTime> _dataZrealizowania;
+        
+        private int _id;
+        
+        private EntityRef<KlientPOCO> _klient;
+        
+        private int _klientID;
+        
+        private EntityRef<PracownikPOCO> _pracownik;
+        
+        private int _pracownikID;
+        
+        private bool _zrealizowano;
+        
+        #region Extensibility Method Definitions
+
+        /// <summary>
+        /// This method is invoked from the constructor once initialization is complete and
+        /// can be used for further object setup.
+        /// </summary>
+        partial void OnCreated();
+        partial void OnDataZlozeniaChanging(Nullable<DateTime> value);
+        partial void OnDataZlozeniaChanged();
+        partial void OnDataZrealizowaniaChanging(Nullable<DateTime> value);
+        partial void OnDataZrealizowaniaChanged();
+        partial void OnIdChanging(int value);
+        partial void OnIdChanged();
+        partial void OnKlientIDChanging(int value);
+        partial void OnKlientIDChanged();
+        partial void OnPracownikIDChanging(int value);
+        partial void OnPracownikIDChanged();
+        partial void OnZrealizowanoChanging(bool value);
+        partial void OnZrealizowanoChanged();
+
+        #endregion
+        
+        
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ZamowieniePOCO"/> class.
+        /// </summary>
+        public ZamowieniePOCO()
+        {
+            this.OnCreated();
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'DataZlozenia' value.
+        /// </summary>
+        [DataMember()]
+        public Nullable<DateTime> DataZlozenia
+        {
+            get
+            {
+                return this._dataZlozenia;
+            }
+            set
+            {
+                if ((this._dataZlozenia != value))
+                {
+                    this.OnDataZlozeniaChanging(value);
+                    this.RaiseDataMemberChanging("DataZlozenia");
+                    this.ValidateProperty("DataZlozenia", value);
+                    this._dataZlozenia = value;
+                    this.RaiseDataMemberChanged("DataZlozenia");
+                    this.OnDataZlozeniaChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'DataZrealizowania' value.
+        /// </summary>
+        [DataMember()]
+        public Nullable<DateTime> DataZrealizowania
+        {
+            get
+            {
+                return this._dataZrealizowania;
+            }
+            set
+            {
+                if ((this._dataZrealizowania != value))
+                {
+                    this.OnDataZrealizowaniaChanging(value);
+                    this.RaiseDataMemberChanging("DataZrealizowania");
+                    this.ValidateProperty("DataZrealizowania", value);
+                    this._dataZrealizowania = value;
+                    this.RaiseDataMemberChanged("DataZrealizowania");
+                    this.OnDataZrealizowaniaChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'Id' value.
+        /// </summary>
+        [DataMember()]
+        [Editable(false, AllowInitialValue=true)]
+        [Key()]
+        [RoundtripOriginal()]
+        public int Id
+        {
+            get
+            {
+                return this._id;
+            }
+            set
+            {
+                if ((this._id != value))
+                {
+                    this.OnIdChanging(value);
+                    this.ValidateProperty("Id", value);
+                    this._id = value;
+                    this.RaisePropertyChanged("Id");
+                    this.OnIdChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the associated <see cref="KlientPOCO"/> entity.
+        /// </summary>
+        [Association("ZamowienieKlient", "KlientID", "Id", IsForeignKey=true)]
+        public KlientPOCO Klient
+        {
+            get
+            {
+                if ((this._klient == null))
+                {
+                    this._klient = new EntityRef<KlientPOCO>(this, "Klient", this.FilterKlient);
+                }
+                return this._klient.Entity;
+            }
+            set
+            {
+                KlientPOCO previous = this.Klient;
+                if ((previous != value))
+                {
+                    this.ValidateProperty("Klient", value);
+                    if ((value != null))
+                    {
+                        this.KlientID = value.Id;
+                    }
+                    else
+                    {
+                        this.KlientID = default(int);
+                    }
+                    this._klient.Entity = value;
+                    this.RaisePropertyChanged("Klient");
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'KlientID' value.
+        /// </summary>
+        [DataMember()]
+        [RoundtripOriginal()]
+        public int KlientID
+        {
+            get
+            {
+                return this._klientID;
+            }
+            set
+            {
+                if ((this._klientID != value))
+                {
+                    this.OnKlientIDChanging(value);
+                    this.RaiseDataMemberChanging("KlientID");
+                    this.ValidateProperty("KlientID", value);
+                    this._klientID = value;
+                    this.RaiseDataMemberChanged("KlientID");
+                    this.OnKlientIDChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the associated <see cref="PracownikPOCO"/> entity.
+        /// </summary>
+        [Association("ZamowieniePracownik", "PracownikID", "Id", IsForeignKey=true)]
+        public PracownikPOCO Pracownik
+        {
+            get
+            {
+                if ((this._pracownik == null))
+                {
+                    this._pracownik = new EntityRef<PracownikPOCO>(this, "Pracownik", this.FilterPracownik);
+                }
+                return this._pracownik.Entity;
+            }
+            set
+            {
+                PracownikPOCO previous = this.Pracownik;
+                if ((previous != value))
+                {
+                    this.ValidateProperty("Pracownik", value);
+                    if ((value != null))
+                    {
+                        this.PracownikID = value.Id;
+                    }
+                    else
+                    {
+                        this.PracownikID = default(int);
+                    }
+                    this._pracownik.Entity = value;
+                    this.RaisePropertyChanged("Pracownik");
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'PracownikID' value.
+        /// </summary>
+        [DataMember()]
+        [RoundtripOriginal()]
+        public int PracownikID
+        {
+            get
+            {
+                return this._pracownikID;
+            }
+            set
+            {
+                if ((this._pracownikID != value))
+                {
+                    this.OnPracownikIDChanging(value);
+                    this.RaiseDataMemberChanging("PracownikID");
+                    this.ValidateProperty("PracownikID", value);
+                    this._pracownikID = value;
+                    this.RaiseDataMemberChanged("PracownikID");
+                    this.OnPracownikIDChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'Zrealizowano' value.
+        /// </summary>
+        [DataMember()]
+        public bool Zrealizowano
+        {
+            get
+            {
+                return this._zrealizowano;
+            }
+            set
+            {
+                if ((this._zrealizowano != value))
+                {
+                    this.OnZrealizowanoChanging(value);
+                    this.RaiseDataMemberChanging("Zrealizowano");
+                    this.ValidateProperty("Zrealizowano", value);
+                    this._zrealizowano = value;
+                    this.RaiseDataMemberChanged("Zrealizowano");
+                    this.OnZrealizowanoChanged();
+                }
+            }
+        }
+        
+        private bool FilterKlient(KlientPOCO entity)
+        {
+            return (entity.Id == this.KlientID);
+        }
+        
+        private bool FilterPracownik(PracownikPOCO entity)
+        {
+            return (entity.Id == this.PracownikID);
+        }
+        
+        /// <summary>
+        /// Computes a value from the key fields that uniquely identifies this entity instance.
+        /// </summary>
+        /// <returns>An object instance that uniquely identifies this entity instance.</returns>
+        public override object GetIdentity()
+        {
+            return this._id;
+        }
+    }
+}
+namespace AwesomeParts.Web.POCOs.MiniPOCOs
+{
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+    using System.Linq;
+    using System.Runtime.Serialization;
+    using System.ServiceModel.DomainServices;
+    using System.ServiceModel.DomainServices.Client;
+    using System.ServiceModel.DomainServices.Client.ApplicationServices;
+    
+    
+    /// <summary>
+    /// The 'PracownikUmowaMiniPOCO' entity class.
+    /// </summary>
+    [DataContract(Namespace="http://schemas.datacontract.org/2004/07/AwesomeParts.Web.POCOs.MiniPOCOs")]
+    public sealed partial class PracownikUmowaMiniPOCO : Entity
+    {
+        
+        private bool _aktualna;
+        
+        private Nullable<DateTime> _dataPodpisania;
+        
+        private int _id;
+        
+        #region Extensibility Method Definitions
+
+        /// <summary>
+        /// This method is invoked from the constructor once initialization is complete and
+        /// can be used for further object setup.
+        /// </summary>
+        partial void OnCreated();
+        partial void OnAktualnaChanging(bool value);
+        partial void OnAktualnaChanged();
+        partial void OnDataPodpisaniaChanging(Nullable<DateTime> value);
+        partial void OnDataPodpisaniaChanged();
+        partial void OnIdChanging(int value);
+        partial void OnIdChanged();
+
+        #endregion
+        
+        
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PracownikUmowaMiniPOCO"/> class.
+        /// </summary>
+        public PracownikUmowaMiniPOCO()
+        {
+            this.OnCreated();
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'Aktualna' value.
+        /// </summary>
+        [DataMember()]
+        public bool Aktualna
+        {
+            get
+            {
+                return this._aktualna;
+            }
+            set
+            {
+                if ((this._aktualna != value))
+                {
+                    this.OnAktualnaChanging(value);
+                    this.RaiseDataMemberChanging("Aktualna");
+                    this.ValidateProperty("Aktualna", value);
+                    this._aktualna = value;
+                    this.RaiseDataMemberChanged("Aktualna");
+                    this.OnAktualnaChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'DataPodpisania' value.
+        /// </summary>
+        [DataMember()]
+        public Nullable<DateTime> DataPodpisania
+        {
+            get
+            {
+                return this._dataPodpisania;
+            }
+            set
+            {
+                if ((this._dataPodpisania != value))
+                {
+                    this.OnDataPodpisaniaChanging(value);
+                    this.RaiseDataMemberChanging("DataPodpisania");
+                    this.ValidateProperty("DataPodpisania", value);
+                    this._dataPodpisania = value;
+                    this.RaiseDataMemberChanged("DataPodpisania");
+                    this.OnDataPodpisaniaChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'Id' value.
+        /// </summary>
+        [DataMember()]
+        [Editable(false, AllowInitialValue=true)]
+        [Key()]
+        [RoundtripOriginal()]
+        public int Id
+        {
+            get
+            {
+                return this._id;
+            }
+            set
+            {
+                if ((this._id != value))
+                {
+                    this.OnIdChanging(value);
+                    this.ValidateProperty("Id", value);
+                    this._id = value;
+                    this.RaisePropertyChanged("Id");
+                    this.OnIdChanged();
                 }
             }
         }
@@ -1483,12 +2521,13 @@ namespace AwesomeParts.Web.Services
     using System.ServiceModel.DomainServices.Client.ApplicationServices;
     using System.ServiceModel.Web;
     using AwesomeParts.Web.POCOs;
+    using AwesomeParts.Web.POCOs.MiniPOCOs;
     
     
     /// <summary>
-    /// The DomainContext corresponding to the 'KlientService' DomainService.
+    /// The DomainContext corresponding to the 'AwesomePartsService' DomainService.
     /// </summary>
-    public sealed partial class KlientContext : DomainContext
+    public sealed partial class AwesomePartsContext : DomainContext
     {
         
         #region Extensibility Method Definitions
@@ -1503,40 +2542,117 @@ namespace AwesomeParts.Web.Services
         
         
         /// <summary>
-        /// Initializes a new instance of the <see cref="KlientContext"/> class.
+        /// Initializes a new instance of the <see cref="AwesomePartsContext"/> class.
         /// </summary>
-        public KlientContext() : 
-                this(new WebDomainClient<IKlientServiceContract>(new Uri("AwesomeParts-Web-Services-KlientService.svc", UriKind.Relative)))
+        public AwesomePartsContext() : 
+                this(new WebDomainClient<IAwesomePartsServiceContract>(new Uri("AwesomeParts-Web-Services-AwesomePartsService.svc", UriKind.Relative)))
         {
         }
         
         /// <summary>
-        /// Initializes a new instance of the <see cref="KlientContext"/> class with the specified service URI.
+        /// Initializes a new instance of the <see cref="AwesomePartsContext"/> class with the specified service URI.
         /// </summary>
-        /// <param name="serviceUri">The KlientService service URI.</param>
-        public KlientContext(Uri serviceUri) : 
-                this(new WebDomainClient<IKlientServiceContract>(serviceUri))
+        /// <param name="serviceUri">The AwesomePartsService service URI.</param>
+        public AwesomePartsContext(Uri serviceUri) : 
+                this(new WebDomainClient<IAwesomePartsServiceContract>(serviceUri))
         {
         }
         
         /// <summary>
-        /// Initializes a new instance of the <see cref="KlientContext"/> class with the specified <paramref name="domainClient"/>.
+        /// Initializes a new instance of the <see cref="AwesomePartsContext"/> class with the specified <paramref name="domainClient"/>.
         /// </summary>
         /// <param name="domainClient">The DomainClient instance to use for this DomainContext.</param>
-        public KlientContext(DomainClient domainClient) : 
+        public AwesomePartsContext(DomainClient domainClient) : 
                 base(domainClient)
         {
             this.OnCreated();
         }
         
         /// <summary>
-        /// Gets the set of <see cref="KlientPOCO"/> entity instances that have been loaded into this <see cref="KlientContext"/> instance.
+        /// Gets the set of <see cref="KlientPOCO"/> entity instances that have been loaded into this <see cref="AwesomePartsContext"/> instance.
         /// </summary>
         public EntitySet<KlientPOCO> KlientPOCOs
         {
             get
             {
                 return base.EntityContainer.GetEntitySet<KlientPOCO>();
+            }
+        }
+        
+        /// <summary>
+        /// Gets the set of <see cref="PracownikPOCO"/> entity instances that have been loaded into this <see cref="AwesomePartsContext"/> instance.
+        /// </summary>
+        public EntitySet<PracownikPOCO> PracownikPOCOs
+        {
+            get
+            {
+                return base.EntityContainer.GetEntitySet<PracownikPOCO>();
+            }
+        }
+        
+        /// <summary>
+        /// Gets the set of <see cref="PracownikRodzajPOCO"/> entity instances that have been loaded into this <see cref="AwesomePartsContext"/> instance.
+        /// </summary>
+        public EntitySet<PracownikRodzajPOCO> PracownikRodzajPOCOs
+        {
+            get
+            {
+                return base.EntityContainer.GetEntitySet<PracownikRodzajPOCO>();
+            }
+        }
+        
+        /// <summary>
+        /// Gets the set of <see cref="PracownikStatusPOCO"/> entity instances that have been loaded into this <see cref="AwesomePartsContext"/> instance.
+        /// </summary>
+        public EntitySet<PracownikStatusPOCO> PracownikStatusPOCOs
+        {
+            get
+            {
+                return base.EntityContainer.GetEntitySet<PracownikStatusPOCO>();
+            }
+        }
+        
+        /// <summary>
+        /// Gets the set of <see cref="ProduktProducentPOCO"/> entity instances that have been loaded into this <see cref="AwesomePartsContext"/> instance.
+        /// </summary>
+        public EntitySet<ProduktProducentPOCO> ProduktProducentPOCOs
+        {
+            get
+            {
+                return base.EntityContainer.GetEntitySet<ProduktProducentPOCO>();
+            }
+        }
+        
+        /// <summary>
+        /// Gets the set of <see cref="ProduktPOCO"/> entity instances that have been loaded into this <see cref="AwesomePartsContext"/> instance.
+        /// </summary>
+        public EntitySet<ProduktPOCO> ProduktPOCOs
+        {
+            get
+            {
+                return base.EntityContainer.GetEntitySet<ProduktPOCO>();
+            }
+        }
+        
+        /// <summary>
+        /// Gets the set of <see cref="PracownikUmowaMiniPOCO"/> entity instances that have been loaded into this <see cref="AwesomePartsContext"/> instance.
+        /// </summary>
+        public EntitySet<PracownikUmowaMiniPOCO> PracownikUmowaMiniPOCOs
+        {
+            get
+            {
+                return base.EntityContainer.GetEntitySet<PracownikUmowaMiniPOCO>();
+            }
+        }
+        
+        /// <summary>
+        /// Gets the set of <see cref="ZamowieniePOCO"/> entity instances that have been loaded into this <see cref="AwesomePartsContext"/> instance.
+        /// </summary>
+        public EntitySet<ZamowieniePOCO> ZamowieniePOCOs
+        {
+            get
+            {
+                return base.EntityContainer.GetEntitySet<ZamowieniePOCO>();
             }
         }
         
@@ -1551,103 +2667,43 @@ namespace AwesomeParts.Web.Services
         }
         
         /// <summary>
-        /// Creates a new EntityContainer for this DomainContext's EntitySets.
+        /// Gets an EntityQuery instance that can be used to load <see cref="PracownikPOCO"/> entity instances using the 'GetPracownicy' query.
         /// </summary>
-        /// <returns>A new container instance.</returns>
-        protected override EntityContainer CreateEntityContainer()
+        /// <returns>An EntityQuery that can be loaded to retrieve <see cref="PracownikPOCO"/> entity instances.</returns>
+        public EntityQuery<PracownikPOCO> GetPracownicyQuery()
         {
-            return new KlientContextEntityContainer();
+            this.ValidateMethod("GetPracownicyQuery", null);
+            return base.CreateQuery<PracownikPOCO>("GetPracownicy", null, false, true);
         }
         
         /// <summary>
-        /// Service contract for the 'KlientService' DomainService.
+        /// Gets an EntityQuery instance that can be used to load <see cref="PracownikRodzajPOCO"/> entity instances using the 'GetPracownkRodzaje' query.
         /// </summary>
-        [ServiceContract()]
-        public interface IKlientServiceContract
+        /// <returns>An EntityQuery that can be loaded to retrieve <see cref="PracownikRodzajPOCO"/> entity instances.</returns>
+        public EntityQuery<PracownikRodzajPOCO> GetPracownkRodzajeQuery()
         {
-            
-            /// <summary>
-            /// Asynchronously invokes the 'GetKlienci' operation.
-            /// </summary>
-            /// <param name="callback">Callback to invoke on completion.</param>
-            /// <param name="asyncState">Optional state object.</param>
-            /// <returns>An IAsyncResult that can be used to monitor the request.</returns>
-            [FaultContract(typeof(DomainServiceFault), Action="http://tempuri.org/KlientService/GetKlienciDomainServiceFault", Name="DomainServiceFault", Namespace="DomainServices")]
-            [OperationContract(AsyncPattern=true, Action="http://tempuri.org/KlientService/GetKlienci", ReplyAction="http://tempuri.org/KlientService/GetKlienciResponse")]
-            [WebGet()]
-            IAsyncResult BeginGetKlienci(AsyncCallback callback, object asyncState);
-            
-            /// <summary>
-            /// Completes the asynchronous operation begun by 'BeginGetKlienci'.
-            /// </summary>
-            /// <param name="result">The IAsyncResult returned from 'BeginGetKlienci'.</param>
-            /// <returns>The 'QueryResult' returned from the 'GetKlienci' operation.</returns>
-            QueryResult<KlientPOCO> EndGetKlienci(IAsyncResult result);
-        }
-        
-        internal sealed class KlientContextEntityContainer : EntityContainer
-        {
-            
-            public KlientContextEntityContainer()
-            {
-                this.CreateEntitySet<KlientPOCO>(EntitySetOperations.None);
-            }
-        }
-    }
-    
-    /// <summary>
-    /// The DomainContext corresponding to the 'ProduktyService' DomainService.
-    /// </summary>
-    public sealed partial class ProduktyContext : DomainContext
-    {
-        
-        #region Extensibility Method Definitions
-
-        /// <summary>
-        /// This method is invoked from the constructor once initialization is complete and
-        /// can be used for further object setup.
-        /// </summary>
-        partial void OnCreated();
-
-        #endregion
-        
-        
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ProduktyContext"/> class.
-        /// </summary>
-        public ProduktyContext() : 
-                this(new WebDomainClient<IProduktyServiceContract>(new Uri("AwesomeParts-Web-Services-ProduktyService.svc", UriKind.Relative)))
-        {
+            this.ValidateMethod("GetPracownkRodzajeQuery", null);
+            return base.CreateQuery<PracownikRodzajPOCO>("GetPracownkRodzaje", null, false, true);
         }
         
         /// <summary>
-        /// Initializes a new instance of the <see cref="ProduktyContext"/> class with the specified service URI.
+        /// Gets an EntityQuery instance that can be used to load <see cref="PracownikStatusPOCO"/> entity instances using the 'GetPracownkStatusy' query.
         /// </summary>
-        /// <param name="serviceUri">The ProduktyService service URI.</param>
-        public ProduktyContext(Uri serviceUri) : 
-                this(new WebDomainClient<IProduktyServiceContract>(serviceUri))
+        /// <returns>An EntityQuery that can be loaded to retrieve <see cref="PracownikStatusPOCO"/> entity instances.</returns>
+        public EntityQuery<PracownikStatusPOCO> GetPracownkStatusyQuery()
         {
+            this.ValidateMethod("GetPracownkStatusyQuery", null);
+            return base.CreateQuery<PracownikStatusPOCO>("GetPracownkStatusy", null, false, true);
         }
         
         /// <summary>
-        /// Initializes a new instance of the <see cref="ProduktyContext"/> class with the specified <paramref name="domainClient"/>.
+        /// Gets an EntityQuery instance that can be used to load <see cref="ProduktProducentPOCO"/> entity instances using the 'GetProducenci' query.
         /// </summary>
-        /// <param name="domainClient">The DomainClient instance to use for this DomainContext.</param>
-        public ProduktyContext(DomainClient domainClient) : 
-                base(domainClient)
+        /// <returns>An EntityQuery that can be loaded to retrieve <see cref="ProduktProducentPOCO"/> entity instances.</returns>
+        public EntityQuery<ProduktProducentPOCO> GetProducenciQuery()
         {
-            this.OnCreated();
-        }
-        
-        /// <summary>
-        /// Gets the set of <see cref="ProduktPOCO"/> entity instances that have been loaded into this <see cref="ProduktyContext"/> instance.
-        /// </summary>
-        public EntitySet<ProduktPOCO> ProduktPOCOs
-        {
-            get
-            {
-                return base.EntityContainer.GetEntitySet<ProduktPOCO>();
-            }
+            this.ValidateMethod("GetProducenciQuery", null);
+            return base.CreateQuery<ProduktProducentPOCO>("GetProducenci", null, false, true);
         }
         
         /// <summary>
@@ -1661,20 +2717,133 @@ namespace AwesomeParts.Web.Services
         }
         
         /// <summary>
+        /// Gets an EntityQuery instance that can be used to load <see cref="PracownikUmowaMiniPOCO"/> entity instances using the 'GetUmowyByPracownikId' query.
+        /// </summary>
+        /// <param name="pracownikID">The value for the 'pracownikID' parameter of the query.</param>
+        /// <returns>An EntityQuery that can be loaded to retrieve <see cref="PracownikUmowaMiniPOCO"/> entity instances.</returns>
+        public EntityQuery<PracownikUmowaMiniPOCO> GetUmowyByPracownikIdQuery(int pracownikID)
+        {
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
+            parameters.Add("pracownikID", pracownikID);
+            this.ValidateMethod("GetUmowyByPracownikIdQuery", parameters);
+            return base.CreateQuery<PracownikUmowaMiniPOCO>("GetUmowyByPracownikId", parameters, false, true);
+        }
+        
+        /// <summary>
+        /// Gets an EntityQuery instance that can be used to load <see cref="ZamowieniePOCO"/> entity instances using the 'GetZamowienia' query.
+        /// </summary>
+        /// <returns>An EntityQuery that can be loaded to retrieve <see cref="ZamowieniePOCO"/> entity instances.</returns>
+        public EntityQuery<ZamowieniePOCO> GetZamowieniaQuery()
+        {
+            this.ValidateMethod("GetZamowieniaQuery", null);
+            return base.CreateQuery<ZamowieniePOCO>("GetZamowienia", null, false, true);
+        }
+        
+        /// <summary>
         /// Creates a new EntityContainer for this DomainContext's EntitySets.
         /// </summary>
         /// <returns>A new container instance.</returns>
         protected override EntityContainer CreateEntityContainer()
         {
-            return new ProduktyContextEntityContainer();
+            return new AwesomePartsContextEntityContainer();
         }
         
         /// <summary>
-        /// Service contract for the 'ProduktyService' DomainService.
+        /// Service contract for the 'AwesomePartsService' DomainService.
         /// </summary>
         [ServiceContract()]
-        public interface IProduktyServiceContract
+        public interface IAwesomePartsServiceContract
         {
+            
+            /// <summary>
+            /// Asynchronously invokes the 'GetKlienci' operation.
+            /// </summary>
+            /// <param name="callback">Callback to invoke on completion.</param>
+            /// <param name="asyncState">Optional state object.</param>
+            /// <returns>An IAsyncResult that can be used to monitor the request.</returns>
+            [FaultContract(typeof(DomainServiceFault), Action="http://tempuri.org/AwesomePartsService/GetKlienciDomainServiceFault", Name="DomainServiceFault", Namespace="DomainServices")]
+            [OperationContract(AsyncPattern=true, Action="http://tempuri.org/AwesomePartsService/GetKlienci", ReplyAction="http://tempuri.org/AwesomePartsService/GetKlienciResponse")]
+            [WebGet()]
+            IAsyncResult BeginGetKlienci(AsyncCallback callback, object asyncState);
+            
+            /// <summary>
+            /// Completes the asynchronous operation begun by 'BeginGetKlienci'.
+            /// </summary>
+            /// <param name="result">The IAsyncResult returned from 'BeginGetKlienci'.</param>
+            /// <returns>The 'QueryResult' returned from the 'GetKlienci' operation.</returns>
+            QueryResult<KlientPOCO> EndGetKlienci(IAsyncResult result);
+            
+            /// <summary>
+            /// Asynchronously invokes the 'GetPracownicy' operation.
+            /// </summary>
+            /// <param name="callback">Callback to invoke on completion.</param>
+            /// <param name="asyncState">Optional state object.</param>
+            /// <returns>An IAsyncResult that can be used to monitor the request.</returns>
+            [FaultContract(typeof(DomainServiceFault), Action="http://tempuri.org/AwesomePartsService/GetPracownicyDomainServiceFault", Name="DomainServiceFault", Namespace="DomainServices")]
+            [OperationContract(AsyncPattern=true, Action="http://tempuri.org/AwesomePartsService/GetPracownicy", ReplyAction="http://tempuri.org/AwesomePartsService/GetPracownicyResponse")]
+            [WebGet()]
+            IAsyncResult BeginGetPracownicy(AsyncCallback callback, object asyncState);
+            
+            /// <summary>
+            /// Completes the asynchronous operation begun by 'BeginGetPracownicy'.
+            /// </summary>
+            /// <param name="result">The IAsyncResult returned from 'BeginGetPracownicy'.</param>
+            /// <returns>The 'QueryResult' returned from the 'GetPracownicy' operation.</returns>
+            QueryResult<PracownikPOCO> EndGetPracownicy(IAsyncResult result);
+            
+            /// <summary>
+            /// Asynchronously invokes the 'GetPracownkRodzaje' operation.
+            /// </summary>
+            /// <param name="callback">Callback to invoke on completion.</param>
+            /// <param name="asyncState">Optional state object.</param>
+            /// <returns>An IAsyncResult that can be used to monitor the request.</returns>
+            [FaultContract(typeof(DomainServiceFault), Action="http://tempuri.org/AwesomePartsService/GetPracownkRodzajeDomainServiceFault", Name="DomainServiceFault", Namespace="DomainServices")]
+            [OperationContract(AsyncPattern=true, Action="http://tempuri.org/AwesomePartsService/GetPracownkRodzaje", ReplyAction="http://tempuri.org/AwesomePartsService/GetPracownkRodzajeResponse")]
+            [WebGet()]
+            IAsyncResult BeginGetPracownkRodzaje(AsyncCallback callback, object asyncState);
+            
+            /// <summary>
+            /// Completes the asynchronous operation begun by 'BeginGetPracownkRodzaje'.
+            /// </summary>
+            /// <param name="result">The IAsyncResult returned from 'BeginGetPracownkRodzaje'.</param>
+            /// <returns>The 'QueryResult' returned from the 'GetPracownkRodzaje' operation.</returns>
+            QueryResult<PracownikRodzajPOCO> EndGetPracownkRodzaje(IAsyncResult result);
+            
+            /// <summary>
+            /// Asynchronously invokes the 'GetPracownkStatusy' operation.
+            /// </summary>
+            /// <param name="callback">Callback to invoke on completion.</param>
+            /// <param name="asyncState">Optional state object.</param>
+            /// <returns>An IAsyncResult that can be used to monitor the request.</returns>
+            [FaultContract(typeof(DomainServiceFault), Action="http://tempuri.org/AwesomePartsService/GetPracownkStatusyDomainServiceFault", Name="DomainServiceFault", Namespace="DomainServices")]
+            [OperationContract(AsyncPattern=true, Action="http://tempuri.org/AwesomePartsService/GetPracownkStatusy", ReplyAction="http://tempuri.org/AwesomePartsService/GetPracownkStatusyResponse")]
+            [WebGet()]
+            IAsyncResult BeginGetPracownkStatusy(AsyncCallback callback, object asyncState);
+            
+            /// <summary>
+            /// Completes the asynchronous operation begun by 'BeginGetPracownkStatusy'.
+            /// </summary>
+            /// <param name="result">The IAsyncResult returned from 'BeginGetPracownkStatusy'.</param>
+            /// <returns>The 'QueryResult' returned from the 'GetPracownkStatusy' operation.</returns>
+            QueryResult<PracownikStatusPOCO> EndGetPracownkStatusy(IAsyncResult result);
+            
+            /// <summary>
+            /// Asynchronously invokes the 'GetProducenci' operation.
+            /// </summary>
+            /// <param name="callback">Callback to invoke on completion.</param>
+            /// <param name="asyncState">Optional state object.</param>
+            /// <returns>An IAsyncResult that can be used to monitor the request.</returns>
+            [FaultContract(typeof(DomainServiceFault), Action="http://tempuri.org/AwesomePartsService/GetProducenciDomainServiceFault", Name="DomainServiceFault", Namespace="DomainServices")]
+            [OperationContract(AsyncPattern=true, Action="http://tempuri.org/AwesomePartsService/GetProducenci", ReplyAction="http://tempuri.org/AwesomePartsService/GetProducenciResponse")]
+            [WebGet()]
+            IAsyncResult BeginGetProducenci(AsyncCallback callback, object asyncState);
+            
+            /// <summary>
+            /// Completes the asynchronous operation begun by 'BeginGetProducenci'.
+            /// </summary>
+            /// <param name="result">The IAsyncResult returned from 'BeginGetProducenci'.</param>
+            /// <returns>The 'QueryResult' returned from the 'GetProducenci' operation.</returns>
+            QueryResult<ProduktProducentPOCO> EndGetProducenci(IAsyncResult result);
             
             /// <summary>
             /// Asynchronously invokes the 'GetProdukty' operation.
@@ -1682,8 +2851,8 @@ namespace AwesomeParts.Web.Services
             /// <param name="callback">Callback to invoke on completion.</param>
             /// <param name="asyncState">Optional state object.</param>
             /// <returns>An IAsyncResult that can be used to monitor the request.</returns>
-            [FaultContract(typeof(DomainServiceFault), Action="http://tempuri.org/ProduktyService/GetProduktyDomainServiceFault", Name="DomainServiceFault", Namespace="DomainServices")]
-            [OperationContract(AsyncPattern=true, Action="http://tempuri.org/ProduktyService/GetProdukty", ReplyAction="http://tempuri.org/ProduktyService/GetProduktyResponse")]
+            [FaultContract(typeof(DomainServiceFault), Action="http://tempuri.org/AwesomePartsService/GetProduktyDomainServiceFault", Name="DomainServiceFault", Namespace="DomainServices")]
+            [OperationContract(AsyncPattern=true, Action="http://tempuri.org/AwesomePartsService/GetProdukty", ReplyAction="http://tempuri.org/AwesomePartsService/GetProduktyResponse")]
             [WebGet()]
             IAsyncResult BeginGetProdukty(AsyncCallback callback, object asyncState);
             
@@ -1695,14 +2864,51 @@ namespace AwesomeParts.Web.Services
             QueryResult<ProduktPOCO> EndGetProdukty(IAsyncResult result);
             
             /// <summary>
+            /// Asynchronously invokes the 'GetUmowyByPracownikId' operation.
+            /// </summary>
+            /// <param name="pracownikID">The value for the 'pracownikID' parameter of this action.</param>
+            /// <param name="callback">Callback to invoke on completion.</param>
+            /// <param name="asyncState">Optional state object.</param>
+            /// <returns>An IAsyncResult that can be used to monitor the request.</returns>
+            [FaultContract(typeof(DomainServiceFault), Action="http://tempuri.org/AwesomePartsService/GetUmowyByPracownikIdDomainServiceFault", Name="DomainServiceFault", Namespace="DomainServices")]
+            [OperationContract(AsyncPattern=true, Action="http://tempuri.org/AwesomePartsService/GetUmowyByPracownikId", ReplyAction="http://tempuri.org/AwesomePartsService/GetUmowyByPracownikIdResponse")]
+            [WebGet()]
+            IAsyncResult BeginGetUmowyByPracownikId(int pracownikID, AsyncCallback callback, object asyncState);
+            
+            /// <summary>
+            /// Completes the asynchronous operation begun by 'BeginGetUmowyByPracownikId'.
+            /// </summary>
+            /// <param name="result">The IAsyncResult returned from 'BeginGetUmowyByPracownikId'.</param>
+            /// <returns>The 'QueryResult' returned from the 'GetUmowyByPracownikId' operation.</returns>
+            QueryResult<PracownikUmowaMiniPOCO> EndGetUmowyByPracownikId(IAsyncResult result);
+            
+            /// <summary>
+            /// Asynchronously invokes the 'GetZamowienia' operation.
+            /// </summary>
+            /// <param name="callback">Callback to invoke on completion.</param>
+            /// <param name="asyncState">Optional state object.</param>
+            /// <returns>An IAsyncResult that can be used to monitor the request.</returns>
+            [FaultContract(typeof(DomainServiceFault), Action="http://tempuri.org/AwesomePartsService/GetZamowieniaDomainServiceFault", Name="DomainServiceFault", Namespace="DomainServices")]
+            [OperationContract(AsyncPattern=true, Action="http://tempuri.org/AwesomePartsService/GetZamowienia", ReplyAction="http://tempuri.org/AwesomePartsService/GetZamowieniaResponse")]
+            [WebGet()]
+            IAsyncResult BeginGetZamowienia(AsyncCallback callback, object asyncState);
+            
+            /// <summary>
+            /// Completes the asynchronous operation begun by 'BeginGetZamowienia'.
+            /// </summary>
+            /// <param name="result">The IAsyncResult returned from 'BeginGetZamowienia'.</param>
+            /// <returns>The 'QueryResult' returned from the 'GetZamowienia' operation.</returns>
+            QueryResult<ZamowieniePOCO> EndGetZamowienia(IAsyncResult result);
+            
+            /// <summary>
             /// Asynchronously invokes the 'SubmitChanges' operation.
             /// </summary>
             /// <param name="changeSet">The change-set to submit.</param>
             /// <param name="callback">Callback to invoke on completion.</param>
             /// <param name="asyncState">Optional state object.</param>
             /// <returns>An IAsyncResult that can be used to monitor the request.</returns>
-            [FaultContract(typeof(DomainServiceFault), Action="http://tempuri.org/ProduktyService/SubmitChangesDomainServiceFault", Name="DomainServiceFault", Namespace="DomainServices")]
-            [OperationContract(AsyncPattern=true, Action="http://tempuri.org/ProduktyService/SubmitChanges", ReplyAction="http://tempuri.org/ProduktyService/SubmitChangesResponse")]
+            [FaultContract(typeof(DomainServiceFault), Action="http://tempuri.org/AwesomePartsService/SubmitChangesDomainServiceFault", Name="DomainServiceFault", Namespace="DomainServices")]
+            [OperationContract(AsyncPattern=true, Action="http://tempuri.org/AwesomePartsService/SubmitChanges", ReplyAction="http://tempuri.org/AwesomePartsService/SubmitChangesResponse")]
             IAsyncResult BeginSubmitChanges(IEnumerable<ChangeSetEntry> changeSet, AsyncCallback callback, object asyncState);
             
             /// <summary>
@@ -1713,12 +2919,19 @@ namespace AwesomeParts.Web.Services
             IEnumerable<ChangeSetEntry> EndSubmitChanges(IAsyncResult result);
         }
         
-        internal sealed class ProduktyContextEntityContainer : EntityContainer
+        internal sealed class AwesomePartsContextEntityContainer : EntityContainer
         {
             
-            public ProduktyContextEntityContainer()
+            public AwesomePartsContextEntityContainer()
             {
+                this.CreateEntitySet<KlientPOCO>(EntitySetOperations.None);
+                this.CreateEntitySet<PracownikUmowaMiniPOCO>(EntitySetOperations.None);
+                this.CreateEntitySet<PracownikPOCO>(EntitySetOperations.None);
+                this.CreateEntitySet<PracownikRodzajPOCO>(EntitySetOperations.None);
+                this.CreateEntitySet<PracownikStatusPOCO>(EntitySetOperations.None);
                 this.CreateEntitySet<ProduktPOCO>(EntitySetOperations.All);
+                this.CreateEntitySet<ProduktProducentPOCO>(EntitySetOperations.None);
+                this.CreateEntitySet<ZamowieniePOCO>(EntitySetOperations.All);
             }
         }
     }
