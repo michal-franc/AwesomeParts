@@ -89,7 +89,11 @@
                 {
                     this.ContentFrame.Navigate(new Uri("/Zarzad", UriKind.Relative));
                 }
+
+                ProfileDisplay.User = user;
             }
+
+
 
         }
 

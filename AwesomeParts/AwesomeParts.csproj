@@ -111,6 +111,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ErrorResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ProfileDisplay.xaml.cs">
+      <DependentUpon>ProfileDisplay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UmowaWindow.xaml.cs">
+      <DependentUpon>UmowaWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Models\LoginInfo.cs" />
     <Compile Include="Models\UserExtensions.cs" />
@@ -159,6 +165,9 @@
     </Compile>
     <Compile Include="Views\Login\RegistrationForm.xaml.cs">
       <DependentUpon>RegistrationForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MyUmowa.xaml.cs">
+      <DependentUpon>MyUmowa.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\NoAcces.xaml.cs">
       <DependentUpon>NoAcces.xaml</DependentUpon>
@@ -210,6 +219,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Controls\ProfileDisplay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\UmowaWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\About.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:MarkupCompilePass1</Generator>
@@ -249,6 +266,10 @@
     <Page Include="Views\Login\RegistrationForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:MarkupCompilePass1</Generator>
+    </Page>
+    <Page Include="Views\MyUmowa.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\NoAcces.xaml">
       <Generator>MSBuild:Compile</Generator>
