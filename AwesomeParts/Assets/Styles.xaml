@@ -1587,6 +1587,28 @@
         <Setter Property="Foreground" Value="White"></Setter>
     </Style>
 
+    <Style x:Key="ChildWindowSectionLabelStyle" TargetType="TextBlock">
+        <Setter Property="HorizontalAlignment" Value="Center" ></Setter>
+        <Setter Property="VerticalAlignment" Value="Center" ></Setter>
+        <Setter Property="FontSize" Value="22"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+        <Setter Property="Foreground" Value="Blue"></Setter>
+    </Style>
+
+    <Style x:Key="ChildWindowTextStyle" TargetType="TextBlock">
+        <Setter Property="HorizontalAlignment" Value="Center" ></Setter>
+        <Setter Property="VerticalAlignment" Value="Center" ></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+    </Style>
+
+    <Style x:Key="ChildWindowLabelStyle" TargetType="TextBlock">
+        <Setter Property="HorizontalAlignment" Value="Left" ></Setter>
+        <Setter Property="VerticalAlignment" Value="Top" ></Setter>
+        <Setter Property="FontSize" Value="12"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+        <Setter Property="Foreground" Value="LightBlue"></Setter>
+    </Style>
+
     <!-- LoginDataForm Style -->
     <Style x:Key="LoginDataFormStyle" TargetType="dataControls:DataForm">
         <Setter Property="Width" Value="380"/>

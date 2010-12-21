@@ -4,11 +4,36 @@
            xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
            Width="400" Height="300" 
            Title="UmowaWindow"  Style="{StaticResource UmowaStyleWindow}" >
-            <Grid x:Name="LayoutRoot" Margin="2">
-        <StackPanel>
-            <TextBlock Name="txtDataPodpisania" Text="22.10.2010"></TextBlock>
-            <TextBlock Name="txtPlaca" Text="1200"></TextBlock>
-            <TextBlock Name="txtUwagi" Text="Praktyki"></TextBlock>
-        </StackPanel>
+    <Grid x:Name="LayoutRoot" Margin="2">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Name="txtSectionInformacje" Style="{StaticResource ChildWindowSectionLabelStyle}"   Text="Informacje"></TextBlock>
+        </Grid>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Name="txtSectionUmowa" Style="{StaticResource ChildWindowSectionLabelStyle}"   Text="Umowa"></TextBlock>
+            
+            <TextBlock Grid.Row="1" Name="txtDataPodpisaniaLabel" Style="{StaticResource ChildWindowLabelStyle}"   Text="Data Podpisania:"></TextBlock>
+            <TextBlock Grid.Row="1" Name="txtDataPodpisania" Style="{StaticResource ChildWindowTextStyle}"  Text="22.10.2010"></TextBlock>
+
+            <TextBlock Grid.Row="2" Name="txtPlacaLabel" Style="{StaticResource ChildWindowLabelStyle}" Text="Płaca:"></TextBlock>
+            <TextBlock Grid.Row="2" Name="txtPlaca" Style="{StaticResource ChildWindowTextStyle}" Text="1200zl"></TextBlock>
+
+            <TextBlock Grid.Row="3" Name="txtUwagiLabel" Style="{StaticResource ChildWindowLabelStyle}" Text="Uwagi:"></TextBlock>
+            <TextBlock Grid.Row="3" Name="txtUwagi" Style="{StaticResource ChildWindowTextStyle}" Text="Praktyki"></TextBlock>
+        </Grid>
     </Grid>
 </controls:ChildWindow>
