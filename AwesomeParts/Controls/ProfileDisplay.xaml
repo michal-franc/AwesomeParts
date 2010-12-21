@@ -17,7 +17,7 @@
                 <RowDefinition Height="2*"></RowDefinition>
                 <RowDefinition Height="1*"></RowDefinition>
             </Grid.RowDefinitions>
-            <Image Name="imgProfileImage" Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" Source="http://agoracom.com/images/avatars/generic_profile.jpg" Width="Auto" Height="Auto"></Image>
+            <Image Name="imgProfileImage" Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" Source="../Images/generic_profile.jpg" Width="Auto" Height="Auto"></Image>
 
             <TextBlock Name="txtFirstNameLabel" Style="{StaticResource ProfileLabelStyle}"  Grid.Row="0"   Grid.Column="1" Text="Imie" ></TextBlock>
             <TextBlock Name="txtFirstName" Style="{StaticResource ProfileTextStyle}" Grid.Row="0" Grid.Column="1" Text="Michał" ></TextBlock>

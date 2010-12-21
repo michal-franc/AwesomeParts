@@ -34,7 +34,7 @@
                         </Grid.ColumnDefinitions>
 
 
-                        <Image Grid.Column="0" Name="ImageLogo" Source="http://car-elec.com/i/hybrid_car_logo1.jpg" Height="80" Width="80"> </Image>
+                        <Image Grid.Column="0" Name="ImageLogo" Source="../Images/logo.jpg" Height="80" Width="80"> </Image>
                 <TextBlock Grid.Column="1" x:Name="ApplicationNameTextBlock" Style="{StaticResource ApplicationNameStyle}" 
                     Text="{Binding ApplicationStrings.ApplicationName, Source={StaticResource ResourceWrapper}}"/>
                         <my:ProfileDisplay Grid.Column="2" x:Name="ProfileDisplay" Width="Auto"></my:ProfileDisplay>
