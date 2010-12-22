@@ -34,15 +34,19 @@ namespace AwesomeParts.Views
 
         private void GrupujCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
-            //if (GrupujCB.SelectedIndex == 0)
-            //{
-            //    PracownicyGrid.ItemsSource = DataSourceByRodzaje.Data;
-            //}
-            //else if (GrupujCB.SelectedIndex == 1)
-            //{
-            //    PracownicyGrid.ItemsSource = DataSourceByStatus.Data;
-            //}
+
+            if (GrupujCB.SelectedIndex == 0)
+            {
+                PracownicyGrid.ItemsSource = DataSource.Data;
+            }
+            else if (GrupujCB.SelectedIndex == 1)
+            {
+                PracownicyGrid.ItemsSource = DataSourceByRodzaje.Data;
+            }
+            else if (GrupujCB.SelectedIndex == 2)
+            {
+                PracownicyGrid.ItemsSource = DataSourceByStatus.Data;
+            }
         }
 
         void PracownicyGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)

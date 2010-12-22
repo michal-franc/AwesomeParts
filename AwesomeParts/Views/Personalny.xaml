@@ -52,18 +52,24 @@
                     </riaControls:DomainDataSource.GroupDescriptors>
                 </riaControls:DomainDataSource>
 
+                <riaControls:DomainDataSource x:Name="DataSource" AutoLoad="True"
+                                          DomainContext="{StaticResource PracowContext}"
+                                          QueryName="GetPracownicy">
+                </riaControls:DomainDataSource>
+
                 <StackPanel Grid.Row="0">
                     <StackPanel Orientation="Horizontal" Height="50">
                         <TextBlock Text="Grupuj po:     "/>
                         <ComboBox x:Name="GrupujCB"  Width="200" Height="25">
-                            <ComboBoxItem IsSelected="True" Content="Rodzaj" />
+                            <ComboBoxItem IsSelected="True" Content="Brak" />
+                            <ComboBoxItem Content="Rodzaj" />
                             <ComboBoxItem Content="Status" />
                         </ComboBox>
                     </StackPanel>
                     
                     <sdk:DataGrid x:Name="PracownicyGrid" Margin="5"
-                              ItemsSource="{Binding Data, ElementName=DataSourceByRodzaje}"
-                              AutoGenerateColumns="False">
+                              ItemsSource="{Binding Data, ElementName=DataSource}"
+                              AutoGenerateColumns="False" HorizontalScrollBarVisibility="Visible">
                         <sdk:DataGrid.Columns>
                             <sdk:DataGridTextColumn Header="L.p."  Binding="{Binding Id}" />
                             <sdk:DataGridTextColumn Header="Imie" Binding="{Binding Imie}" />
