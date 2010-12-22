@@ -22,22 +22,6 @@
                                         DomainContext="{StaticResource PracowContext}"
                                         QueryName="GetPracownkRodzaje" />
 
-        <!--<riaControls:DomainDataSource x:Key="UmowyNieaktualneSource"
-                                        DomainContext="{StaticResource PracowContext}"
-                                        QueryName="GetUmowyNieaktualnePracownikId">
-            <riaControls:DomainDataSource.QueryParameters>
-                <riaControls:Parameter ParameterName="pracownikID" Value="{Binding Id}"/>
-            </riaControls:DomainDataSource.QueryParameters>
-        </riaControls:DomainDataSource>
-
-        <riaControls:DomainDataSource x:Key="UmowaAktualnaSource"
-                                        DomainContext="{StaticResource PracowContext}"
-                                        QueryName="GetUmowaAktualnaByPracownikId">
-            <riaControls:DomainDataSource.QueryParameters>
-                <riaControls:Parameter ParameterName="pracownikID" Value="{Binding Id}"/>
-            </riaControls:DomainDataSource.QueryParameters>
-        </riaControls:DomainDataSource>-->
-        
     </UserControl.Resources>
 
     <Grid x:Name="LayoutRoot">
@@ -69,9 +53,9 @@
                 </riaControls:DomainDataSource>
 
                 <StackPanel Grid.Row="0">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Grupuj po: "/>
-                        <ComboBox x:Name="GrupujCB"  Width="Auto" Height="Auto" SelectedIndex="1" SelectionChanged="GrupujCB_SelectionChanged">
+                    <StackPanel Orientation="Horizontal" Height="50">
+                        <TextBlock Text="Grupuj po:     "/>
+                        <ComboBox x:Name="GrupujCB"  Width="200" Height="25">
                             <ComboBoxItem IsSelected="True" Content="Rodzaj" />
                             <ComboBoxItem Content="Status" />
                         </ComboBox>
@@ -92,7 +76,42 @@
                         </sdk:DataGrid.Columns>
                     </sdk:DataGrid>
                 </StackPanel>
+                
+                <StackPanel Grid.Row="1">
+                    <riaControls:DomainDataSource x:Name="UmowyNieaktualneSource"
+                                        DomainContext="{StaticResource PracowContext}"
+                                        QueryName="GetUmowyNieaktualneByPracownikId">
+                        <riaControls:DomainDataSource.QueryParameters>
+                            <riaControls:Parameter ParameterName="pracownikID" Value="1"/>
+                        </riaControls:DomainDataSource.QueryParameters>
+                    </riaControls:DomainDataSource>
+
+                    <!--<riaControls:DomainDataSource x:Name="UmowaAktualnaSource"
+                                        DomainContext="{StaticResource PracowContext}"
+                                        QueryName="GetUmowaAktualnaByPracownikId">
+                        <riaControls:DomainDataSource.QueryParameters>
+                            <riaControls:Parameter ParameterName="pracownikID" Value="{Binding Id}"/>
+                        </riaControls:DomainDataSource.QueryParameters>
+                    </riaControls:DomainDataSource>-->
+                    
+                    <sdk:DataGrid x:Name="UmowyGrid" Margin="5"
+                                  ItemsSource="{Binding Data, ElementName=UmowyNieaktualneSource}"
+                                  AutoGenerateColumns="False">
+                        <sdk:DataGrid.Columns>
+                            <sdk:DataGridTextColumn Header="L.p."  Binding="{Binding Id}" />
+                            <sdk:DataGridTextColumn Header="Płaca" Binding="{Binding Placa}" />
+                            <!--<sdk:DataGridTextColumn Header="Nazwisko" Binding="{Binding Nazwisko}" />
+                            <sdk:DataGridTextColumn Header="PESEL" Binding="{Binding Pesel}" />
+                            <sdk:DataGridTextColumn Header="Status" Binding="{Binding Status.Status}" />
+                            <sdk:DataGridTextColumn Header="Uwagi do statusu" Binding="{Binding UwagiDoStatusu}" />
+                            <sdk:DataGridTextColumn Header="Rodzaj" Binding="{Binding Rodzaj.Rodzaj}" />-->
+
+                        </sdk:DataGrid.Columns>
+                    </sdk:DataGrid>
+                </StackPanel>
             </Grid>
+            
+            
             <!--<toolkit:DataForm x:Name="ProduktyDataForm" Grid.Column="1" 
                               Margin="5 40 0 40" 
                               ItemsSource="{Binding Data, ElementName=DataSource}"

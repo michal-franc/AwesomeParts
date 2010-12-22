@@ -184,7 +184,7 @@ namespace AwesomeParts.Web.Services
         }
 
         [Query]
-        public IQueryable<PracownikUmowaPOCO> GetUmowyNieaktualnePracownikId(int pracownikID)
+        public IQueryable<PracownikUmowaPOCO> GetUmowyNieaktualneByPracownikId(int pracownikID)
         {
             return (
                 from r in this._pracownicyContext.GetById(pracownikID).UmowyArchiwalne.AsQueryable()
