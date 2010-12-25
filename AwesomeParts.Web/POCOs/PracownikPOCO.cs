@@ -27,7 +27,7 @@ namespace AwesomeParts.Web.POCOs
         public PracownikRodzajPOCO Rodzaj { get; set; }
 
         [Include]
-        [Association("PracownikStatus", "RodzajID", "Id", IsForeignKey = true)]
+        [Association("PracownikStatus", "StatusID", "Id", IsForeignKey = true)]
         public PracownikStatusPOCO Status { get; set; }
 
         //[Include]

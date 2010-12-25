@@ -25,129 +25,152 @@
     </UserControl.Resources>
 
     <Grid x:Name="LayoutRoot">
-        <Grid Margin="10">
+        <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="350" />
             </Grid.ColumnDefinitions>
+            <riaControls:DomainDataSource x:Name="DataSourceByRodzaje" AutoLoad="True"
+                                        DomainContext="{StaticResource PracowContext}"
+                                        QueryName="GetPracownicy">
+                <riaControls:DomainDataSource.GroupDescriptors>
+                    <riaControls:GroupDescriptor PropertyPath="Rodzaj.Rodzaj" />
+                </riaControls:DomainDataSource.GroupDescriptors>
+            </riaControls:DomainDataSource>
+
+            <riaControls:DomainDataSource x:Name="DataSourceByStatus" AutoLoad="True"
+                                        DomainContext="{StaticResource PracowContext}"
+                                        QueryName="GetPracownicy">
+                <riaControls:DomainDataSource.GroupDescriptors>
+                    <riaControls:GroupDescriptor PropertyPath="Status.Status" />
+                </riaControls:DomainDataSource.GroupDescriptors>
+            </riaControls:DomainDataSource>
+
             <Grid Grid.Column="0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="2*"/>
                 </Grid.RowDefinitions>
-
-                <riaControls:DomainDataSource x:Name="DataSourceByRodzaje" AutoLoad="True"
-                                          DomainContext="{StaticResource PracowContext}"
-                                          QueryName="GetPracownicy">
-                    <riaControls:DomainDataSource.GroupDescriptors>
-                        <riaControls:GroupDescriptor PropertyPath="Rodzaj.Rodzaj" />
-                    </riaControls:DomainDataSource.GroupDescriptors>
-                </riaControls:DomainDataSource>
-
-                <riaControls:DomainDataSource x:Name="DataSourceByStatus" AutoLoad="True"
-                                          DomainContext="{StaticResource PracowContext}"
-                                          QueryName="GetPracownicy">
-                    <riaControls:DomainDataSource.GroupDescriptors>
-                        <riaControls:GroupDescriptor PropertyPath="Status.Status" />
-                    </riaControls:DomainDataSource.GroupDescriptors>
-                </riaControls:DomainDataSource>
-
-                <StackPanel Grid.Row="0">
-                    <StackPanel Orientation="Horizontal" Height="50">
-                        <TextBlock Text="Grupuj po:     "/>
-                        <ComboBox x:Name="GrupujCB"  Width="200" Height="25">
-                            <ComboBoxItem IsSelected="True" Content="Rodzaj" />
-                            <ComboBoxItem Content="Status" />
-                        </ComboBox>
-                    </StackPanel>
                     
-                    <sdk:DataGrid x:Name="PracownicyGrid" Margin="5"
-                              ItemsSource="{Binding Data, ElementName=DataSourceByRodzaje}"
-                              AutoGenerateColumns="False">
-                        <sdk:DataGrid.Columns>
-                            <sdk:DataGridTextColumn Header="L.p."  Binding="{Binding Id}" />
-                            <sdk:DataGridTextColumn Header="Imie" Binding="{Binding Imie}" />
-                            <sdk:DataGridTextColumn Header="Nazwisko" Binding="{Binding Nazwisko}" />
-                            <sdk:DataGridTextColumn Header="PESEL" Binding="{Binding Pesel}" />
-                            <sdk:DataGridTextColumn Header="Status" Binding="{Binding Status.Status}" />
-                            <sdk:DataGridTextColumn Header="Uwagi do statusu" Binding="{Binding UwagiDoStatusu}" />
-                            <sdk:DataGridTextColumn Header="Rodzaj" Binding="{Binding Rodzaj.Rodzaj}" />
+                <StackPanel Orientation="Horizontal" Height="50" Grid.Row="0">
+                    <TextBlock x:Name="hhh" Text="Grupuj po:     "/>
+                    <ComboBox x:Name="GrupujCB"  Width="200" Height="25">
+                        <ComboBoxItem IsSelected="True" Content="Rodzaj" />
+                        <ComboBoxItem Content="Status" VerticalAlignment="Top"/>
+                    </ComboBox>
+                </StackPanel>
+                    
+                <sdk:DataGrid x:Name="PracownicyGrid" Margin="5" Grid.Row="1"
+                            ItemsSource="{Binding Data, ElementName=DataSourceByRodzaje}"
+                            AutoGenerateColumns="False">
+                    <sdk:DataGrid.Columns>
+                        <sdk:DataGridTextColumn Header="L.p."  Binding="{Binding Id}" />
+                        <sdk:DataGridTextColumn Header="Imie" Binding="{Binding Imie}" />
+                        <sdk:DataGridTextColumn Header="Nazwisko" Binding="{Binding Nazwisko}" />
+                        <sdk:DataGridTextColumn Header="PESEL" Binding="{Binding Pesel}" />
+                        <sdk:DataGridTextColumn Header="Status" Binding="{Binding Status.Status}" />
+                        <sdk:DataGridTextColumn Header="Uwagi do statusu" Binding="{Binding UwagiDoStatusu}" />
+                        <sdk:DataGridTextColumn Header="Rodzaj" Binding="{Binding Rodzaj.Rodzaj}" />
                             
-                        </sdk:DataGrid.Columns>
-                    </sdk:DataGrid>
+                    </sdk:DataGrid.Columns>
+                </sdk:DataGrid>
+                <sdk:DataGrid x:Name="UmowyGrid" Margin="5" Grid.Row="2"
+                                AutoGenerateColumns="False">
+                    <sdk:DataGrid.Columns>
+                        <sdk:DataGridTextColumn Header="L.p."  Binding="{Binding Id}" />
+                        <sdk:DataGridTextColumn Header="Płaca" Binding="{Binding Placa}" />
+                        <sdk:DataGridTextColumn Header="Data podpisania" Binding="{Binding DataPodpisania}" />
+                        <sdk:DataGridTextColumn Header="Data wygaśnięcia" Binding="{Binding DataWygasniecia}" />
+                        <sdk:DataGridTextColumn Header="Uwagi" Binding="{Binding Uwagi}" />
+                        <sdk:DataGridCheckBoxColumn Header="Aktualna" Binding="{Binding Aktualna}" />
+                    </sdk:DataGrid.Columns>
+                </sdk:DataGrid>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                
+                <toolkit:DataForm x:Name="PracownicyDataForm" Grid.Row="0" 
+                                  Margin="0 40 0 0 "
+                                  ItemsSource="{Binding Data, ElementName=DataSourceByRodzaje}"
+                                  CurrentItem="{Binding SelectedItem, ElementName=PracownicyGrid, Mode=TwoWay}" 
+                                  AutoGenerateFields="False">
+                    <toolkit:DataForm.EditTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <toolkit:DataField>
+                                    <TextBox Text="{Binding Imie, Mode=TwoWay}" />
+                                </toolkit:DataField>
+                                <toolkit:DataField>
+                                    <TextBox Text="{Binding Nazwisko, Mode=TwoWay}" />
+                                </toolkit:DataField>
+                                <toolkit:DataField>
+                                    <TextBox Text="{Binding Pesel, Mode=TwoWay}" />
+                                </toolkit:DataField>
+                                <toolkit:DataField>
+                                    <ComboBox ItemsSource="{Binding Source={StaticResource StatusSource}, Path=Data}" 
+                                          SelectedItem="{Binding Status, Mode=TwoWay}" DisplayMemberPath="Status" 
+                                          comboboxext:ComboBox.Mode="AsyncEager"/>
+                                </toolkit:DataField>
+                                <toolkit:DataField>
+                                    <TextBox Text="{Binding UwagiDoStatusu, Mode=TwoWay}" />
+                                </toolkit:DataField>
+                                <toolkit:DataField>
+                                    <ComboBox ItemsSource="{Binding Source={StaticResource RodzajSource}, Path=Data}" 
+                                          SelectedItem="{Binding Rodzaj, Mode=TwoWay}" DisplayMemberPath="Rodzaj" 
+                                          comboboxext:ComboBox.Mode="AsyncEager"/>
+                                </toolkit:DataField>
+                            </StackPanel>
+                        </DataTemplate>
+                    </toolkit:DataForm.EditTemplate>
+                </toolkit:DataForm>
+
+                <toolkit:DataForm x:Name="UmowyDataForm" Grid.Row="1" 
+                                  CurrentItem="{Binding SelectedItem, ElementName=UmowyGrid, Mode=TwoWay}" 
+                                  AutoGenerateFields="False" CancelButtonContent="Anuluj">
+                    <toolkit:DataForm.EditTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <toolkit:DataField>
+                                    <TextBlock Text="{Binding PracownikID}" />
+                                </toolkit:DataField>
+                                <toolkit:DataField>
+                                    <TextBox Text="{Binding Placa, Mode=TwoWay}" />
+                                </toolkit:DataField>
+                                <toolkit:DataField>
+                                    <sdk:DatePicker SelectedDate="{Binding DataPodpisania, Mode=TwoWay}" />
+                                </toolkit:DataField>
+                                <toolkit:DataField>
+                                    <sdk:DatePicker SelectedDate="{Binding DataWygasniecia, Mode=TwoWay}" />
+                                </toolkit:DataField>
+                                <toolkit:DataField>
+                                    <TextBox Text="{Binding Uwagi, Mode=TwoWay}" />
+                                </toolkit:DataField>
+                                <toolkit:DataField>
+                                    <CheckBox IsChecked="{Binding Aktualna, Mode=TwoWay}" />
+                                </toolkit:DataField>
+                            </StackPanel>
+                        </DataTemplate>
+                    </toolkit:DataForm.EditTemplate>
+                </toolkit:DataForm>
+
+                <StackPanel Grid.Row="0" Margin="5"
+                            HorizontalAlignment="Right" VerticalAlignment="Top"
+                            Height="30" Orientation="Horizontal">
+                    <Button x:Name="SubmitChanges"
+                            Height="30" Width="120"
+                            Click="SubmitChanges_Click"
+                            Content="Zapisz zmiany" />
+                    <Button x:Name="RevertChanges"
+                            Height="30" Width="120"
+                            Click="RevertChanges_Click"
+                            Content="Cofnij zmiany" />
                 </StackPanel>
                 
-                <StackPanel Grid.Row="1">
-                    <riaControls:DomainDataSource x:Name="UmowyNieaktualneSource"
-                                        DomainContext="{StaticResource PracowContext}"
-                                        QueryName="GetUmowyNieaktualneByPracownikId">
-                        <riaControls:DomainDataSource.QueryParameters>
-                            <riaControls:Parameter ParameterName="pracownikID" Value="1"/>
-                        </riaControls:DomainDataSource.QueryParameters>
-                    </riaControls:DomainDataSource>
-
-                    <!--<riaControls:DomainDataSource x:Name="UmowaAktualnaSource"
-                                        DomainContext="{StaticResource PracowContext}"
-                                        QueryName="GetUmowaAktualnaByPracownikId">
-                        <riaControls:DomainDataSource.QueryParameters>
-                            <riaControls:Parameter ParameterName="pracownikID" Value="{Binding Id}"/>
-                        </riaControls:DomainDataSource.QueryParameters>
-                    </riaControls:DomainDataSource>-->
-                    
-                    <sdk:DataGrid x:Name="UmowyGrid" Margin="5"
-                                  ItemsSource="{Binding Data, ElementName=UmowyNieaktualneSource}"
-                                  AutoGenerateColumns="False">
-                        <sdk:DataGrid.Columns>
-                            <sdk:DataGridTextColumn Header="L.p."  Binding="{Binding Id}" />
-                            <sdk:DataGridTextColumn Header="Płaca" Binding="{Binding Placa}" />
-                            <!--<sdk:DataGridTextColumn Header="Nazwisko" Binding="{Binding Nazwisko}" />
-                            <sdk:DataGridTextColumn Header="PESEL" Binding="{Binding Pesel}" />
-                            <sdk:DataGridTextColumn Header="Status" Binding="{Binding Status.Status}" />
-                            <sdk:DataGridTextColumn Header="Uwagi do statusu" Binding="{Binding UwagiDoStatusu}" />
-                            <sdk:DataGridTextColumn Header="Rodzaj" Binding="{Binding Rodzaj.Rodzaj}" />-->
-
-                        </sdk:DataGrid.Columns>
-                    </sdk:DataGrid>
-                </StackPanel>
             </Grid>
-            
-            
-            <!--<toolkit:DataForm x:Name="ProduktyDataForm" Grid.Column="1" 
-                              Margin="5 40 0 40" 
-                              ItemsSource="{Binding Data, ElementName=DataSource}"
-                              CurrentItem="{Binding SelectedItem, ElementName=ProduktyGrid, Mode=TwoWay}" 
-                              AutoGenerateFields="False" >
-                <toolkit:DataForm.EditTemplate>
-                    <DataTemplate>
-                        <StackPanel>
-                            <toolkit:DataField>
-                                <TextBox Text="{Binding Nazwa, Mode=TwoWay}" />
-                            </toolkit:DataField>
-                            <toolkit:DataField>
-                                <TextBox Text="{Binding Cena, Mode=TwoWay}" />
-                            </toolkit:DataField>
-                            <toolkit:DataField>
-                                <TextBox Text="{Binding Ilosc, Mode=TwoWay}" />
-                            </toolkit:DataField>
-                            <toolkit:DataField>
-                                <TextBox Text="{Binding DocelowaIlosc, Mode=TwoWay}" />
-                            </toolkit:DataField>
-                            <toolkit:DataField>
-                                <ComboBox ItemsSource="{Binding Source={StaticResource ProducenciSource}, Path=Data}" 
-                                          SelectedItem="{Binding Producent, Mode=TwoWay}" DisplayMemberPath="Nazwa" 
-                                          comboboxext:ComboBox.Mode="AsyncEager"/>
-                            </toolkit:DataField>
-                        </StackPanel>
-                    </DataTemplate>
-                </toolkit:DataForm.EditTemplate>
-            </toolkit:DataForm>
-
-            <Button x:Name="SubmitChanges"
-                    Grid.Column="1" Margin="5"
-                    HorizontalAlignment="Right" VerticalAlignment="Top"
-                    Height="30" Width="120"
-                    Command="{Binding SubmitChangesCommand, ElementName=DataSource}"
-                    Content="Zapisz zmiany" />-->
         </Grid>
     </Grid>
 </navigation:Page>

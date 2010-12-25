@@ -97,8 +97,8 @@
     <Content Include="AwesomePartsTestPage.aspx" />
     <Content Include="AwesomePartsTestPage.html" />
     <EmbeddedResource Include="Images\circle-logo-designs-small.jpg" />
-    <Content Include="ClientBin\AwesomeParts.xap" />
     <Resource Include="Images\Logo.jpg" />
+    <Content Include="ClientBin\AwesomeParts.xap" />
     <Content Include="Silverlight.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
