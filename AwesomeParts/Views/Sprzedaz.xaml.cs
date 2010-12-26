@@ -23,6 +23,10 @@ namespace AwesomeParts.Views
         // Executes when the user navigates to this page.
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            if (!WebContext.Current.User.IsInRole("DzialSprzedazy"))
+            {
+                this.NavigationService.Navigate(new Uri("/NoAcces", UriKind.Relative));
+            }
         }
 
     }

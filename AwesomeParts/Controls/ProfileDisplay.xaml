@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="AwesomeParts.Controls.ProfileDisplay"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="200" d:DesignWidth="200">
+    <Border BorderThickness="2" BorderBrush="{StaticResource HighlightBrush}">   
+    <Grid x:Name="LayoutRoot" Background="LightGray">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Image Name="imgProfileImage" Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" Source="../Images/generic_profile.jpg" Width="Auto" Height="Auto"></Image>
+
+            <TextBlock Name="txtFirstNameLabel" Style="{StaticResource ProfileLabelStyle}"  Grid.Row="0"   Grid.Column="1" Text="Imie" ></TextBlock>
+            <TextBlock Name="txtFirstName" Style="{StaticResource ProfileTextStyle}" Grid.Row="0" Grid.Column="1" Text="Michał" ></TextBlock>
+
+            <TextBlock Name="txtLastNameLabel" Style="{StaticResource ProfileLabelStyle}"  Grid.Row="1"  Grid.Column="1" Text="NAzwisko" ></TextBlock>
+            <TextBlock Name="txtLastName" Style="{StaticResource ProfileTextStyle}" Grid.Row="1" Grid.Column="1" Text="Franc" ></TextBlock>
+
+            <TextBlock Name="txtStatusLabel" Style="{StaticResource ProfileLabelStyle}" Grid.Row="2" Grid.Column="1" Text="Status"></TextBlock>
+            <TextBlock Name="txtStatus" Style="{StaticResource ProfileTextStyle}" Grid.Row="2" Grid.Column="1" Text="Urlop"></TextBlock>
+
+            <Border Style="{StaticResource UmowaButtonContainerStyle}" Grid.Row="3" Grid.Column="1" >
+                <HyperlinkButton Name="btnAction1" Style="{StaticResource ActionButtonStyle}" VerticalAlignment="Bottom" Content="Koszyk" Click="btnAction1_Click"></HyperlinkButton>
+            </Border>
+        </Grid>
+    </Border>
+</UserControl>

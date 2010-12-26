@@ -17,7 +17,7 @@
         <riaControls:DomainDataSource x:Key="StatusSource"
                                         DomainContext="{StaticResource PracowContext}"
                                         QueryName="GetPracownkStatusy" />
-        
+
         <riaControls:DomainDataSource x:Key="RodzajSource"
                                         DomainContext="{StaticResource PracowContext}"
                                         QueryName="GetPracownkRodzaje" />
@@ -30,20 +30,10 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="350" />
             </Grid.ColumnDefinitions>
-            <riaControls:DomainDataSource x:Name="DataSourceByRodzaje" AutoLoad="True"
+            
+            <riaControls:DomainDataSource x:Name="DataSource" AutoLoad="True"
                                         DomainContext="{StaticResource PracowContext}"
                                         QueryName="GetPracownicy">
-                <riaControls:DomainDataSource.GroupDescriptors>
-                    <riaControls:GroupDescriptor PropertyPath="Rodzaj.Rodzaj" />
-                </riaControls:DomainDataSource.GroupDescriptors>
-            </riaControls:DomainDataSource>
-
-            <riaControls:DomainDataSource x:Name="DataSourceByStatus" AutoLoad="True"
-                                        DomainContext="{StaticResource PracowContext}"
-                                        QueryName="GetPracownicy">
-                <riaControls:DomainDataSource.GroupDescriptors>
-                    <riaControls:GroupDescriptor PropertyPath="Status.Status" />
-                </riaControls:DomainDataSource.GroupDescriptors>
             </riaControls:DomainDataSource>
 
             <Grid Grid.Column="0">
@@ -52,17 +42,18 @@
                     <RowDefinition Height="3*"/>
                     <RowDefinition Height="2*"/>
                 </Grid.RowDefinitions>
-                    
+
                 <StackPanel Orientation="Horizontal" Height="50" Grid.Row="0">
                     <TextBlock x:Name="hhh" Text="Grupuj po:     "/>
-                    <ComboBox x:Name="GrupujCB"  Width="200" Height="25">
-                        <ComboBoxItem IsSelected="True" Content="Rodzaj" />
-                        <ComboBoxItem Content="Status" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="GrupujCB"  Width="200" Height="25" VerticalAlignment="Top">
+                        <ComboBoxItem IsSelected="True" Content="-- Brak grupowania --" />
+                        <ComboBoxItem Content="Rodzaj" />
+                        <ComboBoxItem Content="Status"/>
                     </ComboBox>
                 </StackPanel>
-                    
+
                 <sdk:DataGrid x:Name="PracownicyGrid" Margin="5" Grid.Row="1"
-                            ItemsSource="{Binding Data, ElementName=DataSourceByRodzaje}"
+                            ItemsSource="{Binding Data, ElementName=DataSource}"
                             AutoGenerateColumns="False">
                     <sdk:DataGrid.Columns>
                         <sdk:DataGridTextColumn Header="L.p."  Binding="{Binding Id}" />
@@ -72,7 +63,7 @@
                         <sdk:DataGridTextColumn Header="Status" Binding="{Binding Status.Status}" />
                         <sdk:DataGridTextColumn Header="Uwagi do statusu" Binding="{Binding UwagiDoStatusu}" />
                         <sdk:DataGridTextColumn Header="Rodzaj" Binding="{Binding Rodzaj.Rodzaj}" />
-                            
+
                     </sdk:DataGrid.Columns>
                 </sdk:DataGrid>
                 <sdk:DataGrid x:Name="UmowyGrid" Margin="5" Grid.Row="2"
@@ -92,10 +83,10 @@
                     <RowDefinition Height="3*"/>
                     <RowDefinition Height="2*"/>
                 </Grid.RowDefinitions>
-                
+
                 <toolkit:DataForm x:Name="PracownicyDataForm" Grid.Row="0" 
                                   Margin="0 40 0 0 "
-                                  ItemsSource="{Binding Data, ElementName=DataSourceByRodzaje}"
+                                  ItemsSource="{Binding Data, ElementName=DataSource}"
                                   CurrentItem="{Binding SelectedItem, ElementName=PracownicyGrid, Mode=TwoWay}" 
                                   AutoGenerateFields="False">
                     <toolkit:DataForm.EditTemplate>
@@ -169,7 +160,7 @@
                             Click="RevertChanges_Click"
                             Content="Cofnij zmiany" />
                 </StackPanel>
-                
+
             </Grid>
         </Grid>
     </Grid>

@@ -29,6 +29,7 @@ namespace AwesomeParts.Views
         public Personalny()
         {
             InitializeComponent();
+
             PendingChanges = false;
             AddingNewItem = false;
 
@@ -51,6 +52,10 @@ namespace AwesomeParts.Views
         // Executes when the user navigates to this page.
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            //if (!WebContext.Current.User.IsInRole("DzialPersonalny"))
+            //{
+            //    this.NavigationService.Navigate(new Uri("/NoAcces", UriKind.Relative));
+            //}
         }
 
         #region Events
@@ -158,15 +163,39 @@ namespace AwesomeParts.Views
 
         private void CheckGrupujCB()
         {
-            if (GrupujCB.SelectedIndex == 0)
+            if (DataSource.CanLoad == true)
             {
-                PracownicyGrid.ItemsSource = DataSourceByRodzaje.Data;
-                PracownicyGrid.SelectedIndex = 0;
-            }
-            else if (GrupujCB.SelectedIndex == 1)
-            {
-                PracownicyGrid.ItemsSource = DataSourceByStatus.Data;
-                PracownicyGrid.SelectedIndex = 0;
+                if (GrupujCB.SelectedIndex == 0)
+                {
+                    DataSource.GroupDescriptors.Clear();
+                    DataSource.Load();
+                    PracownicyGrid.ItemsSource = DataSource.Data;
+                    PracownicyGrid.SelectedIndex = 0;
+                }
+                else if (GrupujCB.SelectedIndex == 1)
+                {
+                    DataSource.GroupDescriptors.Clear();
+                    DataSource.GroupDescriptors.Add(new GroupDescriptor
+                    {
+                        PropertyPath = "Rodzaj.Rodzaj"
+                    });
+                    DataSource.Load();
+
+                    PracownicyGrid.ItemsSource = DataSource.Data;
+                    PracownicyGrid.SelectedIndex = 0;
+                }
+                else if (GrupujCB.SelectedIndex == 2)
+                {
+                    DataSource.GroupDescriptors.Clear();
+                    DataSource.GroupDescriptors.Add(new GroupDescriptor
+                    {
+                        PropertyPath = "Status.Status"
+                    });
+                    DataSource.Load();
+
+                    PracownicyGrid.ItemsSource = DataSource.Data;
+                    PracownicyGrid.SelectedIndex = 0;
+                }
             }
         }
 

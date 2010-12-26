@@ -111,6 +111,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ErrorResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ProfileDisplay.xaml.cs">
+      <DependentUpon>ProfileDisplay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UmowaWindow.xaml.cs">
+      <DependentUpon>UmowaWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Models\LoginInfo.cs" />
     <Compile Include="Models\UserExtensions.cs" />
@@ -209,6 +215,14 @@
     <Page Include="Controls\BusyIndicator.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\ProfileDisplay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\UmowaWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\About.xaml">
       <SubType>Designer</SubType>
