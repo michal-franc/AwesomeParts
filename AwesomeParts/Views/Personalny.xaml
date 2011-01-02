@@ -53,8 +53,8 @@
                 </StackPanel>
 
                 <sdk:DataGrid x:Name="PracownicyGrid" Margin="5" Grid.Row="1"
-                            ItemsSource="{Binding Data, ElementName=DataSource}"
-                            AutoGenerateColumns="False">
+                            ItemsSource="{Binding Data, ElementName=DataSource, Mode=TwoWay}"
+                            AutoGenerateColumns="False" IsReadOnly="False">
                     <sdk:DataGrid.Columns>
                         <sdk:DataGridTextColumn Header="L.p."  Binding="{Binding Id}" />
                         <sdk:DataGridTextColumn Header="Imie" Binding="{Binding Imie}" />
