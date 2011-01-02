@@ -12,8 +12,12 @@ namespace AwesomeParts.Web.POCOs
         [Key]
         public int Id { get; set; }
 
-        public ZamowieniePOCO Zamowienie { get; set; }
-        public ProduktPOCO Produkt { get; set; }
+        public string Nazwa { get; set; }
+        public string Producent { get; set; }
         public int Ilosc { get; set; }
+        public decimal CenaJednostkowa { get; set; }
+        public decimal CenaCalosciowa { get; set; }
+        public int ProduktID { get; set; }
+        public int ZamowienieID { get; set; }
     }
 }

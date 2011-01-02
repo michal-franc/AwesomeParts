@@ -28,6 +28,7 @@ namespace AwesomeParts.Web.Services
         private IRepository<PracownikRodzaj> _pracownikRodzajeContext = new Repository<PracownikRodzaj>();
         private IRepository<PracownikStatus> _pracownikStatusyContext = new Repository<PracownikStatus>();
         private IRepository<PracownikUmowa> _pracownikUmowyContext = new Repository<PracownikUmowa>();
+        private IRepository<ZamowieniaKoszyk> _koszykContext = new Repository<ZamowieniaKoszyk>();
 
         #endregion contexts
 
@@ -282,7 +283,7 @@ namespace AwesomeParts.Web.Services
         {
             _zamowieniaContext.Add(new Zamowienie
             {
-                Klient = _klienciContext.GetById(zamowienie.Klient.Id),
+                Klient = _klienciContext.GetById(zamowienie.KlientID),
                 DataZlozenia = null,
                 Pracownik = null,
                 DataZrealizowania = null,
@@ -294,11 +295,17 @@ namespace AwesomeParts.Web.Services
         public void UpdateZamowienie(ZamowieniePOCO zamowienie)
         {
             Zamowienie z = _zamowieniaContext.GetById(zamowienie.Id);
-            z.Pracownik = _pracownicyContext.GetById(zamowienie.Pracownik.Id);
+
+            if (zamowienie.PracownikID > 0)
+                z.Pracownik = _pracownicyContext.GetById(zamowienie.PracownikID);
+            else
+                z.Pracownik = null;
+
+            z.DataZlozenia = zamowienie.DataZlozenia;
             z.DataZrealizowania = zamowienie.DataZrealizowania;
             z.Zrealizowano = zamowienie.Zrealizowano;
 
-            _zamowieniaContext.UpdateById(z, zamowienie.Id);
+            _zamowieniaContext.Update(z);
         }
 
         [Delete()]
@@ -322,11 +329,75 @@ namespace AwesomeParts.Web.Services
         public IQueryable<ZamowieniePOCO> GetZamowienia()
         {
             return (
-                from r in this._zamowieniaContext.GetAll().AsQueryable<Zamowienie>()
+                from r in this._zamowieniaContext.GetAll().AsQueryable()
+                where r.DataZlozenia != null
+                select POCOHelpers.MapZamowienieToPOCO(r));
+        }
+
+        [Query()]
+        public IQueryable<ZamowieniePOCO> GetZamowieniaNieprzydzielone()
+        {
+            return (
+                from r in this._zamowieniaContext.GetAll().AsQueryable()
+                where r.Pracownik == null
+                select POCOHelpers.MapZamowienieToPOCO(r));
+        }
+
+        [Query()]
+        public IQueryable<ZamowieniePOCO> GetZamowieniaByPracownikId(int pracownikID)
+        {
+            return (
+                from r in this._zamowieniaContext.GetAll().AsQueryable()
+                where r.Pracownik != null && r.Pracownik.Id == pracownikID
+                select POCOHelpers.MapZamowienieToPOCO(r));
+        }
+
+        [Query()]
+        public IQueryable<ZamowieniePOCO> GetZamowieniaByKlientId(int klientID)
+        {
+            return (
+                from r in this._zamowieniaContext.GetAll().AsQueryable()
+                where r.Klient.Id == klientID && r.DataZlozenia != null
+                select POCOHelpers.MapZamowienieToPOCO(r));
+        }
+
+        [Query()]
+        public IQueryable<ZamowieniePOCO> GetAktualneZamowienieByKlientId(int klientID)
+        {
+            return (
+                from r in this._zamowieniaContext.GetAll().AsQueryable()
+                where r.Klient.Id == klientID && r.DataZlozenia == null
                 select POCOHelpers.MapZamowienieToPOCO(r));
         }
 
         #endregion Zamowienia CRUD
+
+        #region Koszyk CRUD
+
+        [Insert()]
+        public void InsertZamowienieKoszyk(ZamowieniaKoszykPOCO zamowienieKoszyk)
+        {
+            Produkty p = _context.GetById(zamowienieKoszyk.ProduktID);
+            Zamowienie z = _zamowieniaContext.GetById(zamowienieKoszyk.ZamowienieID);
+
+            _koszykContext.Add(new ZamowieniaKoszyk
+            {
+                Ilosc = zamowienieKoszyk.Ilosc,
+                Produkt = p,
+                Zamowienie = z
+            });
+        }
+
+        [Query()]
+        public IQueryable<ZamowieniaKoszykPOCO> GetKoszykByZamowienieId(int zamowienieID)
+        {
+            return (
+                from r in this._koszykContext.GetAll().AsQueryable()
+                where r.Zamowienie.Id == zamowienieID
+                select POCOHelpers.MapKoszykToPOCO(r));
+        }
+
+        #endregion Koszyk CRUD
 
         #endregion CRUDs
     }
