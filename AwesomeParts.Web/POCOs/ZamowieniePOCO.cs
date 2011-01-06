@@ -16,6 +16,8 @@ namespace AwesomeParts.Web.POCOs
         public Nullable<DateTime> DataZlozenia { get; set; }
         public Nullable<DateTime> DataZrealizowania { get; set; }
         public bool Zrealizowano { get; set; }
+        public string KlientNazwa { get; set; }
+        public string KlientFirma { get; set; }
         public int KlientID { get; set; }
         public int PracownikID { get; set; }
 

@@ -11,7 +11,7 @@ namespace AwesomeParts.Web.POCOs
     public class PracownikUmowaPOCO
     {
         [Key]
-        public virtual int Id { get; set; }
+        public int Id { get; set; }
 
         public int Placa { get; set; }
         public Nullable<DateTime> DataPodpisania { get; set; }

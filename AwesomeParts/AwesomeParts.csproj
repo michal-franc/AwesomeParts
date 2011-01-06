@@ -111,6 +111,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ErrorResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Controls\KoszykAdder.xaml.cs">
+      <DependentUpon>KoszykAdder.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ProfileDisplay.xaml.cs">
       <DependentUpon>ProfileDisplay.xaml</DependentUpon>
     </Compile>
@@ -118,6 +121,7 @@
       <DependentUpon>UmowaWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Helpers\CurrencyConverter.cs" />
     <Compile Include="Models\LoginInfo.cs" />
     <Compile Include="Models\UserExtensions.cs" />
     <Compile Include="Models\RegistrationDataExtensions.cs" />
@@ -215,6 +219,10 @@
     <Page Include="Controls\BusyIndicator.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\KoszykAdder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\ProfileDisplay.xaml">
       <SubType>Designer</SubType>
@@ -326,6 +334,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\DataSources\AwesomeParts.Web.Services.AwesomePartsContext.datasource" />
     <None Include="Properties\DataSources\AwesomeParts.Web.Services.KlientContext.datasource" />
     <None Include="Properties\DataSources\AwesomeParts.Web.Services.ProduktyContext.datasource" />
     <None Include="Properties\DataSources\AwesomeParts.Web.UserRegistrationContext.datasource" />

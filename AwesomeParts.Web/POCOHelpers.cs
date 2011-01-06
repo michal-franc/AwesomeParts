@@ -92,12 +92,38 @@ namespace AwesomeParts.Web
 
         public static ZamowieniePOCO MapZamowienieToPOCO(Zamowienie zamowienie)
         {
-            return new ZamowieniePOCO
+            ZamowieniePOCO z = new ZamowieniePOCO();
+            KlientPOCO k = MapKlientToPOCO(zamowienie.Klient);
+
+            z.Id = zamowienie.Id;
+            z.DataZlozenia = zamowienie.DataZlozenia;
+            z.DataZrealizowania = zamowienie.DataZrealizowania;
+            z.Klient = k;
+            z.KlientNazwa = String.Format("{0} {1}", k.Imie, k.Nazwisko);
+            z.KlientFirma = k.Firma;
+            z.KlientID = k.Id;
+
+            if (zamowienie.Pracownik != null)
             {
-                Id = zamowienie.Id,
-                DataZlozenia = zamowienie.DataZlozenia,
-                DataZrealizowania = zamowienie.DataZrealizowania,
-                Klient = MapKlientToPOCO(zamowienie.Klient)
+                z.PracownikID = zamowienie.Pracownik.Id;
+                z.Pracownik = MapPracownikToPOCO(zamowienie.Pracownik);
+            }
+
+            return z;
+        }
+
+        public static ZamowieniaKoszykPOCO MapKoszykToPOCO(ZamowieniaKoszyk koszyk)
+        {
+            return new ZamowieniaKoszykPOCO
+            {
+                Id = koszyk.Id,
+                Nazwa = koszyk.Produkt.Nazwa,
+                Producent = koszyk.Produkt.Producent.Nazwa,
+                Ilosc = koszyk.Ilosc,
+                CenaJednostkowa = koszyk.Produkt.Cena,
+                CenaCalosciowa = koszyk.Ilosc * koszyk.Produkt.Cena,
+                ProduktID = koszyk.Produkt.Id,
+                ZamowienieID = koszyk.Zamowienie.Id
             };
         }
 

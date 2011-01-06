@@ -8,6 +8,7 @@ using NHibernate;
 namespace BazaDanych.Repositories
 {
     public  class Repository<T> : IRepository<T>
+        where T : class
     {
         public T GetById(int id)
         {
@@ -17,17 +18,21 @@ namespace BazaDanych.Repositories
 
             return klient;
         }
-        public void Add(T item)
+        public int Add(T item)
         {
+            int addedItemId;
+
             using (var session = SessionFactory.OpenSession())
             {
                 using (var transaction = session.BeginTransaction())
                 {
-                    session.Save(item);
+                    addedItemId = (int)session.Save(item);
                     transaction.Commit();
                     session.Flush();
                 }
             }
+
+            return addedItemId;
         }
 
         public void AddById(T item,int Id)

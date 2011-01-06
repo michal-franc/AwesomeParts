@@ -42,7 +42,7 @@
         /// </summary>
         /// <param name="message">The error message to display.</param>
         /// <param name="errorDetails">Extra information about the error.</param>
-        protected ErrorWindow(string message, string errorDetails)
+        public ErrorWindow(string message, string errorDetails)
         {
             InitializeComponent();
             IntroductoryText.Text = message;

@@ -27,9 +27,13 @@ namespace AwesomeParts.Web.Services
         private PracownikRepository _pracownicyContext = new PracownikRepository();
         private IRepository<PracownikRodzaj> _pracownikRodzajeContext = new Repository<PracownikRodzaj>();
         private IRepository<PracownikStatus> _pracownikStatusyContext = new Repository<PracownikStatus>();
+        private IRepository<PracownikUmowa> _pracownikUmowyContext = new Repository<PracownikUmowa>();
+        private IRepository<ZamowieniaKoszyk> _koszykContext = new Repository<ZamowieniaKoszyk>();
 
         #endregion contexts
 
+        #region CRUDs
+        
         #region Produkty CRUD
 
         [Insert()]
@@ -99,31 +103,84 @@ namespace AwesomeParts.Web.Services
 
         #region Pracownicy CRUD
 
-        //[Insert()]
-        //public void InsertPracownik(PracownikPOCO produkt)
-        //{
-        //    _pracownikContext.Add(new Pracownik
-        //    {
-        //        Nazwa = produkt.Nazwa,
-        //        Ilosc = produkt.Ilosc,
-        //        Cena = produkt.Cena,
-        //        DocelowaIlosc = produkt.DocelowaIlosc,
-        //        Producent = _producentContext.GetById(produkt.ProducentID)
-        //    });
-        //}
+        [Insert()]
+        public void InsertPracownik(PracownikPOCO pracownik)
+        {
+            PracownikStatus ps = _pracownikStatusyContext.GetById(pracownik.StatusID);
+            PracownikRodzaj pr = _pracownikRodzajeContext.GetById(pracownik.RodzajID);
 
-        //[Update()]
-        //public void UpdatePracownik(PracownikPOCO produkt)
-        //{
-        //    _pracownikContext.UpdateById(new Pracownik
-        //    {
-        //        Nazwa = produkt.Nazwa,
-        //        Ilosc = produkt.Ilosc,
-        //        Cena = produkt.Cena,
-        //        DocelowaIlosc = produkt.DocelowaIlosc,
-        //        Producent = _producentContext.GetById(produkt.ProducentID)
-        //    }, produkt.Id);
-        //}
+            int pracownikID = _pracownicyContext.Add(new Pracownik
+            {
+                Imie = pracownik.Imie,
+                Nazwisko = pracownik.Nazwisko,
+                Pesel = pracownik.Pesel,
+                Status = ps,
+                Rodzaj = pr,
+                UwagiDoStatusu = pracownik.UwagiDoStatusu,
+                
+            });
+
+            if (pracownikID == 0) throw new Exception();
+
+            InsertEmptyUmowa(pracownikID);
+        }
+
+        [Update()]
+        public void UpdatePracownik(PracownikPOCO pracownik)
+        {
+            Pracownik p = _pracownicyContext.GetById(pracownik.Id);
+            PracownikStatus ps = _pracownikStatusyContext.GetById(pracownik.StatusID);
+            PracownikRodzaj pr = _pracownikRodzajeContext.GetById(pracownik.RodzajID);
+
+            p.Imie = pracownik.Imie;
+            p.Nazwisko = pracownik.Nazwisko;
+            p.Pesel = pracownik.Pesel;
+            p.Status = ps;
+            p.Rodzaj = pr;
+            p.UwagiDoStatusu = pracownik.UwagiDoStatusu;
+
+            _pracownicyContext.Update(p);
+        }
+
+        [Update]
+        public void UpdateUmowa(PracownikUmowaPOCO umowa)
+        {
+            PracownikUmowa u = _pracownikUmowyContext.GetById(umowa.Id);
+
+            u.DataPodpisania = umowa.DataPodpisania;
+            u.DataWygasniecia = umowa.DataWygasniecia;
+            u.Aktualna = umowa.Aktualna;
+            u.Placa = umowa.Placa;
+            u.Uwagi = umowa.Uwagi;
+
+            _pracownikUmowyContext.Update(u);
+        }
+
+        [Insert]
+        public void InsertUmowa(PracownikUmowaPOCO umowa)
+        {
+            Pracownik p = _pracownicyContext.GetById(umowa.PracownikID);
+            _pracownikUmowyContext.Add(new PracownikUmowa
+            {
+                DataPodpisania = umowa.DataPodpisania,
+                DataWygasniecia = umowa.DataWygasniecia,
+                Aktualna = umowa.Aktualna,
+                Placa = umowa.Placa,
+                Uwagi = umowa.Uwagi,
+                Pracownik = p
+            });
+        }
+
+        [Ignore]
+        private void InsertEmptyUmowa(int pracownikID)
+        {
+            InsertUmowa(new PracownikUmowaPOCO
+            {
+                PracownikID = pracownikID,
+                Uwagi = "Wypelnij szczegoly umowy!",
+                Aktualna = true
+            });
+        }
 
         //[Delete()]
         //public void DeletePracownik(PracownikPOCO produkt)
@@ -191,6 +248,20 @@ namespace AwesomeParts.Web.Services
                 select POCOHelpers.MapPracownikUmowaToPOCO(r));
         }
 
+        [Query]
+        public IQueryable<PracownikUmowaPOCO> GetUmowyByPracownikId(int pracownikID)
+        {
+            if (pracownikID > 0)
+            {
+                return (
+                    from r in this._pracownicyContext.GetById(pracownikID).Umowy.AsQueryable()
+                    select POCOHelpers.MapPracownikUmowaToPOCO(r));
+            }
+            else
+                return null;
+        }
+
+
         #endregion Pracownicy CRUD
 
         #region Klienci CRUD
@@ -212,7 +283,7 @@ namespace AwesomeParts.Web.Services
         {
             _zamowieniaContext.Add(new Zamowienie
             {
-                Klient = _klienciContext.GetById(zamowienie.Klient.Id),
+                Klient = _klienciContext.GetById(zamowienie.KlientID),
                 DataZlozenia = null,
                 Pracownik = null,
                 DataZrealizowania = null,
@@ -224,11 +295,17 @@ namespace AwesomeParts.Web.Services
         public void UpdateZamowienie(ZamowieniePOCO zamowienie)
         {
             Zamowienie z = _zamowieniaContext.GetById(zamowienie.Id);
-            z.Pracownik = _pracownicyContext.GetById(zamowienie.Pracownik.Id);
+
+            if (zamowienie.PracownikID > 0)
+                z.Pracownik = _pracownicyContext.GetById(zamowienie.PracownikID);
+            else
+                z.Pracownik = null;
+
+            z.DataZlozenia = zamowienie.DataZlozenia;
             z.DataZrealizowania = zamowienie.DataZrealizowania;
             z.Zrealizowano = zamowienie.Zrealizowano;
 
-            _zamowieniaContext.UpdateById(z, zamowienie.Id);
+            _zamowieniaContext.Update(z);
         }
 
         [Delete()]
@@ -252,11 +329,77 @@ namespace AwesomeParts.Web.Services
         public IQueryable<ZamowieniePOCO> GetZamowienia()
         {
             return (
-                from r in this._zamowieniaContext.GetAll().AsQueryable<Zamowienie>()
+                from r in this._zamowieniaContext.GetAll().AsQueryable()
+                where r.DataZlozenia != null
+                select POCOHelpers.MapZamowienieToPOCO(r));
+        }
+
+        [Query()]
+        public IQueryable<ZamowieniePOCO> GetZamowieniaNieprzydzielone()
+        {
+            return (
+                from r in this._zamowieniaContext.GetAll().AsQueryable()
+                where r.Pracownik == null
+                select POCOHelpers.MapZamowienieToPOCO(r));
+        }
+
+        [Query()]
+        public IQueryable<ZamowieniePOCO> GetZamowieniaByPracownikId(int pracownikID)
+        {
+            return (
+                from r in this._zamowieniaContext.GetAll().AsQueryable()
+                where r.Pracownik != null && r.Pracownik.Id == pracownikID
+                select POCOHelpers.MapZamowienieToPOCO(r));
+        }
+
+        [Query()]
+        public IQueryable<ZamowieniePOCO> GetZamowieniaByKlientId(int klientID)
+        {
+            return (
+                from r in this._zamowieniaContext.GetAll().AsQueryable()
+                where r.Klient.Id == klientID && r.DataZlozenia != null
+                select POCOHelpers.MapZamowienieToPOCO(r));
+        }
+
+        [Query()]
+        public IQueryable<ZamowieniePOCO> GetAktualneZamowienieByKlientId(int klientID)
+        {
+            return (
+                from r in this._zamowieniaContext.GetAll().AsQueryable()
+                where r.Klient.Id == klientID && r.DataZlozenia == null
                 select POCOHelpers.MapZamowienieToPOCO(r));
         }
 
         #endregion Zamowienia CRUD
+
+        #region Koszyk CRUD
+
+        [Insert()]
+        public void InsertZamowienieKoszyk(ZamowieniaKoszykPOCO zamowienieKoszyk)
+        {
+            Produkty p = _context.GetById(zamowienieKoszyk.ProduktID);
+            Zamowienie z = _zamowieniaContext.GetById(zamowienieKoszyk.ZamowienieID);
+
+            _koszykContext.Add(new ZamowieniaKoszyk
+            {
+                Ilosc = zamowienieKoszyk.Ilosc,
+                Produkt = p,
+                Zamowienie = z
+            });
+        }
+
+        [Query()]
+        public IQueryable<ZamowieniaKoszykPOCO> GetKoszykByZamowienieId(int zamowienieID)
+        {
+            return (
+                from r in this._koszykContext.GetAll().AsQueryable()
+                where r.Zamowienie.Id == zamowienieID
+                select POCOHelpers.MapKoszykToPOCO(r));
+        }
+
+        #endregion Koszyk CRUD
+
+        #endregion CRUDs
     }
 }
 
