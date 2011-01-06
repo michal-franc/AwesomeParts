@@ -12,6 +12,8 @@ namespace AwesomeParts.Web.Services
     using BazaDanych.Repositories;
     using BazaDanych.Entities;
     using AwesomeParts.Web.POCOs.MiniPOCOs;
+    using System.Web.Security;
+    using AwesomeParts.Web.Models;
 
 
     // TODO: Create methods containing your application logic.
@@ -399,6 +401,12 @@ namespace AwesomeParts.Web.Services
 
         #endregion Koszyk CRUD
 
+        #region Helper Queries
+
+        
+
+        #endregion Helper Queries
+        
         #endregion CRUDs
     }
 }

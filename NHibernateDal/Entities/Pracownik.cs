@@ -9,6 +9,8 @@ namespace BazaDanych.Entities
     {
         public virtual int Id { get; private set; }
 
+        public virtual Guid User_id { get; set; }
+
         public virtual string Login { get; set; }
 
         public virtual string Haslo{ get; set; }
@@ -24,7 +26,6 @@ namespace BazaDanych.Entities
         public virtual PracownikRodzaj Rodzaj { get; set; }
 
         public virtual PracownikStatus Status { get; set; }
-        public virtual LoginRola LoginRola { get; set; }
 
         public virtual IList<Zamowienie> Zamowienia { get; set; }
         public virtual IList<PracownikUmowa> Umowy { get; set; }

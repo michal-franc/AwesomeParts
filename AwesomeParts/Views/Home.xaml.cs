@@ -27,7 +27,7 @@
         /// </summary>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            HomeText.Text = AppText.HomeMessage;
+            HomeText.Text = String.Format(AppText.HomeMessage, Environment.NewLine);
             WelcomeText.Text = AppText.WelcomeMessage;
         }
     }

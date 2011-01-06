@@ -65,16 +65,17 @@
                 TextBox textBox = (TextBox)e.Field.Content;
                 textBox.LostFocus += this.UserNameLostFocus;
             }
-            else if (e.PropertyName == "Question")
-            {
-                // Create a ComboBox populated with security questions
-                ComboBox comboBoxWithSecurityQuestions = RegistrationForm.CreateComboBoxWithSecurityQuestions();
+            
+            //else if (e.PropertyName == "Question")
+            //{
+            //    // Create a ComboBox populated with security questions
+            //    ComboBox comboBoxWithSecurityQuestions = RegistrationForm.CreateComboBoxWithSecurityQuestions();
 
-                // Replace the control
-                // Note: Since TextBox.Text treats empty text as string.Empty and ComboBox.SelectedItem
-                // treats an empty selection as null, we need to use a converter on the binding
-                e.Field.ReplaceTextBox(comboBoxWithSecurityQuestions, ComboBox.SelectedItemProperty, binding => binding.Converter = new TargetNullValueConverter());
-            }
+            //    // Replace the control
+            //    // Note: Since TextBox.Text treats empty text as string.Empty and ComboBox.SelectedItem
+            //    // treats an empty selection as null, we need to use a converter on the binding
+            //    e.Field.ReplaceTextBox(comboBoxWithSecurityQuestions, ComboBox.SelectedItemProperty, binding => binding.Converter = new TargetNullValueConverter());
+            //}
         }
 
         /// <summary>

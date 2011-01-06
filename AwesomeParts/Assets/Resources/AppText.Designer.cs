@@ -61,7 +61,7 @@ namespace AwesomeParts {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sklep Awesome Parts jest idealnym miejscem dla twoich zakupów. \n Prosimy się zalogować. Jeżeli nie posiadają państwo konta prosimy o rejestrację i wypełnienie profilu. \n Owocnych zakupów!.
+        ///   Looks up a localized string similar to Sklep Awesome Parts jest idealnym miejscem dla twoich zakupów. {0}Prosimy się zalogować. Jeżeli nie posiadają państwo konta prosimy o rejestrację i wypełnienie profilu. {0}{0}Owocnych zakupów!.
         /// </summary>
         public static string HomeMessage {
             get {

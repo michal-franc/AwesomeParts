@@ -41,6 +41,7 @@ namespace AwesomeParts.Web
                 Id = klient.Id,
                 Imie = klient.Imie,
                 Nazwisko = klient.Nazwisko,
+                Email = klient.Email,
                 Telefon = klient.Telefon,
                 Firma = klient.Firma,
                 NIP = klient.NIP,
@@ -49,42 +50,9 @@ namespace AwesomeParts.Web
                 Miasto = klient.Miasto,
                 KodPocztowy = klient.KodPocztowy,
                 Kraj = klient.Kraj,
-                Rodzaj = new KlientRodzajPOCO
-                {
-                    Id = klient.Rodzaj.Id,
-                    Rodzaj = klient.Rodzaj.Rodzaj
-                }
+                UserID = klient.User_id
             };
         }
-
-        //public static Klient MapPOCOToKlient(KlientPOCO poco)
-        //{
-        //    return new Klient
-        //    {
-        //        Imie = poco.Imie,
-        //        Nazwisko = poco.Nazwisko,
-        //        Login = poco.Login,
-        //        Haslo = poco.Haslo,
-        //        Telefon = poco.Telefon,
-        //        Firma = poco.Firma,
-        //        NIP = poco.NIP,
-        //        Ulica = poco.Ulica,
-        //        Numer = poco.Numer,
-        //        Miasto = poco.Miasto,
-        //        KodPocztowy = poco.KodPocztowy,
-        //        Kraj = poco.Kraj,
-        //        Rodzaj = new KlientRodzajPOCO
-        //        {
-        //            Id = poco.Rodzaj.Id,
-        //            Rodzaj = poco.Rodzaj.Rodzaj
-        //        },
-        //        LoginRola = new LoginRolaPOCO
-        //        {
-        //            ID = poco.LoginRola.ID,
-        //            Rola = poco.LoginRola.Rola
-        //        }
-        //    };
-        //}
 
         #endregion Klient
 

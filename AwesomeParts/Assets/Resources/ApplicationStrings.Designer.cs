@@ -61,7 +61,7 @@ namespace AwesomeParts {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to About.
+        ///   Looks up a localized string similar to O nas.
         /// </summary>
         public static string AboutPageTitle {
             get {
@@ -70,7 +70,7 @@ namespace AwesomeParts {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Already registered?.
+        ///   Looks up a localized string similar to Kliknij jeśli jesteś już zarejestrowany.
         /// </summary>
         public static string AlreadyRegisteredLabel {
             get {
@@ -88,7 +88,7 @@ namespace AwesomeParts {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Back to Login.
+        ///   Looks up a localized string similar to Wróć do okna logowania.
         /// </summary>
         public static string BackToLoginButton {
             get {
@@ -97,7 +97,7 @@ namespace AwesomeParts {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Initializing Application.....
+        ///   Looks up a localized string similar to Proszę czekać....
         /// </summary>
         public static string BusyIndicatorLoadingUser {
             get {
@@ -106,7 +106,7 @@ namespace AwesomeParts {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Logging in....
+        ///   Looks up a localized string similar to Logowanie....
         /// </summary>
         public static string BusyIndicatorLoggingIn {
             get {
@@ -115,7 +115,7 @@ namespace AwesomeParts {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Submitting Registration....
+        ///   Looks up a localized string similar to Rejestruję....
         /// </summary>
         public static string BusyIndicatorRegisteringUser {
             get {
@@ -124,7 +124,7 @@ namespace AwesomeParts {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cancel.
+        ///   Looks up a localized string similar to Anuluj.
         /// </summary>
         public static string CancelButton {
             get {
@@ -142,7 +142,7 @@ namespace AwesomeParts {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to |        LOGIN          .
+        ///   Looks up a localized string similar to |        ZALOGUJ          .
         /// </summary>
         public static string LoginButton {
             get {
@@ -151,7 +151,7 @@ namespace AwesomeParts {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Login.
+        ///   Looks up a localized string similar to Zaloguj.
         /// </summary>
         public static string LoginWindowTitle {
             get {
@@ -160,7 +160,7 @@ namespace AwesomeParts {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to |        LOGOUT          .
+        ///   Looks up a localized string similar to |        WYLOGUJ          .
         /// </summary>
         public static string LogOffButton {
             get {
@@ -169,7 +169,7 @@ namespace AwesomeParts {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Not registered yet?.
+        ///   Looks up a localized string similar to Nie masz jeszcze loginu?.
         /// </summary>
         public static string NotRegisteredYetLabel {
             get {
@@ -187,7 +187,7 @@ namespace AwesomeParts {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Register now.
+        ///   Looks up a localized string similar to Zarejestruj się.
         /// </summary>
         public static string RegisterNowButton {
             get {
@@ -196,7 +196,7 @@ namespace AwesomeParts {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please complete all required fields to create your account.
+        ///   Looks up a localized string similar to Wypełnij wszystkie wymagane pola, by utworzyć swój login.
         /// </summary>
         public static string RegistrationFormHeader {
             get {
@@ -205,7 +205,7 @@ namespace AwesomeParts {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Register.
+        ///   Looks up a localized string similar to Rejestracja.
         /// </summary>
         public static string RegistrationWindowTitle {
             get {
@@ -214,7 +214,7 @@ namespace AwesomeParts {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Keep me signed in.
+        ///   Looks up a localized string similar to Pamiętaj mnie.
         /// </summary>
         public static string RememberMeLabel {
             get {
@@ -223,7 +223,7 @@ namespace AwesomeParts {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Welcome {0}.
+        ///   Looks up a localized string similar to Witaj {0}, kurwa.
         /// </summary>
         public static string WelcomeMessage {
             get {

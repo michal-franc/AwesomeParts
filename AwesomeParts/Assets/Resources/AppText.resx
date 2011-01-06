@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="HomeMessage" xml:space="preserve">
-    <value>Sklep Awesome Parts jest idealnym miejscem dla twoich zakupów. \n Prosimy się zalogować. Jeżeli nie posiadają państwo konta prosimy o rejestrację i wypełnienie profilu. \n Owocnych zakupów!</value>
+    <value>Sklep Awesome Parts jest idealnym miejscem dla twoich zakupów. {0}Prosimy się zalogować. Jeżeli nie posiadają państwo konta prosimy o rejestrację i wypełnienie profilu. {0}{0}Owocnych zakupów!</value>
   </data>
   <data name="WelcomeMessage" xml:space="preserve">
     <value>Witamy!</value>

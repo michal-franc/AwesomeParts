@@ -110,6 +110,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Models\ProfileData.cs" />
     <Compile Include="POCOHelpers.cs" />
     <Compile Include="POCOs\KlientPOCO.cs" />
     <Compile Include="POCOs\KlientRodzajPOCO.cs" />
@@ -139,6 +140,7 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\RegistrationData.cs" />
     <Compile Include="Services\AwesomePartsService.cs" />
+    <Compile Include="Services\ProfileService.cs" />
     <Compile Include="Services\UserRegistrationService.cs" />
     <Compile Include="Models\Shared\User.shared.cs" />
   </ItemGroup>

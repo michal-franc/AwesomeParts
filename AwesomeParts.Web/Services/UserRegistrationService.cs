@@ -2,12 +2,15 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.ComponentModel.DataAnnotations;
     using System.ServiceModel.DomainServices.Hosting;
     using System.ServiceModel.DomainServices.Server;
     using System.Web.Profile;
     using System.Web.Security;
     using AwesomeParts.Web.Resources;
+    using BazaDanych.Repositories;
+    using BazaDanych.Entities;
 
     /// <summary>
     ///   RIA Services Domain Service that exposes methods for performing user
@@ -20,6 +23,7 @@
         /// Role to which users will be added by default.
         /// </summary>
         public const string DefaultRole = "Klient";
+        private KlientRepository _klientContext = new KlientRepository();
 
         //// NOTE: This is a sample code to get your application started. In the production code you would 
         //// want to provide a mitigation against a denial of service attack by providing CAPTCHA 
@@ -56,7 +60,7 @@
             // NOTE: ASP.NET by default uses SQL Server Express to create the user database. 
             // CreateUser will fail if you do not have SQL Server Express installed.
             MembershipCreateStatus createStatus;
-            Membership.CreateUser(user.UserName, password, user.Email, user.Question, user.Answer, true, null, out createStatus);
+            MembershipUser newUser = Membership.CreateUser(user.UserName, password, user.Email, null, null, true, null, out createStatus);
 
             if (createStatus != MembershipCreateStatus.Success)
             {
@@ -72,6 +76,23 @@
             ProfileBase profile = ProfileBase.Create(user.UserName, true);
             profile.SetPropertyValue("FriendlyName", user.FriendlyName);
             profile.Save();
+
+            _klientContext.Add(new Klient
+            {
+                Email = newUser.Email,
+                Firma = user.Firma,
+                Imie = user.Imie,
+                KodPocztowy = user.KodPocztowy,
+                Kraj = user.Kraj,
+                Login = newUser.UserName,
+                Miasto = user.Miasto,
+                Nazwisko = user.Nazwisko,
+                NIP = user.NIP,
+                Numer = user.Numer,
+                User_id = (Guid)newUser.ProviderUserKey,
+                Telefon = user.Telefon,
+                Ulica = user.Ulica,
+            });
 
             return CreateUserStatus.Success;
         }
@@ -107,6 +128,9 @@
                 default: return CreateUserStatus.Failure;
             }
         }
+
+
+        
     }
 
     /// <summary>

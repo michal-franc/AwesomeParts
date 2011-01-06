@@ -71,6 +71,8 @@ namespace AwesomeParts.Controls
 
         private void AddNewProduktToKoszykSubmitChangesCallback(SubmitOperation so)
         {
+            (so.UserState as KoszykData).Context.ZamowieniaKoszykPOCOs.Clear();
+
             if (AddToKoszykCompleted != null)
                 AddToKoszykCompleted(this, new EventArgs());
         }
@@ -121,6 +123,8 @@ namespace AwesomeParts.Controls
 
         private void GenerateNewZamowienie(KoszykData kd)
         {
+            kd.Context.ZamowieniePOCOs.Clear();
+
             kd.Context.ZamowieniePOCOs.Add(new ZamowieniePOCO
             {
                 KlientID = kd.KlientID
@@ -138,7 +142,7 @@ namespace AwesomeParts.Controls
                 ZamowienieID = kd.ZamowienieID
             });
 
-            kd.Context.SubmitChanges(AddNewProduktToKoszykSubmitChangesCallback, null);
+            kd.Context.SubmitChanges(AddNewProduktToKoszykSubmitChangesCallback, kd);
         }
 
         #endregion Helper Methods
