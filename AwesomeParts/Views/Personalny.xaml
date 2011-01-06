@@ -57,6 +57,22 @@
                                           QueryName="GetPracownicy">
                 </riaControls:DomainDataSource>
 
+
+
+                <!--<sdk:DataGrid x:Name="PracownicyGrid" Margin="5"
+                              ItemsSource="{Binding Data, ElementName=DataSource}"
+                              AutoGenerateColumns="False" HorizontalScrollBarVisibility="Visible">
+                        <sdk:DataGrid.Columns>
+                            <sdk:DataGridTextColumn Header="L.p."  Binding="{Binding Id}" />
+                            <sdk:DataGridTextColumn Header="Imie" Binding="{Binding Imie}" />
+                            <sdk:DataGridTextColumn Header="Nazwisko" Binding="{Binding Nazwisko}" />
+                            <sdk:DataGridTextColumn Header="PESEL" Binding="{Binding Pesel}" />
+                            <sdk:DataGridTextColumn Header="Status" Binding="{Binding Status.Status}" />
+                            <sdk:DataGridTextColumn Header="Uwagi do statusu" Binding="{Binding UwagiDoStatusu}" />
+                            <sdk:DataGridTextColumn Header="Rodzaj" Binding="{Binding Rodzaj.Rodzaj}" />
+                            
+                        </sdk:DataGrid.Columns>
+                    </sdk:DataGrid>-->
                 <StackPanel Grid.Row="0">
                     <StackPanel Orientation="Horizontal" Height="50">
                         <TextBlock Text="Grupuj po:     "/>

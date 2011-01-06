@@ -166,9 +166,6 @@
     <Compile Include="Views\Login\RegistrationForm.xaml.cs">
       <DependentUpon>RegistrationForm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MyUmowa.xaml.cs">
-      <DependentUpon>MyUmowa.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\NoAcces.xaml.cs">
       <DependentUpon>NoAcces.xaml</DependentUpon>
     </Compile>
@@ -266,10 +263,6 @@
     <Page Include="Views\Login\RegistrationForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:MarkupCompilePass1</Generator>
-    </Page>
-    <Page Include="Views\MyUmowa.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\NoAcces.xaml">
       <Generator>MSBuild:Compile</Generator>

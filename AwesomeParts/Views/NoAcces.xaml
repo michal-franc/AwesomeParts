@@ -8,6 +8,6 @@
            d:DesignWidth="640" d:DesignHeight="480"
            Title="NoAcces Page">
     <Grid x:Name="LayoutRoot">
-
+        <Image Width="Auto" Height="Auto" Source="../Images/NoAcces.png"></Image>
     </Grid>
 </navigation:Page>
