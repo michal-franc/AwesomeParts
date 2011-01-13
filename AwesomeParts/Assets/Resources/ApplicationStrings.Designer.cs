@@ -223,7 +223,7 @@ namespace AwesomeParts {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Witaj {0}, kurwa.
+        ///   Looks up a localized string similar to Witaj {0}.
         /// </summary>
         public static string WelcomeMessage {
             get {

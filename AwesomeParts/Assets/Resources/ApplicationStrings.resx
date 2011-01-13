@@ -175,7 +175,7 @@
     <value>Pamiętaj mnie</value>
   </data>
   <data name="WelcomeMessage" xml:space="preserve">
-    <value>Witaj {0}, kurwa</value>
+    <value>Witaj {0}</value>
     <comment>{0} = User.DisplayName property</comment>
   </data>
 </root>
