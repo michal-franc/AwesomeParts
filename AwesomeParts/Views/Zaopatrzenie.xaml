@@ -25,7 +25,13 @@
                     <ColumnDefinition Width="350" />
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="0">
-                    <sdk:DataGrid x:Name="ProduktyGrid" Margin="5"
+                <StackPanel Orientation="Horizontal" Height="50">
+                    <TextBlock x:Name="NazwaFilterTextBlock" Text="Filtruj po nazwie: "/>
+                    <TextBox x:Name="NazwaFilterTextBox" Width="190" Height="25" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="ProducentFilterTextBlock" Text="  Filtruj po producencie: "/>
+                    <TextBox x:Name="ProducentFilterTextBox" Width="190" Height="25" VerticalAlignment="Top"/>
+                </StackPanel>
+                    <sdk:DataGrid x:Name="ProduktyGrid" Margin="5 5 5 40"
                               ItemsSource="{Binding Data, ElementName=DataSource}"
                               AutoGenerateColumns="False">
                         <sdk:DataGrid.Columns>
@@ -37,15 +43,28 @@
                             <sdk:DataGridTextColumn Header="Producent" Binding="{Binding Producent.Nazwa}" />
                         </sdk:DataGrid.Columns>
                     </sdk:DataGrid>
-                </StackPanel>
+                <sdk:DataPager Source="{Binding Data, ElementName=DataSource}"
+                                   HorizontalAlignment="Stretch"
+                                   VerticalAlignment="Bottom" />
+            </StackPanel>
 
                 <riaControls:DomainDataSource x:Name="DataSource" AutoLoad="True"
+                                              PageSize="10"
+                                              LoadSize="30"
                                           DomainContext="{StaticResource prodContext}"
                                           QueryName="GetProdukty">
                     <riaControls:DomainDataSource.GroupDescriptors>
                         <riaControls:GroupDescriptor PropertyPath="Producent.Nazwa" />
                     </riaControls:DomainDataSource.GroupDescriptors>
-                </riaControls:DomainDataSource>
+                <riaControls:DomainDataSource.FilterDescriptors>
+                    <riaControls:FilterDescriptor PropertyPath="Nazwa"
+                                                          Operator="Contains"
+                                                          Value="{Binding Text, ElementName=NazwaFilterTextBox}" />
+                    <riaControls:FilterDescriptor PropertyPath="Producent.Nazwa"
+                                                          Operator="Contains"
+                                                          Value="{Binding Text, ElementName=ProducentFilterTextBox}" />
+                </riaControls:DomainDataSource.FilterDescriptors>
+            </riaControls:DomainDataSource>
 
                 <toolkit:DataForm x:Name="ProduktyDataForm" Grid.Column="1" 
                               Margin="5 40 0 40" 
