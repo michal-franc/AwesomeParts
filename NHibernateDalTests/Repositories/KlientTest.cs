@@ -106,16 +106,6 @@ namespace Tests.Repositories
         }
 
         [Test]
-        public void CanGetByKlientRodzaj()
-        {
-            var testedKlients = _repository.GetByRodzaj("Kupujacy");
-            Assert.That(testedKlients.Count, Is.EqualTo(2));
-            
-            testedKlients = _repository.GetByRodzaj("Sprzedajacy");
-            Assert.That(testedKlients.Count, Is.EqualTo(1));
-        }
-
-        [Test]
         public void CanGetByCompanyName()
         {
             var testedKlients = _repository.GetByFilter("Firma", "Contium");

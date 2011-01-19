@@ -11,12 +11,12 @@ namespace Tests.Repositories
     [TestFixture]
     public class KoszykTest
     {
-        Repository<ZamowieniaKoszyk> _repository;
+        KoszykRepository _repository;
 
         [TestFixtureSetUp]
         public void SetUp()
         {
-            _repository = new Repository<ZamowieniaKoszyk>();
+            _repository = new KoszykRepository();
         }
 
         [Test]
@@ -75,6 +75,26 @@ namespace Tests.Repositories
 
             var koszykiCount = _repository.GetCount();
             Assert.That(koszykiCount, Is.EqualTo(koszykiBeforeCount));
+        }
+
+        [Test]
+        public void CanGetProductsSoldByYear()
+        {
+            var iloscPomidorow = _repository.GetProductsSoldByYear(2009, "Pomidor");
+            var iloscPomidorowBrak = _repository.GetProductsSoldByYear(2000, "Pomidor");
+
+            Assert.That(iloscPomidorow, Is.EqualTo(10));
+            Assert.That(iloscPomidorowBrak, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void CanGetProductsSoldByMonthAndYear()
+        {
+            var iloscPomidorow = _repository.GetProductsSoldByMonth(10,2009, "Pomidor");
+            var iloscPomidorowBrak= _repository.GetProductsSoldByMonth(9,20008, "Pomidor");
+
+            Assert.That(iloscPomidorow, Is.EqualTo(10));
+            Assert.That(iloscPomidorowBrak, Is.EqualTo(0));
         }
     }
 }

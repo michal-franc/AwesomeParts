@@ -21,8 +21,8 @@ namespace AwesomeParts.Web.Services
     public class AwesomePartsService : DomainService
     {
         #region contexts
-        
-        private IRepository<Produkty> _context = new Repository<Produkty>();
+
+        private Repository<Produkty> _produktyContext = new Repository<Produkty>();
         private IRepository<ProduktProducent> _producentContext = new Repository<ProduktProducent>();
         private ZamowieniaRepository _zamowieniaContext = new ZamowieniaRepository();
         private KlientRepository _klienciContext = new KlientRepository();
@@ -30,7 +30,7 @@ namespace AwesomeParts.Web.Services
         private IRepository<PracownikRodzaj> _pracownikRodzajeContext = new Repository<PracownikRodzaj>();
         private IRepository<PracownikStatus> _pracownikStatusyContext = new Repository<PracownikStatus>();
         private IRepository<PracownikUmowa> _pracownikUmowyContext = new Repository<PracownikUmowa>();
-        private IRepository<ZamowieniaKoszyk> _koszykContext = new Repository<ZamowieniaKoszyk>();
+        private KoszykRepository _koszykContext = new KoszykRepository();
 
         #endregion contexts
 
@@ -41,7 +41,7 @@ namespace AwesomeParts.Web.Services
         [Insert()]
         public void InsertProdukt(ProduktPOCO produkt)
         {
-            _context.Add(new Produkty
+            _produktyContext.Add(new Produkty
             {
                 Nazwa = produkt.Nazwa,
                 Ilosc = produkt.Ilosc,
@@ -54,7 +54,7 @@ namespace AwesomeParts.Web.Services
         [Update()]
         public void UpdateProdukt(ProduktPOCO produkt)
         {
-            _context.UpdateById(new Produkty
+            _produktyContext.UpdateById(new Produkty
             {
                 Nazwa = produkt.Nazwa,
                 Ilosc = produkt.Ilosc,
@@ -78,14 +78,14 @@ namespace AwesomeParts.Web.Services
             //        Nazwa = produkt.ProducentNazwa
             //    }
             //});
-            _context.Remove(_context.GetById(produkt.Id));
+            _produktyContext.Remove(_produktyContext.GetById(produkt.Id));
         }
 
         [Query()]
         public IQueryable<ProduktPOCO> GetProdukty()
         {
             return (
-                from r in this._context.GetAll().AsQueryable<Produkty>()
+                from r in this._produktyContext.GetAll().AsQueryable<Produkty>()
                 select POCOHelpers.MapProduktToPOCO(r));
         }
 
@@ -100,6 +100,18 @@ namespace AwesomeParts.Web.Services
                     Nazwa = r.Nazwa
                 });
         }
+
+        //[Query()]
+        //public int GetProductsSoldByYear(int year,string productName)
+        //{
+        //    return 0;
+        //}
+
+        //[Query()]
+        //public int GetProductsSoldByMonthAndYear(int month,int Year,string productName)
+        //{
+        //    return 0;
+        //}
 
         #endregion Produkty CRUD
 
@@ -379,7 +391,7 @@ namespace AwesomeParts.Web.Services
         [Insert()]
         public void InsertZamowienieKoszyk(ZamowieniaKoszykPOCO zamowienieKoszyk)
         {
-            Produkty p = _context.GetById(zamowienieKoszyk.ProduktID);
+            Produkty p = _produktyContext.GetById(zamowienieKoszyk.ProduktID);
             Zamowienie z = _zamowieniaContext.GetById(zamowienieKoszyk.ZamowienieID);
 
             _koszykContext.Add(new ZamowieniaKoszyk
