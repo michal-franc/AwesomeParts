@@ -14,7 +14,11 @@ namespace AwesomeParts.Web.POCOs
         public int Id { get; set; }
 
         public int Placa { get; set; }
+
+        [Display(Name = "Data podpisania", Description = "Data podpisania umowy")]
         public Nullable<DateTime> DataPodpisania { get; set; }
+
+        [Display(Name = "Data wygasniecia", Description = "Data wygaśnięcia umowy")]
         public Nullable<DateTime> DataWygasniecia { get; set; }
         public bool Aktualna { get; set; }
         public string Uwagi { get; set; }

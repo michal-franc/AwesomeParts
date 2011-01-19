@@ -13,6 +13,7 @@ using System.Windows.Navigation;
 using AwesomeParts.Web.Services;
 using AwesomeParts.Web.POCOs;
 using System.ServiceModel.DomainServices.Client;
+using AwesomeParts.Web.Models;
 
 
 namespace AwesomeParts.Views
@@ -59,9 +60,38 @@ namespace AwesomeParts.Views
 
         #region Events
 
+        private void GrupujCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (ProduktySource.CanLoad == true)
+            {
+                if (GrupujCB.SelectedIndex == 0)
+                {
+                    ProduktySource.GroupDescriptors.Clear();
+                    ProduktySource.Load();
+                    ProduktyGrid.ItemsSource = ProduktySource.Data;
+                    ProduktyGrid.SelectedIndex = 0;
+                }
+                else if (GrupujCB.SelectedIndex == 1)
+                {
+                    ProduktySource.GroupDescriptors.Clear();
+                    ProduktySource.GroupDescriptors.Add(new GroupDescriptor
+                    {
+                        PropertyPath = "Producent.Nazwa"
+                    });
+                    ProduktySource.Load();
+
+                    ProduktyGrid.ItemsSource = ProduktySource.Data;
+                    ProduktyGrid.SelectedIndex = 0;
+                }
+            }
+        }
+
         void ZamowienieSource_SubmittedChanges(object sender, SubmittedChangesEventArgs e)
         {
             KoszykGrid.ItemsSource = null;
+            AktualneZamowienie = null;
+            AktualneZamowienieID = 0;
+            KoszykSource.Clear();
             PustyKoszykTextBlock.Visibility = System.Windows.Visibility.Visible;
         }
 
@@ -74,8 +104,9 @@ namespace AwesomeParts.Views
         {
             if (e.Entities.Count() > 0)
             {
-                AktualneZamowienie = e.Entities.Cast<ZamowieniePOCO>().First<ZamowieniePOCO>();
+                AktualneZamowienie = e.Entities.Cast<ZamowieniePOCO>().First<ZamowieniePOCO>(); // Nie działa przy pustym koszyku !!!!
                 AktualneZamowienieID = AktualneZamowienie.Id;
+                PustyKoszykTextBlock.Visibility = System.Windows.Visibility.Collapsed;
                 PopulateKoszykGrid(AktualneZamowienieID);
             }
             else
@@ -83,6 +114,16 @@ namespace AwesomeParts.Views
                 AktualneZamowienieID = 0;
                 PustyKoszykTextBlock.Visibility = System.Windows.Visibility.Visible;
             }
+        }
+
+        private void ZamowienieSource_LoadedDataWhileSubmittingOrder(object sender, LoadedDataEventArgs e)
+        {
+            ZamowienieSource.LoadedData += ZamowienieSource_LoadedData;
+            ZamowienieSource.LoadedData -= ZamowienieSource_LoadedDataWhileSubmittingOrder;
+
+            AktualneZamowienie = e.Entities.Cast<ZamowieniePOCO>().First();
+            AktualneZamowienie.DataZlozenia = DateTime.Now;
+            ZamowienieSource.SubmitChanges();
         }
 
         private void KoszykAdder_AddToKoszykCompleted(object sender, EventArgs e)
@@ -93,10 +134,40 @@ namespace AwesomeParts.Views
 
         private void SubmitOrder_Click(object sender, RoutedEventArgs e)
         {
-            AktualneZamowienie.DataZlozenia = DateTime.Now;
-            ZamowienieSource.SubmitChanges();
+            if (AktualneZamowienie == null)
+            {
+                ZamowienieSource.LoadedData -= ZamowienieSource_LoadedData;
+                ZamowienieSource.LoadedData += ZamowienieSource_LoadedDataWhileSubmittingOrder;
+                ZamowienieSource.Clear();
+                ZamowienieSource.QueryParameters.Clear();
+                ZamowienieSource.QueryParameters.Add(new Parameter
+                {
+                    ParameterName = "klientID",
+                    Value = KlientID
+                });
+                ZamowienieSource.Load();
+            }
+            else
+            {
+                AktualneZamowienie.DataZlozenia = DateTime.Now;
+                ZamowienieSource.SubmitChanges();
+            }
 
-            AktualneZamowienieID = 0;
+            //AktualneZamowienieID = 0;
+            //AktualneZamowienie = null;
+        }
+
+        private void LoadUserIdCompleted(LoadOperation<ProfileData> lo)
+        {
+            KlientID = lo.Entities.First().id;
+
+            ZamowienieSource.QueryParameters.Clear();
+            ZamowienieSource.QueryParameters.Add(new Parameter
+            {
+                ParameterName = "klientID",
+                Value = KlientID
+            });
+            ZamowienieSource.Load();
         }
 
         #endregion Events
@@ -110,8 +181,6 @@ namespace AwesomeParts.Views
             dds.AutoLoad = autoLoad;
             dds.DomainContext = context;
             dds.QueryName = queryName;
-            DataGridTextColumn d = new DataGridTextColumn();
-            d.CellStyle = new Style();
 
             return dds;
         }
@@ -146,31 +215,30 @@ namespace AwesomeParts.Views
         {
             InitializeComponent();
 
-            KlientID = 1;
-
             var context = this.Resources["KlientContext"] as AwesomePartsContext;
+            var profileContext = new ProfileContext();
+
+            string userName = WebContext.Current.User.GetIdentity() as string;
+            EntityQuery<ProfileData> query = profileContext.GetUserIdByUserNameQuery(userName);
+            profileContext.Load<ProfileData>(query, LoadUserIdCompleted, null);
+
+            
             ZamowienieSource = CreateAndInitializeDomainDataSource("dds", context, false, "GetAktualneZamowienieByKlientId");
             ZamowienieSource.LoadedData += new EventHandler<LoadedDataEventArgs>(ZamowienieSource_LoadedData);
             ZamowienieSource.SubmittedChanges += new EventHandler<SubmittedChangesEventArgs>(ZamowienieSource_SubmittedChanges);
             KoszykSource = CreateAndInitializeDomainDataSource("KoszykSource", context, false, "GetKoszykByZamowienieId");
             KoszykSource.LoadedData += new EventHandler<LoadedDataEventArgs>(KoszykSource_LoadedData);
+            GrupujCB.SelectionChanged +=new SelectionChangedEventHandler(GrupujCB_SelectionChanged);
+            
         }
 
         // Executes when the user navigates to this page.
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            //if (!WebContext.Current.User.IsInRole("Klient"))
-            //{
-            //    this.NavigationService.Navigate(new Uri("/NoAcces", UriKind.Relative));
-            //}
-
-            ZamowienieSource.QueryParameters.Clear();
-            ZamowienieSource.QueryParameters.Add(new Parameter
+            if (!WebContext.Current.User.IsInRole("Klient"))
             {
-                ParameterName = "klientID",
-                Value = KlientID
-            });
-            ZamowienieSource.Load();
+                this.NavigationService.Navigate(new Uri("/NoAcces", UriKind.Relative));
+            }
         }
     }
 }

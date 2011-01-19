@@ -74,43 +74,6 @@ namespace Tests.Repositories
             Assert.That(klienciAfterDelete, Is.EqualTo(klienciBeforeAdd));
         }
 
-        [Test]
-        public void CanGetKlientRodzaj()
-        {
-            var testedKlient = _repository.GetById(1);
-            Assert.That(testedKlient.Imie, Is.EqualTo("Michal"));
-            Assert.That(testedKlient.Rodzaj.Rodzaj, Is.Not.Null);
-            Assert.That(testedKlient.Rodzaj.Rodzaj, Is.EqualTo("Kupujacy"));
-
-            testedKlient = _repository.GetById(2);
-            Assert.That(testedKlient.Imie, Is.EqualTo("Kamil"));
-            Assert.That(testedKlient.Rodzaj.Rodzaj, Is.Not.Null);
-            Assert.That(testedKlient.Rodzaj.Rodzaj, Is.EqualTo("Kupujacy"));
-
-            testedKlient = _repository.GetById(3);
-            Assert.That(testedKlient.Imie, Is.EqualTo("Stefan"));
-            Assert.That(testedKlient.Rodzaj.Rodzaj, Is.Not.Null);
-            Assert.That(testedKlient.Rodzaj.Rodzaj, Is.EqualTo("Sprzedajacy"));
-        }
-
-        [Test]
-        public void CanGetKlientRola()
-        {
-            var testedKlient = _repository.GetById(1);
-            Assert.That(testedKlient.Imie, Is.EqualTo("Michal"));
-            Assert.That(testedKlient.LoginRola.Rola, Is.Not.Null);
-            Assert.That(testedKlient.LoginRola.Rola, Is.EqualTo("Kontrahent"));
-
-            testedKlient = _repository.GetById(2);
-            Assert.That(testedKlient.Imie, Is.EqualTo("Kamil"));
-            Assert.That(testedKlient.LoginRola.Rola, Is.Not.Null);
-            Assert.That(testedKlient.LoginRola.Rola, Is.EqualTo("Kontrahent"));
-
-            testedKlient = _repository.GetById(3);
-            Assert.That(testedKlient.Imie, Is.EqualTo("Stefan"));
-            Assert.That(testedKlient.LoginRola.Rola, Is.Not.Null);
-            Assert.That(testedKlient.LoginRola.Rola, Is.EqualTo("Kontrahent"));
-        }
 
         [Test]
         public void CanFilterByCity()

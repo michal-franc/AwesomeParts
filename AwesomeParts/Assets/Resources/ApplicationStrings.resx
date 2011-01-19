@@ -118,64 +118,64 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutPageTitle" xml:space="preserve">
-    <value>About</value>
+    <value>O nas</value>
   </data>
   <data name="AlreadyRegisteredLabel" xml:space="preserve">
-    <value>Already registered?</value>
+    <value>Kliknij jeśli jesteś już zarejestrowany</value>
   </data>
   <data name="ApplicationName" xml:space="preserve">
     <value>Sklep Awesome Parts</value>
   </data>
   <data name="BackToLoginButton" xml:space="preserve">
-    <value>Back to Login</value>
+    <value>Wróć do okna logowania</value>
   </data>
   <data name="BusyIndicatorLoadingUser" xml:space="preserve">
-    <value>Initializing Application....</value>
+    <value>Proszę czekać...</value>
     <comment>Displayed while LoadUser() is taking progress during application initialization</comment>
   </data>
   <data name="BusyIndicatorLoggingIn" xml:space="preserve">
-    <value>Logging in...</value>
+    <value>Logowanie...</value>
     <comment>Displayed while a LoginOperation is taking progress</comment>
   </data>
   <data name="BusyIndicatorRegisteringUser" xml:space="preserve">
-    <value>Submitting Registration...</value>
+    <value>Rejestruję...</value>
     <comment>Displayed while registration is being processed by the server</comment>
   </data>
   <data name="CancelButton" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Anuluj</value>
   </data>
   <data name="HomePageTitle" xml:space="preserve">
     <value>Home</value>
   </data>
   <data name="LoginButton" xml:space="preserve">
-    <value>|        LOGIN          </value>
+    <value>|        ZALOGUJ          </value>
   </data>
   <data name="LoginWindowTitle" xml:space="preserve">
-    <value>Login</value>
+    <value>Zaloguj</value>
   </data>
   <data name="LogOffButton" xml:space="preserve">
-    <value>|        LOGOUT          </value>
+    <value>|        WYLOGUJ          </value>
   </data>
   <data name="NotRegisteredYetLabel" xml:space="preserve">
-    <value>Not registered yet?</value>
+    <value>Nie masz jeszcze loginu?</value>
   </data>
   <data name="OKButton" xml:space="preserve">
     <value>OK</value>
   </data>
   <data name="RegisterNowButton" xml:space="preserve">
-    <value>Register now</value>
+    <value>Zarejestruj się</value>
   </data>
   <data name="RegistrationFormHeader" xml:space="preserve">
-    <value>Please complete all required fields to create your account</value>
+    <value>Wypełnij wszystkie wymagane pola, by utworzyć swój login</value>
   </data>
   <data name="RegistrationWindowTitle" xml:space="preserve">
-    <value>Register</value>
+    <value>Rejestracja</value>
   </data>
   <data name="RememberMeLabel" xml:space="preserve">
-    <value>Keep me signed in</value>
+    <value>Pamiętaj mnie</value>
   </data>
   <data name="WelcomeMessage" xml:space="preserve">
-    <value>Welcome {0}</value>
+    <value>Witaj {0}</value>
     <comment>{0} = User.DisplayName property</comment>
   </data>
 </root>

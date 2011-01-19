@@ -317,13 +317,31 @@ namespace AwesomeParts.Web
     public sealed partial class RegistrationData : Entity
     {
         
-        private string _answer;
-        
         private string _email;
+        
+        private string _firma;
         
         private string _friendlyName;
         
-        private string _question;
+        private string _imie;
+        
+        private string _kodPocztowy;
+        
+        private string _kraj;
+        
+        private string _miasto;
+        
+        private string _nazwisko;
+        
+        private string _nip;
+        
+        private string _numer;
+        
+        private string _telefon;
+        
+        private string _ulica;
+        
+        private Guid _userID;
         
         private string _userName;
         
@@ -334,14 +352,32 @@ namespace AwesomeParts.Web
         /// can be used for further object setup.
         /// </summary>
         partial void OnCreated();
-        partial void OnAnswerChanging(string value);
-        partial void OnAnswerChanged();
         partial void OnEmailChanging(string value);
         partial void OnEmailChanged();
+        partial void OnFirmaChanging(string value);
+        partial void OnFirmaChanged();
         partial void OnFriendlyNameChanging(string value);
         partial void OnFriendlyNameChanged();
-        partial void OnQuestionChanging(string value);
-        partial void OnQuestionChanged();
+        partial void OnImieChanging(string value);
+        partial void OnImieChanged();
+        partial void OnKodPocztowyChanging(string value);
+        partial void OnKodPocztowyChanged();
+        partial void OnKrajChanging(string value);
+        partial void OnKrajChanged();
+        partial void OnMiastoChanging(string value);
+        partial void OnMiastoChanged();
+        partial void OnNazwiskoChanging(string value);
+        partial void OnNazwiskoChanged();
+        partial void OnNIPChanging(string value);
+        partial void OnNIPChanged();
+        partial void OnNumerChanging(string value);
+        partial void OnNumerChanged();
+        partial void OnTelefonChanging(string value);
+        partial void OnTelefonChanged();
+        partial void OnUlicaChanging(string value);
+        partial void OnUlicaChanged();
+        partial void OnUserIDChanging(Guid value);
+        partial void OnUserIDChanged();
         partial void OnUserNameChanging(string value);
         partial void OnUserNameChanged();
 
@@ -354,32 +390,6 @@ namespace AwesomeParts.Web
         public RegistrationData()
         {
             this.OnCreated();
-        }
-        
-        /// <summary>
-        /// Gets or sets the 'Answer' value.
-        /// </summary>
-        [DataMember()]
-        [Display(Name="SecurityAnswerLabel", Order=6, ResourceType=typeof(RegistrationDataResources))]
-        [Required(ErrorMessageResourceName="ValidationErrorRequiredField", ErrorMessageResourceType=typeof(ValidationErrorResources))]
-        public string Answer
-        {
-            get
-            {
-                return this._answer;
-            }
-            set
-            {
-                if ((this._answer != value))
-                {
-                    this.OnAnswerChanging(value);
-                    this.RaiseDataMemberChanging("Answer");
-                    this.ValidateProperty("Answer", value);
-                    this._answer = value;
-                    this.RaiseDataMemberChanged("Answer");
-                    this.OnAnswerChanged();
-                }
-            }
         }
         
         /// <summary>
@@ -413,6 +423,33 @@ namespace AwesomeParts.Web
         }
         
         /// <summary>
+        /// Gets or sets the 'Firma' value.
+        /// </summary>
+        [DataMember()]
+        [Display(Name="Firma", Order=5)]
+        [Required(ErrorMessageResourceName="ValidationErrorRequiredField", ErrorMessageResourceType=typeof(ValidationErrorResources))]
+        [StringLength(255, ErrorMessage="Długość nazwy firmy powinna liczyć od 2 do 255 znaków.", MinimumLength=2)]
+        public string Firma
+        {
+            get
+            {
+                return this._firma;
+            }
+            set
+            {
+                if ((this._firma != value))
+                {
+                    this.OnFirmaChanging(value);
+                    this.RaiseDataMemberChanging("Firma");
+                    this.ValidateProperty("Firma", value);
+                    this._firma = value;
+                    this.RaiseDataMemberChanged("Firma");
+                    this.OnFirmaChanged();
+                }
+            }
+        }
+        
+        /// <summary>
         /// Gets or sets the 'FriendlyName' value.
         /// </summary>
         [DataMember()]
@@ -439,27 +476,278 @@ namespace AwesomeParts.Web
         }
         
         /// <summary>
-        /// Gets or sets the 'Question' value.
+        /// Gets or sets the 'Imie' value.
         /// </summary>
         [DataMember()]
-        [Display(Name="SecurityQuestionLabel", Order=5, ResourceType=typeof(RegistrationDataResources))]
+        [Display(Name="Imię", Order=3)]
+        [RegularExpression("^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]*$", ErrorMessage="Imię może zawierać tylko litery z przediału a-z i A-Z oraz polskie znaki.")]
         [Required(ErrorMessageResourceName="ValidationErrorRequiredField", ErrorMessageResourceType=typeof(ValidationErrorResources))]
-        public string Question
+        [StringLength(255, ErrorMessage="Długość imienia powinna liczyć od 2 do 255 znaków.", MinimumLength=2)]
+        public string Imie
         {
             get
             {
-                return this._question;
+                return this._imie;
             }
             set
             {
-                if ((this._question != value))
+                if ((this._imie != value))
                 {
-                    this.OnQuestionChanging(value);
-                    this.RaiseDataMemberChanging("Question");
-                    this.ValidateProperty("Question", value);
-                    this._question = value;
-                    this.RaiseDataMemberChanged("Question");
-                    this.OnQuestionChanged();
+                    this.OnImieChanging(value);
+                    this.RaiseDataMemberChanging("Imie");
+                    this.ValidateProperty("Imie", value);
+                    this._imie = value;
+                    this.RaiseDataMemberChanged("Imie");
+                    this.OnImieChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'KodPocztowy' value.
+        /// </summary>
+        [DataMember()]
+        [Display(Name="Kod pocztowy", Order=9)]
+        [RegularExpression("^[0-9]{2}-[0-9]{3}$", ErrorMessage="Kod pocztowy powinien być podany w formacie: xx-xxx")]
+        [Required(ErrorMessageResourceName="ValidationErrorRequiredField", ErrorMessageResourceType=typeof(ValidationErrorResources))]
+        [StringLength(6, ErrorMessage="Długość kodu pocztowego powinna liczyć 6 znaków.", MinimumLength=6)]
+        public string KodPocztowy
+        {
+            get
+            {
+                return this._kodPocztowy;
+            }
+            set
+            {
+                if ((this._kodPocztowy != value))
+                {
+                    this.OnKodPocztowyChanging(value);
+                    this.RaiseDataMemberChanging("KodPocztowy");
+                    this.ValidateProperty("KodPocztowy", value);
+                    this._kodPocztowy = value;
+                    this.RaiseDataMemberChanged("KodPocztowy");
+                    this.OnKodPocztowyChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'Kraj' value.
+        /// </summary>
+        [DataMember()]
+        [Display(Name="Kraj", Order=11)]
+        [RegularExpression("^[a-zA-Z]*$", ErrorMessage="Nazwa kraju może się składać tylko ze znaków z zakresu a-z i A-Z")]
+        [Required(ErrorMessageResourceName="ValidationErrorRequiredField", ErrorMessageResourceType=typeof(ValidationErrorResources))]
+        [StringLength(255, ErrorMessage="Długość imienia powinna liczyć od 2 do 255 znaków.", MinimumLength=2)]
+        public string Kraj
+        {
+            get
+            {
+                return this._kraj;
+            }
+            set
+            {
+                if ((this._kraj != value))
+                {
+                    this.OnKrajChanging(value);
+                    this.RaiseDataMemberChanging("Kraj");
+                    this.ValidateProperty("Kraj", value);
+                    this._kraj = value;
+                    this.RaiseDataMemberChanged("Kraj");
+                    this.OnKrajChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'Miasto' value.
+        /// </summary>
+        [DataMember()]
+        [Display(Name="Miasto", Order=10)]
+        [RegularExpression("^[a-zA-Z]*$", ErrorMessage="Nazwa miasta może zawierać tylko litery z przediału a-z i A-Z.")]
+        [Required(ErrorMessageResourceName="ValidationErrorRequiredField", ErrorMessageResourceType=typeof(ValidationErrorResources))]
+        [StringLength(255, ErrorMessage="Długość nazwy miasta powinna liczyć od 2 do 255 znaków.", MinimumLength=2)]
+        public string Miasto
+        {
+            get
+            {
+                return this._miasto;
+            }
+            set
+            {
+                if ((this._miasto != value))
+                {
+                    this.OnMiastoChanging(value);
+                    this.RaiseDataMemberChanging("Miasto");
+                    this.ValidateProperty("Miasto", value);
+                    this._miasto = value;
+                    this.RaiseDataMemberChanged("Miasto");
+                    this.OnMiastoChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'Nazwisko' value.
+        /// </summary>
+        [DataMember()]
+        [Display(Name="Nazwisko", Order=4)]
+        [RegularExpression("^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]*$", ErrorMessage="Nazwisko może zawierać tylko litery z przediału a-z i A-Z oraz polskie znaki.")]
+        [Required(ErrorMessageResourceName="ValidationErrorRequiredField", ErrorMessageResourceType=typeof(ValidationErrorResources))]
+        [StringLength(255, ErrorMessage="Długość nazwiska powinna liczyć od 2 do 255 znaków.", MinimumLength=2)]
+        public string Nazwisko
+        {
+            get
+            {
+                return this._nazwisko;
+            }
+            set
+            {
+                if ((this._nazwisko != value))
+                {
+                    this.OnNazwiskoChanging(value);
+                    this.RaiseDataMemberChanging("Nazwisko");
+                    this.ValidateProperty("Nazwisko", value);
+                    this._nazwisko = value;
+                    this.RaiseDataMemberChanged("Nazwisko");
+                    this.OnNazwiskoChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'NIP' value.
+        /// </summary>
+        [DataMember()]
+        [Display(Name="NIP", Order=6)]
+        [RegularExpression("^(([0-9]{3}[- ][0-9]{2}[- ][0-9]{2}[- ][0-9]{3}))$", ErrorMessage="NIP powinien być podany w formacie xxx-xx-xx-xxx lub xxx xx xx xxx")]
+        [Required(ErrorMessageResourceName="ValidationErrorRequiredField", ErrorMessageResourceType=typeof(ValidationErrorResources))]
+        [StringLength(13, ErrorMessage="Długość numeru NIP powinna liczyć 13 znaków.", MinimumLength=13)]
+        public string NIP
+        {
+            get
+            {
+                return this._nip;
+            }
+            set
+            {
+                if ((this._nip != value))
+                {
+                    this.OnNIPChanging(value);
+                    this.RaiseDataMemberChanging("NIP");
+                    this.ValidateProperty("NIP", value);
+                    this._nip = value;
+                    this.RaiseDataMemberChanged("NIP");
+                    this.OnNIPChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'Numer' value.
+        /// </summary>
+        [DataMember()]
+        [Display(Name="Numer lokalu", Order=8)]
+        [RegularExpression("^[0-9]*$", ErrorMessage="Numer ulicy może zawierać tylko cyfry z przediału 0-9.")]
+        [Required(ErrorMessageResourceName="ValidationErrorRequiredField", ErrorMessageResourceType=typeof(ValidationErrorResources))]
+        [StringLength(6, ErrorMessage="Długość imienia powinna liczyć od 2 do 6 znaków.", MinimumLength=2)]
+        public string Numer
+        {
+            get
+            {
+                return this._numer;
+            }
+            set
+            {
+                if ((this._numer != value))
+                {
+                    this.OnNumerChanging(value);
+                    this.RaiseDataMemberChanging("Numer");
+                    this.ValidateProperty("Numer", value);
+                    this._numer = value;
+                    this.RaiseDataMemberChanged("Numer");
+                    this.OnNumerChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'Telefon' value.
+        /// </summary>
+        [DataMember()]
+        [Display(Name="Telefon", Order=12)]
+        [RegularExpression("^[0-9]*$", ErrorMessage="Numer telefonu może zawierać tylko liczby 0-9")]
+        [Required(ErrorMessageResourceName="ValidationErrorRequiredField", ErrorMessageResourceType=typeof(ValidationErrorResources))]
+        [StringLength(255, ErrorMessage="Długość numeru telefonu nie powinna przekraczać 12 znaków.", MinimumLength=2)]
+        public string Telefon
+        {
+            get
+            {
+                return this._telefon;
+            }
+            set
+            {
+                if ((this._telefon != value))
+                {
+                    this.OnTelefonChanging(value);
+                    this.RaiseDataMemberChanging("Telefon");
+                    this.ValidateProperty("Telefon", value);
+                    this._telefon = value;
+                    this.RaiseDataMemberChanged("Telefon");
+                    this.OnTelefonChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'Ulica' value.
+        /// </summary>
+        [DataMember()]
+        [Display(Name="Ulica", Order=7)]
+        [RegularExpression("^[a-zA-Z]*$", ErrorMessage="Imię może zawierać tylko litery z przediału a-z i A-Z.")]
+        [Required(ErrorMessageResourceName="ValidationErrorRequiredField", ErrorMessageResourceType=typeof(ValidationErrorResources))]
+        [StringLength(255, ErrorMessage="Długość imienia powinna liczyć od 2 do 255 znaków.", MinimumLength=2)]
+        public string Ulica
+        {
+            get
+            {
+                return this._ulica;
+            }
+            set
+            {
+                if ((this._ulica != value))
+                {
+                    this.OnUlicaChanging(value);
+                    this.RaiseDataMemberChanging("Ulica");
+                    this.ValidateProperty("Ulica", value);
+                    this._ulica = value;
+                    this.RaiseDataMemberChanged("Ulica");
+                    this.OnUlicaChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'UserID' value.
+        /// </summary>
+        [DataMember()]
+        [Display(AutoGenerateField=false)]
+        public Guid UserID
+        {
+            get
+            {
+                return this._userID;
+            }
+            set
+            {
+                if ((this._userID != value))
+                {
+                    this.OnUserIDChanging(value);
+                    this.RaiseDataMemberChanging("UserID");
+                    this.ValidateProperty("UserID", value);
+                    this._userID = value;
+                    this.RaiseDataMemberChanged("UserID");
+                    this.OnUserIDChanged();
                 }
             }
         }
@@ -849,6 +1137,497 @@ namespace AwesomeParts.Web
         }
     }
 }
+namespace AwesomeParts.Web.Models
+{
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+    using System.Linq;
+    using System.Runtime.Serialization;
+    using System.ServiceModel.DomainServices;
+    using System.ServiceModel.DomainServices.Client;
+    using System.ServiceModel.DomainServices.Client.ApplicationServices;
+    using AwesomeParts.Web.Resources;
+    
+    
+    /// <summary>
+    /// The 'ProfileData' entity class.
+    /// </summary>
+    [DataContract(Namespace="http://schemas.datacontract.org/2004/07/AwesomeParts.Web.Models")]
+    public sealed partial class ProfileData : Entity
+    {
+        
+        private string _email;
+        
+        private string _firma;
+        
+        private string _friendlyName;
+        
+        private int _id;
+        
+        private string _imie;
+        
+        private string _kodPocztowy;
+        
+        private string _kraj;
+        
+        private string _miasto;
+        
+        private string _nazwisko;
+        
+        private string _nip;
+        
+        private string _numer;
+        
+        private string _telefon;
+        
+        private string _ulica;
+        
+        private Guid _userID;
+        
+        #region Extensibility Method Definitions
+
+        /// <summary>
+        /// This method is invoked from the constructor once initialization is complete and
+        /// can be used for further object setup.
+        /// </summary>
+        partial void OnCreated();
+        partial void OnEmailChanging(string value);
+        partial void OnEmailChanged();
+        partial void OnFirmaChanging(string value);
+        partial void OnFirmaChanged();
+        partial void OnFriendlyNameChanging(string value);
+        partial void OnFriendlyNameChanged();
+        partial void OnidChanging(int value);
+        partial void OnidChanged();
+        partial void OnImieChanging(string value);
+        partial void OnImieChanged();
+        partial void OnKodPocztowyChanging(string value);
+        partial void OnKodPocztowyChanged();
+        partial void OnKrajChanging(string value);
+        partial void OnKrajChanged();
+        partial void OnMiastoChanging(string value);
+        partial void OnMiastoChanged();
+        partial void OnNazwiskoChanging(string value);
+        partial void OnNazwiskoChanged();
+        partial void OnNIPChanging(string value);
+        partial void OnNIPChanged();
+        partial void OnNumerChanging(string value);
+        partial void OnNumerChanged();
+        partial void OnTelefonChanging(string value);
+        partial void OnTelefonChanged();
+        partial void OnUlicaChanging(string value);
+        partial void OnUlicaChanged();
+        partial void OnUserIDChanging(Guid value);
+        partial void OnUserIDChanged();
+
+        #endregion
+        
+        
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProfileData"/> class.
+        /// </summary>
+        public ProfileData()
+        {
+            this.OnCreated();
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'Email' value.
+        /// </summary>
+        [DataMember()]
+        [Display(Name="EmailLabel", Order=1, ResourceType=typeof(RegistrationDataResources))]
+        [RegularExpression("^([\\w-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([\\w-]+\\.)+))([a-zA-Z]{2,4" +
+            "}|[0-9]{1,3})(\\]?)$", ErrorMessageResourceName="ValidationErrorInvalidEmail", ErrorMessageResourceType=typeof(ValidationErrorResources))]
+        [Required(ErrorMessageResourceName="ValidationErrorRequiredField", ErrorMessageResourceType=typeof(ValidationErrorResources))]
+        public string Email
+        {
+            get
+            {
+                return this._email;
+            }
+            set
+            {
+                if ((this._email != value))
+                {
+                    this.OnEmailChanging(value);
+                    this.RaiseDataMemberChanging("Email");
+                    this.ValidateProperty("Email", value);
+                    this._email = value;
+                    this.RaiseDataMemberChanged("Email");
+                    this.OnEmailChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'Firma' value.
+        /// </summary>
+        [DataMember()]
+        [Display(Name="Firma", Order=4)]
+        [Required(ErrorMessageResourceName="ValidationErrorRequiredField", ErrorMessageResourceType=typeof(ValidationErrorResources))]
+        [StringLength(255, ErrorMessage="Długość nazwy firmy powinna liczyć od 2 do 255 znaków.", MinimumLength=2)]
+        public string Firma
+        {
+            get
+            {
+                return this._firma;
+            }
+            set
+            {
+                if ((this._firma != value))
+                {
+                    this.OnFirmaChanging(value);
+                    this.RaiseDataMemberChanging("Firma");
+                    this.ValidateProperty("Firma", value);
+                    this._firma = value;
+                    this.RaiseDataMemberChanged("Firma");
+                    this.OnFirmaChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'FriendlyName' value.
+        /// </summary>
+        [DataMember()]
+        [Display(Description="FriendlyNameDescription", Name="FriendlyNameLabel", Order=0, ResourceType=typeof(RegistrationDataResources))]
+        [StringLength(255, ErrorMessageResourceName="ValidationErrorBadFriendlyNameLength", ErrorMessageResourceType=typeof(ValidationErrorResources))]
+        public string FriendlyName
+        {
+            get
+            {
+                return this._friendlyName;
+            }
+            set
+            {
+                if ((this._friendlyName != value))
+                {
+                    this.OnFriendlyNameChanging(value);
+                    this.RaiseDataMemberChanging("FriendlyName");
+                    this.ValidateProperty("FriendlyName", value);
+                    this._friendlyName = value;
+                    this.RaiseDataMemberChanged("FriendlyName");
+                    this.OnFriendlyNameChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'id' value.
+        /// </summary>
+        [DataMember()]
+        [Display(AutoGenerateField=false)]
+        public int id
+        {
+            get
+            {
+                return this._id;
+            }
+            set
+            {
+                if ((this._id != value))
+                {
+                    this.OnidChanging(value);
+                    this.RaiseDataMemberChanging("id");
+                    this.ValidateProperty("id", value);
+                    this._id = value;
+                    this.RaiseDataMemberChanged("id");
+                    this.OnidChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'Imie' value.
+        /// </summary>
+        [DataMember()]
+        [Display(Name="Imię", Order=2)]
+        [RegularExpression("^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]*$", ErrorMessage="Imię może zawierać tylko litery z przediału a-z i A-Z oraz polskie znaki.")]
+        [Required(ErrorMessageResourceName="ValidationErrorRequiredField", ErrorMessageResourceType=typeof(ValidationErrorResources))]
+        [StringLength(255, ErrorMessage="Długość imienia powinna liczyć od 2 do 255 znaków.", MinimumLength=2)]
+        public string Imie
+        {
+            get
+            {
+                return this._imie;
+            }
+            set
+            {
+                if ((this._imie != value))
+                {
+                    this.OnImieChanging(value);
+                    this.RaiseDataMemberChanging("Imie");
+                    this.ValidateProperty("Imie", value);
+                    this._imie = value;
+                    this.RaiseDataMemberChanged("Imie");
+                    this.OnImieChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'KodPocztowy' value.
+        /// </summary>
+        [DataMember()]
+        [Display(Name="Kod pocztowy", Order=8)]
+        [RegularExpression("^[0-9]{2}-[0-9]{3}$", ErrorMessage="Kod pocztowy powinien być podany w formacie: xx-xxx")]
+        [Required(ErrorMessageResourceName="ValidationErrorRequiredField", ErrorMessageResourceType=typeof(ValidationErrorResources))]
+        [StringLength(6, ErrorMessage="Długość kodu pocztowego powinna liczyć 6 znaków.", MinimumLength=6)]
+        public string KodPocztowy
+        {
+            get
+            {
+                return this._kodPocztowy;
+            }
+            set
+            {
+                if ((this._kodPocztowy != value))
+                {
+                    this.OnKodPocztowyChanging(value);
+                    this.RaiseDataMemberChanging("KodPocztowy");
+                    this.ValidateProperty("KodPocztowy", value);
+                    this._kodPocztowy = value;
+                    this.RaiseDataMemberChanged("KodPocztowy");
+                    this.OnKodPocztowyChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'Kraj' value.
+        /// </summary>
+        [DataMember()]
+        [Display(Name="Kraj", Order=10)]
+        [RegularExpression("^[a-zA-Z]*$", ErrorMessage="Nazwa kraju może się składać tylko ze znaków z zakresu a-z i A-Z")]
+        [Required(ErrorMessageResourceName="ValidationErrorRequiredField", ErrorMessageResourceType=typeof(ValidationErrorResources))]
+        [StringLength(255, ErrorMessage="Długość nazwy kraju powinna liczyć od 2 do 255 znaków.", MinimumLength=2)]
+        public string Kraj
+        {
+            get
+            {
+                return this._kraj;
+            }
+            set
+            {
+                if ((this._kraj != value))
+                {
+                    this.OnKrajChanging(value);
+                    this.RaiseDataMemberChanging("Kraj");
+                    this.ValidateProperty("Kraj", value);
+                    this._kraj = value;
+                    this.RaiseDataMemberChanged("Kraj");
+                    this.OnKrajChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'Miasto' value.
+        /// </summary>
+        [DataMember()]
+        [Display(Name="Miasto", Order=9)]
+        [RegularExpression("^[a-zA-Z]*$", ErrorMessage="Nazwa miasta może zawierać tylko litery z przediału a-z i A-Z.")]
+        [Required(ErrorMessageResourceName="ValidationErrorRequiredField", ErrorMessageResourceType=typeof(ValidationErrorResources))]
+        [StringLength(255, ErrorMessage="Długość nazwy miasta powinna liczyć od 2 do 255 znaków.", MinimumLength=2)]
+        public string Miasto
+        {
+            get
+            {
+                return this._miasto;
+            }
+            set
+            {
+                if ((this._miasto != value))
+                {
+                    this.OnMiastoChanging(value);
+                    this.RaiseDataMemberChanging("Miasto");
+                    this.ValidateProperty("Miasto", value);
+                    this._miasto = value;
+                    this.RaiseDataMemberChanged("Miasto");
+                    this.OnMiastoChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'Nazwisko' value.
+        /// </summary>
+        [DataMember()]
+        [Display(Name="Nazwisko", Order=3)]
+        [RegularExpression("^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]*$", ErrorMessage="Nazwisko może zawierać tylko litery z przediału a-z i A-Z oraz polskie znaki.")]
+        [Required(ErrorMessageResourceName="ValidationErrorRequiredField", ErrorMessageResourceType=typeof(ValidationErrorResources))]
+        [StringLength(255, ErrorMessage="Długość nazwiska powinna liczyć od 2 do 255 znaków.", MinimumLength=2)]
+        public string Nazwisko
+        {
+            get
+            {
+                return this._nazwisko;
+            }
+            set
+            {
+                if ((this._nazwisko != value))
+                {
+                    this.OnNazwiskoChanging(value);
+                    this.RaiseDataMemberChanging("Nazwisko");
+                    this.ValidateProperty("Nazwisko", value);
+                    this._nazwisko = value;
+                    this.RaiseDataMemberChanged("Nazwisko");
+                    this.OnNazwiskoChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'NIP' value.
+        /// </summary>
+        [DataMember()]
+        [Display(Name="NIP", Order=5)]
+        [RegularExpression("^(([0-9]{3}[- ][0-9]{2}[- ][0-9]{2}[- ][0-9]{3}))$", ErrorMessage="NIP powinien być podany w formacie xxx-xx-xx-xxx lub xxx xx xx xxx")]
+        [Required(ErrorMessageResourceName="ValidationErrorRequiredField", ErrorMessageResourceType=typeof(ValidationErrorResources))]
+        [StringLength(13, ErrorMessage="Długość numeru NIP powinna liczyć 13 znaków.", MinimumLength=13)]
+        public string NIP
+        {
+            get
+            {
+                return this._nip;
+            }
+            set
+            {
+                if ((this._nip != value))
+                {
+                    this.OnNIPChanging(value);
+                    this.RaiseDataMemberChanging("NIP");
+                    this.ValidateProperty("NIP", value);
+                    this._nip = value;
+                    this.RaiseDataMemberChanged("NIP");
+                    this.OnNIPChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'Numer' value.
+        /// </summary>
+        [DataMember()]
+        [Display(Name="Numer lokalu", Order=7)]
+        [RegularExpression("^[0-9]*$", ErrorMessage="Numer lokalu może zawierać tylko cyfry z przediału 0-9.")]
+        [Required(ErrorMessageResourceName="ValidationErrorRequiredField", ErrorMessageResourceType=typeof(ValidationErrorResources))]
+        [StringLength(6, ErrorMessage="Nr lokalu powinien liczyć do 6 znaków.", MinimumLength=1)]
+        public string Numer
+        {
+            get
+            {
+                return this._numer;
+            }
+            set
+            {
+                if ((this._numer != value))
+                {
+                    this.OnNumerChanging(value);
+                    this.RaiseDataMemberChanging("Numer");
+                    this.ValidateProperty("Numer", value);
+                    this._numer = value;
+                    this.RaiseDataMemberChanged("Numer");
+                    this.OnNumerChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'Telefon' value.
+        /// </summary>
+        [DataMember()]
+        [Display(Name="Telefon", Order=11)]
+        [RegularExpression("^[0-9]*$", ErrorMessage="Numer telefonu może zawierać tylko liczby 0-9")]
+        [Required(ErrorMessageResourceName="ValidationErrorRequiredField", ErrorMessageResourceType=typeof(ValidationErrorResources))]
+        [StringLength(12, ErrorMessage="Długość numeru telefonu nie powinna przekraczać 12 znaków.", MinimumLength=6)]
+        public string Telefon
+        {
+            get
+            {
+                return this._telefon;
+            }
+            set
+            {
+                if ((this._telefon != value))
+                {
+                    this.OnTelefonChanging(value);
+                    this.RaiseDataMemberChanging("Telefon");
+                    this.ValidateProperty("Telefon", value);
+                    this._telefon = value;
+                    this.RaiseDataMemberChanged("Telefon");
+                    this.OnTelefonChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'Ulica' value.
+        /// </summary>
+        [DataMember()]
+        [Display(Name="Ulica", Order=6)]
+        [RegularExpression("^[a-zA-Z]*$", ErrorMessage="Nazwa ulicy może zawierać tylko litery z przediału a-z i A-Z.")]
+        [Required(ErrorMessageResourceName="ValidationErrorRequiredField", ErrorMessageResourceType=typeof(ValidationErrorResources))]
+        [StringLength(255, ErrorMessage="Długość nazwy ulicy powinna liczyć od 2 do 255 znaków.", MinimumLength=2)]
+        public string Ulica
+        {
+            get
+            {
+                return this._ulica;
+            }
+            set
+            {
+                if ((this._ulica != value))
+                {
+                    this.OnUlicaChanging(value);
+                    this.RaiseDataMemberChanging("Ulica");
+                    this.ValidateProperty("Ulica", value);
+                    this._ulica = value;
+                    this.RaiseDataMemberChanged("Ulica");
+                    this.OnUlicaChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'UserID' value.
+        /// </summary>
+        [DataMember()]
+        [Display(AutoGenerateField=false)]
+        [Editable(false, AllowInitialValue=true)]
+        [Key()]
+        [RoundtripOriginal()]
+        public Guid UserID
+        {
+            get
+            {
+                return this._userID;
+            }
+            set
+            {
+                if ((this._userID != value))
+                {
+                    this.OnUserIDChanging(value);
+                    this.ValidateProperty("UserID", value);
+                    this._userID = value;
+                    this.RaisePropertyChanged("UserID");
+                    this.OnUserIDChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Computes a value from the key fields that uniquely identifies this entity instance.
+        /// </summary>
+        /// <returns>An object instance that uniquely identifies this entity instance.</returns>
+        public override object GetIdentity()
+        {
+            return this._userID;
+        }
+    }
+}
 namespace AwesomeParts.Web.POCOs
 {
     using System;
@@ -868,6 +1647,8 @@ namespace AwesomeParts.Web.POCOs
     [DataContract(Namespace="http://schemas.datacontract.org/2004/07/AwesomeParts.Web.POCOs")]
     public sealed partial class KlientPOCO : Entity
     {
+        
+        private string _email;
         
         private string _firma;
         
@@ -891,6 +1672,8 @@ namespace AwesomeParts.Web.POCOs
         
         private string _ulica;
         
+        private Guid _userID;
+        
         #region Extensibility Method Definitions
 
         /// <summary>
@@ -898,6 +1681,8 @@ namespace AwesomeParts.Web.POCOs
         /// can be used for further object setup.
         /// </summary>
         partial void OnCreated();
+        partial void OnEmailChanging(string value);
+        partial void OnEmailChanged();
         partial void OnFirmaChanging(string value);
         partial void OnFirmaChanged();
         partial void OnIdChanging(int value);
@@ -920,6 +1705,8 @@ namespace AwesomeParts.Web.POCOs
         partial void OnTelefonChanged();
         partial void OnUlicaChanging(string value);
         partial void OnUlicaChanged();
+        partial void OnUserIDChanging(Guid value);
+        partial void OnUserIDChanged();
 
         #endregion
         
@@ -930,6 +1717,30 @@ namespace AwesomeParts.Web.POCOs
         public KlientPOCO()
         {
             this.OnCreated();
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'Email' value.
+        /// </summary>
+        [DataMember()]
+        public string Email
+        {
+            get
+            {
+                return this._email;
+            }
+            set
+            {
+                if ((this._email != value))
+                {
+                    this.OnEmailChanging(value);
+                    this.RaiseDataMemberChanging("Email");
+                    this.ValidateProperty("Email", value);
+                    this._email = value;
+                    this.RaiseDataMemberChanged("Email");
+                    this.OnEmailChanged();
+                }
+            }
         }
         
         /// <summary>
@@ -1194,6 +2005,30 @@ namespace AwesomeParts.Web.POCOs
                     this._ulica = value;
                     this.RaiseDataMemberChanged("Ulica");
                     this.OnUlicaChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'UserID' value.
+        /// </summary>
+        [DataMember()]
+        public Guid UserID
+        {
+            get
+            {
+                return this._userID;
+            }
+            set
+            {
+                if ((this._userID != value))
+                {
+                    this.OnUserIDChanging(value);
+                    this.RaiseDataMemberChanging("UserID");
+                    this.ValidateProperty("UserID", value);
+                    this._userID = value;
+                    this.RaiseDataMemberChanged("UserID");
+                    this.OnUserIDChanged();
                 }
             }
         }
@@ -1514,6 +2349,7 @@ namespace AwesomeParts.Web.POCOs
         /// Gets or sets the 'UwagiDoStatusu' value.
         /// </summary>
         [DataMember()]
+        [Display(Name="Uwagi do statusu")]
         public string UwagiDoStatusu
         {
             get
@@ -1826,6 +2662,7 @@ namespace AwesomeParts.Web.POCOs
         /// Gets or sets the 'DataPodpisania' value.
         /// </summary>
         [DataMember()]
+        [Display(Description="Data podpisania umowy", Name="Data podpisania")]
         public Nullable<DateTime> DataPodpisania
         {
             get
@@ -1850,6 +2687,7 @@ namespace AwesomeParts.Web.POCOs
         /// Gets or sets the 'DataWygasniecia' value.
         /// </summary>
         [DataMember()]
+        [Display(Description="Data wygaśnięcia umowy", Name="Data wygasniecia")]
         public Nullable<DateTime> DataWygasniecia
         {
             get
@@ -2098,6 +2936,7 @@ namespace AwesomeParts.Web.POCOs
         /// Gets or sets the 'DocelowaIlosc' value.
         /// </summary>
         [DataMember()]
+        [Display(Name="Docelowa Ilość")]
         public int DocelowaIlosc
         {
             get
@@ -2148,6 +2987,7 @@ namespace AwesomeParts.Web.POCOs
         /// Gets or sets the 'Ilosc' value.
         /// </summary>
         [DataMember()]
+        [Display(Name="Ilość")]
         public int Ilosc
         {
             get
@@ -3038,6 +3878,7 @@ namespace AwesomeParts.Web.Services
     using System.ServiceModel.DomainServices.Client;
     using System.ServiceModel.DomainServices.Client.ApplicationServices;
     using System.ServiceModel.Web;
+    using AwesomeParts.Web.Models;
     using AwesomeParts.Web.POCOs;
     
     
@@ -3686,6 +4527,243 @@ namespace AwesomeParts.Web.Services
                 this.CreateEntitySet<ProduktProducentPOCO>(EntitySetOperations.None);
                 this.CreateEntitySet<ZamowieniaKoszykPOCO>(EntitySetOperations.Add);
                 this.CreateEntitySet<ZamowieniePOCO>(EntitySetOperations.All);
+            }
+        }
+    }
+    
+    /// <summary>
+    /// The DomainContext corresponding to the 'ProfileService' DomainService.
+    /// </summary>
+    public sealed partial class ProfileContext : DomainContext
+    {
+        
+        #region Extensibility Method Definitions
+
+        /// <summary>
+        /// This method is invoked from the constructor once initialization is complete and
+        /// can be used for further object setup.
+        /// </summary>
+        partial void OnCreated();
+
+        #endregion
+        
+        
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProfileContext"/> class.
+        /// </summary>
+        public ProfileContext() : 
+                this(new WebDomainClient<IProfileServiceContract>(new Uri("AwesomeParts-Web-Services-ProfileService.svc", UriKind.Relative)))
+        {
+        }
+        
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProfileContext"/> class with the specified service URI.
+        /// </summary>
+        /// <param name="serviceUri">The ProfileService service URI.</param>
+        public ProfileContext(Uri serviceUri) : 
+                this(new WebDomainClient<IProfileServiceContract>(serviceUri))
+        {
+        }
+        
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProfileContext"/> class with the specified <paramref name="domainClient"/>.
+        /// </summary>
+        /// <param name="domainClient">The DomainClient instance to use for this DomainContext.</param>
+        public ProfileContext(DomainClient domainClient) : 
+                base(domainClient)
+        {
+            this.OnCreated();
+        }
+        
+        /// <summary>
+        /// Gets the set of <see cref="ProfileData"/> entity instances that have been loaded into this <see cref="ProfileContext"/> instance.
+        /// </summary>
+        public EntitySet<ProfileData> ProfileDatas
+        {
+            get
+            {
+                return base.EntityContainer.GetEntitySet<ProfileData>();
+            }
+        }
+        
+        /// <summary>
+        /// Gets an EntityQuery instance that can be used to load <see cref="ProfileData"/> entity instances using the 'GetProfile' query.
+        /// </summary>
+        /// <returns>An EntityQuery that can be loaded to retrieve <see cref="ProfileData"/> entity instances.</returns>
+        public EntityQuery<ProfileData> GetProfileQuery()
+        {
+            this.ValidateMethod("GetProfileQuery", null);
+            return base.CreateQuery<ProfileData>("GetProfile", null, false, true);
+        }
+        
+        /// <summary>
+        /// Gets an EntityQuery instance that can be used to load <see cref="ProfileData"/> entity instances using the 'GetUserByUserName' query.
+        /// </summary>
+        /// <param name="userName">The value for the 'userName' parameter of the query.</param>
+        /// <returns>An EntityQuery that can be loaded to retrieve <see cref="ProfileData"/> entity instances.</returns>
+        public EntityQuery<ProfileData> GetUserByUserNameQuery(string userName)
+        {
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
+            parameters.Add("userName", userName);
+            this.ValidateMethod("GetUserByUserNameQuery", parameters);
+            return base.CreateQuery<ProfileData>("GetUserByUserName", parameters, false, true);
+        }
+        
+        /// <summary>
+        /// Gets an EntityQuery instance that can be used to load <see cref="ProfileData"/> entity instances using the 'GetUserIdByUserName' query.
+        /// </summary>
+        /// <param name="userName">The value for the 'userName' parameter of the query.</param>
+        /// <returns>An EntityQuery that can be loaded to retrieve <see cref="ProfileData"/> entity instances.</returns>
+        public EntityQuery<ProfileData> GetUserIdByUserNameQuery(string userName)
+        {
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
+            parameters.Add("userName", userName);
+            this.ValidateMethod("GetUserIdByUserNameQuery", parameters);
+            return base.CreateQuery<ProfileData>("GetUserIdByUserName", parameters, false, true);
+        }
+        
+        /// <summary>
+        /// Asynchronously invokes the 'UpdateUserData' method of the DomainService.
+        /// </summary>
+        /// <param name="user">The value for the 'user' parameter of this action.</param>
+        /// <param name="callback">Callback to invoke when the operation completes.</param>
+        /// <param name="userState">Value to pass to the callback.  It can be <c>null</c>.</param>
+        /// <returns>An operation instance that can be used to manage the asynchronous request.</returns>
+        public InvokeOperation UpdateUserData(ProfileData user, Action<InvokeOperation> callback, object userState)
+        {
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
+            parameters.Add("user", user);
+            this.ValidateMethod("UpdateUserData", parameters);
+            return this.InvokeOperation("UpdateUserData", typeof(void), parameters, true, callback, userState);
+        }
+        
+        /// <summary>
+        /// Asynchronously invokes the 'UpdateUserData' method of the DomainService.
+        /// </summary>
+        /// <param name="user">The value for the 'user' parameter of this action.</param>
+        /// <returns>An operation instance that can be used to manage the asynchronous request.</returns>
+        public InvokeOperation UpdateUserData(ProfileData user)
+        {
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
+            parameters.Add("user", user);
+            this.ValidateMethod("UpdateUserData", parameters);
+            return this.InvokeOperation("UpdateUserData", typeof(void), parameters, true, null, null);
+        }
+        
+        /// <summary>
+        /// Creates a new EntityContainer for this DomainContext's EntitySets.
+        /// </summary>
+        /// <returns>A new container instance.</returns>
+        protected override EntityContainer CreateEntityContainer()
+        {
+            return new ProfileContextEntityContainer();
+        }
+        
+        /// <summary>
+        /// Service contract for the 'ProfileService' DomainService.
+        /// </summary>
+        [ServiceContract()]
+        public interface IProfileServiceContract
+        {
+            
+            /// <summary>
+            /// Asynchronously invokes the 'GetProfile' operation.
+            /// </summary>
+            /// <param name="callback">Callback to invoke on completion.</param>
+            /// <param name="asyncState">Optional state object.</param>
+            /// <returns>An IAsyncResult that can be used to monitor the request.</returns>
+            [FaultContract(typeof(DomainServiceFault), Action="http://tempuri.org/ProfileService/GetProfileDomainServiceFault", Name="DomainServiceFault", Namespace="DomainServices")]
+            [OperationContract(AsyncPattern=true, Action="http://tempuri.org/ProfileService/GetProfile", ReplyAction="http://tempuri.org/ProfileService/GetProfileResponse")]
+            [WebGet()]
+            IAsyncResult BeginGetProfile(AsyncCallback callback, object asyncState);
+            
+            /// <summary>
+            /// Completes the asynchronous operation begun by 'BeginGetProfile'.
+            /// </summary>
+            /// <param name="result">The IAsyncResult returned from 'BeginGetProfile'.</param>
+            /// <returns>The 'QueryResult' returned from the 'GetProfile' operation.</returns>
+            QueryResult<ProfileData> EndGetProfile(IAsyncResult result);
+            
+            /// <summary>
+            /// Asynchronously invokes the 'GetUserByUserName' operation.
+            /// </summary>
+            /// <param name="userName">The value for the 'userName' parameter of this action.</param>
+            /// <param name="callback">Callback to invoke on completion.</param>
+            /// <param name="asyncState">Optional state object.</param>
+            /// <returns>An IAsyncResult that can be used to monitor the request.</returns>
+            [FaultContract(typeof(DomainServiceFault), Action="http://tempuri.org/ProfileService/GetUserByUserNameDomainServiceFault", Name="DomainServiceFault", Namespace="DomainServices")]
+            [OperationContract(AsyncPattern=true, Action="http://tempuri.org/ProfileService/GetUserByUserName", ReplyAction="http://tempuri.org/ProfileService/GetUserByUserNameResponse")]
+            [WebGet()]
+            IAsyncResult BeginGetUserByUserName(string userName, AsyncCallback callback, object asyncState);
+            
+            /// <summary>
+            /// Completes the asynchronous operation begun by 'BeginGetUserByUserName'.
+            /// </summary>
+            /// <param name="result">The IAsyncResult returned from 'BeginGetUserByUserName'.</param>
+            /// <returns>The 'QueryResult' returned from the 'GetUserByUserName' operation.</returns>
+            QueryResult<ProfileData> EndGetUserByUserName(IAsyncResult result);
+            
+            /// <summary>
+            /// Asynchronously invokes the 'GetUserIdByUserName' operation.
+            /// </summary>
+            /// <param name="userName">The value for the 'userName' parameter of this action.</param>
+            /// <param name="callback">Callback to invoke on completion.</param>
+            /// <param name="asyncState">Optional state object.</param>
+            /// <returns>An IAsyncResult that can be used to monitor the request.</returns>
+            [FaultContract(typeof(DomainServiceFault), Action="http://tempuri.org/ProfileService/GetUserIdByUserNameDomainServiceFault", Name="DomainServiceFault", Namespace="DomainServices")]
+            [OperationContract(AsyncPattern=true, Action="http://tempuri.org/ProfileService/GetUserIdByUserName", ReplyAction="http://tempuri.org/ProfileService/GetUserIdByUserNameResponse")]
+            [WebGet()]
+            IAsyncResult BeginGetUserIdByUserName(string userName, AsyncCallback callback, object asyncState);
+            
+            /// <summary>
+            /// Completes the asynchronous operation begun by 'BeginGetUserIdByUserName'.
+            /// </summary>
+            /// <param name="result">The IAsyncResult returned from 'BeginGetUserIdByUserName'.</param>
+            /// <returns>The 'QueryResult' returned from the 'GetUserIdByUserName' operation.</returns>
+            QueryResult<ProfileData> EndGetUserIdByUserName(IAsyncResult result);
+            
+            /// <summary>
+            /// Asynchronously invokes the 'UpdateUserData' operation.
+            /// </summary>
+            /// <param name="user">The value for the 'user' parameter of this action.</param>
+            /// <param name="callback">Callback to invoke on completion.</param>
+            /// <param name="asyncState">Optional state object.</param>
+            /// <returns>An IAsyncResult that can be used to monitor the request.</returns>
+            [FaultContract(typeof(DomainServiceFault), Action="http://tempuri.org/ProfileService/UpdateUserDataDomainServiceFault", Name="DomainServiceFault", Namespace="DomainServices")]
+            [OperationContract(AsyncPattern=true, Action="http://tempuri.org/ProfileService/UpdateUserData", ReplyAction="http://tempuri.org/ProfileService/UpdateUserDataResponse")]
+            IAsyncResult BeginUpdateUserData(ProfileData user, AsyncCallback callback, object asyncState);
+            
+            /// <summary>
+            /// Completes the asynchronous operation begun by 'BeginUpdateUserData'.
+            /// </summary>
+            /// <param name="result">The IAsyncResult returned from 'BeginUpdateUserData'.</param>
+            void EndUpdateUserData(IAsyncResult result);
+            
+            /// <summary>
+            /// Asynchronously invokes the 'SubmitChanges' operation.
+            /// </summary>
+            /// <param name="changeSet">The change-set to submit.</param>
+            /// <param name="callback">Callback to invoke on completion.</param>
+            /// <param name="asyncState">Optional state object.</param>
+            /// <returns>An IAsyncResult that can be used to monitor the request.</returns>
+            [FaultContract(typeof(DomainServiceFault), Action="http://tempuri.org/ProfileService/SubmitChangesDomainServiceFault", Name="DomainServiceFault", Namespace="DomainServices")]
+            [OperationContract(AsyncPattern=true, Action="http://tempuri.org/ProfileService/SubmitChanges", ReplyAction="http://tempuri.org/ProfileService/SubmitChangesResponse")]
+            IAsyncResult BeginSubmitChanges(IEnumerable<ChangeSetEntry> changeSet, AsyncCallback callback, object asyncState);
+            
+            /// <summary>
+            /// Completes the asynchronous operation begun by 'BeginSubmitChanges'.
+            /// </summary>
+            /// <param name="result">The IAsyncResult returned from 'BeginSubmitChanges'.</param>
+            /// <returns>The collection of change-set entry elements returned from 'SubmitChanges'.</returns>
+            IEnumerable<ChangeSetEntry> EndSubmitChanges(IAsyncResult result);
+        }
+        
+        internal sealed class ProfileContextEntityContainer : EntityContainer
+        {
+            
+            public ProfileContextEntityContainer()
+            {
+                this.CreateEntitySet<ProfileData>(EntitySetOperations.Edit);
             }
         }
     }

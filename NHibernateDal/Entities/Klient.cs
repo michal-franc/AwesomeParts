@@ -10,10 +10,12 @@ namespace BazaDanych.Entities
         #region Fields
         public virtual int Id { get; private set; }
 
+        public virtual Guid User_id { get; set; }
         public virtual string Imie { get; set; }
         public virtual string Nazwisko { get; set; }
         public virtual string Login { get; set; }
         public virtual string Haslo { get; set; }
+        public virtual string Email { get; set; }
         public virtual string Telefon { get; set; }
         public virtual string Firma { get; set; }
         public virtual string NIP { get; set; }
@@ -22,11 +24,6 @@ namespace BazaDanych.Entities
         public virtual string Miasto { get; set; }
         public virtual string KodPocztowy { get; set; }
         public virtual string Kraj { get; set; } 
-        #endregion
-
-        #region Relations
-        public virtual KlientRodzaj Rodzaj { get; set; }
-        public virtual LoginRola LoginRola { get; set; } 
         #endregion
 
         public virtual IList<Zamowienie> Zamowienia { get; set; }

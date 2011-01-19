@@ -18,6 +18,8 @@ namespace AwesomeParts.Web.POCOs
         public string Imie { get; set; }
         public string Nazwisko { get; set; }
         public string Pesel { get; set; }
+
+        [Display(Name = "Uwagi do statusu")]
         public string UwagiDoStatusu { get; set; }
         public int RodzajID { get; set; }
         public int StatusID { get; set; }

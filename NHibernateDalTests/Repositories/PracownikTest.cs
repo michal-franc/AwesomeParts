@@ -63,16 +63,6 @@ namespace Tests.Repositories
         }
 
         [Test]
-        public void CanGetPracownikRola()
-        {
-            Pracownik pracownikTest0 = _repository.GetById(1);
-            Pracownik pracownikTest1 = _repository.GetById(2);
-
-            Assert.That(pracownikTest0.LoginRola.Rola, Is.EqualTo("Uzytkownik"));
-            Assert.That(pracownikTest1.LoginRola.Rola, Is.EqualTo("Administrator"));
-        }
-
-        [Test]
         public void CanGetPracownikRodzaj()
         {
             Pracownik pracownikTest0 = _repository.GetById(1);
@@ -109,44 +99,6 @@ namespace Tests.Repositories
 
         }
 
-        [Test]
-        public void CanFilterByPracownikRodzaj()
-        {
-            //PracownikRodzaj pracownikRodzajMagazynier = new PracownikRodzaj() { Rodzaj = "Magazynier" };
-            //PracownikRodzaj pracownikRodzajSekretarka = new PracownikRodzaj() { Rodzaj = "Sekretarka" };
-            //PracownikRodzaj pracownikRodzajPrezes = new PracownikRodzaj() { Rodzaj = "Prezes" };
-            //PracownikRodzaj pracownikRodzajKierownik = new PracownikRodzaj() { Rodzaj = "Kierownik" };
-
-            var pracownicy = _repository.GetByRodzaj("Sekretarka");
-            Assert.That(pracownicy.Count, Is.EqualTo(3));
-            pracownicy = _repository.GetByRodzaj("Magazynier");
-            Assert.That(pracownicy.Count, Is.EqualTo(1));
-            pracownicy = _repository.GetByRodzaj("Prezes");
-            Assert.That(pracownicy.Count, Is.EqualTo(1));
-            pracownicy = _repository.GetByRodzaj("Kierownik");
-            Assert.That(pracownicy.Count, Is.EqualTo(0));
-        }
-
-        [Test]
-        public void CanFilterByPracownikLoginRola()
-        {
-            //LoginRola rolaAdministrator = new LoginRola() { Rola = "Administrator" };
-            //LoginRola rolaUzytkownik = new LoginRola() { Rola = "Użytkownik" };
-            //LoginRola rolaSprzedawca = new LoginRola() { Rola = "Sprzedawca" };
-
-            var pracownicy = _repository.GetByRola("Administrator");
-            Assert.That(pracownicy.Count, Is.EqualTo(1));
-
-            pracownicy = _repository.GetByRola("Uzytkownik");
-            Assert.That(pracownicy.Count, Is.EqualTo(1));
-
-            pracownicy = _repository.GetByRola("Sprzedawca");
-            Assert.That(pracownicy.Count, Is.EqualTo(2));
-
-            pracownicy = _repository.GetByRola("NieznanaRola");
-            Assert.That(pracownicy.Count, Is.EqualTo(0));
-
-        }
 
 
         [Test]

@@ -17,5 +17,6 @@ namespace BazaDanych.Repositories
         void Remove(T item);
         void Update(T item);
         void UpdateById(T item,int Id);
+        IQueryable<T> SelectUserData(Guid id);
     }
 }

@@ -70,7 +70,7 @@ namespace AwesomeParts.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to How do you want your name to be displayed in the application.
+        ///   Looks up a localized string similar to Nazwa jakiej byś chciał używać w aplikacji.
         /// </summary>
         public static string FriendlyNameDescription {
             get {
@@ -79,7 +79,7 @@ namespace AwesomeParts.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Friendly name.
+        ///   Looks up a localized string similar to Nick.
         /// </summary>
         public static string FriendlyNameLabel {
             get {
@@ -88,7 +88,7 @@ namespace AwesomeParts.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Confirm password.
+        ///   Looks up a localized string similar to Potwierdź hasło.
         /// </summary>
         public static string PasswordConfirmationLabel {
             get {
@@ -97,7 +97,7 @@ namespace AwesomeParts.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The password must be 7 characters long and must contain at least one special character e.g. @ or #.
+        ///   Looks up a localized string similar to Hasło musi posiadać co najmniej 7 znaków oraz zawierać przynajmniej jeden znak specjalny (np. # lub @).
         /// </summary>
         public static string PasswordDescription {
             get {
@@ -106,7 +106,7 @@ namespace AwesomeParts.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Password.
+        ///   Looks up a localized string similar to Hasło.
         /// </summary>
         public static string PasswordLabel {
             get {
@@ -133,7 +133,7 @@ namespace AwesomeParts.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User name.
+        ///   Looks up a localized string similar to Login.
         /// </summary>
         public static string UserNameLabel {
             get {

@@ -121,25 +121,25 @@
     <value>A user name for that e-mail address already exists. Please enter a different e-mail address.</value>
   </data>
   <data name="CreateUserStatusDuplicateUserName" xml:space="preserve">
-    <value>User name already exists. Please enter a different user name.</value>
+    <value>Użytkownik o tej nazwie już istnieje. Wprowadź inną nazwę.</value>
   </data>
   <data name="CreateUserStatusFailed" xml:space="preserve">
     <value>The user creation request has been canceled. Please verify your entry and try again. If the problem persists, please contact your system administrator.</value>
   </data>
   <data name="ErrorBadUserNameOrPassword" xml:space="preserve">
-    <value>The user name or password is incorrect</value>
+    <value>Login lub hasło są nieprawidłowe.</value>
   </data>
   <data name="ErrorLoginAfterRegistrationFailed" xml:space="preserve">
     <value>Registration was successful but there was a problem while trying to log in with your credentials: {0}</value>
     <comment>{0} = error message</comment>
   </data>
   <data name="ErrorWindowErrorDetails" xml:space="preserve">
-    <value>Error Details</value>
+    <value>Szczegóły błędu</value>
   </data>
   <data name="ErrorWindowGenericError" xml:space="preserve">
-    <value>An unknown error has occurred. Please contact your administrator for help.</value>
+    <value>Wystąpił nieznany błąd. Jeśli błąd będzie się powtarzał skontaktuj się z administratorem.</value>
   </data>
   <data name="ErrorWindowTitle" xml:space="preserve">
-    <value>Error</value>
+    <value>Błąd</value>
   </data>
 </root>

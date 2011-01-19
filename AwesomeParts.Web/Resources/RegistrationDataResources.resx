@@ -121,20 +121,20 @@
     <value>Email</value>
   </data>
   <data name="FriendlyNameDescription" xml:space="preserve">
-    <value>How do you want your name to be displayed in the application</value>
+    <value>Nazwa jakiej byś chciał używać w aplikacji</value>
   </data>
   <data name="FriendlyNameLabel" xml:space="preserve">
-    <value>Friendly name</value>
+    <value>Nick</value>
   </data>
   <data name="PasswordConfirmationLabel" xml:space="preserve">
-    <value>Confirm password</value>
+    <value>Potwierdź hasło</value>
   </data>
   <data name="PasswordDescription" xml:space="preserve">
-    <value>The password must be 7 characters long and must contain at least one special character e.g. @ or #</value>
+    <value>Hasło musi posiadać co najmniej 7 znaków oraz zawierać przynajmniej jeden znak specjalny (np. # lub @)</value>
     <comment>Change this if you change your password length and strength policies</comment>
   </data>
   <data name="PasswordLabel" xml:space="preserve">
-    <value>Password</value>
+    <value>Hasło</value>
   </data>
   <data name="SecurityAnswerLabel" xml:space="preserve">
     <value>Security answer</value>
@@ -143,6 +143,6 @@
     <value>Security question</value>
   </data>
   <data name="UserNameLabel" xml:space="preserve">
-    <value>User name</value>
+    <value>Login</value>
   </data>
 </root>

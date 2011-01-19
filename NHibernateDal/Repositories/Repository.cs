@@ -148,5 +148,18 @@ namespace BazaDanych.Repositories
             }
             return returnedList;
         }
+
+        public IQueryable<T> SelectUserData(Guid id)
+        {
+            IQueryable<T> table;
+
+            using (var session = SessionFactory.OpenSession())
+            {
+                table = session.GetNamedQuery("Select_UserData").SetGuid("userid", id).List<T>().AsQueryable<T>();
+                session.Flush();
+            }
+
+            return table;
+        }
     }
 }

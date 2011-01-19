@@ -73,11 +73,11 @@ namespace Tests
             #endregion
 
 
-            Pracownik pracownikMichalFranc = new Pracownik() { Imie = "Michal", Nazwisko = "Franc", Login = "LaM", Status = pracownikStatusUrlop, LoginRola = loginRolaUzytkownik, Rodzaj = pracownikRodzajMagazynier };
-            Pracownik pracownikStefanRomanski = new Pracownik() { Imie = "Stefan", Nazwisko = "Romanski", Login = "stefcio", Status = pracownikStatusZatrudniony, LoginRola = loginRolaAdministrator, Rodzaj = pracownikRodzajSekretarka };
-            Pracownik pracownikWojtekKorycki = new Pracownik() { Imie = "Wojciech", Nazwisko = "Korycki", Login = "wojtek", Status = pracownikStatusZatrudniony, LoginRola = loginRolaSprzedawca, Rodzaj = pracownikRodzajSekretarka };
-            Pracownik pracownikKamilMinda = new Pracownik() { Imie = "Kamil", Nazwisko = "Minda", Login = "kminda", Status = pracownikStatusChorobowe, LoginRola = loginRolaSprzedawca, Rodzaj = pracownikRodzajSekretarka };
-            Pracownik pracownikIwonaKarczoch = new Pracownik() { Imie = "Iwona", Nazwisko = "Karczoch", Login = "ikarczoch", Status = pracownikStatusZatrudniony, LoginRola = loginRolaZarzad, Rodzaj = pracownikRodzajPrezes };
+            Pracownik pracownikMichalFranc = new Pracownik() { Imie = "Michal", Nazwisko = "Franc", Login = "LaM", Status = pracownikStatusUrlop,  Rodzaj = pracownikRodzajMagazynier };
+            Pracownik pracownikStefanRomanski = new Pracownik() { Imie = "Stefan", Nazwisko = "Romanski", Login = "stefcio", Status = pracownikStatusZatrudniony, Rodzaj = pracownikRodzajSekretarka };
+            Pracownik pracownikWojtekKorycki = new Pracownik() { Imie = "Wojciech", Nazwisko = "Korycki", Login = "wojtek", Status = pracownikStatusZatrudniony, Rodzaj = pracownikRodzajSekretarka };
+            Pracownik pracownikKamilMinda = new Pracownik() { Imie = "Kamil", Nazwisko = "Minda", Login = "kminda", Status = pracownikStatusChorobowe, Rodzaj = pracownikRodzajSekretarka };
+            Pracownik pracownikIwonaKarczoch = new Pracownik() { Imie = "Iwona", Nazwisko = "Karczoch", Login = "ikarczoch", Status = pracownikStatusZatrudniony, Rodzaj = pracownikRodzajPrezes };
 
             pracRepository.Add(pracownikMichalFranc);
             pracRepository.Add(pracownikStefanRomanski);
@@ -206,8 +206,6 @@ namespace Tests
                         Telefon="661943509", 
                         NIP="55641", 
                         Login="LaM",
-                        Rodzaj= klientRodzajodzajKupujacy,
-                        LoginRola = loginRolaKontrahent
             };
 
             Klient klientKamilMindaKupujacy =  new Klient()
@@ -223,8 +221,6 @@ namespace Tests
                         Telefon="123456789", 
                         NIP="55651", 
                         Login="Emol",
-                        Rodzaj= klientRodzajodzajKupujacy,
-                        LoginRola = loginRolaKontrahent
                     };
             Klient klientStefanRomanskiSprzedajacy =  new Klient()
                     {
@@ -239,8 +235,6 @@ namespace Tests
                         Telefon="09876543", 
                         NIP="55000", 
                         Login="Grzywa",
-                        Rodzaj= klientRodzajSprzedajacy,
-                        LoginRola = loginRolaKontrahent
                     };
 
             repositoryKlient.Add(klientMichalFrancKupujacy);

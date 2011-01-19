@@ -14,7 +14,11 @@ namespace AwesomeParts.Web.POCOs
 
         public string Nazwa { get; set; }
         public decimal Cena { get; set; }
+
+        [Display(Name = "Ilość")]
         public int Ilosc { get; set; }
+
+        [Display(Name = "Docelowa Ilość")]
         public int DocelowaIlosc { get; set; }
 
         [Include]

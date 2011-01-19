@@ -12,8 +12,10 @@ namespace AwesomeParts.Web.POCOs
         [Key]
         public int Id { get; set; }
 
+        public Guid UserID { get; set; }
         public string Imie { get; set; }
         public string Nazwisko { get; set; }
+        public string Email { get; set; }
         public string Telefon { get; set; }
         public string Firma { get; set; }
         public string NIP { get; set; }
@@ -22,6 +24,5 @@ namespace AwesomeParts.Web.POCOs
         public string Miasto { get; set; }
         public string KodPocztowy { get; set; }
         public string Kraj { get; set; }
-        public KlientRodzajPOCO Rodzaj { get; set; }
     }
 }

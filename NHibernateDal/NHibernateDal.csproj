@@ -92,11 +92,10 @@
     <Compile Include="Repositories\PracownikRepository.cs" />
     <Compile Include="Repositories\ProduktRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
+    <Compile Include="Repositories\SessionFactory.cs" />
     <Compile Include="Repositories\ZamowieniaRepository.cs" />
-    <Compile Include="SessionFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

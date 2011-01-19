@@ -33,21 +33,21 @@
         /// </summary>
         private void ContentFrame_Navigated(object sender, NavigationEventArgs e)
         {
-            foreach (UIElement child in LinksStackPanel.Children)
-            {
-                HyperlinkButton hb = child as HyperlinkButton;
-                if (hb != null && hb.NavigateUri != null)
-                {
-                    if (hb.NavigateUri.ToString().Equals(e.Uri.ToString()))
-                    {
-                        VisualStateManager.GoToState(hb, "ActiveLink", true);
-                    }
-                    else
-                    {
-                        VisualStateManager.GoToState(hb, "InactiveLink", true);
-                    }
-                }
-            }
+            //foreach (UIElement child in LinksStackPanel.Children)
+            //{
+            //    HyperlinkButton hb = child as HyperlinkButton;
+            //    if (hb != null && hb.NavigateUri != null)
+            //    {
+            //        if (hb.NavigateUri.ToString().Equals(e.Uri.ToString()))
+            //        {
+            //            VisualStateManager.GoToState(hb, "ActiveLink", true);
+            //        }
+            //        else
+            //        {
+            //            VisualStateManager.GoToState(hb, "InactiveLink", true);
+            //        }
+            //    }
+            //}
         }
 
         /// <summary>
@@ -68,6 +68,7 @@
                 if (user.IsInRole("Klient"))
                 {
                     this.ContentFrame.Navigate(new Uri("/Klient", UriKind.Relative));
+                    DisplayUser(user);
                 }
                 if (user.IsInRole("Administrator"))
                 {
@@ -76,21 +77,22 @@
                 if (user.IsInRole("DzialPersonalny"))
                 {
                     this.ContentFrame.Navigate(new Uri("/Personalny", UriKind.Relative));
+                    DisplayUser(user);
                 }
                 if (user.IsInRole("DzialSprzedazy"))
                 {
                     this.ContentFrame.Navigate(new Uri("/Sprzedaz", UriKind.Relative));
+                    DisplayUser(user);
                 }
                 if (user.IsInRole("DzialZaopatrzenia"))
                 {
                     this.ContentFrame.Navigate(new Uri("/Zaopatrzenie", UriKind.Relative));
+                    DisplayUser(user);
                 }
                 if (user.IsInRole("Zarzad"))
                 {
                     this.ContentFrame.Navigate(new Uri("/Zarzad", UriKind.Relative));
                 }
-
-                ProfileDisplay.User = user;
             }
 
 
@@ -100,6 +102,13 @@
         void Authentication_LoggedOut(object sender, System.ServiceModel.DomainServices.Client.ApplicationServices.AuthenticationEventArgs e)
         {
             this.ContentFrame.Navigate(new Uri("/Home", UriKind.Relative));
+            this.ProfileDisplay.Visibility = System.Windows.Visibility.Collapsed;
+        }
+
+        void DisplayUser(AwesomeParts.Web.User user)
+        {
+            ProfileDisplay.User = user;
+            ProfileDisplay.Visibility = System.Windows.Visibility.Visible;
         }
     }
 }
