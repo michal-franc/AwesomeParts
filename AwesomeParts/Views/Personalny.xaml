@@ -18,9 +18,9 @@
                                         DomainContext="{StaticResource PracowContext}"
                                         QueryName="GetPracownkStatusy" />
 
-        <riaControls:DomainDataSource x:Key="RodzajSource"
+        <riaControls:DomainDataSource x:Key="ProduktSource"
                                         DomainContext="{StaticResource PracowContext}"
-                                        QueryName="GetPracownkRodzaje" />
+                                        QueryName="GetProdukty" />
 
     </UserControl.Resources>
 

@@ -2643,9 +2643,13 @@ namespace AwesomeParts.Web.POCOs
         
         private string _klientNazwa;
         
+        private int _miesiacZrealizowania;
+        
         private EntityRef<PracownikPOCO> _pracownik;
         
         private int _pracownikID;
+        
+        private int _rokZrealizowania;
         
         private bool _zrealizowano;
         
@@ -2668,8 +2672,12 @@ namespace AwesomeParts.Web.POCOs
         partial void OnKlientIDChanged();
         partial void OnKlientNazwaChanging(string value);
         partial void OnKlientNazwaChanged();
+        partial void OnMiesiacZrealizowaniaChanging(int value);
+        partial void OnMiesiacZrealizowaniaChanged();
         partial void OnPracownikIDChanging(int value);
         partial void OnPracownikIDChanged();
+        partial void OnRokZrealizowaniaChanging(int value);
+        partial void OnRokZrealizowaniaChanged();
         partial void OnZrealizowanoChanging(bool value);
         partial void OnZrealizowanoChanged();
 
@@ -2866,6 +2874,31 @@ namespace AwesomeParts.Web.POCOs
         }
         
         /// <summary>
+        /// Gets or sets the 'MiesiacZrealizowania' value.
+        /// </summary>
+        [DataMember()]
+        [Editable(false)]
+        [ReadOnly(true)]
+        public int MiesiacZrealizowania
+        {
+            get
+            {
+                return this._miesiacZrealizowania;
+            }
+            set
+            {
+                if ((this._miesiacZrealizowania != value))
+                {
+                    this.OnMiesiacZrealizowaniaChanging(value);
+                    this.ValidateProperty("MiesiacZrealizowania", value);
+                    this._miesiacZrealizowania = value;
+                    this.RaisePropertyChanged("MiesiacZrealizowania");
+                    this.OnMiesiacZrealizowaniaChanged();
+                }
+            }
+        }
+        
+        /// <summary>
         /// Gets or sets the associated <see cref="PracownikPOCO"/> entity.
         /// </summary>
         [Association("ZamowieniePracownik", "PracownikID", "Id", IsForeignKey=true)]
@@ -2920,6 +2953,31 @@ namespace AwesomeParts.Web.POCOs
                     this._pracownikID = value;
                     this.RaiseDataMemberChanged("PracownikID");
                     this.OnPracownikIDChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'RokZrealizowania' value.
+        /// </summary>
+        [DataMember()]
+        [Editable(false)]
+        [ReadOnly(true)]
+        public int RokZrealizowania
+        {
+            get
+            {
+                return this._rokZrealizowania;
+            }
+            set
+            {
+                if ((this._rokZrealizowania != value))
+                {
+                    this.OnRokZrealizowaniaChanging(value);
+                    this.ValidateProperty("RokZrealizowania", value);
+                    this._rokZrealizowania = value;
+                    this.RaisePropertyChanged("RokZrealizowania");
+                    this.OnRokZrealizowaniaChanged();
                 }
             }
         }

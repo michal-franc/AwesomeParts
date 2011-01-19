@@ -3,11 +3,157 @@
            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                   xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
+                            xmlns:riaControls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.DomainServices"  
+          xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+          xmlns:domain="clr-namespace:AwesomeParts.Web.Services"
+          xmlns:comboboxext="clr-namespace:ComboBoxExtensions;assembly=ComboBoxExtensions"
+          xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+              xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
            mc:Ignorable="d"
-           xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
            d:DesignWidth="640" d:DesignHeight="480"
            Title="Zarzad Page">
-    <Grid x:Name="LayoutRoot">
 
+    <UserControl.Resources>
+
+        <LinearGradientBrush x:Key="HeaderBackground" EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FFC5C1BA" Offset="0" />
+            <GradientStop Color="#FF6C6556" Offset="1" />
+            <GradientStop Color="#FF6A6457" Offset="0.5" />
+            <GradientStop Color="#FF504B40" Offset="0.5" />
+        </LinearGradientBrush>
+
+        <Style x:Key="CustomTitleStyle" TargetType="telerik:ChartTitle">
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="OuterBorderBrush" Value="Transparent" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="FontWeight" Value="Normal" />
+            <Setter Property="FontSize" Value="16" />
+        </Style>
+
+        <Style x:Key="CustomLegendStyle" TargetType="telerik:ChartLegend">
+            <Setter Property="TitleFontWeight" Value="Normal" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="Margin" Value="0,20,0,0" />
+        </Style>
+
+        <Style x:Key="CustomAxisTitleStyle" TargetType="telerik:AxisTitle">
+            <Setter Property="FontWeight" Value="Normal" />
+            <Setter Property="Margin" Value="0,0,10,0" />
+        </Style>
+
+        <domain:AwesomePartsContext x:Key="ZamowieniaContext"/>
+        <riaControls:DomainDataSource x:Key="ZamowieniaSource"
+                                        DomainContext="{StaticResource ZamowieniaContext}"
+                                        QueryName="GetZamowienia" />
+        <riaControls:DomainDataSource x:Key="ProduktySource"
+                                        DomainContext="{StaticResource ZamowieniaContext}"
+                                        QueryName="GetProdukty" />
+    </UserControl.Resources>
+    <Grid x:Name="LayoutRoot">
+        <sdk:TabControl>
+            <sdk:TabItem   Name="tabSprzedaz" Height="20" Width="50">
+                <sdk:TabItem.Header>
+                    <TextBlock Text="Sprzedaz"></TextBlock>
+                </sdk:TabItem.Header>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="5*"></RowDefinition>
+                        <RowDefinition Height="5*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <telerik:RadChart  Grid.ColumnSpan="2" Name="chartYearlyZamowienia" UseDefaultLayout="False"  BorderBrush="Transparent" >
+                        <Grid>
+                            <telerik:ChartTitle  x:Name="chartTitle1" Content="Roczne Zamówienia" Background="Transparent" />
+                            <telerik:ChartArea  ItemClick="chartareaYearlyZamowienia_ItemClick"  x:Name="chartAreaYearlyZamowienia"  />
+                        </Grid>
+                        <telerik:RadChart.SeriesMappings >
+                            <telerik:SeriesMapping LegendLabel="" ChartAreaName="chartAreaYearlyZamowienia" >
+                                <telerik:SeriesMapping.SeriesDefinition>
+                                    <telerik:BarSeriesDefinition  ShowItemLabels="False" />
+                                </telerik:SeriesMapping.SeriesDefinition>
+                                <telerik:SeriesMapping.ItemMappings>
+                                    <telerik:ItemMapping FieldName="RokZrealizowania" DataPointMember="XCategory" />
+                                    <telerik:ItemMapping FieldName="Id" DataPointMember="YValue" AggregateFunction="Count"/>
+                                </telerik:SeriesMapping.ItemMappings>
+                                <telerik:SeriesMapping.FilterDescriptors>
+                                    <telerik:ChartFilterDescriptor Member="RokZrealizowania" Operator="IsGreaterThan" Value="1900"/>
+                                </telerik:SeriesMapping.FilterDescriptors>
+                                <telerik:SeriesMapping.GroupingSettings>
+                                    <telerik:GroupingSettings ShouldFlattenSeries="True">
+                                        <telerik:ChartGroupDescriptor Member="RokZrealizowania" />
+                                    </telerik:GroupingSettings>
+                                </telerik:SeriesMapping.GroupingSettings>
+                            </telerik:SeriesMapping>
+                        </telerik:RadChart.SeriesMappings>
+                    </telerik:RadChart>
+                    <telerik:RadChart Grid.Row="1" Grid.Column="0" Name="chartMonthlyZamowienia" UseDefaultLayout="False"  BorderBrush="Transparent">
+                        <Grid>
+                            <telerik:ChartTitle  x:Name="chartTitle2" Content="MiesieczneZamowienia" Background="Transparent" />
+                                <telerik:ChartArea  ItemClick="chartMonthlyZamowienia_ItemClick"  x:Name="chartAreaMonthlyZamowienia"/>
+                        </Grid>
+                        <telerik:RadChart.SeriesMappings>
+                            <telerik:SeriesMapping LegendLabel="" ChartAreaName="chartAreaMonthlyZamowienia" >
+                                <telerik:SeriesMapping.SeriesDefinition>
+                                    <telerik:BarSeriesDefinition  ShowItemLabels="False" />
+                                </telerik:SeriesMapping.SeriesDefinition>
+                                <telerik:SeriesMapping.ItemMappings>
+                                    <telerik:ItemMapping FieldName="MiesiacZrealizowania" DataPointMember="XCategory" />
+                                    <telerik:ItemMapping FieldName="Id" DataPointMember="YValue" AggregateFunction="Count"/>
+                                </telerik:SeriesMapping.ItemMappings>
+                                <telerik:SeriesMapping.FilterDescriptors>
+                                    <telerik:ChartFilterDescriptor Member="RokZrealizowania" Operator="IsGreaterThan" Value="1900"/>
+                                </telerik:SeriesMapping.FilterDescriptors>
+                                <telerik:SeriesMapping.GroupingSettings>
+                                    <telerik:GroupingSettings ShouldFlattenSeries="True">
+                                        <telerik:ChartGroupDescriptor Member="MiesiacZrealizowania" />
+                                    </telerik:GroupingSettings>
+                                </telerik:SeriesMapping.GroupingSettings>
+                            </telerik:SeriesMapping>
+                        </telerik:RadChart.SeriesMappings>
+                    </telerik:RadChart>
+                    <telerik:RadChart Grid.Row="1" Grid.Column="1" Name="chartProductZamowienia" UseDefaultLayout="False"  BorderBrush="Transparent">
+                        <Grid>
+                            <telerik:ChartTitle  x:Name="chartTitle3" Content="Zamowienia Produktow" Background="Transparent" />
+                            <telerik:ChartArea   x:Name="chartAreaProductZamowienia" />
+                        </Grid>
+                        <telerik:RadChart.SeriesMappings>
+                            <telerik:SeriesMapping LegendLabel="" ChartAreaName="chartAreaProductZamowienia" >
+                                <telerik:SeriesMapping.SeriesDefinition>
+                                    <telerik:DoughnutSeriesDefinition >
+                                        <telerik:DoughnutSeriesDefinition.InteractivitySettings>
+                                            <telerik:InteractivitySettings HoverScope="Item" SelectionMode="Single" SelectionScope="Item" />
+                                        </telerik:DoughnutSeriesDefinition.InteractivitySettings>
+                                    </telerik:DoughnutSeriesDefinition>
+                                </telerik:SeriesMapping.SeriesDefinition>
+                                <telerik:SeriesMapping.ItemMappings>
+                                    <telerik:ItemMapping FieldName="Nazwa" DataPointMember="XCategory" />
+                                    <telerik:ItemMapping FieldName="Ilosc" DataPointMember="YValue"/>
+                                </telerik:SeriesMapping.ItemMappings>
+                                <telerik:SeriesMapping.GroupingSettings>
+                                    <telerik:GroupingSettings ShouldFlattenSeries="True">
+                                        <telerik:ChartGroupDescriptor Member="Nazwa" />
+                                    </telerik:GroupingSettings>
+                                </telerik:SeriesMapping.GroupingSettings>
+                            </telerik:SeriesMapping>
+                        </telerik:RadChart.SeriesMappings>
+                    </telerik:RadChart>
+                </Grid>
+            </sdk:TabItem>
+            <sdk:TabItem   Name="tabZamowienia" Height="20" Width="50">
+                <sdk:TabItem.Header>
+                    <TextBlock Text="Zamowienia"></TextBlock>
+                </sdk:TabItem.Header>
+            </sdk:TabItem>
+            <sdk:TabItem   Name="tabPErsonalny" Height="20" Width="50">
+                <sdk:TabItem.Header>
+                    <TextBlock Text="Personalny"></TextBlock>
+                </sdk:TabItem.Header>
+            </sdk:TabItem>
+        </sdk:TabControl>
     </Grid>
 </navigation:Page>

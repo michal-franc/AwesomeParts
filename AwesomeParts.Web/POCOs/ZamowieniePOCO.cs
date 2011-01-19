@@ -29,5 +29,31 @@ namespace AwesomeParts.Web.POCOs
         [Association("ZamowieniePracownik", "PracownikID", "Id", IsForeignKey = true)]
         public PracownikPOCO Pracownik { get; set; }
 
+        #region Wykorzystywane do Chartow
+        public int RokZrealizowania
+        {
+            get
+            {
+                if (DataZrealizowania.HasValue)
+                {
+                    return DataZrealizowania.Value.Year;
+                }
+                else return 0;
+            }
+        }
+
+        public int MiesiacZrealizowania
+        {
+            get
+            {
+                if (DataZrealizowania.HasValue)
+                {
+                    return DataZrealizowania.Value.Month;
+                }
+                else return 0;
+            }
+        }
+        #endregion
+
     }
 }
