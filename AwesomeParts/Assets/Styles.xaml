@@ -48,7 +48,7 @@
     <Style x:Key="ContentFrameStyle" TargetType="navigation:Frame">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
-        <Setter Property="Margin" Value="45,195,0,0"/>
+        <Setter Property="Margin" Value="45,140,0,0"/>
         <Setter Property="Padding" Value="58,15,58,15"/>
         <Setter Property="VerticalContentAlignment" Value="Stretch"/>
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>

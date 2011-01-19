@@ -25,6 +25,7 @@ namespace AwesomeParts.Views
         private bool PendingChanges { get; set; }
         private bool AddingNewItem { get; set; }
 
+        private const string UMOWY_TAB_HEADER = "Umowy pracownika {0} {1}";
 
         public Personalny()
         {
@@ -111,24 +112,29 @@ namespace AwesomeParts.Views
 
         private void PracownicyGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            PracownikID = (PracownicyGrid.SelectedItem as PracownikPOCO).Id;
+            PracownikPOCO p = (PracownicyGrid.SelectedItem as PracownikPOCO);
+            if (p != null)
+            {
+                PracownikID = p.Id;
+                UmowyTab.Header = String.Format(UMOWY_TAB_HEADER, p.Imie, p.Nazwisko);
 
-            if (dds.CanLoad)
-            {
-                dds.QueryParameters.Clear();
-                dds.QueryParameters.Add(new Parameter
+                if (dds.CanLoad)
                 {
-                    ParameterName = "pracownikID",
-                    Value = PracownikID,
-                });
-                dds.Load();
-                UmowyGrid.ItemsSource = dds.Data;
-                UmowyDataForm.ItemsSource = dds.Data;
-            }
-            else
-            {
-                UmowyGrid.ItemsSource = null;
-                UmowyDataForm.ItemsSource = null;
+                    dds.QueryParameters.Clear();
+                    dds.QueryParameters.Add(new Parameter
+                    {
+                        ParameterName = "pracownikID",
+                        Value = PracownikID,
+                    });
+                    dds.Load();
+                    UmowyGrid.ItemsSource = dds.Data;
+                    UmowyDataForm.ItemsSource = dds.Data;
+                }
+                else
+                {
+                    UmowyGrid.ItemsSource = null;
+                    UmowyDataForm.ItemsSource = null;
+                }
             }
         }
 
@@ -222,6 +228,7 @@ namespace AwesomeParts.Views
                 {
                     PendingChanges = true;
                     SubmitChanges.Background = new SolidColorBrush(Colors.Red);
+                    SubmitChanges2.Background = new SolidColorBrush(Colors.Red);
                     PracownicyGrid.IsEnabled = false;
                     UmowyGrid.IsEnabled = false;
 
