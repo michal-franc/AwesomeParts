@@ -3866,6 +3866,141 @@ namespace AwesomeParts.Web.POCOs
         }
     }
 }
+namespace AwesomeParts.Web.POCOs.MiniPOCOs
+{
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+    using System.Linq;
+    using System.Runtime.Serialization;
+    using System.ServiceModel.DomainServices;
+    using System.ServiceModel.DomainServices.Client;
+    using System.ServiceModel.DomainServices.Client.ApplicationServices;
+    
+    
+    /// <summary>
+    /// The 'ProductSellPOCO' entity class.
+    /// </summary>
+    [DataContract(Namespace="http://schemas.datacontract.org/2004/07/AwesomeParts.Web.POCOs.MiniPOCOs")]
+    public sealed partial class ProductSellPOCO : Entity
+    {
+        
+        private int _id;
+        
+        private int _ilosc;
+        
+        private string _nazwa;
+        
+        #region Extensibility Method Definitions
+
+        /// <summary>
+        /// This method is invoked from the constructor once initialization is complete and
+        /// can be used for further object setup.
+        /// </summary>
+        partial void OnCreated();
+        partial void OnIdChanging(int value);
+        partial void OnIdChanged();
+        partial void OnIloscChanging(int value);
+        partial void OnIloscChanged();
+        partial void OnNazwaChanging(string value);
+        partial void OnNazwaChanged();
+
+        #endregion
+        
+        
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProductSellPOCO"/> class.
+        /// </summary>
+        public ProductSellPOCO()
+        {
+            this.OnCreated();
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'Id' value.
+        /// </summary>
+        [DataMember()]
+        [Editable(false, AllowInitialValue=true)]
+        [Key()]
+        [RoundtripOriginal()]
+        public int Id
+        {
+            get
+            {
+                return this._id;
+            }
+            set
+            {
+                if ((this._id != value))
+                {
+                    this.OnIdChanging(value);
+                    this.ValidateProperty("Id", value);
+                    this._id = value;
+                    this.RaisePropertyChanged("Id");
+                    this.OnIdChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'Ilosc' value.
+        /// </summary>
+        [DataMember()]
+        public int Ilosc
+        {
+            get
+            {
+                return this._ilosc;
+            }
+            set
+            {
+                if ((this._ilosc != value))
+                {
+                    this.OnIloscChanging(value);
+                    this.RaiseDataMemberChanging("Ilosc");
+                    this.ValidateProperty("Ilosc", value);
+                    this._ilosc = value;
+                    this.RaiseDataMemberChanged("Ilosc");
+                    this.OnIloscChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'Nazwa' value.
+        /// </summary>
+        [DataMember()]
+        public string Nazwa
+        {
+            get
+            {
+                return this._nazwa;
+            }
+            set
+            {
+                if ((this._nazwa != value))
+                {
+                    this.OnNazwaChanging(value);
+                    this.RaiseDataMemberChanging("Nazwa");
+                    this.ValidateProperty("Nazwa", value);
+                    this._nazwa = value;
+                    this.RaiseDataMemberChanged("Nazwa");
+                    this.OnNazwaChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Computes a value from the key fields that uniquely identifies this entity instance.
+        /// </summary>
+        /// <returns>An object instance that uniquely identifies this entity instance.</returns>
+        public override object GetIdentity()
+        {
+            return this._id;
+        }
+    }
+}
 namespace AwesomeParts.Web.Services
 {
     using System;
@@ -3880,6 +4015,7 @@ namespace AwesomeParts.Web.Services
     using System.ServiceModel.Web;
     using AwesomeParts.Web.Models;
     using AwesomeParts.Web.POCOs;
+    using AwesomeParts.Web.POCOs.MiniPOCOs;
     
     
     /// <summary>
@@ -4004,6 +4140,17 @@ namespace AwesomeParts.Web.Services
         }
         
         /// <summary>
+        /// Gets the set of <see cref="ProductSellPOCO"/> entity instances that have been loaded into this <see cref="AwesomePartsContext"/> instance.
+        /// </summary>
+        public EntitySet<ProductSellPOCO> ProductSellPOCOs
+        {
+            get
+            {
+                return base.EntityContainer.GetEntitySet<ProductSellPOCO>();
+            }
+        }
+        
+        /// <summary>
         /// Gets the set of <see cref="ProduktPOCO"/> entity instances that have been loaded into this <see cref="AwesomePartsContext"/> instance.
         /// </summary>
         public EntitySet<ProduktPOCO> ProduktPOCOs
@@ -4099,6 +4246,34 @@ namespace AwesomeParts.Web.Services
         {
             this.ValidateMethod("GetProducenciQuery", null);
             return base.CreateQuery<ProduktProducentPOCO>("GetProducenci", null, false, true);
+        }
+        
+        /// <summary>
+        /// Gets an EntityQuery instance that can be used to load <see cref="ProductSellPOCO"/> entity instances using the 'GetProductsSoldByMonthAndYear' query.
+        /// </summary>
+        /// <param name="month">The value for the 'month' parameter of the query.</param>
+        /// <param name="year">The value for the 'year' parameter of the query.</param>
+        /// <returns>An EntityQuery that can be loaded to retrieve <see cref="ProductSellPOCO"/> entity instances.</returns>
+        public EntityQuery<ProductSellPOCO> GetProductsSoldByMonthAndYearQuery(int month, int year)
+        {
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
+            parameters.Add("month", month);
+            parameters.Add("year", year);
+            this.ValidateMethod("GetProductsSoldByMonthAndYearQuery", parameters);
+            return base.CreateQuery<ProductSellPOCO>("GetProductsSoldByMonthAndYear", parameters, false, true);
+        }
+        
+        /// <summary>
+        /// Gets an EntityQuery instance that can be used to load <see cref="ProductSellPOCO"/> entity instances using the 'GetProductsSoldByYear' query.
+        /// </summary>
+        /// <param name="year">The value for the 'year' parameter of the query.</param>
+        /// <returns>An EntityQuery that can be loaded to retrieve <see cref="ProductSellPOCO"/> entity instances.</returns>
+        public EntityQuery<ProductSellPOCO> GetProductsSoldByYearQuery(int year)
+        {
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
+            parameters.Add("year", year);
+            this.ValidateMethod("GetProductsSoldByYearQuery", parameters);
+            return base.CreateQuery<ProductSellPOCO>("GetProductsSoldByYear", parameters, false, true);
         }
         
         /// <summary>
@@ -4342,6 +4517,46 @@ namespace AwesomeParts.Web.Services
             QueryResult<ProduktProducentPOCO> EndGetProducenci(IAsyncResult result);
             
             /// <summary>
+            /// Asynchronously invokes the 'GetProductsSoldByMonthAndYear' operation.
+            /// </summary>
+            /// <param name="month">The value for the 'month' parameter of this action.</param>
+            /// <param name="year">The value for the 'year' parameter of this action.</param>
+            /// <param name="callback">Callback to invoke on completion.</param>
+            /// <param name="asyncState">Optional state object.</param>
+            /// <returns>An IAsyncResult that can be used to monitor the request.</returns>
+            [FaultContract(typeof(DomainServiceFault), Action="http://tempuri.org/AwesomePartsService/GetProductsSoldByMonthAndYearDomainService" +
+                "Fault", Name="DomainServiceFault", Namespace="DomainServices")]
+            [OperationContract(AsyncPattern=true, Action="http://tempuri.org/AwesomePartsService/GetProductsSoldByMonthAndYear", ReplyAction="http://tempuri.org/AwesomePartsService/GetProductsSoldByMonthAndYearResponse")]
+            [WebGet()]
+            IAsyncResult BeginGetProductsSoldByMonthAndYear(int month, int year, AsyncCallback callback, object asyncState);
+            
+            /// <summary>
+            /// Completes the asynchronous operation begun by 'BeginGetProductsSoldByMonthAndYear'.
+            /// </summary>
+            /// <param name="result">The IAsyncResult returned from 'BeginGetProductsSoldByMonthAndYear'.</param>
+            /// <returns>The 'QueryResult' returned from the 'GetProductsSoldByMonthAndYear' operation.</returns>
+            QueryResult<ProductSellPOCO> EndGetProductsSoldByMonthAndYear(IAsyncResult result);
+            
+            /// <summary>
+            /// Asynchronously invokes the 'GetProductsSoldByYear' operation.
+            /// </summary>
+            /// <param name="year">The value for the 'year' parameter of this action.</param>
+            /// <param name="callback">Callback to invoke on completion.</param>
+            /// <param name="asyncState">Optional state object.</param>
+            /// <returns>An IAsyncResult that can be used to monitor the request.</returns>
+            [FaultContract(typeof(DomainServiceFault), Action="http://tempuri.org/AwesomePartsService/GetProductsSoldByYearDomainServiceFault", Name="DomainServiceFault", Namespace="DomainServices")]
+            [OperationContract(AsyncPattern=true, Action="http://tempuri.org/AwesomePartsService/GetProductsSoldByYear", ReplyAction="http://tempuri.org/AwesomePartsService/GetProductsSoldByYearResponse")]
+            [WebGet()]
+            IAsyncResult BeginGetProductsSoldByYear(int year, AsyncCallback callback, object asyncState);
+            
+            /// <summary>
+            /// Completes the asynchronous operation begun by 'BeginGetProductsSoldByYear'.
+            /// </summary>
+            /// <param name="result">The IAsyncResult returned from 'BeginGetProductsSoldByYear'.</param>
+            /// <returns>The 'QueryResult' returned from the 'GetProductsSoldByYear' operation.</returns>
+            QueryResult<ProductSellPOCO> EndGetProductsSoldByYear(IAsyncResult result);
+            
+            /// <summary>
             /// Asynchronously invokes the 'GetProdukty' operation.
             /// </summary>
             /// <param name="callback">Callback to invoke on completion.</param>
@@ -4519,6 +4734,7 @@ namespace AwesomeParts.Web.Services
             public AwesomePartsContextEntityContainer()
             {
                 this.CreateEntitySet<KlientPOCO>(EntitySetOperations.None);
+                this.CreateEntitySet<ProductSellPOCO>(EntitySetOperations.None);
                 this.CreateEntitySet<PracownikPOCO>((EntitySetOperations.Add | EntitySetOperations.Edit));
                 this.CreateEntitySet<PracownikRodzajPOCO>(EntitySetOperations.None);
                 this.CreateEntitySet<PracownikStatusPOCO>(EntitySetOperations.None);

@@ -116,6 +116,7 @@
     <Compile Include="POCOs\KlientRodzajPOCO.cs" />
     <Compile Include="POCOs\LoginRolaPOCO.cs" />
     <Compile Include="POCOs\MiniPOCOs\PracownikUmowaMiniPOCO.cs" />
+    <Compile Include="POCOs\MiniPOCOs\ProductSellPOCO.cs" />
     <Compile Include="POCOs\MiniPOCOs\ZamowienieMiniPOCO.cs" />
     <Compile Include="POCOs\PracownikPOCO.cs" />
     <Compile Include="POCOs\PracownikRodzajPOCO.cs" />

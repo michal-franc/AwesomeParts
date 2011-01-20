@@ -66,7 +66,7 @@
                         <ColumnDefinition Width="1*"></ColumnDefinition>
                         <ColumnDefinition Width="1*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <telerik:RadChart  Grid.ColumnSpan="2" Name="chartYearlyZamowienia" UseDefaultLayout="False"  BorderBrush="Transparent" >
+                    <telerik:RadChart  Grid.ColumnSpan="2" Name="chartYearlyZamowienia" Style="Summer" UseDefaultLayout="False"  BorderBrush="Transparent" >
                         <Grid>
                             <telerik:ChartTitle  x:Name="chartTitle1" Content="Roczne Zamówienia" Background="Transparent" />
                             <telerik:ChartArea  ItemClick="chartareaYearlyZamowienia_ItemClick"  x:Name="chartAreaYearlyZamowienia"  />
@@ -78,7 +78,7 @@
                                 </telerik:SeriesMapping.SeriesDefinition>
                                 <telerik:SeriesMapping.ItemMappings>
                                     <telerik:ItemMapping FieldName="RokZrealizowania" DataPointMember="XCategory" />
-                                    <telerik:ItemMapping FieldName="Id" DataPointMember="YValue" AggregateFunction="Count"/>
+                                    <telerik:ItemMapping FieldName="Ilosc" DataPointMember="YValue" AggregateFunction="Sum"/>
                                 </telerik:SeriesMapping.ItemMappings>
                                 <telerik:SeriesMapping.FilterDescriptors>
                                     <telerik:ChartFilterDescriptor Member="RokZrealizowania" Operator="IsGreaterThan" Value="1900"/>
@@ -103,7 +103,7 @@
                                 </telerik:SeriesMapping.SeriesDefinition>
                                 <telerik:SeriesMapping.ItemMappings>
                                     <telerik:ItemMapping FieldName="MiesiacZrealizowania" DataPointMember="XCategory" />
-                                    <telerik:ItemMapping FieldName="Id" DataPointMember="YValue" AggregateFunction="Count"/>
+                                    <telerik:ItemMapping FieldName="Ilosc" DataPointMember="YValue" AggregateFunction="Sum"/>
                                 </telerik:SeriesMapping.ItemMappings>
                                 <telerik:SeriesMapping.FilterDescriptors>
                                     <telerik:ChartFilterDescriptor Member="RokZrealizowania" Operator="IsGreaterThan" Value="1900"/>
@@ -119,7 +119,8 @@
                     <telerik:RadChart Grid.Row="1" Grid.Column="1" Name="chartProductZamowienia" UseDefaultLayout="False"  BorderBrush="Transparent">
                         <Grid>
                             <telerik:ChartTitle  x:Name="chartTitle3" Content="Zamowienia Produktow" Background="Transparent" />
-                            <telerik:ChartArea   x:Name="chartAreaProductZamowienia" />
+                            <telerik:ChartLegend x:Name="ChartLegend2"/>
+                            <telerik:ChartArea   x:Name="chartAreaProductZamowienia" LegendName="ChartLegend2" />
                         </Grid>
                         <telerik:RadChart.SeriesMappings>
                             <telerik:SeriesMapping LegendLabel="" ChartAreaName="chartAreaProductZamowienia" >
@@ -131,14 +132,12 @@
                                     </telerik:DoughnutSeriesDefinition>
                                 </telerik:SeriesMapping.SeriesDefinition>
                                 <telerik:SeriesMapping.ItemMappings>
-                                    <telerik:ItemMapping FieldName="Nazwa" DataPointMember="XCategory" />
+                                    <telerik:ItemMapping FieldName="Nazwa" DataPointMember="LegendLabel" />
                                     <telerik:ItemMapping FieldName="Ilosc" DataPointMember="YValue"/>
                                 </telerik:SeriesMapping.ItemMappings>
-                                <telerik:SeriesMapping.GroupingSettings>
-                                    <telerik:GroupingSettings ShouldFlattenSeries="True">
-                                        <telerik:ChartGroupDescriptor Member="Nazwa" />
-                                    </telerik:GroupingSettings>
-                                </telerik:SeriesMapping.GroupingSettings>
+                                <telerik:SeriesMapping.FilterDescriptors>
+                                    <telerik:ChartFilterDescriptor Member="Ilosc" Operator="IsGreaterThan" Value="0"/>
+                                </telerik:SeriesMapping.FilterDescriptors>
                             </telerik:SeriesMapping>
                         </telerik:RadChart.SeriesMappings>
                     </telerik:RadChart>

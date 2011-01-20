@@ -101,17 +101,33 @@ namespace AwesomeParts.Web.Services
                 });
         }
 
-        //[Query()]
-        //public int GetProductsSoldByYear(int year,string productName)
-        //{
-        //    return 0;
-        //}
+        [Query()]
+        public IQueryable<ProductSellPOCO> GetProductsSoldByYear(int year)
+        {
+            int counter = 0;
+            List<ProductSellPOCO> list = new List<ProductSellPOCO>();
+            foreach (Produkty prod in _produktyContext.GetAll())
+            {
+                counter++;
+                list.Add( new ProductSellPOCO() { Id=counter, Nazwa = prod.Nazwa, Ilosc = _koszykContext.GetProductsSoldByYear(year, prod.Nazwa) });
+            }
+            return list.AsQueryable<ProductSellPOCO>();
+        }
 
-        //[Query()]
-        //public int GetProductsSoldByMonthAndYear(int month,int Year,string productName)
-        //{
-        //    return 0;
-        //}
+        [Query()]
+        public IQueryable<ProductSellPOCO> GetProductsSoldByMonthAndYear(int month, int year)
+        {
+            int counter = 0;
+
+            List<ProductSellPOCO> list = new List<ProductSellPOCO>();
+            foreach (Produkty prod in _produktyContext.GetAll())
+            {
+                counter++;
+
+                list.Add(new ProductSellPOCO() { Id = counter, Nazwa = prod.Nazwa, Ilosc = _koszykContext.GetProductsSoldByMonth(month, year, prod.Nazwa) });
+            }
+            return list.AsQueryable<ProductSellPOCO>(); 
+        }
 
         #endregion Produkty CRUD
 

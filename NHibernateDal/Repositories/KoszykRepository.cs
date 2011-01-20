@@ -28,7 +28,7 @@ namespace BazaDanych.Repositories
             int counter = 0;
             foreach (ZamowieniaKoszyk koszyk in this.GetByQuery(String.Format("from ZamowieniaKoszyk k where k.Produkt.Nazwa = '{0}' ", produktNazwa, month, year)))
             {
-                if (koszyk.Zamowienie.DataZrealizowania.HasValue && koszyk.Zamowienie.DataZrealizowania.Value.Month == month)
+                if (koszyk.Zamowienie.DataZrealizowania.HasValue && koszyk.Zamowienie.DataZrealizowania.Value.Month == month && koszyk.Zamowienie.DataZrealizowania.Value.Year == year)
                 {
                     counter += koszyk.Ilosc;
                 }
