@@ -20,6 +20,7 @@ namespace AwesomeParts.Web.POCOs
         public string KlientFirma { get; set; }
         public int KlientID { get; set; }
         public int PracownikID { get; set; }
+        public int IloscProduktow { get; set; }
 
         [Include]
         [Association("ZamowienieKlient", "KlientID", "Id", IsForeignKey = true)]
@@ -28,32 +29,5 @@ namespace AwesomeParts.Web.POCOs
         [Include]
         [Association("ZamowieniePracownik", "PracownikID", "Id", IsForeignKey = true)]
         public PracownikPOCO Pracownik { get; set; }
-
-        #region Wykorzystywane do Chartow
-        public int RokZrealizowania
-        {
-            get
-            {
-                if (DataZrealizowania.HasValue)
-                {
-                    return DataZrealizowania.Value.Year;
-                }
-                else return 0;
-            }
-        }
-
-        public int MiesiacZrealizowania
-        {
-            get
-            {
-                if (DataZrealizowania.HasValue)
-                {
-                    return DataZrealizowania.Value.Month;
-                }
-                else return 0;
-            }
-        }
-        #endregion
-
     }
 }

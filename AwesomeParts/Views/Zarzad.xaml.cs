@@ -18,47 +18,46 @@ namespace AwesomeParts.Views
     public partial class Zarzad : Page
     {
         private DomainDataSource zamowieniaContext;
-        private DomainDataSource produktyContextByYear;
-        private DomainDataSource produktyContextByMonth;
+        private DomainDataSource produktyContext;
+
 
         private string _selectedYear = String.Empty;
-        private bool _firstYear = true;
-        private bool _firstMonth = true;
+
+        private bool _first = true;
+        private bool _first1 = true;
+        private bool _first2 = true;
 
         public Zarzad()
         {
             InitializeComponent();
 
             zamowieniaContext = new DomainDataSource();
-            zamowieniaContext.Name = "zamowienia";
+            zamowieniaContext.Name = "GetIloscProduktow";
             zamowieniaContext.AutoLoad = false;
             zamowieniaContext.DomainContext = (AwesomePartsContext)this.Resources["ZamowieniaContext"];
-            zamowieniaContext.QueryName = "GetZamowienia";
+            zamowieniaContext.QueryName = "GetKoszyki";
+            zamowieniaContext.LoadedData += new EventHandler<LoadedDataEventArgs>(zamowieniaContext_LoadedData);
 
-            produktyContextByYear = new DomainDataSource();
-            produktyContextByYear.Name = "produktyByYear";
-            produktyContextByYear.AutoLoad = false;
-            produktyContextByYear.DomainContext = (AwesomePartsContext)this.Resources["ZamowieniaContext"];
-            produktyContextByYear.QueryName = "GetProductsSoldByYear";
-            produktyContextByYear.LoadedData += new EventHandler<LoadedDataEventArgs>(produktyContextByYear_LoadedData);
+            produktyContext = new DomainDataSource();
+            produktyContext.Name = "GetProducts";
+            produktyContext.AutoLoad = false;
+            produktyContext.DomainContext = (AwesomePartsContext)this.Resources["ZamowieniaContext"];
+            produktyContext.LoadedData += new EventHandler<LoadedDataEventArgs>(produktyContext_LoadedData);
 
-            produktyContextByMonth = new DomainDataSource();
-            produktyContextByMonth.Name = "produktyByMonth";
-            produktyContextByMonth.AutoLoad = false;
-            produktyContextByMonth.DomainContext = (AwesomePartsContext)this.Resources["ZamowieniaContext"];
-            produktyContextByMonth.QueryName = "GetProductsSoldByMonthAndYear";
-            produktyContextByMonth.LoadedData += new EventHandler<LoadedDataEventArgs>(produktyContextByMonth_LoadedData);
         }
 
-        void produktyContextByMonth_LoadedData(object sender, LoadedDataEventArgs e)
+        void zamowieniaContext_LoadedData(object sender, LoadedDataEventArgs e)
         {
-            chartProductZamowienia.ItemsSource = produktyContextByMonth.Data;
+            this.busyIndicator1.IsBusy = false;
+            this.busyIndicator2.IsBusy = false;
         }
 
-        void produktyContextByYear_LoadedData(object sender, LoadedDataEventArgs e)
+        void produktyContext_LoadedData(object sender, LoadedDataEventArgs e)
         {
-            this.chartProductZamowienia.ItemsSource = produktyContextByYear.Data;
+            chartProductZamowienia.ItemsSource = produktyContext.Data;
+            this.busyIndicator3.IsBusy = false;
         }
+
 
         // Executes when the user navigates to this page.
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -67,54 +66,91 @@ namespace AwesomeParts.Views
             //{
             //    this.NavigationService.Navigate(new Uri("/NoAcces", UriKind.Relative));
             //}
-            if (zamowieniaContext.CanLoad)
-            {
-                zamowieniaContext.Load();
-                chartYearlyZamowienia.ItemsSource = zamowieniaContext.Data;
-                chartMonthlyZamowienia.ItemsSource = zamowieniaContext.Data;
-            }
+            zamowieniaContext.Load();
+            this.busyIndicator1.IsBusy = true;
+            this.busyIndicator2.IsBusy = true;
+            chartYearlyZamowienia.ItemsSource = zamowieniaContext.Data;
+            chartMonthlyZamowienia.ItemsSource = zamowieniaContext.Data;
         }
 
         private void chartareaYearlyZamowienia_ItemClick(object sender, ChartItemClickEventArgs e)
         {
+
+            if (!_first)
+            {
+                produktyContext.Clear();
+            }
+
+
             ChartFilterDescriptor descriptor = new ChartFilterDescriptor();
             descriptor.Member = "RokZrealizowania";
             descriptor.Operator = Telerik.Windows.Data.FilterOperator.IsEqualTo;
             descriptor.Value = e.DataPoint.XCategory;
+
+            ChartFilterDescriptor descriptor1 = new ChartFilterDescriptor();
+            descriptor1.Member = "Ilosc";
+            descriptor1.Operator = Telerik.Windows.Data.FilterOperator.IsGreaterThan;
+            descriptor1.Value = "0";
+
             this.chartMonthlyZamowienia.FilterDescriptors.Clear();
             this.chartMonthlyZamowienia.FilterDescriptors.Add(descriptor);
+            this.chartMonthlyZamowienia.FilterDescriptors.Add(descriptor1);
 
-            if (!_firstYear)
-            {
-                produktyContextByYear.Clear();
-            }
 
-            produktyContextByYear.QueryParameters.Clear();
-            produktyContextByYear.QueryParameters.Add(new Parameter() { ParameterName = "year", Value = e.DataPoint.XCategory });
+            this.busyIndicator3.IsBusy = true;
+            produktyContext.QueryParameters.Clear();
+            produktyContext.QueryName = "";
+            produktyContext.QueryParameters.Add(new Parameter() { ParameterName = "year", Value = e.DataPoint.XCategory });
+            produktyContext.QueryName = "GetProductsSoldByYear";
 
-            produktyContextByYear.Load();
+            produktyContext.Load();
             _selectedYear = e.DataPoint.XCategory;
-            _firstYear = false;
+
+            chartTitle2.Content = String.Format("Sprzedaż na Rok :{0}", _selectedYear);
+
+            _first = false;
         }
 
 
         private void chartMonthlyZamowienia_ItemClick(object sender, ChartItemClickEventArgs e)
         {
-            if (!_firstMonth)
+            this.busyIndicator3.IsBusy = true;
+            if (!_first)
             {
-                produktyContextByMonth.Clear();
+                produktyContext.Clear();
             }
-            
-            produktyContextByMonth.QueryParameters.Clear();
-            produktyContextByMonth.QueryParameters.Add(new Parameter() { ParameterName = "month", Value = e.DataPoint.XCategory });
-            produktyContextByMonth.QueryParameters.Add(new Parameter() { ParameterName = "year", Value = _selectedYear });
 
 
+            string month = ConvertMonthToInt(e.DataPoint.XCategory);
 
-            produktyContextByMonth.Load();
+            produktyContext.QueryParameters.Clear();
+            produktyContext.QueryName = "";
+            produktyContext.QueryParameters.Add(new Parameter() { ParameterName = "month", Value = month });
+            produktyContext.QueryParameters.Add(new Parameter() { ParameterName = "year", Value = _selectedYear });
+            produktyContext.QueryName = "GetProductsSoldByMonthAndYear";
+            produktyContext.Load();
 
-            _firstMonth = false;
+            _first = false;
+        }
 
+        private string ConvertMonthToInt(string month)
+        {
+            switch (month)
+            {
+                case "Styczeń":return "1";
+                case "Luty":return "2";
+                case "Marzec":return "3";
+                case "Kwiecień":return "4";
+                case "Maj":return "5";
+                case "Czerwiec":return "6";
+                case "Lipiec":return "7";
+                case "Sierpień":return "8";
+                case "Wrzesień":return "9";
+                case "Październik":return "10";
+                case  "Listopad":return "11";
+                case "Grudzień": return "12";
+                default: return "0";
+            }
         }
     }
 }

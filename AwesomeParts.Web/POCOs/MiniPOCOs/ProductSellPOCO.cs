@@ -13,5 +13,9 @@ namespace AwesomeParts.Web.POCOs.MiniPOCOs
 
         public string Nazwa { get; set; }
         public int Ilosc { get; set; }
+
+        
+        public int Month { get; set; }
+        public int Year { get; set; }
     }
 }

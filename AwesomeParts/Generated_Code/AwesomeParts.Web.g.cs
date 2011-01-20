@@ -3475,6 +3475,8 @@ namespace AwesomeParts.Web.POCOs
         
         private int _id;
         
+        private int _iloscProduktow;
+        
         private EntityRef<KlientPOCO> _klient;
         
         private string _klientFirma;
@@ -3483,13 +3485,9 @@ namespace AwesomeParts.Web.POCOs
         
         private string _klientNazwa;
         
-        private int _miesiacZrealizowania;
-        
         private EntityRef<PracownikPOCO> _pracownik;
         
         private int _pracownikID;
-        
-        private int _rokZrealizowania;
         
         private bool _zrealizowano;
         
@@ -3506,18 +3504,16 @@ namespace AwesomeParts.Web.POCOs
         partial void OnDataZrealizowaniaChanged();
         partial void OnIdChanging(int value);
         partial void OnIdChanged();
+        partial void OnIloscProduktowChanging(int value);
+        partial void OnIloscProduktowChanged();
         partial void OnKlientFirmaChanging(string value);
         partial void OnKlientFirmaChanged();
         partial void OnKlientIDChanging(int value);
         partial void OnKlientIDChanged();
         partial void OnKlientNazwaChanging(string value);
         partial void OnKlientNazwaChanged();
-        partial void OnMiesiacZrealizowaniaChanging(int value);
-        partial void OnMiesiacZrealizowaniaChanged();
         partial void OnPracownikIDChanging(int value);
         partial void OnPracownikIDChanged();
-        partial void OnRokZrealizowaniaChanging(int value);
-        partial void OnRokZrealizowaniaChanged();
         partial void OnZrealizowanoChanging(bool value);
         partial void OnZrealizowanoChanged();
 
@@ -3602,6 +3598,30 @@ namespace AwesomeParts.Web.POCOs
                     this._id = value;
                     this.RaisePropertyChanged("Id");
                     this.OnIdChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'IloscProduktow' value.
+        /// </summary>
+        [DataMember()]
+        public int IloscProduktow
+        {
+            get
+            {
+                return this._iloscProduktow;
+            }
+            set
+            {
+                if ((this._iloscProduktow != value))
+                {
+                    this.OnIloscProduktowChanging(value);
+                    this.RaiseDataMemberChanging("IloscProduktow");
+                    this.ValidateProperty("IloscProduktow", value);
+                    this._iloscProduktow = value;
+                    this.RaiseDataMemberChanged("IloscProduktow");
+                    this.OnIloscProduktowChanged();
                 }
             }
         }
@@ -3714,31 +3734,6 @@ namespace AwesomeParts.Web.POCOs
         }
         
         /// <summary>
-        /// Gets or sets the 'MiesiacZrealizowania' value.
-        /// </summary>
-        [DataMember()]
-        [Editable(false)]
-        [ReadOnly(true)]
-        public int MiesiacZrealizowania
-        {
-            get
-            {
-                return this._miesiacZrealizowania;
-            }
-            set
-            {
-                if ((this._miesiacZrealizowania != value))
-                {
-                    this.OnMiesiacZrealizowaniaChanging(value);
-                    this.ValidateProperty("MiesiacZrealizowania", value);
-                    this._miesiacZrealizowania = value;
-                    this.RaisePropertyChanged("MiesiacZrealizowania");
-                    this.OnMiesiacZrealizowaniaChanged();
-                }
-            }
-        }
-        
-        /// <summary>
         /// Gets or sets the associated <see cref="PracownikPOCO"/> entity.
         /// </summary>
         [Association("ZamowieniePracownik", "PracownikID", "Id", IsForeignKey=true)]
@@ -3798,31 +3793,6 @@ namespace AwesomeParts.Web.POCOs
         }
         
         /// <summary>
-        /// Gets or sets the 'RokZrealizowania' value.
-        /// </summary>
-        [DataMember()]
-        [Editable(false)]
-        [ReadOnly(true)]
-        public int RokZrealizowania
-        {
-            get
-            {
-                return this._rokZrealizowania;
-            }
-            set
-            {
-                if ((this._rokZrealizowania != value))
-                {
-                    this.OnRokZrealizowaniaChanging(value);
-                    this.ValidateProperty("RokZrealizowania", value);
-                    this._rokZrealizowania = value;
-                    this.RaisePropertyChanged("RokZrealizowania");
-                    this.OnRokZrealizowaniaChanged();
-                }
-            }
-        }
-        
-        /// <summary>
         /// Gets or sets the 'Zrealizowano' value.
         /// </summary>
         [DataMember()]
@@ -3877,7 +3847,399 @@ namespace AwesomeParts.Web.POCOs.MiniPOCOs
     using System.ServiceModel.DomainServices;
     using System.ServiceModel.DomainServices.Client;
     using System.ServiceModel.DomainServices.Client.ApplicationServices;
+    using AwesomeParts.Web.POCOs;
     
+    
+    /// <summary>
+    /// The 'KoszykPOCO' entity class.
+    /// </summary>
+    [DataContract(Namespace="http://schemas.datacontract.org/2004/07/AwesomeParts.Web.POCOs.MiniPOCOs")]
+    public sealed partial class KoszykPOCO : Entity
+    {
+        
+        private decimal _cenaCalosciowa;
+        
+        private decimal _cenaJednostkowa;
+        
+        private int _id;
+        
+        private int _ilosc;
+        
+        private int _miesiacZrealizowania;
+        
+        private string _miesiacZrealizowaniaString;
+        
+        private string _nazwa;
+        
+        private string _producent;
+        
+        private int _produktID;
+        
+        private int _rokZrealizowania;
+        
+        private EntityRef<ZamowieniePOCO> _zamowienie;
+        
+        private int _zamowienieID;
+        
+        #region Extensibility Method Definitions
+
+        /// <summary>
+        /// This method is invoked from the constructor once initialization is complete and
+        /// can be used for further object setup.
+        /// </summary>
+        partial void OnCreated();
+        partial void OnCenaCalosciowaChanging(decimal value);
+        partial void OnCenaCalosciowaChanged();
+        partial void OnCenaJednostkowaChanging(decimal value);
+        partial void OnCenaJednostkowaChanged();
+        partial void OnIdChanging(int value);
+        partial void OnIdChanged();
+        partial void OnIloscChanging(int value);
+        partial void OnIloscChanged();
+        partial void OnMiesiacZrealizowaniaChanging(int value);
+        partial void OnMiesiacZrealizowaniaChanged();
+        partial void OnMiesiacZrealizowaniaStringChanging(string value);
+        partial void OnMiesiacZrealizowaniaStringChanged();
+        partial void OnNazwaChanging(string value);
+        partial void OnNazwaChanged();
+        partial void OnProducentChanging(string value);
+        partial void OnProducentChanged();
+        partial void OnProduktIDChanging(int value);
+        partial void OnProduktIDChanged();
+        partial void OnRokZrealizowaniaChanging(int value);
+        partial void OnRokZrealizowaniaChanged();
+        partial void OnZamowienieIDChanging(int value);
+        partial void OnZamowienieIDChanged();
+
+        #endregion
+        
+        
+        /// <summary>
+        /// Initializes a new instance of the <see cref="KoszykPOCO"/> class.
+        /// </summary>
+        public KoszykPOCO()
+        {
+            this.OnCreated();
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'CenaCalosciowa' value.
+        /// </summary>
+        [DataMember()]
+        public decimal CenaCalosciowa
+        {
+            get
+            {
+                return this._cenaCalosciowa;
+            }
+            set
+            {
+                if ((this._cenaCalosciowa != value))
+                {
+                    this.OnCenaCalosciowaChanging(value);
+                    this.RaiseDataMemberChanging("CenaCalosciowa");
+                    this.ValidateProperty("CenaCalosciowa", value);
+                    this._cenaCalosciowa = value;
+                    this.RaiseDataMemberChanged("CenaCalosciowa");
+                    this.OnCenaCalosciowaChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'CenaJednostkowa' value.
+        /// </summary>
+        [DataMember()]
+        public decimal CenaJednostkowa
+        {
+            get
+            {
+                return this._cenaJednostkowa;
+            }
+            set
+            {
+                if ((this._cenaJednostkowa != value))
+                {
+                    this.OnCenaJednostkowaChanging(value);
+                    this.RaiseDataMemberChanging("CenaJednostkowa");
+                    this.ValidateProperty("CenaJednostkowa", value);
+                    this._cenaJednostkowa = value;
+                    this.RaiseDataMemberChanged("CenaJednostkowa");
+                    this.OnCenaJednostkowaChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'Id' value.
+        /// </summary>
+        [DataMember()]
+        [Editable(false, AllowInitialValue=true)]
+        [Key()]
+        [RoundtripOriginal()]
+        public int Id
+        {
+            get
+            {
+                return this._id;
+            }
+            set
+            {
+                if ((this._id != value))
+                {
+                    this.OnIdChanging(value);
+                    this.ValidateProperty("Id", value);
+                    this._id = value;
+                    this.RaisePropertyChanged("Id");
+                    this.OnIdChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'Ilosc' value.
+        /// </summary>
+        [DataMember()]
+        public int Ilosc
+        {
+            get
+            {
+                return this._ilosc;
+            }
+            set
+            {
+                if ((this._ilosc != value))
+                {
+                    this.OnIloscChanging(value);
+                    this.RaiseDataMemberChanging("Ilosc");
+                    this.ValidateProperty("Ilosc", value);
+                    this._ilosc = value;
+                    this.RaiseDataMemberChanged("Ilosc");
+                    this.OnIloscChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'MiesiacZrealizowania' value.
+        /// </summary>
+        [DataMember()]
+        [Editable(false)]
+        [ReadOnly(true)]
+        public int MiesiacZrealizowania
+        {
+            get
+            {
+                return this._miesiacZrealizowania;
+            }
+            set
+            {
+                if ((this._miesiacZrealizowania != value))
+                {
+                    this.OnMiesiacZrealizowaniaChanging(value);
+                    this.ValidateProperty("MiesiacZrealizowania", value);
+                    this._miesiacZrealizowania = value;
+                    this.RaisePropertyChanged("MiesiacZrealizowania");
+                    this.OnMiesiacZrealizowaniaChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'MiesiacZrealizowaniaString' value.
+        /// </summary>
+        [DataMember()]
+        [Editable(false)]
+        [ReadOnly(true)]
+        public string MiesiacZrealizowaniaString
+        {
+            get
+            {
+                return this._miesiacZrealizowaniaString;
+            }
+            set
+            {
+                if ((this._miesiacZrealizowaniaString != value))
+                {
+                    this.OnMiesiacZrealizowaniaStringChanging(value);
+                    this.ValidateProperty("MiesiacZrealizowaniaString", value);
+                    this._miesiacZrealizowaniaString = value;
+                    this.RaisePropertyChanged("MiesiacZrealizowaniaString");
+                    this.OnMiesiacZrealizowaniaStringChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'Nazwa' value.
+        /// </summary>
+        [DataMember()]
+        public string Nazwa
+        {
+            get
+            {
+                return this._nazwa;
+            }
+            set
+            {
+                if ((this._nazwa != value))
+                {
+                    this.OnNazwaChanging(value);
+                    this.RaiseDataMemberChanging("Nazwa");
+                    this.ValidateProperty("Nazwa", value);
+                    this._nazwa = value;
+                    this.RaiseDataMemberChanged("Nazwa");
+                    this.OnNazwaChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'Producent' value.
+        /// </summary>
+        [DataMember()]
+        public string Producent
+        {
+            get
+            {
+                return this._producent;
+            }
+            set
+            {
+                if ((this._producent != value))
+                {
+                    this.OnProducentChanging(value);
+                    this.RaiseDataMemberChanging("Producent");
+                    this.ValidateProperty("Producent", value);
+                    this._producent = value;
+                    this.RaiseDataMemberChanged("Producent");
+                    this.OnProducentChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'ProduktID' value.
+        /// </summary>
+        [DataMember()]
+        public int ProduktID
+        {
+            get
+            {
+                return this._produktID;
+            }
+            set
+            {
+                if ((this._produktID != value))
+                {
+                    this.OnProduktIDChanging(value);
+                    this.RaiseDataMemberChanging("ProduktID");
+                    this.ValidateProperty("ProduktID", value);
+                    this._produktID = value;
+                    this.RaiseDataMemberChanged("ProduktID");
+                    this.OnProduktIDChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'RokZrealizowania' value.
+        /// </summary>
+        [DataMember()]
+        [Editable(false)]
+        [ReadOnly(true)]
+        public int RokZrealizowania
+        {
+            get
+            {
+                return this._rokZrealizowania;
+            }
+            set
+            {
+                if ((this._rokZrealizowania != value))
+                {
+                    this.OnRokZrealizowaniaChanging(value);
+                    this.ValidateProperty("RokZrealizowania", value);
+                    this._rokZrealizowania = value;
+                    this.RaisePropertyChanged("RokZrealizowania");
+                    this.OnRokZrealizowaniaChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the associated <see cref="ZamowieniePOCO"/> entity.
+        /// </summary>
+        [Association("ZamowienieKoszykZamowienie", "ZamowienieID", "Id", IsForeignKey=true)]
+        public ZamowieniePOCO Zamowienie
+        {
+            get
+            {
+                if ((this._zamowienie == null))
+                {
+                    this._zamowienie = new EntityRef<ZamowieniePOCO>(this, "Zamowienie", this.FilterZamowienie);
+                }
+                return this._zamowienie.Entity;
+            }
+            set
+            {
+                ZamowieniePOCO previous = this.Zamowienie;
+                if ((previous != value))
+                {
+                    this.ValidateProperty("Zamowienie", value);
+                    if ((value != null))
+                    {
+                        this.ZamowienieID = value.Id;
+                    }
+                    else
+                    {
+                        this.ZamowienieID = default(int);
+                    }
+                    this._zamowienie.Entity = value;
+                    this.RaisePropertyChanged("Zamowienie");
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'ZamowienieID' value.
+        /// </summary>
+        [DataMember()]
+        [RoundtripOriginal()]
+        public int ZamowienieID
+        {
+            get
+            {
+                return this._zamowienieID;
+            }
+            set
+            {
+                if ((this._zamowienieID != value))
+                {
+                    this.OnZamowienieIDChanging(value);
+                    this.RaiseDataMemberChanging("ZamowienieID");
+                    this.ValidateProperty("ZamowienieID", value);
+                    this._zamowienieID = value;
+                    this.RaiseDataMemberChanged("ZamowienieID");
+                    this.OnZamowienieIDChanged();
+                }
+            }
+        }
+        
+        private bool FilterZamowienie(ZamowieniePOCO entity)
+        {
+            return (entity.Id == this.ZamowienieID);
+        }
+        
+        /// <summary>
+        /// Computes a value from the key fields that uniquely identifies this entity instance.
+        /// </summary>
+        /// <returns>An object instance that uniquely identifies this entity instance.</returns>
+        public override object GetIdentity()
+        {
+            return this._id;
+        }
+    }
     
     /// <summary>
     /// The 'ProductSellPOCO' entity class.
@@ -3890,7 +4252,11 @@ namespace AwesomeParts.Web.POCOs.MiniPOCOs
         
         private int _ilosc;
         
+        private int _month;
+        
         private string _nazwa;
+        
+        private int _year;
         
         #region Extensibility Method Definitions
 
@@ -3903,8 +4269,12 @@ namespace AwesomeParts.Web.POCOs.MiniPOCOs
         partial void OnIdChanged();
         partial void OnIloscChanging(int value);
         partial void OnIloscChanged();
+        partial void OnMonthChanging(int value);
+        partial void OnMonthChanged();
         partial void OnNazwaChanging(string value);
         partial void OnNazwaChanged();
+        partial void OnYearChanging(int value);
+        partial void OnYearChanged();
 
         #endregion
         
@@ -3968,6 +4338,30 @@ namespace AwesomeParts.Web.POCOs.MiniPOCOs
         }
         
         /// <summary>
+        /// Gets or sets the 'Month' value.
+        /// </summary>
+        [DataMember()]
+        public int Month
+        {
+            get
+            {
+                return this._month;
+            }
+            set
+            {
+                if ((this._month != value))
+                {
+                    this.OnMonthChanging(value);
+                    this.RaiseDataMemberChanging("Month");
+                    this.ValidateProperty("Month", value);
+                    this._month = value;
+                    this.RaiseDataMemberChanged("Month");
+                    this.OnMonthChanged();
+                }
+            }
+        }
+        
+        /// <summary>
         /// Gets or sets the 'Nazwa' value.
         /// </summary>
         [DataMember()]
@@ -3987,6 +4381,30 @@ namespace AwesomeParts.Web.POCOs.MiniPOCOs
                     this._nazwa = value;
                     this.RaiseDataMemberChanged("Nazwa");
                     this.OnNazwaChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'Year' value.
+        /// </summary>
+        [DataMember()]
+        public int Year
+        {
+            get
+            {
+                return this._year;
+            }
+            set
+            {
+                if ((this._year != value))
+                {
+                    this.OnYearChanging(value);
+                    this.RaiseDataMemberChanging("Year");
+                    this.ValidateProperty("Year", value);
+                    this._year = value;
+                    this.RaiseDataMemberChanged("Year");
+                    this.OnYearChanged();
                 }
             }
         }
@@ -4074,6 +4492,17 @@ namespace AwesomeParts.Web.Services
         }
         
         /// <summary>
+        /// Gets the set of <see cref="ProductSellPOCO"/> entity instances that have been loaded into this <see cref="AwesomePartsContext"/> instance.
+        /// </summary>
+        public EntitySet<ProductSellPOCO> ProductSellPOCOs
+        {
+            get
+            {
+                return base.EntityContainer.GetEntitySet<ProductSellPOCO>();
+            }
+        }
+        
+        /// <summary>
         /// Gets the set of <see cref="KlientPOCO"/> entity instances that have been loaded into this <see cref="AwesomePartsContext"/> instance.
         /// </summary>
         public EntitySet<KlientPOCO> KlientPOCOs
@@ -4092,6 +4521,17 @@ namespace AwesomeParts.Web.Services
             get
             {
                 return base.EntityContainer.GetEntitySet<ZamowieniaKoszykPOCO>();
+            }
+        }
+        
+        /// <summary>
+        /// Gets the set of <see cref="KoszykPOCO"/> entity instances that have been loaded into this <see cref="AwesomePartsContext"/> instance.
+        /// </summary>
+        public EntitySet<KoszykPOCO> KoszykPOCOs
+        {
+            get
+            {
+                return base.EntityContainer.GetEntitySet<KoszykPOCO>();
             }
         }
         
@@ -4140,17 +4580,6 @@ namespace AwesomeParts.Web.Services
         }
         
         /// <summary>
-        /// Gets the set of <see cref="ProductSellPOCO"/> entity instances that have been loaded into this <see cref="AwesomePartsContext"/> instance.
-        /// </summary>
-        public EntitySet<ProductSellPOCO> ProductSellPOCOs
-        {
-            get
-            {
-                return base.EntityContainer.GetEntitySet<ProductSellPOCO>();
-            }
-        }
-        
-        /// <summary>
         /// Gets the set of <see cref="ProduktPOCO"/> entity instances that have been loaded into this <see cref="AwesomePartsContext"/> instance.
         /// </summary>
         public EntitySet<ProduktPOCO> ProduktPOCOs
@@ -4186,6 +4615,34 @@ namespace AwesomeParts.Web.Services
         }
         
         /// <summary>
+        /// Gets an EntityQuery instance that can be used to load <see cref="ProductSellPOCO"/> entity instances using the 'GetCountProductsSoldByYear' query.
+        /// </summary>
+        /// <param name="year">The value for the 'year' parameter of the query.</param>
+        /// <returns>An EntityQuery that can be loaded to retrieve <see cref="ProductSellPOCO"/> entity instances.</returns>
+        public EntityQuery<ProductSellPOCO> GetCountProductsSoldByYearQuery(int year)
+        {
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
+            parameters.Add("year", year);
+            this.ValidateMethod("GetCountProductsSoldByYearQuery", parameters);
+            return base.CreateQuery<ProductSellPOCO>("GetCountProductsSoldByYear", parameters, false, true);
+        }
+        
+        /// <summary>
+        /// Gets an EntityQuery instance that can be used to load <see cref="ProductSellPOCO"/> entity instances using the 'GetCountProductsSoldByYearRange' query.
+        /// </summary>
+        /// <param name="startYear">The value for the 'startYear' parameter of the query.</param>
+        /// <param name="endYear">The value for the 'endYear' parameter of the query.</param>
+        /// <returns>An EntityQuery that can be loaded to retrieve <see cref="ProductSellPOCO"/> entity instances.</returns>
+        public EntityQuery<ProductSellPOCO> GetCountProductsSoldByYearRangeQuery(int startYear, int endYear)
+        {
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
+            parameters.Add("startYear", startYear);
+            parameters.Add("endYear", endYear);
+            this.ValidateMethod("GetCountProductsSoldByYearRangeQuery", parameters);
+            return base.CreateQuery<ProductSellPOCO>("GetCountProductsSoldByYearRange", parameters, false, true);
+        }
+        
+        /// <summary>
         /// Gets an EntityQuery instance that can be used to load <see cref="KlientPOCO"/> entity instances using the 'GetKlienci' query.
         /// </summary>
         /// <returns>An EntityQuery that can be loaded to retrieve <see cref="KlientPOCO"/> entity instances.</returns>
@@ -4206,6 +4663,16 @@ namespace AwesomeParts.Web.Services
             parameters.Add("zamowienieID", zamowienieID);
             this.ValidateMethod("GetKoszykByZamowienieIdQuery", parameters);
             return base.CreateQuery<ZamowieniaKoszykPOCO>("GetKoszykByZamowienieId", parameters, false, true);
+        }
+        
+        /// <summary>
+        /// Gets an EntityQuery instance that can be used to load <see cref="KoszykPOCO"/> entity instances using the 'GetKoszyki' query.
+        /// </summary>
+        /// <returns>An EntityQuery that can be loaded to retrieve <see cref="KoszykPOCO"/> entity instances.</returns>
+        public EntityQuery<KoszykPOCO> GetKoszykiQuery()
+        {
+            this.ValidateMethod("GetKoszykiQuery", null);
+            return base.CreateQuery<KoszykPOCO>("GetKoszyki", null, false, true);
         }
         
         /// <summary>
@@ -4408,6 +4875,47 @@ namespace AwesomeParts.Web.Services
             QueryResult<ZamowieniePOCO> EndGetAktualneZamowienieByKlientId(IAsyncResult result);
             
             /// <summary>
+            /// Asynchronously invokes the 'GetCountProductsSoldByYear' operation.
+            /// </summary>
+            /// <param name="year">The value for the 'year' parameter of this action.</param>
+            /// <param name="callback">Callback to invoke on completion.</param>
+            /// <param name="asyncState">Optional state object.</param>
+            /// <returns>An IAsyncResult that can be used to monitor the request.</returns>
+            [FaultContract(typeof(DomainServiceFault), Action="http://tempuri.org/AwesomePartsService/GetCountProductsSoldByYearDomainServiceFau" +
+                "lt", Name="DomainServiceFault", Namespace="DomainServices")]
+            [OperationContract(AsyncPattern=true, Action="http://tempuri.org/AwesomePartsService/GetCountProductsSoldByYear", ReplyAction="http://tempuri.org/AwesomePartsService/GetCountProductsSoldByYearResponse")]
+            [WebGet()]
+            IAsyncResult BeginGetCountProductsSoldByYear(int year, AsyncCallback callback, object asyncState);
+            
+            /// <summary>
+            /// Completes the asynchronous operation begun by 'BeginGetCountProductsSoldByYear'.
+            /// </summary>
+            /// <param name="result">The IAsyncResult returned from 'BeginGetCountProductsSoldByYear'.</param>
+            /// <returns>The 'QueryResult' returned from the 'GetCountProductsSoldByYear' operation.</returns>
+            QueryResult<ProductSellPOCO> EndGetCountProductsSoldByYear(IAsyncResult result);
+            
+            /// <summary>
+            /// Asynchronously invokes the 'GetCountProductsSoldByYearRange' operation.
+            /// </summary>
+            /// <param name="startYear">The value for the 'startYear' parameter of this action.</param>
+            /// <param name="endYear">The value for the 'endYear' parameter of this action.</param>
+            /// <param name="callback">Callback to invoke on completion.</param>
+            /// <param name="asyncState">Optional state object.</param>
+            /// <returns>An IAsyncResult that can be used to monitor the request.</returns>
+            [FaultContract(typeof(DomainServiceFault), Action="http://tempuri.org/AwesomePartsService/GetCountProductsSoldByYearRangeDomainServi" +
+                "ceFault", Name="DomainServiceFault", Namespace="DomainServices")]
+            [OperationContract(AsyncPattern=true, Action="http://tempuri.org/AwesomePartsService/GetCountProductsSoldByYearRange", ReplyAction="http://tempuri.org/AwesomePartsService/GetCountProductsSoldByYearRangeResponse")]
+            [WebGet()]
+            IAsyncResult BeginGetCountProductsSoldByYearRange(int startYear, int endYear, AsyncCallback callback, object asyncState);
+            
+            /// <summary>
+            /// Completes the asynchronous operation begun by 'BeginGetCountProductsSoldByYearRange'.
+            /// </summary>
+            /// <param name="result">The IAsyncResult returned from 'BeginGetCountProductsSoldByYearRange'.</param>
+            /// <returns>The 'QueryResult' returned from the 'GetCountProductsSoldByYearRange' operation.</returns>
+            QueryResult<ProductSellPOCO> EndGetCountProductsSoldByYearRange(IAsyncResult result);
+            
+            /// <summary>
             /// Asynchronously invokes the 'GetKlienci' operation.
             /// </summary>
             /// <param name="callback">Callback to invoke on completion.</param>
@@ -4443,6 +4951,24 @@ namespace AwesomeParts.Web.Services
             /// <param name="result">The IAsyncResult returned from 'BeginGetKoszykByZamowienieId'.</param>
             /// <returns>The 'QueryResult' returned from the 'GetKoszykByZamowienieId' operation.</returns>
             QueryResult<ZamowieniaKoszykPOCO> EndGetKoszykByZamowienieId(IAsyncResult result);
+            
+            /// <summary>
+            /// Asynchronously invokes the 'GetKoszyki' operation.
+            /// </summary>
+            /// <param name="callback">Callback to invoke on completion.</param>
+            /// <param name="asyncState">Optional state object.</param>
+            /// <returns>An IAsyncResult that can be used to monitor the request.</returns>
+            [FaultContract(typeof(DomainServiceFault), Action="http://tempuri.org/AwesomePartsService/GetKoszykiDomainServiceFault", Name="DomainServiceFault", Namespace="DomainServices")]
+            [OperationContract(AsyncPattern=true, Action="http://tempuri.org/AwesomePartsService/GetKoszyki", ReplyAction="http://tempuri.org/AwesomePartsService/GetKoszykiResponse")]
+            [WebGet()]
+            IAsyncResult BeginGetKoszyki(AsyncCallback callback, object asyncState);
+            
+            /// <summary>
+            /// Completes the asynchronous operation begun by 'BeginGetKoszyki'.
+            /// </summary>
+            /// <param name="result">The IAsyncResult returned from 'BeginGetKoszyki'.</param>
+            /// <returns>The 'QueryResult' returned from the 'GetKoszyki' operation.</returns>
+            QueryResult<KoszykPOCO> EndGetKoszyki(IAsyncResult result);
             
             /// <summary>
             /// Asynchronously invokes the 'GetPracownicy' operation.
@@ -4734,6 +5260,7 @@ namespace AwesomeParts.Web.Services
             public AwesomePartsContextEntityContainer()
             {
                 this.CreateEntitySet<KlientPOCO>(EntitySetOperations.None);
+                this.CreateEntitySet<KoszykPOCO>(EntitySetOperations.None);
                 this.CreateEntitySet<ProductSellPOCO>(EntitySetOperations.None);
                 this.CreateEntitySet<PracownikPOCO>((EntitySetOperations.Add | EntitySetOperations.Edit));
                 this.CreateEntitySet<PracownikRodzajPOCO>(EntitySetOperations.None);

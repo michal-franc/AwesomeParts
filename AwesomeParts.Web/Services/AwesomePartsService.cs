@@ -102,6 +102,32 @@ namespace AwesomeParts.Web.Services
         }
 
         [Query()]
+        public IQueryable<ProductSellPOCO> GetCountProductsSoldByYearRange(int startYear,int endYear)
+        {
+            int counter = 0;
+            List<ProductSellPOCO> list = new List<ProductSellPOCO>();
+            for(int i = startYear;i<endYear;i++)
+            {
+                counter++;
+                list.Add(new ProductSellPOCO(){Id=counter,Ilosc=_koszykContext.GetAllProductsSoldByYear(i), Year=i});
+            }
+             return list.AsQueryable<ProductSellPOCO>();
+        }
+
+        [Query()]
+        public IQueryable<ProductSellPOCO> GetCountProductsSoldByYear(int year)
+        {
+            int counter = 0;
+            List<ProductSellPOCO> list = new List<ProductSellPOCO>();
+            for (int i = 1; i <= 12; i++)
+            {
+                counter++;
+                list.Add(new ProductSellPOCO() { Id = counter, Ilosc = _koszykContext.GetAllProductsSoldByYearAndMonth(year, i), Year = year, Month = counter });
+            }
+            return list.AsQueryable<ProductSellPOCO>();
+        }
+
+        [Query()]
         public IQueryable<ProductSellPOCO> GetProductsSoldByYear(int year)
         {
             int counter = 0;
@@ -426,6 +452,16 @@ namespace AwesomeParts.Web.Services
                 where r.Zamowienie.Id == zamowienieID
                 select POCOHelpers.MapKoszykToPOCO(r));
         }
+
+
+        [Query()]
+        public IQueryable<KoszykPOCO> GetKoszyki()
+        {
+            return (
+                from r in this._koszykContext.GetAll().AsQueryable() orderby r.Zamowienie.DataZrealizowania ascending
+                select POCOHelpers.MapKoszyk1ToPOCO(r));
+        }
+
 
         #endregion Koszyk CRUD
 

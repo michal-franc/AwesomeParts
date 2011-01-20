@@ -88,10 +88,24 @@ namespace AwesomeParts.Web
                 Nazwa = koszyk.Produkt.Nazwa,
                 Producent = koszyk.Produkt.Producent.Nazwa,
                 Ilosc = koszyk.Ilosc,
-                CenaJednostkowa = koszyk.Produkt.Cena,
                 CenaCalosciowa = koszyk.Ilosc * koszyk.Produkt.Cena,
                 ProduktID = koszyk.Produkt.Id,
                 ZamowienieID = koszyk.Zamowienie.Id
+            };
+        }
+
+        public static KoszykPOCO MapKoszyk1ToPOCO(ZamowieniaKoszyk koszyk)
+        {
+            return new KoszykPOCO
+            {
+                Id = koszyk.Id,
+                Nazwa = koszyk.Produkt.Nazwa,
+                Producent = koszyk.Produkt.Producent.Nazwa,
+                Ilosc = koszyk.Ilosc,
+                CenaCalosciowa = koszyk.Ilosc * koszyk.Produkt.Cena,
+                ProduktID = koszyk.Produkt.Id,
+                ZamowienieID = koszyk.Zamowienie.Id,
+                Zamowienie = POCOHelpers.MapZamowienieToPOCO(koszyk.Zamowienie)
             };
         }
 

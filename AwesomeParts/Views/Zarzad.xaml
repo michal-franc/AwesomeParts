@@ -44,16 +44,11 @@
         </Style>
 
         <domain:AwesomePartsContext x:Key="ZamowieniaContext"/>
-        <riaControls:DomainDataSource x:Key="ZamowieniaSource"
-                                        DomainContext="{StaticResource ZamowieniaContext}"
-                                        QueryName="GetZamowienia" />
-        <riaControls:DomainDataSource x:Key="ProduktySource"
-                                        DomainContext="{StaticResource ZamowieniaContext}"
-                                        QueryName="GetProdukty" />
+        
     </UserControl.Resources>
     <Grid x:Name="LayoutRoot">
         <sdk:TabControl>
-            <sdk:TabItem   Name="tabSprzedaz" Height="20" Width="50">
+            <sdk:TabItem   Name="tabSprzedaz" Height="20" Width="Auto">
                 <sdk:TabItem.Header>
                     <TextBlock Text="Sprzedaz"></TextBlock>
                 </sdk:TabItem.Header>
@@ -66,23 +61,34 @@
                         <ColumnDefinition Width="1*"></ColumnDefinition>
                         <ColumnDefinition Width="1*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <telerik:RadChart  Grid.ColumnSpan="2" Name="chartYearlyZamowienia" Style="Summer" UseDefaultLayout="False"  BorderBrush="Transparent" >
+                    <telerik:RadChart  Grid.ColumnSpan="2" Name="chartYearlyZamowienia"  UseDefaultLayout="False"  BorderBrush="Transparent" >
                         <Grid>
-                            <telerik:ChartTitle  x:Name="chartTitle1" Content="Roczne Zamówienia" Background="Transparent" />
-                            <telerik:ChartArea  ItemClick="chartareaYearlyZamowienia_ItemClick"  x:Name="chartAreaYearlyZamowienia"  />
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="1*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <telerik:ChartTitle  x:Name="chartTitle1" Style="{StaticResource CustomTitleStyle}"   Foreground="Black" Content="Roczna Sprzedaż" Background="Transparent" />
+                            <telerik:RadBusyIndicator x:Name="busyIndicator1" Grid.Row="1" BusyContent="Wczytuję dane....">
+                                <telerik:ChartArea Grid.Row="1"  ItemClick="chartareaYearlyZamowienia_ItemClick"  x:Name="chartAreaYearlyZamowienia"  />
+                            </telerik:RadBusyIndicator>
                         </Grid>
                         <telerik:RadChart.SeriesMappings >
                             <telerik:SeriesMapping LegendLabel="" ChartAreaName="chartAreaYearlyZamowienia" >
                                 <telerik:SeriesMapping.SeriesDefinition>
-                                    <telerik:BarSeriesDefinition  ShowItemLabels="False" />
+                                    <telerik:SplineAreaSeriesDefinition  ShowItemLabels="False" />
                                 </telerik:SeriesMapping.SeriesDefinition>
                                 <telerik:SeriesMapping.ItemMappings>
                                     <telerik:ItemMapping FieldName="RokZrealizowania" DataPointMember="XCategory" />
-                                    <telerik:ItemMapping FieldName="Ilosc" DataPointMember="YValue" AggregateFunction="Sum"/>
+                                    <telerik:ItemMapping FieldName="Ilosc" DataPointMember="YValue" AggregateFunction="Sum" />
                                 </telerik:SeriesMapping.ItemMappings>
                                 <telerik:SeriesMapping.FilterDescriptors>
+                                    <telerik:ChartFilterDescriptor Member="Ilosc" Operator="IsGreaterThan" Value="0"/>
                                     <telerik:ChartFilterDescriptor Member="RokZrealizowania" Operator="IsGreaterThan" Value="1900"/>
                                 </telerik:SeriesMapping.FilterDescriptors>
+                                <telerik:SeriesMapping.SortDescriptors>
+                                    <telerik:ChartSortDescriptor Member="RokZrealizowania" SortDirection="Ascending">
+                                    </telerik:ChartSortDescriptor>
+                                </telerik:SeriesMapping.SortDescriptors>
                                 <telerik:SeriesMapping.GroupingSettings>
                                     <telerik:GroupingSettings ShouldFlattenSeries="True">
                                         <telerik:ChartGroupDescriptor Member="RokZrealizowania" />
@@ -93,8 +99,14 @@
                     </telerik:RadChart>
                     <telerik:RadChart Grid.Row="1" Grid.Column="0" Name="chartMonthlyZamowienia" UseDefaultLayout="False"  BorderBrush="Transparent">
                         <Grid>
-                            <telerik:ChartTitle  x:Name="chartTitle2" Content="MiesieczneZamowienia" Background="Transparent" />
-                                <telerik:ChartArea  ItemClick="chartMonthlyZamowienia_ItemClick"  x:Name="chartAreaMonthlyZamowienia"/>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="1*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <telerik:ChartTitle  x:Name="chartTitle2" Style="{StaticResource CustomTitleStyle}" Foreground="Black" Background="Transparent" />
+                            <telerik:RadBusyIndicator x:Name="busyIndicator2" Grid.Row="1" BusyContent="Wczytuję dane....">
+                                <telerik:ChartArea Grid.Row="1"  ItemClick="chartMonthlyZamowienia_ItemClick"  x:Name="chartAreaMonthlyZamowienia"/>
+                                </telerik:RadBusyIndicator>
                         </Grid>
                         <telerik:RadChart.SeriesMappings>
                             <telerik:SeriesMapping LegendLabel="" ChartAreaName="chartAreaMonthlyZamowienia" >
@@ -102,12 +114,13 @@
                                     <telerik:BarSeriesDefinition  ShowItemLabels="False" />
                                 </telerik:SeriesMapping.SeriesDefinition>
                                 <telerik:SeriesMapping.ItemMappings>
-                                    <telerik:ItemMapping FieldName="MiesiacZrealizowania" DataPointMember="XCategory" />
-                                    <telerik:ItemMapping FieldName="Ilosc" DataPointMember="YValue" AggregateFunction="Sum"/>
+                                    <telerik:ItemMapping FieldName="MiesiacZrealizowaniaString" DataPointMember="XCategory" />
+                                    <telerik:ItemMapping FieldName="Ilosc" DataPointMember="YValue" AggregateFunction="Sum" />
                                 </telerik:SeriesMapping.ItemMappings>
-                                <telerik:SeriesMapping.FilterDescriptors>
-                                    <telerik:ChartFilterDescriptor Member="RokZrealizowania" Operator="IsGreaterThan" Value="1900"/>
-                                </telerik:SeriesMapping.FilterDescriptors>
+                                <telerik:SeriesMapping.SortDescriptors>
+                                    <telerik:ChartSortDescriptor Member="MiesiacZrealizowania" SortDirection="Ascending">
+                                    </telerik:ChartSortDescriptor>
+                                </telerik:SeriesMapping.SortDescriptors>
                                 <telerik:SeriesMapping.GroupingSettings>
                                     <telerik:GroupingSettings ShouldFlattenSeries="True">
                                         <telerik:ChartGroupDescriptor Member="MiesiacZrealizowania" />
@@ -118,9 +131,17 @@
                     </telerik:RadChart>
                     <telerik:RadChart Grid.Row="1" Grid.Column="1" Name="chartProductZamowienia" UseDefaultLayout="False"  BorderBrush="Transparent">
                         <Grid>
-                            <telerik:ChartTitle  x:Name="chartTitle3" Content="Zamowienia Produktow" Background="Transparent" />
-                            <telerik:ChartLegend x:Name="ChartLegend2"/>
-                            <telerik:ChartArea   x:Name="chartAreaProductZamowienia" LegendName="ChartLegend2" />
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="1*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <telerik:ChartTitle  x:Name="chartTitle3" Style="{StaticResource CustomTitleStyle}"  Foreground="Black" Content="Rodzaje Produktów" Background="Transparent" />
+                            <telerik:RadBusyIndicator x:Name="busyIndicator3" Grid.Row="1" BusyContent="Wczytuję dane....">
+                                <Grid>
+                                <telerik:ChartLegend Background="Transparent"  BorderBrush="Transparent"  Grid.Row="1" x:Name="ChartLegend2"  />
+                                <telerik:ChartArea   Grid.Row="1" x:Name="chartAreaProductZamowienia" LegendName="ChartLegend2" />
+                                </Grid>
+                            </telerik:RadBusyIndicator>
                         </Grid>
                         <telerik:RadChart.SeriesMappings>
                             <telerik:SeriesMapping LegendLabel="" ChartAreaName="chartAreaProductZamowienia" >
@@ -143,14 +164,9 @@
                     </telerik:RadChart>
                 </Grid>
             </sdk:TabItem>
-            <sdk:TabItem   Name="tabZamowienia" Height="20" Width="50">
+            <sdk:TabItem   Name="tabZamowienia" Height="20" Width="Auto">
                 <sdk:TabItem.Header>
                     <TextBlock Text="Zamowienia"></TextBlock>
-                </sdk:TabItem.Header>
-            </sdk:TabItem>
-            <sdk:TabItem   Name="tabPErsonalny" Height="20" Width="50">
-                <sdk:TabItem.Header>
-                    <TextBlock Text="Personalny"></TextBlock>
                 </sdk:TabItem.Header>
             </sdk:TabItem>
         </sdk:TabControl>

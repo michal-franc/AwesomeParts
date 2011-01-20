@@ -13,7 +13,6 @@ using AwesomeParts.Web.Services;
 using System.ServiceModel.DomainServices.Client;
 using AwesomeParts.Web.POCOs;
 using AwesomeParts.Web;
-using AwesomeParts.Web;
 using AwesomeParts.Web.Models;
 
 namespace AwesomeParts.Controls
