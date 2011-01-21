@@ -61,7 +61,7 @@
                         <ColumnDefinition Width="1*"></ColumnDefinition>
                         <ColumnDefinition Width="1*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <telerik:RadChart  Grid.ColumnSpan="2" Name="chartYearlyZamowienia"  UseDefaultLayout="False"  BorderBrush="Transparent" >
+                    <telerik:RadChart  Grid.ColumnSpan="1" Name="chartYearlyZamowienia"  UseDefaultLayout="False"  BorderBrush="Transparent" >
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"></RowDefinition>
@@ -94,6 +94,41 @@
                                         <telerik:ChartGroupDescriptor Member="RokZrealizowania" />
                                     </telerik:GroupingSettings>
                                 </telerik:SeriesMapping.GroupingSettings>
+                            </telerik:SeriesMapping>
+                        </telerik:RadChart.SeriesMappings>
+                    </telerik:RadChart>
+                    <telerik:RadChart Grid.Row="0" Grid.Column="1" Name="chartKlientZamowienia" UseDefaultLayout="False"  BorderBrush="Transparent">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="1*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <telerik:ChartTitle  x:Name="chartTitle4" Style="{StaticResource CustomTitleStyle}"  Foreground="Black" Content="Klienci" Background="Transparent" />
+                            <telerik:RadBusyIndicator x:Name="busyIndicator4" Grid.Row="1" BusyContent="Wczytuję dane....">
+                                <Grid>
+                                    <telerik:ChartLegend Background="Transparent"  BorderBrush="Transparent"  Grid.Row="1" x:Name="ChartLegend3"  />
+                                    <telerik:ChartArea   Grid.Row="1" x:Name="chartAreaKlientZamowienia" LegendName="ChartLegend3" />
+                                </Grid>
+                            </telerik:RadBusyIndicator>
+                        </Grid>
+                        <telerik:RadChart.SeriesMappings>
+                            <telerik:SeriesMapping LegendLabel="" ChartAreaName="chartAreaKlientZamowienia" >
+                                <telerik:SeriesMapping.SeriesDefinition>
+                                    <telerik:DoughnutSeriesDefinition >
+                                        <telerik:DoughnutSeriesDefinition.InteractivitySettings>
+                                            <telerik:InteractivitySettings HoverScope="Item" SelectionMode="Multiple" SelectionScope="Item" />
+                                        </telerik:DoughnutSeriesDefinition.InteractivitySettings>
+                                    </telerik:DoughnutSeriesDefinition>
+                                </telerik:SeriesMapping.SeriesDefinition>
+                                <telerik:SeriesMapping.ItemMappings>
+                                    <telerik:ItemMapping FieldName="KlientNazwa" DataPointMember="LegendLabel" />
+                                    <telerik:ItemMapping FieldName="Ilosc" DataPointMember="YValue" AggregateFunction="Sum"/>
+                                </telerik:SeriesMapping.ItemMappings>
+                                <telerik:SeriesMapping.GroupingSettings>
+                                    <telerik:GroupingSettings ShouldFlattenSeries="True">
+                                        <telerik:ChartGroupDescriptor Member="KlientNazwa" />
+                                    </telerik:GroupingSettings>
+                                 </telerik:SeriesMapping.GroupingSettings>
                             </telerik:SeriesMapping>
                         </telerik:RadChart.SeriesMappings>
                     </telerik:RadChart>
@@ -163,11 +198,6 @@
                         </telerik:RadChart.SeriesMappings>
                     </telerik:RadChart>
                 </Grid>
-            </sdk:TabItem>
-            <sdk:TabItem   Name="tabZamowienia" Height="20" Width="Auto">
-                <sdk:TabItem.Header>
-                    <TextBlock Text="Zamowienia"></TextBlock>
-                </sdk:TabItem.Header>
             </sdk:TabItem>
         </sdk:TabControl>
     </Grid>

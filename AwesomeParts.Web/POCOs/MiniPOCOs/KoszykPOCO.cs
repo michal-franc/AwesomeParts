@@ -25,6 +25,15 @@ namespace AwesomeParts.Web.POCOs.MiniPOCOs
         [Association("ZamowienieKoszykZamowienie", "ZamowienieID", "Id", IsForeignKey = true)]
         public ZamowieniePOCO Zamowienie { get; set; }
 
+
+        public string KlientNazwa
+        {
+            get
+            {
+                return Zamowienie.KlientNazwa;
+            }
+        }
+
         public int RokZrealizowania
         {
             get

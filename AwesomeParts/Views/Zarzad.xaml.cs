@@ -24,8 +24,6 @@ namespace AwesomeParts.Views
         private string _selectedYear = String.Empty;
 
         private bool _first = true;
-        private bool _first1 = true;
-        private bool _first2 = true;
 
         public Zarzad()
         {
@@ -50,6 +48,7 @@ namespace AwesomeParts.Views
         {
             this.busyIndicator1.IsBusy = false;
             this.busyIndicator2.IsBusy = false;
+            this.busyIndicator4.IsBusy = false;
         }
 
         void produktyContext_LoadedData(object sender, LoadedDataEventArgs e)
@@ -69,8 +68,10 @@ namespace AwesomeParts.Views
             zamowieniaContext.Load();
             this.busyIndicator1.IsBusy = true;
             this.busyIndicator2.IsBusy = true;
+            this.busyIndicator4.IsBusy = true;
             chartYearlyZamowienia.ItemsSource = zamowieniaContext.Data;
             chartMonthlyZamowienia.ItemsSource = zamowieniaContext.Data;
+            chartKlientZamowienia.ItemsSource = zamowieniaContext.Data;
         }
 
         private void chartareaYearlyZamowienia_ItemClick(object sender, ChartItemClickEventArgs e)
@@ -94,6 +95,8 @@ namespace AwesomeParts.Views
 
             this.chartMonthlyZamowienia.FilterDescriptors.Clear();
             this.chartMonthlyZamowienia.FilterDescriptors.Add(descriptor);
+            this.chartKlientZamowienia.FilterDescriptors.Clear();
+            this.chartKlientZamowienia.FilterDescriptors.Add(descriptor);
             this.chartMonthlyZamowienia.FilterDescriptors.Add(descriptor1);
 
 
@@ -119,9 +122,21 @@ namespace AwesomeParts.Views
             {
                 produktyContext.Clear();
             }
-
-
             string month = ConvertMonthToInt(e.DataPoint.XCategory);
+
+            ChartFilterDescriptor descriptor = new ChartFilterDescriptor();
+            descriptor.Member = "RokZrealizowania";
+            descriptor.Operator = Telerik.Windows.Data.FilterOperator.IsEqualTo;
+            descriptor.Value = _selectedYear;
+            ChartFilterDescriptor descriptor1 = new ChartFilterDescriptor();
+            descriptor1.Member = "MiesiacZrealizowania";
+            descriptor1.Operator = Telerik.Windows.Data.FilterOperator.IsEqualTo;
+            descriptor1.Value = month;
+
+            this.chartKlientZamowienia.FilterDescriptors.Clear();
+            this.chartKlientZamowienia.FilterDescriptors.Add(descriptor);
+            this.chartKlientZamowienia.FilterDescriptors.Add(descriptor1);
+
 
             produktyContext.QueryParameters.Clear();
             produktyContext.QueryName = "";

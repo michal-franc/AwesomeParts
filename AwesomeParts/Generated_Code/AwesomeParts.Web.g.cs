@@ -3865,6 +3865,8 @@ namespace AwesomeParts.Web.POCOs.MiniPOCOs
         
         private int _ilosc;
         
+        private string _klientNazwa;
+        
         private int _miesiacZrealizowania;
         
         private string _miesiacZrealizowaniaString;
@@ -3896,6 +3898,8 @@ namespace AwesomeParts.Web.POCOs.MiniPOCOs
         partial void OnIdChanged();
         partial void OnIloscChanging(int value);
         partial void OnIloscChanged();
+        partial void OnKlientNazwaChanging(string value);
+        partial void OnKlientNazwaChanged();
         partial void OnMiesiacZrealizowaniaChanging(int value);
         partial void OnMiesiacZrealizowaniaChanged();
         partial void OnMiesiacZrealizowaniaStringChanging(string value);
@@ -4016,6 +4020,31 @@ namespace AwesomeParts.Web.POCOs.MiniPOCOs
                     this._ilosc = value;
                     this.RaiseDataMemberChanged("Ilosc");
                     this.OnIloscChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'KlientNazwa' value.
+        /// </summary>
+        [DataMember()]
+        [Editable(false)]
+        [ReadOnly(true)]
+        public string KlientNazwa
+        {
+            get
+            {
+                return this._klientNazwa;
+            }
+            set
+            {
+                if ((this._klientNazwa != value))
+                {
+                    this.OnKlientNazwaChanging(value);
+                    this.ValidateProperty("KlientNazwa", value);
+                    this._klientNazwa = value;
+                    this.RaisePropertyChanged("KlientNazwa");
+                    this.OnKlientNazwaChanged();
                 }
             }
         }
