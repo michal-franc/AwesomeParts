@@ -45,6 +45,19 @@ namespace AwesomeParts.Web.POCOs.MiniPOCOs
             }
         }
 
+        public int DayZrealizowania
+        {
+            get
+            {
+                if (Zamowienie.DataZrealizowania.HasValue)
+                    return Zamowienie.DataZrealizowania.Value.Day;
+                else
+                    return 0;
+
+
+            }
+        }
+
         public int MiesiacZrealizowania
         {
             get

@@ -69,17 +69,18 @@
                             </Grid.RowDefinitions>
                             <telerik:ChartTitle  x:Name="chartTitle1" Style="{StaticResource CustomTitleStyle}"   Foreground="Black" Content="Roczna Sprzedaż" Background="Transparent" />
                             <telerik:RadBusyIndicator x:Name="busyIndicator1" Grid.Row="1" BusyContent="Wczytuję dane....">
-                                <telerik:ChartArea Grid.Row="1"  ItemClick="chartareaYearlyZamowienia_ItemClick"  x:Name="chartAreaYearlyZamowienia"  />
+                                <telerik:ChartArea Grid.Row="1"   ItemClick="chartareaYearlyZamowienia_ItemClick"  x:Name="chartAreaYearlyZamowienia"  />
                             </telerik:RadBusyIndicator>
                         </Grid>
                         <telerik:RadChart.SeriesMappings >
                             <telerik:SeriesMapping LegendLabel="" ChartAreaName="chartAreaYearlyZamowienia" >
                                 <telerik:SeriesMapping.SeriesDefinition>
-                                    <telerik:SplineAreaSeriesDefinition  ShowItemLabels="False" />
+                                    <telerik:SplineAreaSeriesDefinition ShowItemToolTips="True"   ShowItemLabels="False" />
                                 </telerik:SeriesMapping.SeriesDefinition>
                                 <telerik:SeriesMapping.ItemMappings>
                                     <telerik:ItemMapping FieldName="RokZrealizowania" DataPointMember="XCategory" />
                                     <telerik:ItemMapping FieldName="Ilosc" DataPointMember="YValue" AggregateFunction="Sum" />
+                                    <telerik:ItemMapping FieldName="Ilosc" DataPointMember="Tooltip" AggregateFunction="Sum" />
                                 </telerik:SeriesMapping.ItemMappings>
                                 <telerik:SeriesMapping.FilterDescriptors>
                                     <telerik:ChartFilterDescriptor Member="Ilosc" Operator="IsGreaterThan" Value="0"/>
@@ -140,13 +141,17 @@
                             </Grid.RowDefinitions>
                             <telerik:ChartTitle  x:Name="chartTitle2" Style="{StaticResource CustomTitleStyle}" Foreground="Black" Background="Transparent" />
                             <telerik:RadBusyIndicator x:Name="busyIndicator2" Grid.Row="1" BusyContent="Wczytuję dane....">
-                                <telerik:ChartArea Grid.Row="1"  ItemClick="chartMonthlyZamowienia_ItemClick"  x:Name="chartAreaMonthlyZamowienia"/>
+                                <telerik:ChartArea Grid.Row="1"  ItemToolTipOpening="chartAreaMonthlyZamowienia_ItemToolTipOpening"  ItemClick="chartMonthlyZamowienia_ItemClick"  x:Name="chartAreaMonthlyZamowienia"/>
                                 </telerik:RadBusyIndicator>
                         </Grid>
                         <telerik:RadChart.SeriesMappings>
                             <telerik:SeriesMapping LegendLabel="" ChartAreaName="chartAreaMonthlyZamowienia" >
-                                <telerik:SeriesMapping.SeriesDefinition>
-                                    <telerik:BarSeriesDefinition  ShowItemLabels="False" />
+                                <telerik:SeriesMapping.SeriesDefinition >
+                                    <telerik:BarSeriesDefinition  ShowItemToolTips="True"  ShowItemLabels="False" >
+                                        <telerik:BarSeriesDefinition.InteractivitySettings> 
+                                            <telerik:InteractivitySettings HoverScope="Item"></telerik:InteractivitySettings>
+                                        </telerik:BarSeriesDefinition.InteractivitySettings>
+                                    </telerik:BarSeriesDefinition>
                                 </telerik:SeriesMapping.SeriesDefinition>
                                 <telerik:SeriesMapping.ItemMappings>
                                     <telerik:ItemMapping FieldName="MiesiacZrealizowaniaString" DataPointMember="XCategory" />

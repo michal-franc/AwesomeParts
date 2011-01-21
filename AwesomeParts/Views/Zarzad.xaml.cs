@@ -12,6 +12,8 @@ using System.Windows.Shapes;
 using System.Windows.Navigation;
 using AwesomeParts.Web.Services;
 using Telerik.Windows.Controls.Charting;
+using Telerik.Windows.Controls;
+using AwesomeParts.Web.POCOs.MiniPOCOs;
 
 namespace AwesomeParts.Views
 {
@@ -22,7 +24,7 @@ namespace AwesomeParts.Views
 
 
         private string _selectedYear = String.Empty;
-
+        private string _currentMonth = String.Empty;
         private bool _first = true;
 
         public Zarzad()
@@ -123,7 +125,7 @@ namespace AwesomeParts.Views
                 produktyContext.Clear();
             }
             string month = ConvertMonthToInt(e.DataPoint.XCategory);
-
+            _currentMonth = month;
             ChartFilterDescriptor descriptor = new ChartFilterDescriptor();
             descriptor.Member = "RokZrealizowania";
             descriptor.Operator = Telerik.Windows.Data.FilterOperator.IsEqualTo;
@@ -166,6 +168,34 @@ namespace AwesomeParts.Views
                 case "Grudzień": return "12";
                 default: return "0";
             }
+        }
+
+        private void chartAreaMonthlyZamowienia_ItemToolTipOpening(ItemToolTip2D tooltip, ItemToolTipEventArgs e)
+        {
+            RadChart chart = new RadChart();
+            chart.Height = 200;
+            chart.Width = 350;
+            chart.DefaultView.ChartLegend.Visibility = System.Windows.Visibility.Collapsed;
+
+            chart.DefaultView.ChartTitle.Content = "Sprzedaż Miesięczna";
+            chart.DefaultView.ChartArea.AxisX.LayoutMode = AxisLayoutMode.Inside;
+
+            var data = from d in zamowieniaContext.Data.Cast<KoszykPOCO>()
+                       where d.RokZrealizowania == int.Parse(_selectedYear) && d.MiesiacZrealizowania == int.Parse(ConvertMonthToInt(e.DataPoint.XCategory))
+                       select d;
+            SeriesMapping mapping  = new SeriesMapping();
+            mapping.ItemMappings.Add(new ItemMapping() { DataPointMember = DataPointMember.XCategory, FieldName = "Dayzrealizowania" });
+            mapping.ItemMappings.Add(new ItemMapping() { DataPointMember = DataPointMember.YValue, FieldName = "Ilosc", AggregateFunction = ChartAggregateFunction.Sum });
+            mapping.SortDescriptors.Add(new ChartSortDescriptor() { Member = "Dayzrealizowania", SortDirection = System.ComponentModel.ListSortDirection.Ascending });
+            mapping.GroupingSettings.GroupDescriptors.Add(new ChartGroupDescriptor() { Member = "Dayzrealizowania" });
+            chart.SeriesMappings.Add(mapping);
+            chart.ItemsSource = data;
+            if (chart.DefaultView.ChartArea.DataSeries.Count > 0)
+            {
+                chart.DefaultView.ChartArea.DataSeries.First().Definition = new SplineAreaSeriesDefinition();
+            }
+                tooltip.Content = chart;
+
         }
     }
 }

@@ -3861,6 +3861,8 @@ namespace AwesomeParts.Web.POCOs.MiniPOCOs
         
         private decimal _cenaJednostkowa;
         
+        private int _dayZrealizowania;
+        
         private int _id;
         
         private int _ilosc;
@@ -3894,6 +3896,8 @@ namespace AwesomeParts.Web.POCOs.MiniPOCOs
         partial void OnCenaCalosciowaChanged();
         partial void OnCenaJednostkowaChanging(decimal value);
         partial void OnCenaJednostkowaChanged();
+        partial void OnDayZrealizowaniaChanging(int value);
+        partial void OnDayZrealizowaniaChanged();
         partial void OnIdChanging(int value);
         partial void OnIdChanged();
         partial void OnIloscChanging(int value);
@@ -3970,6 +3974,31 @@ namespace AwesomeParts.Web.POCOs.MiniPOCOs
                     this._cenaJednostkowa = value;
                     this.RaiseDataMemberChanged("CenaJednostkowa");
                     this.OnCenaJednostkowaChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'DayZrealizowania' value.
+        /// </summary>
+        [DataMember()]
+        [Editable(false)]
+        [ReadOnly(true)]
+        public int DayZrealizowania
+        {
+            get
+            {
+                return this._dayZrealizowania;
+            }
+            set
+            {
+                if ((this._dayZrealizowania != value))
+                {
+                    this.OnDayZrealizowaniaChanging(value);
+                    this.ValidateProperty("DayZrealizowania", value);
+                    this._dayZrealizowania = value;
+                    this.RaisePropertyChanged("DayZrealizowania");
+                    this.OnDayZrealizowaniaChanged();
                 }
             }
         }
