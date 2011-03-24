@@ -36,7 +36,7 @@ namespace AwesomeParts.Views
             zamowieniaContext.AutoLoad = false;
             zamowieniaContext.DomainContext = (AwesomePartsContext)this.Resources["ZamowieniaContext"];
             zamowieniaContext.QueryName = "GetKoszyki";
-            zamowieniaContext.LoadedData += new EventHandler<LoadedDataEventArgs>(zamowieniaContext_LoadedData);
+            zamowieniaContext.LoadedData += new EventHandler<LoadedDataEventArgs>(zamowieniaContext_LoadedData1);
 
             produktyContext = new DomainDataSource();
             produktyContext.Name = "GetProducts";
@@ -46,12 +46,16 @@ namespace AwesomeParts.Views
 
         }
 
-        void zamowieniaContext_LoadedData(object sender, LoadedDataEventArgs e)
+        void zamowieniaContext_LoadedData1(object sender, LoadedDataEventArgs e)
         {
             this.busyIndicator1.IsBusy = false;
             this.busyIndicator2.IsBusy = false;
             this.busyIndicator4.IsBusy = false;
+
+            chartYearlyZamowienia.ItemsSource = zamowieniaContext.Data;
+            chartKlientZamowienia.ItemsSource = zamowieniaContext.Data;
         }
+
 
         void produktyContext_LoadedData(object sender, LoadedDataEventArgs e)
         {
@@ -71,9 +75,7 @@ namespace AwesomeParts.Views
             this.busyIndicator1.IsBusy = true;
             this.busyIndicator2.IsBusy = true;
             this.busyIndicator4.IsBusy = true;
-            chartYearlyZamowienia.ItemsSource = zamowieniaContext.Data;
-            chartMonthlyZamowienia.ItemsSource = zamowieniaContext.Data;
-            chartKlientZamowienia.ItemsSource = zamowieniaContext.Data;
+
         }
 
         private void chartareaYearlyZamowienia_ItemClick(object sender, ChartItemClickEventArgs e)
@@ -100,6 +102,7 @@ namespace AwesomeParts.Views
             this.chartKlientZamowienia.FilterDescriptors.Clear();
             this.chartKlientZamowienia.FilterDescriptors.Add(descriptor);
             this.chartMonthlyZamowienia.FilterDescriptors.Add(descriptor1);
+            chartMonthlyZamowienia.ItemsSource = zamowieniaContext.Data;
 
 
             this.busyIndicator3.IsBusy = true;

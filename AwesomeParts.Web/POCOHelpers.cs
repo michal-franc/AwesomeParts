@@ -105,6 +105,7 @@ namespace AwesomeParts.Web
                 CenaCalosciowa = koszyk.Ilosc * koszyk.Produkt.Cena,
                 ProduktID = koszyk.Produkt.Id,
                 ZamowienieID = koszyk.Zamowienie.Id,
+                Firma = koszyk.Zamowienie.Klient.Firma,
                 Zamowienie = POCOHelpers.MapZamowienieToPOCO(koszyk.Zamowienie)
             };
         }

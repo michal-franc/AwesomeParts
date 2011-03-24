@@ -13,6 +13,7 @@ namespace AwesomeParts.Web.POCOs.MiniPOCOs
         public int Id { get; set; }
 
         public string Nazwa { get; set; }
+        public string Firma { get; set; }
         public string Producent { get; set; }
         public int Ilosc { get; set; }
         public decimal CenaJednostkowa { get; set; }

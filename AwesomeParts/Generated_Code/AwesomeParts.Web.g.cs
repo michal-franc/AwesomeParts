@@ -1639,6 +1639,7 @@ namespace AwesomeParts.Web.POCOs
     using System.ServiceModel.DomainServices;
     using System.ServiceModel.DomainServices.Client;
     using System.ServiceModel.DomainServices.Client.ApplicationServices;
+    using AwesomeParts.Web.Resources;
     
     
     /// <summary>
@@ -2663,6 +2664,7 @@ namespace AwesomeParts.Web.POCOs
         /// </summary>
         [DataMember()]
         [Display(Description="Data podpisania umowy", Name="Data podpisania")]
+        [Required(ErrorMessageResourceName="ValidationErrorRequiredField", ErrorMessageResourceType=typeof(ValidationErrorResources))]
         public Nullable<DateTime> DataPodpisania
         {
             get
@@ -2738,6 +2740,8 @@ namespace AwesomeParts.Web.POCOs
         /// Gets or sets the 'Placa' value.
         /// </summary>
         [DataMember()]
+        [RegularExpression("^[0-9]*$", ErrorMessage="Pole placa musi się składać tylko z cyfr")]
+        [Required(ErrorMessageResourceName="ValidationErrorRequiredField", ErrorMessageResourceType=typeof(ValidationErrorResources))]
         public int Placa
         {
             get
@@ -2821,6 +2825,7 @@ namespace AwesomeParts.Web.POCOs
         /// Gets or sets the 'Uwagi' value.
         /// </summary>
         [DataMember()]
+        [StringLength(255, ErrorMessage="Pole uwagi maksymalna ilość znaków 20.")]
         public string Uwagi
         {
             get
@@ -3863,6 +3868,8 @@ namespace AwesomeParts.Web.POCOs.MiniPOCOs
         
         private int _dayZrealizowania;
         
+        private string _firma;
+        
         private int _id;
         
         private int _ilosc;
@@ -3898,6 +3905,8 @@ namespace AwesomeParts.Web.POCOs.MiniPOCOs
         partial void OnCenaJednostkowaChanged();
         partial void OnDayZrealizowaniaChanging(int value);
         partial void OnDayZrealizowaniaChanged();
+        partial void OnFirmaChanging(string value);
+        partial void OnFirmaChanged();
         partial void OnIdChanging(int value);
         partial void OnIdChanged();
         partial void OnIloscChanging(int value);
@@ -3999,6 +4008,30 @@ namespace AwesomeParts.Web.POCOs.MiniPOCOs
                     this._dayZrealizowania = value;
                     this.RaisePropertyChanged("DayZrealizowania");
                     this.OnDayZrealizowaniaChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'Firma' value.
+        /// </summary>
+        [DataMember()]
+        public string Firma
+        {
+            get
+            {
+                return this._firma;
+            }
+            set
+            {
+                if ((this._firma != value))
+                {
+                    this.OnFirmaChanging(value);
+                    this.RaiseDataMemberChanging("Firma");
+                    this.ValidateProperty("Firma", value);
+                    this._firma = value;
+                    this.RaiseDataMemberChanged("Firma");
+                    this.OnFirmaChanged();
                 }
             }
         }

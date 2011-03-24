@@ -122,12 +122,12 @@
                                     </telerik:DoughnutSeriesDefinition>
                                 </telerik:SeriesMapping.SeriesDefinition>
                                 <telerik:SeriesMapping.ItemMappings>
-                                    <telerik:ItemMapping FieldName="KlientNazwa" DataPointMember="LegendLabel" />
+                                    <telerik:ItemMapping FieldName="Firma" DataPointMember="LegendLabel" />
                                     <telerik:ItemMapping FieldName="Ilosc" DataPointMember="YValue" AggregateFunction="Sum"/>
                                 </telerik:SeriesMapping.ItemMappings>
                                 <telerik:SeriesMapping.GroupingSettings>
                                     <telerik:GroupingSettings ShouldFlattenSeries="True">
-                                        <telerik:ChartGroupDescriptor Member="KlientNazwa" />
+                                        <telerik:ChartGroupDescriptor Member="Firma" />
                                     </telerik:GroupingSettings>
                                  </telerik:SeriesMapping.GroupingSettings>
                             </telerik:SeriesMapping>

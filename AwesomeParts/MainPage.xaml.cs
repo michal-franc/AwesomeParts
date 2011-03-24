@@ -25,7 +25,7 @@
             
 
             this.loginContainer.Child = new LoginStatus();
-
+                
         }
 
         /// <summary>
